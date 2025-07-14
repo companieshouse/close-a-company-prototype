@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+    <h1 class="govuk-heading-xl">
+      {{ serviceName }}
+    </h1>
+<ul>
+  <li>
+    <a href="/v1/start-v1" class="govuk-link">Start Page</a>
+    </li>
+     <li>
+    <a href="/v1/start" class="govuk-link">Who to tell</a>
+    </li>
+       <li>
+    <a href="/v1/start" class="govuk-link">Sign in</a>
+    </li>
+        <li>
+    <a href="/v1/start" class="govuk-link">Company number</a>
+    </li>
+        <li>
+    <a href="/v1/start-v1" class="govuk-link">View company info</a>
+    </li>
+   </ul>
+  </div>
+</div>
+
+{% endblock %}
