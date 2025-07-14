@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    We are introducing a new way to sign in to some of our services.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
+      <h1 class="govuk-heading-l">
+        Sign in to Companies House
+      </h1>
+
+      <p>
+        If you have an existing Companies House account, enter your email address.
+      </p>
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Email address",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+      <p>
+      <a href="/path/of/page">Create sign in details</a>
+      </p>
+
+    </div>
+  </div>
+
+  <h3 class="govuk-heading-s">GOV.UK One Login</h3>
+  <p>This is the new way to sign in to some of our services.</p>
+
+    <p>
+      <a href="/path/of/page">Sign in with GOV.UK One Login </a> if you already have one.
+      </p>
+
+{% endblock %}
