@@ -1,0 +1,105 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        View company information
+      </h1>
+
+       <h2 class="govuk-heading-l">
+        GAIL BIDDULPH LIMITED
+      </h2>
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Company number"
+            },
+            value: {
+              text: "08660191"
+            },
+            actions: {
+              
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              text: "Active"
+            },
+            actions: {
+              items: [
+                
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Incorporation date"
+            },
+            value: {
+              text: "22 Aug 2013"
+            },
+            actions: {
+          
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Company type"
+            },
+            value: {
+              text: "Private limited company"
+            },
+            actions: {
+          
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Registered office address"
+            },
+            value: {
+              text: "1a Rossett Business Village, Rossett, Wrexham, LL120AY"
+            },
+            actions: {
+          
+            }
+          }
+        ]
+      }) }}
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Confirm and continue"
+        }) }}
+
+      </form>
+      <p class="govuk-body">
+  <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different company</a>
+</p>
+
+    </div>
+  </div>
+{% endblock %}
