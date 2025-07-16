@@ -29,10 +29,12 @@
   id: "event-name",
   name: "eventName"
 }) }}
+
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
-  text: "Continue"
+  text: "Save and continue",
+  href: "/v1/gov-one-log-in"
 }) }}
 
 {% endblock %}
