@@ -29,8 +29,8 @@
   },
   items: [
     {
-      value: "harrySmith",
-      text: "Harry Smith"
+      value: "name",
+      text: "Name"
     },
     {
       value: "iAmNotADirectorOfThisCompany",
@@ -41,7 +41,8 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
-  text: "Continue"
+  text: "Continue",
+  href: "check-your-answers-v1"
 }) }}
 
     </div>
