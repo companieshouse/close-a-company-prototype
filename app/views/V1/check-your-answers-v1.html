@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
   Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -55,8 +55,8 @@
       <form action="/confirmation" method="post" novalidate>
 
         {{ govukButton({
-          text: "Continue",
-          href: ""
+          text: "Continue"
+         
         }) }}
 
       </form>
