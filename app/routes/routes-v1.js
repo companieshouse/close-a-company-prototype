@@ -1,17 +1,14 @@
-//
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
-//
 
-const govukPrototypeKit = require('govuk-prototype-kit')
-const router = govukPrototypeKit.requests.setupRouter()
+const express = require('express');
+const router = express.Router();
 
 // Add your routes here
-router.post('/view-company-info', function (req, res) {
-  const number = req.body.companyNumber;
+router.post('/V1/view-company-info', function (req, res) {
+  const number = req.body.companyNumber?.trim(); // remove extra whitespace
   req.session.data['companyNumber'] = number;
 
-  // Mock company info based on company number
   const companyData = {
     '12345678': {
       name: 'Acme Ltd',
@@ -22,8 +19,7 @@ router.post('/view-company-info', function (req, res) {
     }
   };
 
-  // Use a default if not found
-  req.session.data['companyInfo'] = companyData[number] || {
+  const matchedCompany = companyData[number] || {
     name: 'Unknown company',
     status: 'Unknown',
     incorporationDate: 'N/A',
@@ -31,5 +27,10 @@ router.post('/view-company-info', function (req, res) {
     address: 'N/A'
   };
 
-  res.redirect('/view-company-info');
+  req.session.data['companyInfo'] = matchedCompany;
+
+
+  res.redirect('/V1/view-company-info');
 });
+
+module.exports = router;
