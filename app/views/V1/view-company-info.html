@@ -12,6 +12,9 @@
 {% endblock %}
 
 {% block content %}
+  {% set company = data['companyData'] %}
+  {% set companyNumber = data['companyNumber'] %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
@@ -19,87 +22,44 @@
         View company information
       </h1>
 
-       <h2 class="govuk-heading-l">
-       Company name
+      <h2 class="govuk-heading-l">
+        {{ company.name or 'Unknown company' }}
       </h2>
-      
+
       {{ govukSummaryList({
         rows: [
           {
-            key: {
-              text: "Company number"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-              
-            }
-          }
-          ,
+            key: { text: "Company number" },
+            value: { text: companyNumber or 'Not provided' }
+          },
           {
-            key: {
-              text: "Status"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-              items: [
-                
-              ]
-            }
-          }
-          ,
+            key: { text: "Status" },
+            value: { text: company.status or 'Unknown' }
+          },
           {
-            key: {
-              text: "Incorporation date"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-          
-            }
-          }
-          ,
+            key: { text: "Incorporation date" },
+            value: { text: company.incorporationDate or 'Unknown' }
+          },
           {
-            key: {
-              text: "Company type"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-          
-            }
-          }
-          ,
+            key: { text: "Company type" },
+            value: { text: company.type or 'Unknown' }
+          },
           {
-            key: {
-              text: "Registered office address"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-          
-            }
+            key: { text: "Registered office address" },
+            value: { text: company.address or 'Unknown' }
           }
         ]
       }) }}
 
       <form action="/confirmation" method="post" novalidate>
-
         {{ govukButton({
-          text: "Confirm and continue",
-          href: "company-authentication-v1"
+          text: "Confirm and continue"
         }) }}
-
       </form>
+
       <p class="govuk-body">
-  <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different</a>
-</p>
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different</a>
+      </p>
 
     </div>
   </div>

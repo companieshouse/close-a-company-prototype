@@ -6,42 +6,46 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-{% from "govuk/components/input/macro.njk" import govukInput %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-{{ govukInput({
-  label: {
-    text: "What is the company number?",
-    classes: "govuk-label--l",
-    isPageHeading: true
-  },
-  hint: {
-    text: "This is the 8 character reference issued by Companies House when the 
-company was set up."
-  },
-  id: "event-name",
-  name: "eventName"
-}) }}
-<p class="govuk-body">
-  <a href="#" class="govuk-link govuk-link--no-visited-state">Help with company number</a>
-</p>
+    <form action="/view-company-info" method="post">
+      {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {{ govukButton({
-          text: "Continue",
-          href: "view-company-info"
-        }) }}
+      {{ govukInput({
+        label: {
+          text: "What is the company number?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "This is the 8 character reference issued by Companies House when the company was set up."
+        },
+        id: "company-number",
+        name: "companyNumber",
+        value: data['companyNumber']  
+      }) }}
 
-      </form>
+      <p class="govuk-body">
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Help with company number</a>
+      </p>
 
-    </div>
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
