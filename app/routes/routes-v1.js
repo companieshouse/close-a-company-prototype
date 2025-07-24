@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Add your routes here
+//Generate Mock company data after company look up 
 router.post('/V1/view-company-info', function (req, res) {
   const number = req.body.companyNumber?.trim(); // remove extra whitespace
   req.session.data['companyNumber'] = number;
@@ -34,3 +35,4 @@ router.post('/V1/view-company-info', function (req, res) {
 });
 
 module.exports = router;
+
