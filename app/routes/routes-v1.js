@@ -16,7 +16,8 @@ router.post('/V1/view-company-info', function (req, res) {
       status: 'Active',
       incorporationDate: '1 January 2000',
       type: 'Private limited company',
-      address: '123 Fake Street, London, SW1A 1AA'
+      address: '123 Fake Street, London, SW1A 1AA',
+      director: 'Jane Doe'
     }
   };
 

@@ -21,13 +21,12 @@
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
 {{ govukInput({
-  label: {
+    label: {
     text: "Enter your email address to sign in to your GOV.UK One Login",
     classes: "govuk-label--l",
     isPageHeading: true
-  },
-  id: "event-name",
-  name: "eventName"
+  },  
+    email: 'email-address'
 }) }}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
