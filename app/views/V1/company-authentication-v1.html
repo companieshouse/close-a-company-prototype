@@ -21,7 +21,7 @@
         Company authentication
       </h1>
 
-      <form class="form" action="/path/of/next/page" method="post">
+      <form class="form" action="/v1/which-director-are-you-v1" method="post">
         <p>To file company information you will need an authentication code</p>
         <p>Authenticating for</p>
 
@@ -35,12 +35,12 @@
           },
           classes: "govuk-input--width-10",
           id: "width-10",
-          name: "width10"
+          name: "authCode"
         }) }}
 
         {{ govukButton({
-          text: "Authenticate"
-        }) }}
+          text: "Authenticate"    
+          }) }}
       </form>
 
       <p class="govuk-body">

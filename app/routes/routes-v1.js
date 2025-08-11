@@ -32,7 +32,7 @@ router.post('/V1/view-company-info', function (req, res) {
 
   req.session.data['companyInfo'] = matchedCompany;
 
-  // ✅ Redirect to the GET version of the same page
+  // Redirect to the GET version of the same page
   res.redirect('/V1/view-company-info');
 });
 
@@ -47,4 +47,23 @@ router.get('/V1/view-company-info', function (req, res) {
   });
 });
 
-module.exports = router;  
+// POST route for authentication form submission
+router.post('/v1/company-authentication-v1', (req, res) => {
+  // You can validate the authentication code here if needed
+
+  // Redirect to the director selection page
+  res.redirect('/v1/which-director-are-you-v1');
+});
+
+// GET route to render director selection page
+router.get('/v1/which-director-are-you-v1', (req, res) => {
+  const company = req.session.data['companyInfo'] || {};
+  const companyNumber = req.session.data['companyNumber'] || '';
+
+  res.render('v1/which-director-are-you-v1', {
+    company,
+    companyNumber
+  });
+});
+
+module.exports = router;
