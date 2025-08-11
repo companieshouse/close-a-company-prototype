@@ -18,6 +18,16 @@
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
+<form method="post" action="/v1/which-director-are-you-v1">
+  <h1 class="govuk-heading-xl">Which Director are you?</h1>
+
+  {% if data.companyInfo and data.companyInfo.name %}
+    <h2 class="govuk-heading-m">{{ data.companyInfo.name }}</h2>
+  {% endif %}
+
+  <p class="govuk-body">
+    Please select the director you are representing in this application.
+  </p>
 {{ govukRadios({
   name: "whichDirectorAreYou",
   fieldset: {
@@ -29,8 +39,8 @@
   },
   items: [
     {
-        value: company.director,
-        text: company.director
+        value: "JaneDoe",
+        text: "Jane Doe"
     },
     {
       divider: "or"
@@ -44,10 +54,10 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
-  text: "Continue",
-  href: "check-your-answers-v1"
+  text: "Continue"
 }) }}
-<p>Director: {{ director }}</p>
+</form>
+
     </div>
   </div>
 

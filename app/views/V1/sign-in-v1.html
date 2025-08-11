@@ -20,20 +20,21 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
+<form method="post" action="/v1/enter-password-v1">
 {{ govukInput({
     label: {
     text: "Enter your email address to sign in to your GOV.UK One Login",
     classes: "govuk-label--l",
     isPageHeading: true
   },  
-    email: 'email-address'
+    name: 'email-address'
 }) }}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
-  text: "Save and continue",
-  href: "/v1/enter-password-v1"
+  text: "Save and continue"
 }) }}
+</form>
 
 {% endblock %}

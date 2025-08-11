@@ -12,8 +12,6 @@
 {% endblock %}
 
 {% block content %}
-  {% set company = company %}
-  {% set companyNumber = companyNumber %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -23,41 +21,58 @@
       </h1>
 
       <h2 class="govuk-heading-l">
-        {{ company.name }} ({{ companyNumber }})
+        {{ companyName }}
       </h2>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: { text: "Company name" },
-            value: { text: company.name }
-          },
-          {
-            key: { text: "Company number" },
-            value: { text: companyNumber }
-          },
-          {
-            key: { text: "Status" },
-            value: { text: company.status }
-          },
-          {
-            key: { text: "Incorporation date" },
-            value: { text: company.incorporationDate }
-          },
-          {
-            key: { text: "Company type" },
-            value: { text: company.type }
-          },
-          {
-            key: { text: "Registered office address" },
-            value: { text: company.address }
-          },
-          {
-            key: { text: "Director" },
-            value: { text: company.director }
-          }
-        ]
-      }) }}
+
+
+
+
+{% if companyName == "sara" %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "11111111" },
+        value: { text: "111111111" }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: company.status }
+      },
+      {
+        key: { text: "Special Info for 11111111" },
+        value: { text: "This is company 11111111" }
+      }
+    ]
+  }) }}
+{% else %}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "22222222" },
+        value: { text: "222222222" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: company.type }
+      },
+      {
+        key: { text: "Special Info for 22222222" },
+        value: { text: "This is company 22222222" }
+      }
+    ]
+  }) }}
+
+
+{% endif %}
+
+{{data | dump | safe}}
+
+
+
+
+
 
       <form action="/V1/company-authentication-v1" method="post">
         {{ govukButton({
