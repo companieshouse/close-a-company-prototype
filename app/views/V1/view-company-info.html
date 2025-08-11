@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+  View company information – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,8 +12,8 @@
 {% endblock %}
 
 {% block content %}
-  {% set company = data['companyInfo'] %}
-  {% set companyNumber = data['companyNumber'] %}
+  {% set company = company %}
+  {% set companyNumber = companyNumber %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -23,42 +23,50 @@
       </h1>
 
       <h2 class="govuk-heading-l">
-        {{ company.name or 'Unknown company' }}
+        {{ company.name }} ({{ companyNumber }})
       </h2>
 
       {{ govukSummaryList({
         rows: [
           {
+            key: { text: "Company name" },
+            value: { text: company.name }
+          },
+          {
             key: { text: "Company number" },
-            value: { text: companyNumber or 'Not provided' }
+            value: { text: companyNumber }
           },
           {
             key: { text: "Status" },
-            value: { text: company.status or 'Unknown' }
+            value: { text: company.status }
           },
           {
             key: { text: "Incorporation date" },
-            value: { text: company.incorporationDate or 'Unknown' }
+            value: { text: company.incorporationDate }
           },
           {
             key: { text: "Company type" },
-            value: { text: company.type or 'Unknown' }
+            value: { text: company.type }
           },
           {
             key: { text: "Registered office address" },
-            value: { text: company.address or 'Unknown' }
+            value: { text: company.address }
+          },
+          {
+            key: { text: "Director" },
+            value: { text: company.director }
           }
         ]
       }) }}
 
-      <form action="/confirmation" method="post" novalidate>
+      <form action="/V1/company-authentication-v1" method="post">
         {{ govukButton({
           text: "Confirm and continue"
         }) }}
       </form>
 
       <p class="govuk-body">
-        <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different</a>
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different company</a>
       </p>
 
     </div>

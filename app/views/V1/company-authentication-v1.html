@@ -12,44 +12,41 @@
 {% endblock %}
 
 {% block content %}
+  {% set company = data['company'] %}
+  {% set companyNumber = data['companyNumber'] %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <h1 class="govuk-heading-l">
         Company authentication
       </h1>
 
       <form class="form" action="/path/of/next/page" method="post">
+        <p>To file company information you will need an authentication code</p>
+        <p>Authenticating for</p>
 
-        <p>
-         To file company information you will need an authentication code
-        </p>
+        <h2 class="govuk-heading-m">
+          {{ company.name }} ({{ companyNumber }})
+        </h2>
 
-         <p>
-         Authenticating for<h2 class="govuk-heading-m">Name (000000) </h2>
-        </p>
         {{ govukInput({
-  label: {
-    text: "Authentication code"
-  },
-  classes: "govuk-input--width-10",
-  id: "width-10",
-  name: "width10"
-}) }}
-        
-        {{ govukButton({
-          text: "Authenticate",
-          href: "which-director-are-you-v1"
+          label: {
+            text: "Authentication code"
+          },
+          classes: "govuk-input--width-10",
+          id: "width-10",
+          name: "width10"
         }) }}
 
+        {{ govukButton({
+          text: "Authenticate"
+        }) }}
       </form>
 
       <p class="govuk-body">
-  <a href="#" class="govuk-link govuk-link--no-visited-state">Request an authentication code</a>
-</p>
-
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Request an authentication code</a>
+      </p>
     </div>
   </div>
-
 {% endblock %}
+

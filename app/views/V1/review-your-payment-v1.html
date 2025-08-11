@@ -19,39 +19,40 @@
         Check your answers before sending your application
       </h1>
 
-{% if data.companyInfo and data.companyInfo.name %}
-  <h2 class="govuk-heading-m">{{ data.companyInfo.name }}</h2>
-{% endif %}
-
       {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Will sign"
-      },
-      value: {
-        text: data.willSign ? "Yes" : "No"
-      }
-    },
-    {
-      key: {
-        text: "Email address"
-      },
-      value: {
-        text: data.email || ""
-      },
-      actions: {
-        items: [
+        rows: [
           {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "Question 2"
+        key: {
+          text: "Item"
+        },
+        value: {
+          text: ""
+        },
+        actions: {
+          items: [
+            {
+          html: "<span class='govuk-heading-s'>Amount to pay</span>"
+            }
+          ]
+        }
+          },
+          {
+        key: {
+          text: "Question 2"
+        },
+        value: {
+          text: "Answer 2"
+        },
+        actions: {
+          items: [
+            {
+          text: "Amount to pay"
+            }
+          ]
+        }
           }
         ]
-      }
-    }
-  ]
-}) }}
+      }) }}
 
       <h2 class="govuk-heading-m">
         Now send your application
