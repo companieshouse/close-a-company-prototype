@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Who to tell about the company closing – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,7 +26,7 @@ parties within 7 days of it being submitted. You can download a PDF copy of
 the application after you submit it.
 
       <p>
-        Read the <a href="https://www.gov.uk/government/collections/companies-house-guidance-for-limited-companies-partnerships-and-other-company-types#how-to-apply-for-strike-off-and-who-to-tell">full list of interested parties you must tell about the company closing (opens in a new tab).</a>
+        Read the <a href="https://www.gov.uk/government/collections/companies-house-guidance-for-limited-companies-partnerships-and-other-company-types#how-to-apply-for-strike-off-and-who-to-tell" target="_blank">full list of interested parties you must tell about the company closing (opens in a new tab).</a>
       </p>
 
       {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
@@ -52,7 +52,7 @@ the application after you submit it.
 
 {{ govukButton({
   text: "Continue",
-  href: "/v1/sign-in-v1"
+  href: "/v1/sign-in"
 }) }}
     </div>
   </div>

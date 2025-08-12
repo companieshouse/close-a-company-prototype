@@ -4,3 +4,11 @@
 // 
 
 // Add extra styles here
+
+.govuk-header {
+  border-bottom: 10px solid #1d70b8;  // Temp fix for header border
+}
+
+.gov-one-login-password-input {
+  background-color: white !important;
+}

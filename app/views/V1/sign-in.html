@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Enter your email address – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-<form method="post" action="/v1/enter-password-v1">
+<form method="post" action="/v1/enter-password">
 {{ govukInput({
     label: {
     text: "Enter your email address to sign in to your GOV.UK One Login",
