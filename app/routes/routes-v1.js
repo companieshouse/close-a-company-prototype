@@ -5,19 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Add your routes here
-//Generate Mock company data after company look up 
-// POST: Handles form submission and saves company data
-//router.post('/V1/view-company-info', function (req, res) {
-  //const number = req.body.companyNumber?.trim(); // remove extra whitespace
- // req.session.data['companyNumber'] = number;
 
-
-
-
-
-  // Redirect to the GET version of the same page
-  //res.redirect('/V1/view-company-info');
-//});
 
 
 

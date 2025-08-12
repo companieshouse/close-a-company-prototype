@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Company authentication – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,8 +12,7 @@
 {% endblock %}
 
 {% block content %}
-  {% set company = data['company'] %}
-  {% set companyNumber = data['companyNumber'] %}
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -23,11 +22,17 @@
 
       <form class="form" action="/v1/which-director-are-you-v1" method="post">
         <p>To file company information you will need an authentication code</p>
-        <p>Authenticating for</p>
+        <p>Authenticating for:<br>
+          {% if (data['companyNumber'] == "11111111") %}
+            <strong>A SINGLE DIRECTOR COMPANY (11111111) </strong>
+          {% else %}
+             <strong>A MULTI DIRECTOR COMPANY (22222222) </strong>
+          {% endif %}
+        </p>  
 
-        <h2 class="govuk-heading-m">
-          {{ company.name }} ({{ companyNumber }})
-        </h2>
+
+
+      
 
         {{ govukInput({
           label: {

@@ -20,54 +20,71 @@
         View company information
       </h1>
 
+{% if (data['companyNumber'] == "11111111") %}
+
+
       <h2 class="govuk-heading-l">
-        {{ companyName }}
+        A SINGLE DIRECTOR COMPANY
       </h2>
-
-
-
-
-
-{% if companyName == "sara" %}
+      
 
   {{ govukSummaryList({
     rows: [
       {
-        key: { text: "11111111" },
+        key: { text: "Company number" },
         value: { text: "111111111" }
       },
       {
         key: { text: "Status" },
-        value: { text: company.status }
+        value: { text: "Active" }
       },
       {
-        key: { text: "Special Info for 11111111" },
-        value: { text: "This is company 11111111" }
+        key: { text: "Incorporation date" },
+        value: { text: "1 January 2001" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { text: "1 Single Street, Anytown, AB11 1CD" }
       }
     ]
   }) }}
 {% else %}
+ <h2 class="govuk-heading-l">
+        A MULTI DIRECTOR COMPANY
+      </h2>
+      
+
   {{ govukSummaryList({
     rows: [
       {
-        key: { text: "22222222" },
+        key: { text: "Company number" },
         value: { text: "222222222" }
       },
       {
-        key: { text: "Company type" },
-        value: { text: company.type }
+        key: { text: "Status" },
+        value: { text: "Active" }
       },
       {
-        key: { text: "Special Info for 22222222" },
-        value: { text: "This is company 22222222" }
+        key: { text: "Incorporation date" },
+        value: { text: "2 February 2002" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { text: "2 Multi Street, Anytown, AB23 4CD" }
       }
     ]
   }) }}
 
-
 {% endif %}
 
-{{data | dump | safe}}
 
 
 
