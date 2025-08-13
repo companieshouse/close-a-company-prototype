@@ -11,14 +11,14 @@ const router = express.Router();
 
 
    // Which director are you?
-  router.post('/v1/which-director-are-you', function(request, response) {
+//   router.post('/v1/which-director-are-you', function(request, response) {
 
-    var whichDirectorAreYou = request.session.data['whichDirectorAreYou']
-    if (whichDirectorAreYou == "JaneDoe"){
-        response.redirect("/v1/check-your-answers-director")
-    } else {
-        response.redirect("/v1/how-will-the-director-be-signing")
-    }
-})
+//     var whichDirectorAreYou = request.session.data['whichDirectorAreYou']
+//     if (whichDirectorAreYou == "JaneDoe"){
+//         response.redirect("/v1/check-your-answers-director")
+//     } else {
+//         response.redirect("/v1/how-will-the-director-be-signing")
+//     }
+// })
 
 module.exports = router;

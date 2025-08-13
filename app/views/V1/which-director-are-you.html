@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+ Which director are you? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,20 +19,16 @@
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 <form method="post" action="/v1/which-director-are-you-v1">
-  <h1 class="govuk-heading-xl">Which Director are you?</h1>
 
-  {% if data.companyInfo and data.companyInfo.name %}
-    <h2 class="govuk-heading-m">{{ data.companyInfo.name }}</h2>
-  {% endif %}
 
-  <p class="govuk-body">
-    Please select the director you are representing in this application.
-  </p>
+{% if (data['companyNumber'] == "12345678") %}
+
+
 {{ govukRadios({
   name: "whichDirectorAreYou",
   fieldset: {
     legend: {
-      text: "Which Director are you?",
+      text: "Which director are you?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
@@ -51,6 +47,48 @@
     }
   ]
 }) }}
+
+
+{% else %}
+{{ govukRadios({
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+        value: "JaneDoe",
+        text: "DOE, Jane"
+    },
+       {
+        value: "SaraFrancis",
+        text: "FRANCIS, Sara"
+    },
+       {
+        value: "JamesShipley",
+        text: "SHIPLEY, James"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
+{% endif %}
+
+
+
+
+
+
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({

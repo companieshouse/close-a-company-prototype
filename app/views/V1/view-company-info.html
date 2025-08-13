@@ -20,11 +20,11 @@
         View company information
       </h1>
 
-{% if (data['companyNumber'] == "11111111") %}
+{% if (data['companyNumber'] == "12345678") %}
 
 
       <h2 class="govuk-heading-l">
-        A SINGLE DIRECTOR COMPANY
+        A SINGLE DIRECTOR COMPANY LTD
       </h2>
       
 
@@ -32,7 +32,7 @@
     rows: [
       {
         key: { text: "Company number" },
-        value: { text: "111111111" }
+        value: { text: "12345678" }
       },
       {
         key: { text: "Status" },
@@ -54,7 +54,7 @@
   }) }}
 {% else %}
  <h2 class="govuk-heading-l">
-        A MULTI DIRECTOR COMPANY
+        A MULTI DIRECTOR COMPANY LTD
       </h2>
       
 
@@ -62,7 +62,7 @@
     rows: [
       {
         key: { text: "Company number" },
-        value: { text: "222222222" }
+        value: { text: data['companyNumber'] }
       },
       {
         key: { text: "Status" },
