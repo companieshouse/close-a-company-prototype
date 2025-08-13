@@ -10,15 +10,23 @@ const router = express.Router();
 
 
 
-   // Which director are you?
-//   router.post('/v1/which-director-are-you', function(request, response) {
+// Which director are you?
+router.post('/v1/which-director-are-you', function (request, response) {
+  
+  var companyNumber = request.session.data['companyNumber'];
+  var whichDirectorAreYou = request.session.data['whichDirectorAreYou'];
 
-//     var whichDirectorAreYou = request.session.data['whichDirectorAreYou']
-//     if (whichDirectorAreYou == "JaneDoe"){
-//         response.redirect("/v1/check-your-answers-director")
-//     } else {
-//         response.redirect("/v1/how-will-the-director-be-signing")
-//     }
-// })
+  if (companyNumber === "12345678") {
+    if (whichDirectorAreYou === "JaneDoe") {
+      response.redirect("/v1/check-your-answers-director");
+    } else if (whichDirectorAreYou === "iAmNotADirectorOfThisCompany") {
+      response.redirect("/v1/how-will-the-director-be-signing");
+    }
+  } else {
+    response.redirect("/v1/which-directors-will-be-signing");
+  }
+});
+
+
 
 module.exports = router;
