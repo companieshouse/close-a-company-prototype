@@ -6,6 +6,28 @@ const router = express.Router();
 
 // Add your routes here
 
+
+// Enter your email address to sign in to your GOV.UK One Login
+router.post('/v1/sign-in', function (req, res) {
+  const emailAddress = req.session.data['email-address'];
+
+  let errors = {};
+
+  if (!emailAddress || emailAddress.trim() === '') {
+    errors['email-address'] = {
+      text: 'Enter your email address'
+    };
+  }
+
+  if (Object.keys(errors).length > 0) {
+    // Re-render the same page with errors
+    res.render('v1/sign-in', { errors });
+  } else {
+    // Continue to the password page
+    res.redirect('/v1/enter-password');
+  }
+});
+
 // Company number
 router.post('/v1/company-number', function (request, response) {
     response.redirect("/v1/view-company-info");
