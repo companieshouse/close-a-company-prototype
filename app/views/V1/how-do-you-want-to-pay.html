@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
- Which director are you? – {{ serviceName }} – GOV.UK Prototype Kit
+ How do you want to pay for the application? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,9 @@
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-<form method="post" action="/v1/which-director-are-you">
+<form method="post" action="/v1/how-do-you-want-to-pay">
+
+   
 
 
 
