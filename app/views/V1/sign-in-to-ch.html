@@ -4,6 +4,7 @@
   Sign in to Companies House – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -11,16 +12,59 @@
   }) }}
 {% endblock %}
 
+
 {% block content %}
+
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    We are introducing a new way to sign in to some of our services.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
+
       <h1 class="govuk-heading-l">
         Sign in to Companies House
       </h1>
+      <p class="govuk-body">
+        If you have an existing Companies House account, enter your email address.
+      </p>
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
-     
+{{ govukInput({
+  label: {
+    text: "Email address",
+    classes: "govuk-body govuk-!-font-weight-bold"
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+<p class="govuk-body">
+  <a href="#" class="govuk-link govuk-link--no-visited-state">Create sign in details</a>
+</p>
+<h2 class="govuk-heading-m">GOV.UK One Login</h2>
+
+<p>This is the new way to sign in to some of our services.</p>     
 <p class="govuk-body">
   <a href="gov-one-log-in" class="govuk-link govuk-link--no-visited-state">Sign in with GOV.UK One Login</a> if you already have one.
 </p>
