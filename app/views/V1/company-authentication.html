@@ -25,8 +25,8 @@
         <p>Authenticating for:<br>
           {% if (data['companyNumber'] == "12345678") %}
             <strong>A SINGLE DIRECTOR COMPANY (12345678) </strong>
-          {% else %}
-             <strong>A MULTI DIRECTOR COMPANY (22222222) </strong>
+            {% else %}
+            <strong>A MULTI DIRECTOR COMPANY ({{ data['companyNumber'] }}) </strong>
           {% endif %}
         </p>  
 
