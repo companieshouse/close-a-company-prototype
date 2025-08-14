@@ -15,55 +15,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl">
-        Check your answers before sending your applicationXXXXXXXX
-      </h1>
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
-{% if data.companyInfo and data.companyInfo.name %}
-  <h2 class="govuk-heading-m">{{ data.companyInfo.name }}</h2>
-{% endif %}
-
-{% if data['willSign'] == "yes" %}
-  {% set willSignAnswer = "Yes" %}
-{% else %}
-  {% set willSignAnswer = "No" %}
-{% endif %}
-
-
-{{ govukSummaryList({
-  rows: [
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "Which directors will be signing?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "More than half of the directors must sign. You should also select directors 
+        who will have soemone signing for them."
+  },
+  items: [
     {
-      key: {
-        text: "Will sign"
-      },
-      value: {
-        text: willSignAnswer
-      }
+      value: "janeDoe",
+      text: "Jane Doe"
     },
     {
-      key: {
-        text: "Email address"
-      },
-      value: {
-        text: data['email-address'] or "example@company.co.uk"
-      }
+      value: "johnSmith",
+      text: "John Smith"
+    },
+    {
+      value: "gillDavies",
+      text: "Gillian Davies"
     }
   ]
 }) }}
 
 
-      <h2 class="govuk-heading-m">
-        Now send your application
-      </h2>
-
-      <p>
-        By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
-      </p>
-
       <form action="/confirmation" method="post" novalidate>
 
         {{ govukButton({
-          text: "Accept and send"
+          text: "Continue"
         }) }}
 
       </form>
