@@ -69,5 +69,20 @@ router.post('/v1/check-your-answers-single-director', function (request, respons
     response.redirect("/v1/sign-the-application");
 });
 
+// Sign the application
+router.post('/v1/sign-the-application', function (request, response) {
+    response.redirect("/v1/review-your-payment");
+});
+
+// Sign in to CH
+router.post('/v1/sign-in-to-ch', function (request, response) {
+    response.redirect("/v1/gov-one-log-in");
+});
+
+// Review your payment
+router.post('/v1/review-your-payment', function (request, response) {
+    response.redirect("/v1/how-do-you-want-to-pay");
+});
+
 
 module.exports = router;
