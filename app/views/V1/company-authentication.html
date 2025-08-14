@@ -20,11 +20,11 @@
         Company authentication
       </h1>
 
-      <form class="form" action="/v1/which-director-are-you" method="post">
+      <form class="form" action="/v1/company-authentication" method="post">
         <p>To file company information you will need an authentication code</p>
         <p>Authenticating for:<br>
-          {% if (data['companyNumber'] == "11111111") %}
-            <strong>A SINGLE DIRECTOR COMPANY (11111111) </strong>
+          {% if (data['companyNumber'] == "12345678") %}
+            <strong>A SINGLE DIRECTOR COMPANY (12345678) </strong>
           {% else %}
              <strong>A MULTI DIRECTOR COMPANY (22222222) </strong>
           {% endif %}
@@ -46,11 +46,12 @@
         {{ govukButton({
           text: "Authenticate"    
           }) }}
-      </form>
+ 
 
       <p class="govuk-body">
         <a href="#" class="govuk-link govuk-link--no-visited-state">Request an authentication code</a>
       </p>
+           </form>
     </div>
   </div>
 {% endblock %}

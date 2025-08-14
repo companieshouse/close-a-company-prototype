@@ -6,8 +6,23 @@ const router = express.Router();
 
 // Add your routes here
 
+// Company number
+router.post('/v1/company-number', function (request, response) {
+    response.redirect("/v1/view-company-info");
+});
 
 
+
+// View company info
+router.post('/v1/view-company-info', function (request, response) {
+    response.redirect("/v1/company-authentication");
+});
+
+
+// Company authentication
+router.post('/v1/company-authentication', function (request, response) {
+    response.redirect("/v1/which-director-are-you");
+});
 
 
 // Which director are you?

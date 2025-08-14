@@ -15,6 +15,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form action="/V1/view-company-info" method="post">
 
       <h1 class="govuk-heading-xl">
         View company information
@@ -32,7 +33,7 @@
     rows: [
       {
         key: { text: "Company number" },
-        value: { text: "12345678" }
+        value: { text: data['companyNumber'] }
       },
       {
         key: { text: "Status" },
@@ -91,16 +92,15 @@
 
 
 
-      <form action="/V1/company-authentication" method="post">
         {{ govukButton({
           text: "Confirm and continue"
         }) }}
-      </form>
+ 
 
       <p class="govuk-body">
         <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different company</a>
       </p>
-
+     </form>
     </div>
   </div>
 {% endblock %}

@@ -16,8 +16,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/V1/view-company-info" method="post">
-      {% from "govuk/components/input/macro.njk" import govukInput %}
+    <form action="/V1/company-number" method="post">
 
       {{ govukInput({
         label: {
@@ -37,7 +36,6 @@
         <a href="#" class="govuk-link govuk-link--no-visited-state">Help with company number</a>
       </p>
 
-      {% from "govuk/components/button/macro.njk" import govukButton %}
 
       {{ govukButton({
         text: "Continue"
