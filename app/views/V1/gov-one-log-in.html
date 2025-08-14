@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Create your GOV.UK One Login or sign in – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -45,19 +45,17 @@
     </div>
   </div>
 
-  {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
   text: "Create your GOV.UK One Login"
 }) }}
 
 <div>
-{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {{ govukButton({
   text: "Sign in",
   classes: "govuk-button--secondary",
-  href: "sign-in-v1"
+  href: "sign-in"
 }) }}
 
 <p class="govuk-body">
