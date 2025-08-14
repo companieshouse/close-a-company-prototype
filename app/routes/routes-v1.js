@@ -57,7 +57,7 @@ router.post('/v1/which-director-are-you', function (request, response) {
     if (whichDirectorAreYou === "JaneDoe") {
       response.redirect("/v1/check-your-answers-single-director");
     } else if (whichDirectorAreYou === "iAmNotADirectorOfThisCompany") {
-      response.redirect("/v1/how-will-the-director-be-signing");
+      response.redirect("/v1/how-will-the-single-director-be-signing");
     }
   } else {
     response.redirect("/v1/which-directors-will-be-signing");
