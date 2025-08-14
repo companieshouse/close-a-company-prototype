@@ -64,6 +64,10 @@ router.post('/v1/which-director-are-you', function (request, response) {
   }
 });
 
+// Check your answers (single director)
+router.post('/v1/check-your-answers-single-director', function (request, response) {
+    response.redirect("/v1/sign-the-application");
+});
 
 
 module.exports = router;
