@@ -1,7 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+  How will the single director be signing – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,59 +11,57 @@
   }) }}
 {% endblock %}
 
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-xl">
-        Check your answers before sending your applicationXXXXXXXX
+        How will the director be signing the application?
       </h1>
+      <form action="/v1/how-will-the-single-director-be-signing" method="post">
 
-{% if data.companyInfo and data.companyInfo.name %}
-  <h2 class="govuk-heading-m">{{ data.companyInfo.name }}</h2>
-{% endif %}
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-{% if data['willSign'] == "yes" %}
-  {% set willSignAnswer = "Yes" %}
-{% else %}
-  {% set willSignAnswer = "No" %}
-{% endif %}
+{{ govukWarningText({
+  text: "Anyone who signs for a director or member must have power of attorney for them. 
+  If this is not the case, the application may be rejected.",
+  iconFallbackText: "Warning"
+}) }}
 
 
-{{ govukSummaryList({
-  rows: [
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "whereDoYouLive",
+  fieldset: {
+    legend: {
+      text: "DOE, Jane",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
     {
-      key: {
-        text: "Will sign"
-      },
-      value: {
-        text: willSignAnswer
-      }
+      value: "willSign",
+      text: "Will sign"
     },
     {
-      key: {
-        text: "Email address"
-      },
-      value: {
-        text: data['email-address'] or "example@company.co.uk"
-      }
+      value: "someoneWillSignForThem",
+      text: "Someone will sign for them"
     }
   ]
 }) }}
 
 
-      <h2 class="govuk-heading-m">
-        Now send your application
-      </h2>
 
-      <p>
-        By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
-      </p>
+
+ 
 
       <form action="/confirmation" method="post" novalidate>
 
         {{ govukButton({
-          text: "Accept and send"
+          text: "Continue"
         }) }}
 
       </form>
