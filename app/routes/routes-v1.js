@@ -85,4 +85,10 @@ router.post('/v1/review-your-payment', function (request, response) {
 });
 
 
+
+//Which directors will be signing the application?
+router.post('/v1/which-directors-will-be-signing', function (request, response) {
+    response.redirect("/v1/how-will-the-multiple-directors-be-signing");
+});
+
 module.exports = router;
