@@ -17,31 +17,29 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Company authentication
+        Enter the company authentication
       </h1>
 
       <form class="form" action="/v1/company-authentication" method="post">
-        <p>To file company information you will need an authentication code</p>
-        <p>Authenticating for:<br>
-          {% if (data['companyNumber'] == "12345678") %}
-            <strong>A SINGLE DIRECTOR COMPANY (12345678) </strong>
-            {% else %}
-            <strong>A MULTI DIRECTOR COMPANY ({{ data['companyNumber'] }}) </strong>
-          {% endif %}
-        </p>  
+       
 
 
 
       
 
-        {{ govukInput({
-          label: {
-            text: "Authentication code"
-          },
-          classes: "govuk-input--width-10",
-          id: "width-10",
-          name: "authCode"
-        }) }}
+      {{ govukInput({
+  id: "auth-code",
+  name: "authCode",
+  classes: "govuk-input--width-10",
+  label: {
+    text: "Authentication code",
+    classes: "govuk-visually-hidden"
+  },
+  hint: {
+    text: "This is a 6 character code issued by us to each company"
+  }
+}) }}
+
 
         {{ govukButton({
           text: "Authenticate"    
