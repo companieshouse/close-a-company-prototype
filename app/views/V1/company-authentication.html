@@ -17,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Enter the company authentication
+        Enter the company authentication code
       </h1>
 
       <form class="form" action="/v1/company-authentication" method="post">
@@ -39,16 +39,30 @@
     text: "This is a 6 character code issued by us to each company"
   }
 }) }}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 
+{{ govukDetails({
+  summaryText: "I do not have an authentication code",
+  text: "Placeholder text for what to do if the user does not have an authentication code. This could include instructions on how to request a new code or contact support."
+}) }}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  items: [
+    {
+      value: "saveTheCompanyDetails",
+      text: "Save the company details",
+      hint: {
+        text: "If you save the details, we'll add the company to your account. You will not need to re-enter the authentication code for most online filings. You'll also be able to digitally authorise other people to file online for this company."
+      }
+    }
+  ]
+}) }}
 
         {{ govukButton({
           text: "Authenticate"    
           }) }}
  
-
-      <p class="govuk-body">
-        <a href="#" class="govuk-link govuk-link--no-visited-state">Request an authentication code</a>
-      </p>
            </form>
     </div>
   </div>
