@@ -15,9 +15,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-            <form action="/v1/how-will-the-single-director-be-signing" method="post">
+            <form action="/v1/how-will-the-multiple-director-be-signing" method="post">
 
-SARA TO UPDATE
       <h1 class="govuk-heading-xl">
         How will the directors be signing the application?
       </h1>
@@ -34,83 +33,133 @@ SARA TO UPDATE
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% set emailHtml %}
-{{ govukInput({
-  id: "contact-by-email",
-  name: "contactByEmail",
-  type: "email",
-  autocomplete: "email",
-  spellcheck: false,
-  classes: "govuk-!-width-one-third",
-  label: {
-    text: "DOE, Jane"
-  }
-}) }}
-{% endset -%}
+<h2 class="govuk-heading-m">Director 1</h2>
 
-{% set phoneHtml %}
-{{ govukInput({
-  id: "contact-by-phone",
-  name: "contactByPhone",
-  type: "tel",
-  autocomplete: "tel",
-  classes: "govuk-!-width-one-third",
-  label: {
-    text: "Phone number"
-  }
-}) }}
-{% endset -%}
+{% set director1WillSignHtml %}
+  {{ govukInput({
+    id: "director1-email",
+    name: "director1Email",
+    type: "email",
+    label: {
+      text: "What is the email address for Director 1?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+{% endset %}
 
-{% set textHtml %}
-{{ govukInput({
-  id: "contact-by-text",
-  name: "contactByText",
-  type: "tel",
-  autocomplete: "tel",
-  classes: "govuk-!-width-one-third",
-  label: {
-    text: "Mobile phone number"
-  }
-}) }}
-{% endset -%}
+{% set director1ProxyHtml %}
+  {{ govukInput({
+    id: "director1-proxy-name",
+    name: "director1ProxyName",
+    label: {
+      text: "What is the name of the person signing for Director 1?"
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+  {{ govukInput({
+    id: "director1-proxy-email",
+    name: "director1ProxyEmail",
+    type: "email",
+    label: {
+      text: "What is the email address of the person signing for Director 1?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+{% endset %}
 
 {{ govukRadios({
-
+  name: "director1SignChoice",
   items: [
     {
-      value: "email",
-      text: "DOE, Jane",
+      value: "will-sign",
+      text: "Will sign",
       conditional: {
-        html: emailHtml
+        html: director1WillSignHtml
       }
     },
     {
-      value: "phone",
-      text: "Phone",
+      value: "proxy-sign",
+      text: "Someone will sign for them",
       conditional: {
-        html: phoneHtml
-      }
-    },
-    {
-      value: "text",
-      text: "Text message",
-      conditional: {
-        html: textHtml
+        html: director1ProxyHtml
       }
     }
   ]
 }) }}
 
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
+<h2 class="govuk-heading-m">Director 2</h2>
 
+{% set director2WillSignHtml %}
+  {{ govukInput({
+    id: "director2-email",
+    name: "director2Email",
+    type: "email",
+    label: {
+      text: "What is the email address for Director 2?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+{% endset %}
 
- 
+{% set director2ProxyHtml %}
+  {{ govukInput({
+    id: "director2-proxy-name",
+    name: "director2ProxyName",
+    label: {
+      text: "What is the name of the person signing for Director 2?"
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+  {{ govukInput({
+    id: "director2-proxy-email",
+    name: "director2ProxyEmail",
+    type: "email",
+    label: {
+      text: "What is the email address of the person signing for Director 2?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    },
+    classes: "govuk-!-width-one-half"
+  }) }}
+{% endset %}
 
-    
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+{{ govukRadios({
+  name: "director2SignChoice",
+  items: [
+    {
+      value: "will-sign",
+      text: "Will sign",
+      conditional: {
+        html: director2WillSignHtml
+      }
+    },
+    {
+      value: "proxy-sign",
+      text: "Someone will sign for them",
+      conditional: {
+        html: director2ProxyHtml
+      }
+    }
+  ]
+}) }}
 
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
       </form>
 
     </div>
