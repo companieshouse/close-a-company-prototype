@@ -1,7 +1,12 @@
 {% extends "layouts/main-old-branding.html" %}
 
 {% set pageName="Home" %}
-
+<!-- Hide service navigation-->
+{% block header %}
+{{ govukHeader({
+  rebrand: true
+}) }}
+{% endblock %} 
 {% block content %}
 
 <div class="govuk-grid-row">
