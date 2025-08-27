@@ -12,3 +12,8 @@
 .gov-one-login-password-input {
   background-color: white !important;
 }
+
+// This makes ALL links show as unvisited (ie blue instead of purple)
+.govuk-link:visited {
+    color: #1d70b8 !important;
+}
