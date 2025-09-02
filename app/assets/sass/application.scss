@@ -17,3 +17,13 @@
 .govuk-link:visited {
     color: #1d70b8 !important;
 }
+
+// UR shortcuts - not part of actual service
+
+.ur-shortcuts {
+  margin-top: 3em;
+  p, ul, li, a, .govuk-label {
+    color: #b1b4b6  !important;
+    font-size: 19px !important;
+  }
+}
