@@ -10,10 +10,11 @@
 {% block content %}
 
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-width">
+
+
+<div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
 {% set html %}
   <p class="govuk-notification-banner__heading">
     This version of the prototype is being actively worked on - some things might not work correctly and/or change very quickly. If you have any questions contact Sara Shipley or James Francis.
@@ -30,7 +31,15 @@
     </h1>
 
    <p><a href="https://app.mural.co/t/companieshouse8589/m/companieshouse8589/1752064279109/26e4d29494ba741bf0862cd4ce93c0eddab0f9fc" class="govuk-link">Link to Mural (opens in a new tab)</a><p>
+
+  </div>
+  </div>
+
+
+      <div class="govuk-grid-column-one-half">
     
+
+       <h2 class="govuk-heading-m">Presenter/filer</h2>
 <ul class="govuk-list govuk-list--bullet">
   <li>
     <a href="/V1/start.html" class="govuk-link">Start page</a>
@@ -121,5 +130,52 @@
     </li>
    </ul>
 
+   </div>
+         <div class="govuk-grid-column-one-half">
+       <h2 class="govuk-heading-m">'Other' signer(s)</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    <a href="/V1/email-sign-the-application.html" class="govuk-link">Email</a>
+    </li>
+      <li>
+    <a href="/V1/sign-in-to-ch.html" class="govuk-link">Sign in to CH or GOV One Login</a>
+    </li>
+          <li>
+    <a href="/V1/sign-in.html" class="govuk-link">Sign in</a>
+    </li>
+          <li>
+    <a href="/V1/gov-one-log-in.html" class="govuk-link">Gov One Login</a>
+    </li>
+       <li>
+    <a href="/V1/sign-in.html" class="govuk-link">Enter your email address to sign in to your GOV.UK One Login</a>
+    </li>
 
+        <li>
+    <a href="/V1/enter-password.html" class="govuk-link">Enter password</a>
+    </li>
+        <li>
+    <a href="/V1/check-your-phone.html" class="govuk-link">Check your phone</a>
+    </li>
+      <li>
+    <a href="/V1/company-number.html" class="govuk-link">Company number</a>
+    </li>
+       <li>
+    <a href="/V1/view-company-info.html" class="govuk-link">View company info</a>
+    </li>
+       <li>
+    <a href="/V1/company-authentication.html" class="govuk-link">Company auth code</a>
+    </li>
+        <li>
+    <a href="/V1/sign-the-application.html" class="govuk-link">Sign the application</a>
+    </li>
+        <li>
+    <a href="" class="govuk-link">Application signed</a>
+    </li>
+    
+   </ul>
+</div>
+
+
+</div>
+</div>
 {% endblock %}

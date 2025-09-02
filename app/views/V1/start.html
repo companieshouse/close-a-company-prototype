@@ -14,6 +14,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <form action="/V1/start" method="post">
 
       <h1 class="govuk-heading-xl">
         {{ serviceName }}
@@ -35,7 +36,6 @@
 
       {{ govukButton({
         text: "Start now",
-        href: "who-to-tell",
         isStartButton: true
       }) }}
 
@@ -53,7 +53,7 @@
     <div class="govuk-grid-column-one-third">
 
       
-
+        </form>
     </div>
   </div>
 

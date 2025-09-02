@@ -7,6 +7,12 @@ const router = express.Router();
 // Add your routes here
 
 
+// Route for Start
+router.post('/V1/start', function (req, res) {
+    req.session.data['startedAtEmailSign'] = false; // mark the journey
+    res.redirect('/V1/who-to-tell'); // adjust to actual next step
+});
+
 // Enter your email address to sign in to your GOV.UK One Login
 router.post('/V1/sign-in', function (req, res) {
   const emailAddress = req.session.data['email-address'];
@@ -41,9 +47,20 @@ router.post('/V1/view-company-info', function (request, response) {
 });
 
 
+// Route for /V1/email-sign-the-application
+router.post('/V1/email-sign-the-application', function (req, res) {
+    req.session.data['startedAtEmailSign'] = true; // mark the journey
+    res.redirect('/V1/sign-in-to-ch'); // adjust to actual next step
+});
+
+
 // Company authentication
-router.post('/V1/company-authentication', function (request, response) {
-    response.redirect("/V1/which-director-are-you");
+router.post('/V1/company-authentication', function (req, res) {
+    if (req.session.data['startedAtEmailSign']) {
+        res.redirect('/V1/sign-the-application');
+    } else {
+        res.redirect('/V1/which-director-are-you');
+    }
 });
 
 
