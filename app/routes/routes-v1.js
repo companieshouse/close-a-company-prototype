@@ -69,6 +69,12 @@ router.post('/V1/check-your-answers-single-director', function (request, respons
     response.redirect("/V1/sign-the-application");
 });
 
+// How will the (SINGLE) director be signing the application?
+router.post('/V1/how-will-the-single-director-be-signing', function (request, response) {
+    response.redirect("/V1/application-received-for-single-director-not-signing");
+});
+
+
 // Sign the application
 router.post('/V1/sign-the-application', function (request, response) {
     response.redirect("/V1/review-your-payment");

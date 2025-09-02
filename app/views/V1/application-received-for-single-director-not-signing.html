@@ -50,8 +50,9 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Placeholder</td>
-          <td class="govuk-table__cell">placeholder@companieshouse.gov.uk</td>
+          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Jane Doe" }}</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "example@company.co.uk" }}</td>
+</td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
           <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>

@@ -16,38 +16,36 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form action="/V1/review-your-payment" method="post">
 
-      <h1 class="govuk-heading-xl">
-        Review your payment
-      </h1>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-        key: {
-          text: "Item"
-        },
-        value: {
-          text: ""
-        },
-        actions: {
-          items: [
-            {
-          html: "<span class='govuk-heading-s'>Amount to pay</span>"
-            }
-          ]
-        }
-          },
-          {
-        key: {
+
+
+
+{{ govukTable({
+  caption: " Review your payment",
+  captionClasses: "govuk-table__caption--xl",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Item"
+    },
+    {
+      text: "Amount to pay"
+    }
+  ],
+  rows: [
+    [
+      {
           text: "Apply to strike off and dissolve a company"
-        },
-        value: {
-          text: "£33.00"
-        }
-          }
-        ]
+      },
+      {
+        text: "£33.00"
+      }
+  ]
+}
+}) }}
 
-      }) }}
+
+     
 
       <h2 class="govuk-heading-m">
         The total amount to pay is £33.00
