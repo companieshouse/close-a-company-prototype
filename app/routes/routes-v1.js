@@ -93,9 +93,16 @@ router.post('/V1/how-will-the-single-director-be-signing', function (request, re
 
 
 // Sign the application
-router.post('/V1/sign-the-application', function (request, response) {
-    response.redirect("/V1/review-your-payment");
+router.post('/V1/sign-the-application', function (req, res) {
+        if (req.session.data['startedAtEmailSign']) {
+        res.redirect('/V1/application-received-for-single-director-not-signing');
+    } else {
+        res.redirect("/V1/review-your-payment");
+    }
 });
+
+
+
 
 // Sign in to CH
 router.post('/V1/sign-in-to-ch', function (request, response) {
