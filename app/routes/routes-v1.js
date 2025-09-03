@@ -95,7 +95,7 @@ router.post('/V1/how-will-the-single-director-be-signing', function (request, re
 // Sign the application
 router.post('/V1/sign-the-application', function (req, res) {
         if (req.session.data['startedAtEmailSign']) {
-        res.redirect('/V1/application-received-for-single-director-not-signing');
+        res.redirect('/V1/wait-screen-other-directors-must-sign');
     } else {
         res.redirect("/V1/review-your-payment");
     }
