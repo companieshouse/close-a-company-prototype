@@ -82,11 +82,12 @@
 {% endif %}
 <govukInsetText>
     <p class="govuk-body">
-  An application has been started to strike off and dissolve GAIL BIDDULPH LIMITED.
+  An application has been started to strike off and dissolve 
+  {% if (data['companyNumber'] == "12345678") %}A SINGLE DIRECTOR COMPANY LTD{% else %}A MULTI DIRECTOR COMPANY LTD{% endif %}.
 </govukInsetText>
         <p class="govuk-body">
             It must be signed by more than half of the directors before it can be submitted.
-        <p class="govuk-body"> <strong>You will need to sign the application before 30 June 2025.</strong></p>
+        <p class="govuk-body"> <strong>You will need to sign the application before 30 November 2025.</strong></p>
         <p class="govuk-body">
             To do this, you will need:
         </p>
