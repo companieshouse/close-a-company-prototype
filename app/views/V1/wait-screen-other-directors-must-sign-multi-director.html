@@ -8,12 +8,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-       <!-- Custom Blue Box -->
- <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
-  <h1 class="govuk-heading-xl" style="margin: 0 auto; color: white;">
-    The directors must<br>sign the application<br>before you can<br>submit it
-  </h1>
-</div>
+    <!-- Custom Blue Box -->
+    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
+      <h1 class="govuk-heading-xl" style="margin: 0 auto; color: white;">
+        The directors must<br>sign the application<br>before you can<br>submit it
+      </h1>
+    </div>
 
     <p>We have emailed the directors, or those signing on their behalf, asking them to sign the application. It may take some time for them to do this.</p>
 
@@ -51,37 +51,26 @@
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['signingPersonName'] or "Jane Doe" }}</td>
-          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "j.doe@company.co.uk" }}</td>
-</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "jane.doe@company.co.uk" }}</td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
           <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
-
         </tr>
-      </tbody>
-      <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['signingPersonName'] or "Francis Sara" }}</td>
-          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "f.sara@company.co.uk" }}</td>
-</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "francis.sara@company.co.uk" }}</td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
           <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
-
         </tr>
-      </tbody>
-       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['signingPersonName'] or "Shipley James" }}</td>
-          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "s.james@company.co.uk" }}</td>
-</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "shipley.james@company.co.uk" }}</td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
           <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
-
         </tr>
       </tbody>
-    
     </table>
 
   </div>
