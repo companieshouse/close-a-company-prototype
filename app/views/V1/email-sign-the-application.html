@@ -20,6 +20,8 @@
         Sign the application to strike off and dissolve a company
       </h1>
 
+{% if (data['companyNumber'] == "12345678") %}
+
       {{ govukSummaryList({
   rows: [
     {
@@ -27,7 +29,7 @@
         text: "Company number"
       },
       value: {
-        text: "08660191"
+        text: "12345678"
       }
     },
     {
@@ -35,7 +37,7 @@
         text: "Company name"
       },
       value: {
-        text: "GAIL BIDDULPH LIMITED"
+        text: "A SINGLE DIRECTOR COMPANY LTD"
       }
     },
     {
@@ -48,7 +50,36 @@
     }
   ]
 }) }}
-
+{% else %}
+    {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Company number"
+      },
+      value: {
+        text: data['companyNumber'] or '00224466'
+      }
+    },
+    {
+      key: {
+        text: "Company name"
+      },
+      value: {
+        text: "A MULTI DIRECTOR COMPANY LTD"
+      }
+    },
+    {
+      key: {
+        text: "Reference number"
+      },
+      value: {
+        text: "MD4VS0"
+      }
+    }
+  ]
+}) }}
+{% endif %}
 <govukInsetText>
     <p class="govuk-body">
   An application has been started to strike off and dissolve GAIL BIDDULPH LIMITED.
@@ -70,11 +101,14 @@
 <p class="govuk-body">
   
   <span style="color: black;">Sign the application:</span>
-  <a href="https://staging.company-information.service.gov.uk/close-a-company/search-company" 
-     target="_blank" 
-     rel="noopener noreferrer">
-    https://staging.company-information.service.gov.uk/close-a-company/search-company
-  </a>
+  <button style="background: none;
+  border: none;
+  color: #1d70b8; /* GOV.UK blue */
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit; /* makes text match surrounding text */
+  padding: 0;
+  text-align: left;">https://staging.company-information.service.gov.uk/close-a-company/search-company</button>
 </p>
 
 <h12 class="govuk-heading-m"> After you have signed the application</h2>
@@ -122,9 +156,7 @@
   </a>
 </p>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+    
 
       </form>
 
