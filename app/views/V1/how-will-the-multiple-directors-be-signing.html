@@ -33,7 +33,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
-<h2 class="govuk-heading-m">Director 1</h2>
+<h2 class="govuk-heading-m">DOE, Jane</h2>
 
 {% set director1WillSignHtml %}
   {{ govukInput({
@@ -41,12 +41,11 @@
     name: "director1Email",
     type: "email",
     label: {
-      text: "What is the email address for Director 1?"
+      text: "What is the email address for DOE, Jane?"
     },
     hint: {
       text: "We will use this email to ask them to sign the application."
-    },
-    classes: "govuk-!-width-one-half"
+    }
   }) }}
 {% endset %}
 
@@ -55,21 +54,19 @@
     id: "director1-proxy-name",
     name: "director1ProxyName",
     label: {
-      text: "What is the name of the person signing for Director 1?"
-    },
-    classes: "govuk-!-width-one-half"
+      text: "What is the name of the person signing for DOE, Jane?"
+    }
   }) }}
   {{ govukInput({
     id: "director1-proxy-email",
     name: "director1ProxyEmail",
     type: "email",
     label: {
-      text: "What is the email address of the person signing for Director 1?"
+      text: "What is the email address of the person signing for DOE, Jane?"
     },
     hint: {
       text: "We will use this email to ask them to sign the application."
-    },
-    classes: "govuk-!-width-one-half"
+    }
   }) }}
 {% endset %}
 
@@ -95,7 +92,7 @@
 
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Director 2</h2>
+<h2 class="govuk-heading-m">FRANCIS, Sara</h2>
 
 {% set director2WillSignHtml %}
   {{ govukInput({
@@ -103,12 +100,11 @@
     name: "director2Email",
     type: "email",
     label: {
-      text: "What is the email address for Director 2?"
+      text: "What is the email address for FRANCIS, Sara?"
     },
     hint: {
       text: "We will use this email to ask them to sign the application."
-    },
-    classes: "govuk-!-width-one-half"
+    }
   }) }}
 {% endset %}
 
@@ -117,21 +113,19 @@
     id: "director2-proxy-name",
     name: "director2ProxyName",
     label: {
-      text: "What is the name of the person signing for Director 2?"
-    },
-    classes: "govuk-!-width-one-half"
+      text: "What is the name of the person signing for FRANCIS, Sara?"
+    }
   }) }}
   {{ govukInput({
     id: "director2-proxy-email",
     name: "director2ProxyEmail",
     type: "email",
     label: {
-      text: "What is the email address of the person signing for Director 2?"
+      text: "What is the email address of the person signing for FRANCIS, Sara?"
     },
     hint: {
       text: "We will use this email to ask them to sign the application."
-    },
-    classes: "govuk-!-width-one-half"
+    }
   }) }}
 {% endset %}
 
