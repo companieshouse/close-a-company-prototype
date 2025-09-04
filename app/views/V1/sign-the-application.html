@@ -11,6 +11,10 @@
   }) }}
 {% endblock %}
 
+{% set todayDate = "now" | govukDate %}
+{% set fallbackDate = "4 September 2025" %}
+{% set todayHtml =  (todayDate or fallbackDate) %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -74,7 +78,7 @@
   items: [
     {
       value: "carcasses",
-      text: "I confirm I have read and understood signed by " + data.directorName
+      text: "I confirm I have read and understood signed by Jane Doe " + todayHtml + "."
     }
   ]
 }) }}
