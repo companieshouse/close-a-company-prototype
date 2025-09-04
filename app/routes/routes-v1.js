@@ -81,14 +81,28 @@ router.post('/V1/which-director-are-you', function (request, response) {
   }
 });
 
+
+
+// How will the (SINGLE) director be signing the application?
+router.post('/V1/how-will-the-single-director-be-signing', function (request, response) {
+    response.redirect("/V1/check-your-answers-single-director");
+});
+
+
 // Check your answers (single director)
 router.post('/V1/check-your-answers-single-director', function (request, response) {
     response.redirect("/V1/sign-the-application");
 });
 
 // How will the (SINGLE) director be signing the application?
-router.post('/V1/how-will-the-single-director-be-signing', function (request, response) {
-    response.redirect("/V1/application-received-for-single-director-not-signing");
+router.post('/V1/how-will-the-multi-directors-be-signing', function (request, response) {
+    response.redirect("/V1/check-your-answers-multi-directors");
+});
+
+
+// Check your answers (single director)
+router.post('/V1/check-your-answers-multi-directors', function (request, response) {
+    response.redirect("/V1/sign-the-application");
 });
 
 
@@ -118,7 +132,7 @@ router.post('/V1/review-your-payment', function (request, response) {
 
 //Which directors will be signing the application?
 router.post('/V1/which-directors-will-be-signing', function (request, response) {
-    response.redirect("/V1/how-will-the-multiple-directors-be-signing");
+    response.redirect("/V1/how-will-the-multi-directors-be-signing");
 });
 
 module.exports = router;

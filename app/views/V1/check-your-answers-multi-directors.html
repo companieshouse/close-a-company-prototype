@@ -46,6 +46,31 @@
   ]
 }) }}
 
+<h1 class="govuk-heading-m">FRANCIS, Sara</h2>
+
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: [
+    {
+      key: {
+        text: "Will sign"
+      },
+      value: {
+        text: "Yes"
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+        text: data['directorEmail' or 'signingPersonEmail'] or  "test@example.co.uk"
+      }
+    }
+  ]
+}) }}
+
 
    
 
