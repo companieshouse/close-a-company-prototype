@@ -14,14 +14,14 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-            <form action="/V1/check-your-answers-single-director" method="post" novalidate>
+            <form action="/V1/check-your-answers-multi-directors" method="post" novalidate>
 
 
       <h1 class="govuk-heading-xl">
         Check your answers 
       </h1>
 
-<h1 class="govuk-heading-m">DOE, Jane</h2>
+<h2 class="govuk-heading-m">DOE, Jane</h2>
 
 
 {{ govukSummaryList({
@@ -46,7 +46,7 @@
   ]
 }) }}
 
-<h1 class="govuk-heading-m">FRANCIS, Sara</h2>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">FRANCIS, Sara</h2>
 
 
 {{ govukSummaryList({

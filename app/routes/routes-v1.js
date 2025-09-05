@@ -102,7 +102,7 @@ router.post('/V1/how-will-the-multi-directors-be-signing', function (request, re
 
 // Check your answers (single director)
 router.post('/V1/check-your-answers-multi-directors', function (request, response) {
-    response.redirect("/V1/sign-the-application");
+    response.redirect("/V1/wait-screen-other-directors-must-sign-multi-director");
 });
 
 
