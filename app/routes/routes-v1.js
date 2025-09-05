@@ -129,6 +129,10 @@ router.post('/V1/review-your-payment', function (request, response) {
 });
 
 
+// Review your payment
+router.post('/V1/how-do-you-want-to-pay', function (request, response) {
+    response.redirect("https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab");
+});
 
 //Which directors will be signing the application?
 router.post('/V1/which-directors-will-be-signing', function (request, response) {
