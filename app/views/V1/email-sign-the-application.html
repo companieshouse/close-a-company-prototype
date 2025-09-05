@@ -1,15 +1,14 @@
-{% extends "layouts/main.html" %}
-
+{% extends "layouts/main-old-branding.html" %}
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
 {% block pageTitle %}
   Sign the application to strike off and dissolve a company – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
+{% set fallbackDate = "22 September 2025" %}
+{% set todayHtml = ("today" | duration(14) | govukDate) or fallbackDate %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -87,7 +86,7 @@
 </govukInsetText>
         <p class="govuk-body">
             It must be signed by more than half of the directors before it can be submitted.
-        <p class="govuk-body"> <strong>You will need to sign the application before 30 November 2025.</strong></p>
+        <p class="govuk-body"> <strong>You will need to sign the application before {{ todayHtml }}.</strong></p>
         <p class="govuk-body">
             To do this, you will need:
         </p>
