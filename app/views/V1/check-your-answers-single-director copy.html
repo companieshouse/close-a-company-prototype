@@ -1,7 +1,7 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-old-branding.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,49 +14,44 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+            <form action="/V1/check-your-answers-single-director" method="post" novalidate>
+
 
       <h1 class="govuk-heading-xl">
-        Check your answers before sending your application
+        Check your answers 
       </h1>
 
-      {{ govukSummaryList({
+<h1 class="govuk-heading-m">DOE, Jane</h2>
+
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
   rows: [
     {
       key: {
         text: "Will sign"
       },
       value: {
-        text: "Answer 1"
+        text: "Yes"
       }
-    
     },
     {
       key: {
-        text: "Email"
+        text: "Email address"
       },
       value: {
-        text: "Answer 2"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "Question 2"
-          }
-        ]
+        text: data['directorEmail' or 'signingPersonEmail'] or  "test@example.co.uk"
       }
     }
   ]
 }) }}
 
 
+   
 
-      <form action="/confirmation" method="post" novalidate>
 
         {{ govukButton({
           text: "Continue"
-         
         }) }}
 
       </form>

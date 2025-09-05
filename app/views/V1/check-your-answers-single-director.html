@@ -21,6 +21,8 @@
         Check your answers 
       </h1>
 
+{% if (data['whichDirectorAreYou'] == "JaneDoe") %}
+
 <h1 class="govuk-heading-m">DOE, Jane</h2>
 
 
@@ -46,10 +48,33 @@
   ]
 }) }}
 
+{% else %} 
+<h1 class="govuk-heading-m">DOE, Jane</h2>
 
-   
 
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: data['signingPersonName'] or  "Jenna Ortega"
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+        text: data['signingPersonEmail'] or  "test@example.co.uk"
+      }
+    }
+  ]
+}) }} 
 
+{% endif %}
         {{ govukButton({
           text: "Continue"
         }) }}
