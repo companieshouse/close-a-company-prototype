@@ -108,12 +108,20 @@ router.post('/V1/check-your-answers-multi-directors', function (request, respons
 
 // Sign the application
 router.post('/V1/sign-the-application', function (req, res) {
-        if (req.session.data['startedAtEmailSign']) {
-        res.redirect('/V1/wait-screen-other-directors-must-sign');
+  if (req.session.data['startedAtEmailSign']) {
+    const companyNumber = req.session.data['companyNumber']; // or however you’re storing it
+
+    if (companyNumber === "12345678") {
+      res.redirect('/V1/wait-screen-other-signer-single-director.html');
     } else {
-        res.redirect("/V1/review-your-payment");
+      res.redirect('/V1/wait-screen-other-signers-single-director.html');
     }
+
+  } else {
+    res.redirect("/V1/review-your-payment");
+  }
 });
+
 
 
 
