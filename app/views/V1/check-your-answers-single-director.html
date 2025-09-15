@@ -21,7 +21,7 @@
         Check your answers 
       </h1>
 
-{% if (data['whichDirectorAreYou'] == "JaneDoe") %}
+{% if data['signingOption'] == "willSign" %}
 
 <h1 class="govuk-heading-m">DOE, Jane</h2>
 
@@ -41,9 +41,7 @@
       key: {
         text: "Email address"
       },
-      value: {
-        text: data['directorEmail' or 'signingPersonEmail'] or  "test@example.co.uk"
-      }
+  value: { text: data['directorEmail'] or "test@example.co.uk" }
     }
   ]
 }) }}
