@@ -112,9 +112,9 @@ router.post('/V1/sign-the-application', function (req, res) {
     const companyNumber = req.session.data['companyNumber']; // or however you’re storing it
 
     if (companyNumber === "12345678") {
-      res.redirect('/V1/wait-screen-other-signer-single-director.html');
+      res.redirect('/V1/wait-screen-other-signer-single-director');
     } else {
-      res.redirect('/V1/wait-screen-other-signers-single-director.html');
+      res.redirect('/V1/wait-screen-other-signers-multi-directors');
     }
 
   } else {
