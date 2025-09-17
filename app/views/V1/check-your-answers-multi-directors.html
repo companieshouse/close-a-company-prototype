@@ -24,17 +24,21 @@
 <h2 class="govuk-heading-m">DOE, Jane</h2>
 
 
-{{ govukSummaryList({
-  classes: "govuk-!-margin-bottom-0",
-  rows: [
-     {
-      key: {
-        text: "Name"
-      },
-      value: {
-        text: data['signingPersonName'] or  "Jane Doe"
-      }
+{# build rows first #}
+{% set rows = [
+  {
+    key: {
+      text: "Name"
     },
+    value: {
+      text: data['director1ProxyName'] or "Jane Doe"
+    }
+  }
+] %}
+
+{# conditionally add your extra row #}
+{% if data['director1SignChoice'] == 'will-sign' %}
+  {% set rows = rows.concat([
     {
       key: {
         text: "Will sign"
@@ -42,32 +46,50 @@
       value: {
         text: "Yes"
       }
-    },
-    {
-      key: {
-        text: "Email address"
-      },
-      value: {
-        text: data['directorEmail' or 'signingPersonEmail'] or  "test@example.co.uk"
-      }
     }
-  ]
+  ]) %}
+{% endif %}
+
+{# always add the email row #}
+{% set rows = rows.concat([
+  {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      text: data.directorEmail or data.director1ProxyEmail or "test@example.co.uk"
+    }
+  }
+]) %}
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: rows
 }) }}
+
+
+
+
+
+
 
 <h2 class="govuk-heading-m govuk-!-margin-top-6">FRANCIS, Sara</h2>
 
-
-{{ govukSummaryList({
-  classes: "govuk-!-margin-bottom-0",
-  rows: [
-     {
-      key: {
-        text: "Name"
-      },
-      value: {
-        text: data['signingPersonName'] or  "Jane Doe"
-      }
+{# build rows first #}
+{% set rows = [
+  {
+    key: {
+      text: "Name"
     },
+    value: {
+      text: data['director2ProxyName'] or "Sara Francis"
+    }
+  }
+] %}
+
+{# conditionally add your extra row #}
+{% if data['director1SignChoice'] == 'will-sign' %}
+  {% set rows = rows.concat([
     {
       key: {
         text: "Will sign"
@@ -75,17 +97,28 @@
       value: {
         text: "Yes"
       }
-    },
-    {
-      key: {
-        text: "Email address"
-      },
-      value: {
-        text: data['directorEmail' or 'signingPersonEmail'] or  "test@example.co.uk"
-      }
     }
-  ]
+  ]) %}
+{% endif %}
+
+{# always add the email row #}
+{% set rows = rows.concat([
+  {
+    key: {
+      text: "Email address"
+    },
+    value: {
+        text: data.director2Email or data.director2ProxyEmail or "test@example.co.uk"
+    }
+  }
+]) %}
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: rows
 }) }}
+
+
 
 
    
