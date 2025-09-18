@@ -1,0 +1,135 @@
+{% extends "layouts/main-old-branding.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+            <form action="/V2/check-your-answers-multi-directors" method="post" novalidate>
+
+
+      <h1 class="govuk-heading-xl">
+        Check your answers 
+      </h1>
+
+<h2 class="govuk-heading-m">DOE, Jane</h2>
+
+
+{# build rows first #}
+{% set rows = [
+  {
+    key: {
+      text: "Name"
+    },
+    value: {
+      text: data['director1ProxyName'] or "Jane Doe"
+    }
+  }
+] %}
+
+{# conditionally add your extra row #}
+{% if data['director1SignChoice'] == 'will-sign' %}
+  {% set rows = rows.concat([
+    {
+      key: {
+        text: "Will sign"
+      },
+      value: {
+        text: "Yes"
+      }
+    }
+  ]) %}
+{% endif %}
+
+{# always add the email row #}
+{% set rows = rows.concat([
+  {
+    key: {
+      text: "Email address"
+    },
+    value: {
+      text: data.directorEmail or data.director1ProxyEmail or "test@example.co.uk"
+    }
+  }
+]) %}
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: rows
+}) }}
+
+
+
+
+
+
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">FRANCIS, Sara</h2>
+
+{# build rows first #}
+{% set rows = [
+  {
+    key: {
+      text: "Name"
+    },
+    value: {
+      text: data['director2ProxyName'] or "Sara Francis"
+    }
+  }
+] %}
+
+{# conditionally add your extra row #}
+{% if data['director2SignChoice'] == 'will-sign' %}
+  {% set rows = rows.concat([
+    {
+      key: {
+        text: "Will sign"
+      },
+      value: {
+        text: "Yes"
+      }
+    }
+  ]) %}
+{% endif %}
+
+{# always add the email row #}
+{% set rows = rows.concat([
+  {
+    key: {
+      text: "Email address"
+    },
+    value: {
+        text: data.director2Email or data.director2ProxyEmail or "test@example.co.uk"
+    }
+  }
+]) %}
+
+{{ govukSummaryList({
+  classes: "govuk-!-margin-bottom-0",
+  rows: rows
+}) }}
+
+
+
+
+   
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

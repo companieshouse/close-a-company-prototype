@@ -1,0 +1,56 @@
+{% extends "layouts/main-old-branding.html" %}
+
+{% block pageTitle %}
+  What is the company number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/V2/company-number" method="post">
+
+      {{ govukInput({
+        label: {
+          text: "What is the company number?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "This is the 8 character reference issued by Companies House when the company was set up."
+        },
+        id: "companyNumber",
+        name: "companyNumber",
+        value: data['companyNumber']  
+      }) }}
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Help with company number</a>
+      </p>
+
+
+      {{ govukButton({
+        text: "Continue"
+    
+      }) }}
+
+    </form>
+        <div class="ur-shortcuts">
+          <!-- Not part of ACTUAL screen: only for UR purposes -->
+          <ul class="govuk-list govuk-list--bullet govuk-body-s govuk-!-margin-top-1">
+            <li>Use 12345678 to see a single director company</li>
+            <li>Use any other number to see a multi director company</li>
+          </ul>
+        </div>
+  </div>
+</div>
+
+{% endblock %}

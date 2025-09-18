@@ -1,0 +1,59 @@
+{% extends "layouts/main-old-branding.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your phone
+      </h1>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: "We have sent a code to your phone number ending with <strong>161</strong>"
+}) }}
+
+      <p>
+        It might take a few minutes to arrive. The code will expire after 15 minutes.</a>
+      </p>
+
+      {{ govukInput({
+  label: {
+    text: "Enter 6 digit code"
+  },
+  classes: "govuk-input--width-10",
+  id: "width-10",
+  name: "width10"
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue",
+  href: "company-number"
+}) }}
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{{ govukDetails({
+  summaryText: "Problem with the code?",
+  text: "Problem with the code?"
+}) }}
+
+    </div>
+  </div>
+
+{% endblock %}

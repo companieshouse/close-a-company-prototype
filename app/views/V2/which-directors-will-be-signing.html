@@ -1,0 +1,93 @@
+{% extends "layouts/main-old-branding.html" %}
+
+{% block pageTitle %}
+  Which directors will be signing? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+<form method="post" action="/V2/which-directors-will-be-signing">
+
+
+{% if data['whichDirectorAreYou'] in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+
+
+{{ govukCheckboxes({
+  name: "whichDirectorsWillBeSigningTheApplication",
+  fieldset: {
+    legend: {
+      text: "Which directors will be signing the application?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "More than half of the directors must sign. You should also select directors who will have someone signing for them."
+  },
+  items: [
+       {
+        value: "SaraFrancis",
+        text: "FRANCIS, Sara"
+    },
+       {
+        value: "JamesShipley",
+        text: "SHIPLEY, James"
+    }
+  ]
+}) }}
+
+{% else %}
+
+{{ govukCheckboxes({
+  name: "whichDirectorsWillBeSigningTheApplication",
+  fieldset: {
+    legend: {
+      text: "Which directors will be signing the application?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "More than half of the directors must sign. You should also select directors who will have someone signing for them."
+  },
+  items: [
+    {
+        value: "JaneDoe",
+        text: "DOE, Jane"
+    },
+       {
+        value: "SaraFrancis",
+        text: "FRANCIS, Sara"
+    },
+       {
+        value: "JamesShipley",
+        text: "SHIPLEY, James"
+    }
+  ]
+}) }}
+
+{% endif %}
+
+
+
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
