@@ -1,5 +1,7 @@
 {% extends "layouts/main-old-branding.html" %}
 {% block header %}
+   {% include "/includes/email-header.html" %}
+
   <!-- Blank header with no service name for this page -->
   {{ govukHeader() }}
 {% endblock %}
@@ -8,12 +10,16 @@
 {% endblock %}
 
 {% set fallbackDate = "22 September 2025" %}
-{% set todayHtml = ("today" | duration(14) | govukDate) or fallbackDate %}
+{% set todayHtml = ("today" | govukDate) or fallbackDate %}
+{% set 2weeksHtml = ("today" | duration(14) | govukDate) or fallbackDate %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form action="/V1/email-sign-the-application" method="post">
+
+
+
 
       <h1 class="govuk-heading-xl">
         Sign the application to strike off and dissolve a company
@@ -86,7 +92,7 @@
 </govukInsetText>
         <p class="govuk-body">
             It must be signed by more than half of the directors before it can be submitted.
-        <p class="govuk-body"> <strong>You will need to sign the application before {{ todayHtml }}.</strong></p>
+        <p class="govuk-body"> <strong>You will need to sign the application before {{ 2weeksHtml }}.</strong></p>
         <p class="govuk-body">
             To do this, you will need:
         </p>
