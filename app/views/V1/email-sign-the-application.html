@@ -1,10 +1,15 @@
-{% extends "layouts/main-old-branding.html" %}
-{% block header %}
-   {% include "/includes/email-header.html" %}
+{% extends "layouts/email.html" %}
 
+{% block header %}
+<div class="govuk-width-container">
+{% include "/includes/email-header.html" %}
   <!-- Blank header with no service name for this page -->
-  {{ govukHeader() }}
+  {{ govukHeader({
+    containerClasses: "govuk-!-padding-left-0"
+  }) }}
+  </div>
 {% endblock %}
+
 {% block pageTitle %}
   Sign the application to strike off and dissolve a company – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -14,14 +19,14 @@
 {% set 2weeksHtml = ("today" | duration(14) | govukDate) or fallbackDate %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+
       <form action="/V1/email-sign-the-application" method="post">
 
 
 
 
-      <h1 class="govuk-heading-xl">
+      <h1 class="govuk-heading-xl govuk-!-padding-top-4">
         Sign the application to strike off and dissolve a company
       </h1>
 
@@ -138,7 +143,7 @@
   </a>
 </p>
 
-<p class="govuk-hint"> Help us improve your online filling experience by completing our quick survey: 
+<p class="govuk-hint govuk-!-margin-top-9 govuk-!-font-size-16 "> Help us improve your online filling experience by completing our quick survey: 
     <a href="https://www.smartsurvey.co.uk/s/closing-a-company-feedback" 
      target="_blank" 
      rel="noopener noreferrer">
@@ -146,7 +151,7 @@
   </a>
 </p>
 
-<p class="govuk-hint"> Contact centre tel 
+<p class="govuk-hint govuk-!-font-size-16 "> Contact centre tel 
     <a href="+44 (0)303 1234 500" 
      target="_blank" 
      rel="noopener noreferrer">
@@ -154,7 +159,7 @@
   </a>
 </p>
 
-<p class="govuk-hint"> or email 
+<p class="govuk-hint govuk-!-font-size-16 "> or email 
     <a href="enquiries@companieshouse.gov.uk. " 
      target="_blank" 
      rel="noopener noreferrer">
@@ -166,6 +171,5 @@
 
       </form>
 
-    </div>
-  </div>
+
 {% endblock %}

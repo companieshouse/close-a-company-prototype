@@ -27,3 +27,26 @@
     font-size: 19px !important;
   }
 }
+
+// Styles for email template
+
+.email-template {
+  background-color: govuk-colour("light-grey");
+}
+.email-template-container {
+  background-color: govuk-colour("white");
+  padding: 0 2em 2em;
+}
+body.email-template .govuk-width-container {
+  background-color: govuk-colour("white");
+  padding: 0 2em 
+}
+body.email-template .govuk-width-container header {
+  margin:0 -2em 0 -2em;
+}
+body.email-template .govuk-width-container .govuk-header__logo {
+  padding-left:4em;
+}
+.email-header {
+  padding: 0 2em;
+}
