@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Stop Screen Bank Account – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukWarningText({
+  text: "Before you close your company, you must make sure the company bank account is cleared. Any remaining balance will be inaccessible after dissolution.",
+  iconFallbackText: "Warning"
+}) }}
+
+{{ govukCheckboxes({
+  idPrefix: "bank-account-cleared",
+  name: "bank-account-cleared",
+  fieldset: {
+    legend: {
+      text: "Acknowledgement",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "acknowledged",
+      text: "I understand that any remaining company bank account balance will be lost after dissolution and confirm that I’ve cleared the account.",
+      checked: false
+    }
+  ]
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Save and continue",
+  href: "/v2/sign-in"
+}) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}
