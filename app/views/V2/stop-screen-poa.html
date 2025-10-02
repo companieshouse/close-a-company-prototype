@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Power of Attorney Confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+      {{ govukWarningText({
+        text: "If you are signing on behalf of a company director, you must have valid Power of Attorney. If you do not, your application will be rejected.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "What is Power of Attorney?",
+        html: '
+          Power of Attorney is a legal document that allows someone to act on behalf of another person in legal or financial matters.
+          <br><br>
+          <a href="https://www.gov.uk/power-of-attorney" target="_blank" class="govuk-link">Read more about Power of Attorney (opens in new tab)</a>.
+        '
+      }) }}
+
+      {{ govukCheckboxes({
+        idPrefix: "power-of-attorney",
+        name: "power-of-attorney",
+        fieldset: {
+          legend: {
+            text: "Confirmation",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "confirmed",
+            text: "I confirm that the person signing on behalf of a company director has valid Power of Attorney.",
+            checked: false
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/v2/sign-in"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
+
