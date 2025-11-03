@@ -15,72 +15,75 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-<form method="post" action="/V2/which-directors-will-be-signing">
+      <form method="post" action="/V2/which-directors-will-be-signing">
 
+        {% if data['whichDirectorAreYou'] in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
 
-{% if data['whichDirectorAreYou'] in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+          {{ govukCheckboxes({
+            name: "whichDirectorsWillBeSigningTheApplication",
+            fieldset: {
+              legend: {
+                text: "Which directors will be signing the application?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: '
+                More than half of the directors must sign. 
+                ' + govukDetails({
+                  summaryText: "What to do if a director cannot sign",
+                  html: "If a director is unable to sign the application themselves, someone else can sign on their behalf. This person must have legal authority, such as a power of attorney or a court order. You should still select that director’s name above, and we’ll ask for details of who is signing for them later in the process."
+                })
+            },
+            items: [
+              {
+                value: "SaraFrancis",
+                text: "FRANCIS, Sara"
+              },
+              {
+                value: "JamesShipley",
+                text: "SHIPLEY, James"
+              }
+            ]
+          }) }}
 
+        {% else %}
 
-{{ govukCheckboxes({
-  name: "whichDirectorsWillBeSigningTheApplication",
-  fieldset: {
-    legend: {
-      text: "Which directors will be signing the application?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  hint: {
-    text: "More than half of the directors must sign. You should also select directors who will have someone signing for them."
-  },
-  items: [
-       {
-        value: "SaraFrancis",
-        text: "FRANCIS, Sara"
-    },
-       {
-        value: "JamesShipley",
-        text: "SHIPLEY, James"
-    }
-  ]
-}) }}
+          {{ govukCheckboxes({
+            name: "whichDirectorsWillBeSigningTheApplication",
+            fieldset: {
+              legend: {
+                text: "Which directors will be signing the application?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: '
+                More than half of the directors must sign. 
+                ' + govukDetails({
+                  summaryText: "What to do if a director cannot sign",
+                  html: "Lucy to add content"
+                })
+            },
+            items: [
+              {
+                value: "JaneDoe",
+                text: "DOE, Jane"
+              },
+              {
+                value: "SaraFrancis",
+                text: "FRANCIS, Sara"
+              },
+              {
+                value: "JamesShipley",
+                text: "SHIPLEY, James"
+              }
+            ]
+          }) }}
 
-{% else %}
-
-{{ govukCheckboxes({
-  name: "whichDirectorsWillBeSigningTheApplication",
-  fieldset: {
-    legend: {
-      text: "Which directors will be signing the application?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  hint: {
-    text: "More than half of the directors must sign. You should also select directors who will have someone signing for them."
-  },
-  items: [
-    {
-        value: "JaneDoe",
-        text: "DOE, Jane"
-    },
-       {
-        value: "SaraFrancis",
-        text: "FRANCIS, Sara"
-    },
-       {
-        value: "JamesShipley",
-        text: "SHIPLEY, James"
-    }
-  ]
-}) }}
-
-{% endif %}
-
-
-
-
-
+        {% endif %}
 
         {{ govukButton({
           text: "Continue"
