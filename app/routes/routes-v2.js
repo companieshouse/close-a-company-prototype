@@ -147,4 +147,10 @@ router.post('/V2/which-directors-will-be-signing', function (request, response) 
     response.redirect("/V2/how-will-the-multi-directors-be-signing");
 });
 
+// Confirm the company bank accounts are empty
+router.post('/V2/stop-screen-bank-account', function (request, response) {
+    response.redirect("/V2/sign-in");
+});
+
+
 module.exports = router;
