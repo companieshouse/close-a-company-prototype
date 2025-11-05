@@ -23,18 +23,15 @@
             name: "whichDirectorsWillBeSigningTheApplication",
             fieldset: {
               legend: {
-                text: "Which directors will sign?",
+                text: "Which other directors will sign the application?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
               html: '
-                More than half of the directors must sign. 
-                ' + govukDetails({
-                  summaryText: "What to do if a director cannot sign",
-                  html: "If a director is unable to sign the application themselves, someone else can sign on their behalf. This person must have legal authority, such as a power of attorney or a court order. You should still select that director’s name above, and we’ll ask for details of who is signing for them later in the process."
-                })
+                Select 1 or more directors 
+                ' 
             },
             items: [
               {
