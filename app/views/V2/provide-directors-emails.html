@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How will the multiple director be signing – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+            <form action="/V1/how-will-the-multi-directors-be-signing" method="post">
+
+      <h1 class="govuk-heading-xl">
+        Please provide the email addresses for the directors signing
+      </h1>
+
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+      
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+<h2 class="govuk-heading-m">DOE, Jane</h2>
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Email address"
+  },
+  hint: {
+    text: "We will use this email to ask them to sign the application."
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+{% set director1ProxyHtml %}
+  {{ govukInput({
+    id: "director1-proxy-name",
+    name: "director1ProxyName",
+    label: {
+      text: "What is the name of the person signing for DOE, Jane?"
+    }
+  }) }}
+
+
+
+  
+  {{ govukInput({
+    id: "director1-proxy-email",
+    name: "director1ProxyEmail",
+    type: "email",
+    label: {
+      text: "What is the email address of the person signing for DOE, Jane?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    }
+  }) }}
+{% endset %}
+
+
+
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+  {{ govukInput({
+    id: "director1-proxy-email",
+    name: "director1ProxyEmail",
+    type: "email",
+    label: {
+      text: "What is the email address of the person signing for DOE, Jane?"
+    },
+    hint: {
+      text: "We will use this email to ask them to sign the application."
+    }
+  }) }}
+
+
+
+
+
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+      </form>
+
+    </div>
+  </div>
+
+
+  
+{% endblock %}
