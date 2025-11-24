@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Application complete",
+        html: "Your reference number<br><strong>HDJ2123F</strong>"
+      }) }}
+
+      <p>
+        We will email you within 2 working days to let you know if the application has been accepted or rejected.
+      </p>
+
+        <h2 class="govuk-heading-l">What to do next</h2>
+
+  <p>A strike off notice for the company will be published in the local Gazette. After 2 months, the notice will expire. In this time, if nobody has objected to the company closing, it will be removed from the register.</p>
+
+  <h3 class="govuk-heading-m">Directors must inform all interested parties</h3>
+
+  <p>
+    A copy of the signed application to close the company must be sent to all interested parties within 7 days of it being submitted. You can download a PDF of the signed application by signing back in to the Apply to strike off and dissolve a company service. A full list of interested parties can be found here: 
+    <a class="govuk-link" href="https://www.gov.uk/government/collections/companies-house-guidance-for-limited-companies-partnerships-and-other-company-types#how-to-apply-for-strike-off-and-who-to-tell" target="_blank" rel="noopener noreferrer">
+      full list of parties you must tell about the company closing (opens in a new tab)
+    </a>.
+  </p>
+
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-visually-hidden">Warning</span>
+      It is a criminal offence not to tell all interested parties that an application has been made to close the company.
+    </strong>
+  </div>
+
+  <p>
+ <a href="/public/documents/Apply-to-strike-off-and-dissolve-a-company-IQWYKX.pdf" class="govuk-link">
+  Download the signed copy of the application (opens in a new tab)
+</a>
+</p>
+
+  <p>
+    This is a new service. Help us improve it by providing 
+    <a class="govuk-link" href="https://www.gov.uk/strike-off-your-company-from-companies-register/feedback">
+      feedback (opens in a new tab)
+    </a>.
+  </p>
+</div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layouts/main-no-service-name.html" %}
+
+{% block pageTitle %}
+  {% if errors and errors['email-address'] %}
+    Error: Enter your email address – {{ serviceName }} – GOV.UK Prototype Kit
+  {% else %}
+    Enter your email address – {{ serviceName }} – GOV.UK Prototype Kit
+  {% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="/V2/sign-in">
+
+      {% if errors %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: errors['email-address'].text,
+              href: "#email-address"
+            }
+          ]
+        }) }}
+      {% endif %}
+
+      {{ govukInput({
+        id: "email-address",
+        label: {
+          text: "Enter your email address to sign in to your GOV.UK One Login",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        name: "email-address",
+        value: data['email-address'],
+        errorMessage: errors['email-address'] if errors
+      }) }}
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

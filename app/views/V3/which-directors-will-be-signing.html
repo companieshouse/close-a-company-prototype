@@ -1,0 +1,118 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which directors will sign the application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form method="post" action="/V2/which-directors-will-be-signing">
+
+        {% if data['whichDirectorAreYou'] in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+
+          {{ govukCheckboxes({
+            name: "whichDirectorsWillBeSigningTheApplication",
+            fieldset: {
+              legend: {
+                text: "Which other directors will sign the application?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: '
+                Select 1 or more directors 
+                ' 
+            },
+            items: [
+              {
+                value: "SaraFrancis",
+                text: "FRANCIS, Sara"
+              },
+              {
+                value: "JamesShipley",
+                text: "SHIPLEY, James"
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          {{ govukCheckboxes({
+            name: "whichDirectorsWillBeSigningTheApplication",
+            fieldset: {
+              legend: {
+                text: "Which directors will sign the application?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: '
+                Select 2 or more directors 
+                ' 
+            },
+            items: [
+              {
+                value: "JaneDoe",
+                text: "DOE, Jane"
+              },
+              {
+                value: "SaraFrancis",
+                text: "FRANCIS, Sara"
+              },
+              {
+                value: "JamesShipley",
+                text: "SHIPLEY, James"
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      More information about who needs to sign
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <p>
+    The application must be signed by more than half of the directors.<p>
+  <strong>Directors who are people</strong>
+  <p>
+  Directors must sign the application themselves. Nobody can sign on their behalf.<br> <br>
+
+  Sometimes a director cannot sign. For example, because they no longer have mental capacity. If there are not enough directors who are able to sign, you'll need to <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house" class="govuk-link" rel="noreferrer noopener" target="_blank">make changes to the company directors (opens in new tab)</a> before continuing with this application. This might include removing a person as a director or appointing a new director</a>.
+</p>
+
+
+  <p>
+  <strong>Corporate directors</strong>
+  <p>
+  For directors that are companies, an authorised person must sign on their behalf. 
+
+  
+  </div>
+</details>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

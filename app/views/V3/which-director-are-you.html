@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+ Which director are you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<form method="post" action="/V2/which-director-are-you">
+
+
+{% if (data['companyNumber'] == "12345678") %}
+
+
+{{ govukRadios({
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+        value: "JaneDoe",
+        text: "Jane Doe"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
+
+{% else %}
+{{ govukRadios({
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+        value: "JaneDoe",
+        text: "DOE, Jane"
+    },
+       {
+        value: "SaraFrancis",
+        text: "FRANCIS, Sara"
+    },
+       {
+        value: "JamesShipley",
+        text: "SHIPLEY, James"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
+{% endif %}
+
+
+
+
+
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+    </div>
+  </div>
+
+{% endblock %}

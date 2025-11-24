@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+            <form action="/V2/check-your-answers-single-director" method="post" novalidate>
+
+
+      <h1 class="govuk-heading-xl">
+        Check your answers 
+      </h1>
+
+{% if data['signingOption'] == "willSign" %}
+
+<h1 class="govuk-heading-m">DOE, Jane</h2>
+
+
+{{ govukSummaryList({
+ 
+  rows: [
+    {
+      key: {
+        text: "Will sign"
+      },
+      value: {
+        text: "Yes"
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+  value: { text: data['directorEmail'] or "test@example.co.uk" }
+    }
+  ]
+}) }}
+
+{% else %} 
+<h1 class="govuk-heading-m">DOE, Jane</h2>
+
+
+{{ govukSummaryList({
+  
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: data['signingPersonName'] or  "Jane Doe"
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+        text: data['signingPersonEmail'] or  "test@example.co.uk"
+      }
+    }
+  ]
+}) }} 
+
+{% endif %}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

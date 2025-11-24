@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Payment placeholder" %}
+
+
+
+
+
+{% set serviceName %}
+  GOV Pay
+{% endset%}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/V2/application-received" method="post" class="form">
+        <h1 class="govuk-heading-l">
+          [Placeholder]
+        </h1>
+
+        <p>GOV Pay screens would be shown here.</p>
+
+                <p>User would enter payment card details.</p>
+
+
+       
+
+  
+   {{ govukButton({
+          text: "Continue"
+
+        }) }}      
+
+      </form>
+
+    </div>
+    <!--govuk-grid-row-->
+
+    <!--govuk-grid-column-two-thirds-->
+  </div>
+  <!--govuk-grid-column-two-thirds-->
+
+</main>
+</div>
+<!---govuk-width-container-->
+
+{% endblock %}

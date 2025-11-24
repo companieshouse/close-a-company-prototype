@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Review your payment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form action="/V2/review-your-payment" method="post">
+
+
+
+
+
+{{ govukTable({
+  caption: " Review your payment",
+  captionClasses: "govuk-table__caption--xl",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Item"
+    },
+    {
+      text: "Amount to pay"
+    }
+  ],
+  rows: [
+    [
+      {
+          text: "Apply to strike off and dissolve a company"
+      },
+      {
+        text: "£33.00"
+      }
+  ]
+}
+}) }}
+
+
+     
+
+      <h2 class="govuk-heading-m">
+        The total amount to pay is £33.00
+      </h2>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
