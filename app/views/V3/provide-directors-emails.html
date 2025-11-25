@@ -19,19 +19,21 @@
         <h1 class="govuk-heading-xl">
           Provide directors' email addresses
         </h1>
+        
+        <p class="govuk-hint">We'll email each director you've selected, to ask them to sign the application online.</p>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
         {% from "govuk/components/button/macro.njk" import govukButton %}
 
   {% from "govuk/components/input/macro.njk" import govukInput %}
-<h2 class="govuk-heading-m">Director 1 name</h2>
+<h2 class="govuk-heading-m">FRANCIS, Sara</h2>
 
 {{ govukInput({
   label: {
-    text: "Email address"
+    text: "What is the email address for FRANCIS, Sara?"
   },
   hint: {
-    text: "We'll email the director and ask them to sign"
+    text: ""
   },
   id: "email",
   name: "email",
@@ -41,14 +43,14 @@
 }) }}
 
   {% from "govuk/components/input/macro.njk" import govukInput %}
-<h2 class="govuk-heading-m">Director 2 name</h2>
+<h2 class="govuk-heading-m">SHIPLEY, James</h2>
 
 {{ govukInput({
   label: {
-    text: "Email address"
+    text: "What is the email address for SHIPLEY, James?"
   },
   hint: {
-    text: "We'll email the director and ask them to sign"
+    text: ""
   },
   id: "email",
   name: "email",
@@ -60,7 +62,7 @@
  
 
         {{ govukButton({
-          text: "Continue"
+          text: "Save and continue"
         }) }}
 
       </form>
