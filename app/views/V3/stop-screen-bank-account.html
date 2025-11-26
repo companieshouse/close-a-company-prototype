@@ -14,7 +14,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Confirm the company bank accounts are empty</h1>
+      <h1 class="govuk-heading-l">Company bank account access</h1>
 
       {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
@@ -22,10 +22,11 @@
 
       <form method="post" action="/V3/stop-screen-bank-account">
         {{ govukWarningText({
-          text: "You will not be able to access money in the company bank accounts once the company is closed.",
+          text: "You will not be able to access money in the company bank account once the company is dissolved.",
           iconFallbackText: "Warning"
         }) }}
 
+        <!--Checkbox removed as requested by legal
         {{ govukCheckboxes({
           idPrefix: "bank-account-cleared",
           name: "bank-account-cleared",
@@ -43,10 +44,14 @@
               checked: false
             }
           ]
-        }) }}
+        }) }}-->
+
+<p class="govuk-body">Any money still in the account, and any other assets, will pass to the Crown. You'll have to restore the company to get anything back.</p>
+
+<p class="govuk-body">By selecting continue, you are confirming that you have read and understood this information.</p>
 
         {{ govukButton({
-          text: "Save and continue",
+          text: "Continue",
           type: "submit"
         }) }}
       </form>

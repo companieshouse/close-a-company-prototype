@@ -19,34 +19,48 @@
         <h1 class="govuk-heading-xl">
           Provide directors' email addresses
         </h1>
+        <p class="govuk-hint">
+          We'll email each director you've selected, to ask them to sign the application online.
+        </p>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
-        {% from "govuk/components/button/macro.njk" import govukButton %}
 
-        {# --- Loop through each selected director --- #}
+        {# Loop through the directors selected on the previous screen #}
         {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          <h2 class="govuk-heading-m">
-            {{ director
+          {# Convert stored ID (JaneDoe) into display name #}
+          {% set displayName =
+            director
               | replace("JaneDoe", "DOE, Jane")
               | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("JamesShipley", "SHIPLEY, James") }}
-          </h2>
+              | replace("JamesShipley", "SHIPLEY, James")
+          %}
+
+          <h2 class="govuk-heading-m">{{ displayName }}</h2>
+
+          {# Build a unique session storage key: directorEmail0, directorEmail1... #}
+          {% set emailKey = "directorEmail" + loop.index0 %}
 
           {{ govukInput({
-            label: { text: "Email address" },
-            hint: { text: "We'll email the director and ask them to sign" },
-            id: "director-email-" + loop.index,
-            name: "directorEmail" + loop.index0,  
+            label: {
+              text: "Email address"
+            },
+            hint: {
+              text: "We'll email the director and ask them to sign"
+            },
+            id: emailKey,
+            name: emailKey,
             type: "email",
             autocomplete: "email",
             spellcheck: false,
-            value: data["directorEmail" + loop.index0]  
+            value: data[emailKey]
           }) }}
 
         {% endfor %}
 
-        {{ govukButton({ text: "Continue" }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
       </form>
     </div>
