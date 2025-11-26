@@ -14,7 +14,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <form action="/V1/provide-directors-emails" method="post">
+      <form action="/V3/provide-directors-emails" method="post">
 
         <h1 class="govuk-heading-xl">
           Provide directors' email addresses
@@ -23,45 +23,30 @@
         {% from "govuk/components/input/macro.njk" import govukInput %}
         {% from "govuk/components/button/macro.njk" import govukButton %}
 
-  {% from "govuk/components/input/macro.njk" import govukInput %}
-<h2 class="govuk-heading-m">Director 1 name</h2>
+        {# --- Loop through each selected director --- #}
+        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-{{ govukInput({
-  label: {
-    text: "Email address"
-  },
-  hint: {
-    text: "We'll email the director and ask them to sign"
-  },
-  id: "email",
-  name: "email",
-  type: "email",
-  autocomplete: "email",
-  spellcheck: false
-}) }}
+          <h2 class="govuk-heading-m">
+            {{ director
+              | replace("JaneDoe", "DOE, Jane")
+              | replace("SaraFrancis", "FRANCIS, Sara")
+              | replace("JamesShipley", "SHIPLEY, James") }}
+          </h2>
 
-  {% from "govuk/components/input/macro.njk" import govukInput %}
-<h2 class="govuk-heading-m">Director 2 name</h2>
+          {{ govukInput({
+            label: { text: "Email address" },
+            hint: { text: "We'll email the director and ask them to sign" },
+            id: "director-email-" + loop.index,
+            name: "directorEmail" + loop.index0,  
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            value: data["directorEmail" + loop.index0]  
+          }) }}
 
-{{ govukInput({
-  label: {
-    text: "Email address"
-  },
-  hint: {
-    text: "We'll email the director and ask them to sign"
-  },
-  id: "email",
-  name: "email",
-  type: "email",
-  autocomplete: "email",
-  spellcheck: false
-}) }}
+        {% endfor %}
 
- 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        {{ govukButton({ text: "Continue" }) }}
 
       </form>
     </div>

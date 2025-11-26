@@ -14,122 +14,51 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-            <form action="/V2/check-your-answers-multi-directors" method="post" novalidate>
+      <form action="/V3/check-your-answers-multi-directors" method="post" novalidate>
 
+        <h1 class="govuk-heading-xl">
+          Check your answers
+        </h1>
 
-      <h1 class="govuk-heading-xl">
-        Check your answers 
-      </h1>
+        {# --- Loop through all selected directors --- #}
+        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-<h2 class="govuk-heading-m">DOE, Jane</h2>
+          {# Director name heading #}
+          <h2 class="govuk-heading-m govuk-!-margin-top-6">
+            {{ director 
+               | replace("JaneDoe", "DOE, Jane")
+               | replace("SaraFrancis", "FRANCIS, Sara")
+               | replace("JamesShipley", "SHIPLEY, James") }}
+          </h2>
 
+          {# Build summary list rows dynamically #}
+          {% set rows = [
+            {
+              key: { text: "Name" },
+              value: { text: director
+                | replace("JaneDoe", "DOE, Jane")
+                | replace("SaraFrancis", "FRANCIS, Sara")
+                | replace("JamesShipley", "SHIPLEY, James")
+              }
+            },
+            {
+              key: { text: "Email address" },
+              value: { text: data["directorEmail" + loop.index0] or "" }
+            }
+          ] %}
 
-{# build rows first #}
-{% set rows = [
-  {
-    key: {
-      text: "Name"
-    },
-    value: {
-      text: data['director1ProxyName'] or "Jane Doe"
-    }
-  }
-] %}
+          {{ govukSummaryList({
+            rows: rows
+          }) }}
 
-{# conditionally add your extra row #}
-{% if data['director1SignChoice'] == 'will-sign' %}
-  {% set rows = rows.concat([
-    {
-      key: {
-        text: "Will sign"
-      },
-      value: {
-        text: "Yes"
-      }
-    }
-  ]) %}
-{% endif %}
-
-{# always add the email row #}
-{% set rows = rows.concat([
-  {
-    key: {
-      text: "Email address"
-    },
-    value: {
-      text: data.directorEmail or data.director1ProxyEmail or "test@example.co.uk"
-    }
-  }
-]) %}
-
-{{ govukSummaryList({
-  classes: "govuk-!-margin-bottom-0",
-  rows: rows
-}) }}
-
-
-
-
-
-
-
-<h2 class="govuk-heading-m govuk-!-margin-top-6">FRANCIS, Sara</h2>
-
-{# build rows first #}
-{% set rows = [
-  {
-    key: {
-      text: "Name"
-    },
-    value: {
-      text: data['director2ProxyName'] or "Sara Francis"
-    }
-  }
-] %}
-
-{# conditionally add your extra row #}
-{% if data['director2SignChoice'] == 'will-sign' %}
-  {% set rows = rows.concat([
-    {
-      key: {
-        text: "Will sign"
-      },
-      value: {
-        text: "Yes"
-      }
-    }
-  ]) %}
-{% endif %}
-
-{# always add the email row #}
-{% set rows = rows.concat([
-  {
-    key: {
-      text: "Email address"
-    },
-    value: {
-        text: data.director2Email or data.director2ProxyEmail or "test@example.co.uk"
-    }
-  }
-]) %}
-
-{{ govukSummaryList({
-  
-  rows: rows
-}) }}
-
-
-
-
-   
-
+        {% endfor %}
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
       </form>
-
     </div>
   </div>
 {% endblock %}
+

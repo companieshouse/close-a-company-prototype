@@ -41,34 +41,36 @@
   </div>
 </div>
 
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Name</th>
-          <th scope="col" class="govuk-table__header">Email</th>
-          <th scope="col" class="govuk-table__header">Change</th>
-          <th scope="col" class="govuk-table__header">Resend</th>
-          <th scope="col" class="govuk-table__header">Signed</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Jane Doe" }}</td>
-          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "jane.doe@company.co.uk" }}</td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Francis Sara" }}</td>
-          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "francis.sara@company.co.uk" }}</td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
-        </tr>
-       
-      </tbody>
-    </table>
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Name</th>
+      <th scope="col" class="govuk-table__header">Email</th>
+      <th scope="col" class="govuk-table__header">Change</th>
+      <th scope="col" class="govuk-table__header">Resend</th>
+      <th scope="col" class="govuk-table__header">Signed</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
 
+    {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+      {% set emailKey = "directorEmail" + loop.index0 %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          {{ director
+            | replace("JaneDoe", "DOE, Jane")
+            | replace("SaraFrancis", "FRANCIS, Sara")
+            | replace("JamesShipley", "SHIPLEY, James") }}
+        </td>
+        <td class="govuk-table__cell">
+          {{ data[emailKey] or "" }}
+        </td>
+        <td class="govuk-table__cell"><a class="govuk-link" href="/V3/provide-directors-emails">Change</a></td>
+        <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong></td>
+      </tr>
+    {% endfor %}
 
+  </tbody>
+</table>
 {% endblock %}
