@@ -137,7 +137,7 @@ router.post('/V3/how-do-you-want-to-pay', function (request, response) {
 
 // Which directors will be signing the application?
 router.post('/V3/which-directors-will-be-signing', function (request, response) {
-    response.redirect("/V3/provide-directors-emails");
+    response.redirect("/V3/provide-corporate-directors-emails");
 });
 
 //Provide directors' email addresses
@@ -150,6 +150,18 @@ router.post('/V3/provide-directors-emails', function (req, res) {
 
   res.redirect('/V3/check-your-answers-multi-directors');
 });
+
+//Provide corporrate directors' email addresses
+router.post('/V3/provide-corporate-directors-emails', function (req, res) {
+  // Store each email in a flat key so it can be replayed
+  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || [];
+  directors.forEach((director, i) => {
+    req.session.data['directorEmail' + i] = req.body['directorEmail' + i];
+  });
+
+  res.redirect('/V3/check-your-answers-multi-directors');
+});
+
 
 // Confirm the company bank accounts are empty
 router.post('/V3/stop-screen-bank-account', function (request, response) {

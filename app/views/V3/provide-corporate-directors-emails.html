@@ -14,7 +14,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <form action="/V3/provide-directors-emails" method="post">
+      <form action="/V3/provide-corporate-directors-emails" method="post">
 
         <h1 class="govuk-heading-xl">
           Provide directors' email addresses
@@ -36,60 +36,46 @@
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
         {# Loop through the directors selected on the previous screen #}
-        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+{% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          {# Convert stored ID (JaneDoe) into display name #}
-          {% set displayName =
-            director
-              | replace("JaneDoe", "DOE, Jane")
-              | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("JamesShipley", "SHIPLEY, James")
-          %}
+  {% set displayName =
+    director
+      | replace("JaneDoe", "DOE, Jane")
+      | replace("SaraFrancis", "FRANCIS, Sara")
+      | replace("JamesShipley", "SHIPLEY, James")
+      | replace("AcmeLtd", "ACME LTD")
+  %}
 
-          <h2 class="govuk-heading-m">{{ displayName }}</h2>
+  <h2 class="govuk-heading-m">{{ displayName }}</h2>
 
-          {# Build a unique key for session storage: directorEmail0, directorEmail1 etc #}
-          {% set emailKey = "directorEmail" + loop.index0 %}
+  {# Show details component ABOVE the email input ONLY for Acme Ltd #}
+  {% if director == "AcmeLtd" %}
+    {% from "govuk/components/details/macro.njk" import govukDetails %}
 
-          {{ govukInput({
-            label: {
-              text: ""
-            },
-            hint: {
-              text: "What is the email address for " + displayName + "?"
-            },
-            id: emailKey,
-            name: emailKey,
-            type: "email",
-            autocomplete: "email",
-            spellcheck: false,
-            value: data[emailKey]
-          }) }}
+    {{ govukDetails({
+      summaryText: "Who can sign on behalf of a corporate director?",
+      text: "For corporate directors, an authorised person must sign on their behalf. Ensure you provide the correct email of the person signing for the company."
+    }) }}
+  {% endif %}
 
-        {% endfor %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
+  {% set emailKey = "directorEmail" + loop.index0 %}
 
-<h2 class="govuk-heading-m">Acme Ltd</h2>
+  {{ govukInput({
+    label: { text: "" },
+    hint: { text: "What is the email address for " ~ displayName ~ "?" },
+    id: emailKey,
+    name: emailKey,
+    type: "email",
+    autocomplete: "email",
+    spellcheck: false,
+    value: data[emailKey]
+  }) }}
 
-{% from "govuk/components/details/macro.njk" import govukDetails %}
-
-{{ govukDetails({
-  summaryText: "Who can sign on behalf of a corporate director?",
-  text: "We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post."
-}) }}
+{% endfor %}
 
 
-{{ govukInput({
 
-  hint: {
-    text: "What is the email address for Acme Ltd?"
-  },
-  id: "email",
-  name: "email",
-  type: "email",
-  autocomplete: "email",
-  spellcheck: false
-}) }}
+
         {{ govukButton({
           text: "Continue"
         }) }}
