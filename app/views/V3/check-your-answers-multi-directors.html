@@ -20,30 +20,36 @@
           Check your answers
         </h1>
 
-        {# --- Loop through all selected directors --- #}
         {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          {# Director name heading #}
-          <h2 class="govuk-heading-m govuk-!-margin-top-6">
-            {{ director 
-               | replace("JaneDoe", "DOE, Jane")
-               | replace("SaraFrancis", "FRANCIS, Sara")
-               | replace("JamesShipley", "SHIPLEY, James") }}
-          </h2>
+          {% set displayName =
+            director
+              | replace("JaneDoe", "DOE, Jane")
+              | replace("SaraFrancis", "FRANCIS, Sara")
+              | replace("JamesShipley", "SHIPLEY, James")
+          %}
 
-          {# Build summary list rows dynamically #}
+          <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
+
           {% set rows = [
             {
               key: { text: "Name" },
-              value: { text: director
-                | replace("JaneDoe", "DOE, Jane")
-                | replace("SaraFrancis", "FRANCIS, Sara")
-                | replace("JamesShipley", "SHIPLEY, James")
-              }
+              value: { text: displayName }
             },
             {
               key: { text: "Email address" },
-              value: { text: data["directorEmail" + loop.index0] or "" }
+              value: { text: data[emailKey] or "" },
+              actions: {
+                items: [
+                  {
+                    href: "/V3/provide-directors-emails",
+                    text: "Change",
+                    visuallyHiddenText: "email address for " + displayName
+                  }
+                ]
+              }
             }
           ] %}
 
