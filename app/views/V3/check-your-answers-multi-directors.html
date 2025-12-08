@@ -12,28 +12,30 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      <form action="/V3/check-your-answers-multi-directors" method="post" novalidate>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form action="/V3/check-your-answers-multi-directors" method="post" novalidate>
 
-        <h1 class="govuk-heading-xl">
-          Check your answers
-        </h1>
+      <h1 class="govuk-heading-xl">Check your answers</h1>
 
-        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+      {# Count how many directors were selected #}
+      {% set directorCount = data.whichDirectorsWillBeSigningTheApplication | length %}
 
-          {% set displayName =
-            director
-              | replace("JaneDoe", "DOE, Jane")
-              | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("JamesShipley", "SHIPLEY, James")
-          %}
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
+        {% set displayName =
+          director
+            | replace("JaneDoe", "DOE, Jane")
+            | replace("SaraFrancis", "FRANCIS, Sara")
+            | replace("JamesShipley", "SHIPLEY, James")
+        %}
 
-          {% set emailKey = "directorEmail" + loop.index0 %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
 
-          {% set rows = [
+        {% set emailKey = "directorEmail" + loop.index0 %}
+
+        {{ govukSummaryList({
+          rows: [
             {
               key: { text: "Name" },
               value: { text: displayName }
@@ -44,27 +46,32 @@
               actions: {
                 items: [
                   {
-                    href: "/V3/provide-directors-emails",
                     text: "Change",
-                    visuallyHiddenText: "email address for " + displayName
+                    href: "/V3/provide-directors-emails",
+                    visuallyHiddenText: "email for " + displayName
                   }
                 ]
               }
             }
-          ] %}
-
-          {{ govukSummaryList({
-            rows: rows
-          }) }}
-
-        {% endfor %}
-
-        {{ govukButton({
-          text: "Continue"
+          ]
         }) }}
 
-      </form>
-    </div>
-  </div>
-{% endblock %}
+      {% endfor %}
 
+      {# ---- Add/remove directors link BELOW the summary lists ---- #}
+      {% if directorCount >= 3 %}
+        <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-right">
+          <a class="govuk-link" href="/V3/which-directors-will-be-signing" >
+            Add or remove a director
+          </a>
+        </p>
+      {% endif %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}
