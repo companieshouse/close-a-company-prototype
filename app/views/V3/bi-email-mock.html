@@ -27,9 +27,10 @@
 
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-top-4">
  
-  <div class="govuk-panel__body">
-    Your reference number<br><strong>COGGOJ</strong>
-  </div>
+ {{ govukPanel({
+        titleText: "Application received",
+        html: "Your reference number<br><strong>TWLCY2</strong>"
+      }) }}
 </div>
 
 {% if (data['companyNumber'] == "12345678") %}
