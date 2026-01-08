@@ -1,9 +1,12 @@
 {% extends "layouts/main-no-service-name.html" %}
 
 {% block pageTitle %}
-  Ch Pay – {{ serviceName }} – GOV.UK Prototype Kit
+  {% if errorSummary %}
+    Error: Enter your details to pay by account – {{ serviceName }} – GOV.UK Prototype Kit
+  {% else %}
+    Enter your details to pay by account – {{ serviceName }} – GOV.UK Prototype Kit
+  {% endif %}
 {% endblock %}
-
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,57 +15,91 @@
   }) }}
 {% endblock %}
 
-
 {% block content %}
 
-{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-<form action="/V3/sign-in-to-ch" method="post">
-      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+    {% if errorSummary %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorSummary
+      }) }}
+    {% endif %}
 
-
-
-
+    <form action="/V4/ch-pay" method="post" novalidate>
 
       <h1 class="govuk-heading-l">
         Enter your details to pay by account
       </h1>
+
       <p class="govuk-body">
-        If you have an existing Companies House account, enter your email address.
+        If you have an existing Companies House account, enter your details below.
       </p>
-{% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
+      {# ---------------- Presenter ID ---------------- #}
 
-{{ govukInput({
-  label: {
-    text: "Presenter ID"
-  },
-  id: "presenter-id",
-  name: "presenterId"
-}) }}
+      {% if presenterId is defined and presenterId != "" %}
+        {{ govukInput({
+          label: { text: "Presenter ID" },
+          id: "presenter-id",
+          name: "presenterId",
+          value: presenterId
+        }) }}
+      {% elif errorSummary %}
+        {{ govukInput({
+          label: { text: "Presenter ID" },
+          id: "presenter-id",
+          name: "presenterId",
+          errorMessage: {
+            text: "Enter a Presenter ID"
+          }
+        }) }}
+      {% else %}
+        {{ govukInput({
+          label: { text: "Presenter ID" },
+          id: "presenter-id",
+          name: "presenterId"
+        }) }}
+      {% endif %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
+      {# -------- Presenter authentication code -------- #}
 
-{{ govukInput({
-  label: {
-    text: "Presenter authentication code"
-  },
-  id: "presenter-auth-code",
-  name: "presenterAuthCode"
-}) }}
+      {% if presenterAuthCode is defined and presenterAuthCode != "" %}
+        {{ govukInput({
+          label: { text: "Presenter authentication code" },
+          id: "presenter-auth-code",
+          name: "presenterAuthCode",
+          value: presenterAuthCode
+        }) }}
+      {% elif errorSummary %}
+        {{ govukInput({
+          label: { text: "Presenter authentication code" },
+          id: "presenter-auth-code",
+          name: "presenterAuthCode",
+          errorMessage: {
+            text: "Enter a Presenter authentication code"
+          }
+        }) }}
+      {% else %}
+        {{ govukInput({
+          label: { text: "Presenter authentication code" },
+          id: "presenter-auth-code",
+          name: "presenterAuthCode"
+        }) }}
+      {% endif %}
 
-{% from "govuk/components/button/macro.njk" import govukButton %}
+      {{ govukButton({
+        text: "Confirm payment"
+      }) }}
 
-{{ govukButton({
-  text: "Confirm payment"
-}) }}
+    </form>
 
-
-</form>
+  </div>
+</div>
 
 {% endblock %}
-</div>
