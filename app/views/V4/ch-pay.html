@@ -1,0 +1,68 @@
+{% extends "layouts/main-no-service-name.html" %}
+
+{% block pageTitle %}
+  Ch Pay – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<form action="/V3/sign-in-to-ch" method="post">
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+
+
+
+
+      <h1 class="govuk-heading-l">
+        Enter your details to pay by account
+      </h1>
+      <p class="govuk-body">
+        If you have an existing Companies House account, enter your email address.
+      </p>
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Presenter ID"
+  },
+  id: "presenter-id",
+  name: "presenterId"
+}) }}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Presenter authentication code"
+  },
+  id: "presenter-auth-code",
+  name: "presenterAuthCode"
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Confirm payment"
+}) }}
+
+
+</form>
+
+{% endblock %}
+</div>
