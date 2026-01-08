@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form action="/V3/check-your-answers-multi-directors" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl">Check your answers</h1>
+
+      {# Count how many directors were selected #}
+      {% set directorCount = data.whichDirectorsWillBeSigningTheApplication | length %}
+
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+        {% set displayName =
+          director
+            | replace("JaneDoe", "DOE, Jane")
+            | replace("SaraFrancis", "FRANCIS, Sara")
+            | replace("JamesShipley", "SHIPLEY, James")
+            | replace("AcmeLtd", "ACME LTD")
+        %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
+
+        {% set emailKey = "directorEmail" + loop.index0 %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: { text: "Name" },
+              value: { text: displayName }
+            },
+            {
+              key: { text: "Email address" },
+              value: { text: data[emailKey] or "" },
+              actions: {
+                items: [
+                  {
+                    text: "Change",
+                    href: "/V3/provide-directors-emails",
+                    visuallyHiddenText: "email for " + displayName
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      {% endfor %}
+
+      {# ---- Add/remove directors link BELOW the summary lists ---- #}
+      {% if directorCount >= 3 %}
+        <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
+          <a class="govuk-link" href="/V3/which-directors-will-be-signing" >
+            Add or remove a director
+          </a>
+        </p>
+      {% endif %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

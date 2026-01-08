@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  View company information – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form action="/V3/view-company-info" method="post">
+
+      <h1 class="govuk-heading-xl">
+        View company information
+      </h1>
+
+{% if (data['companyNumber'] == "12345678") %}
+
+
+      <h2 class="govuk-heading-l">
+        A SINGLE DIRECTOR COMPANY LTD
+      </h2>
+      
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: "Active" }
+      },
+      {
+        key: { text: "Incorporation date" },
+        value: { text: "1 January 2001" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { text: "1 Single Street, Anytown, AB11 1CD" }
+      }
+    ]
+  }) }}
+{% else %}
+ <h2 class="govuk-heading-l">
+        A MULTI DIRECTOR COMPANY LTD
+      </h2>
+      
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: "Active" }
+      },
+      {
+        key: { text: "Incorporation date" },
+        value: { text: "2 February 2002" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { html: "<address>2 Multi Street,<br>Anytown,<br>AB23 4CD</address>" }
+      }
+    ]
+  }) }}
+
+{% endif %}
+
+
+
+
+
+
+
+        {{ govukButton({
+          text: "Confirm and continue"
+        }) }}
+ 
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different company</a>
+      </p>
+     </form>
+    </div>
+  </div>
+{% endblock %}

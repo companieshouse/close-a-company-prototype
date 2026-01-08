@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Who to tell about the company closing – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Who to tell about the company closing
+      </h1>
+
+      <p>
+        Directors or members must give a copy of this application to all interested 
+parties within 7 days of it being submitted. You can download a PDF copy of 
+the application after you submit it.
+
+      <p>
+        Read the <a href="https://www.gov.uk/government/publications/striking-off-or-dissolving-a-limited-company/striking-off-or-dissolving-a-limited-company#how-to-apply-and-who-to-tell" target="_blank">full list of interested parties you must tell about the company closing (opens in a new tab).</a>
+      </p>
+
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "It is a criminal offence not to tell all interested parties that an application has been made to close the company.",
+  iconFallbackText: "Warning"
+}) }}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "agree",
+      text: "The directors or members understand that they are responsible for notifying all interested parties."
+    }
+]
+}) }}
+
+
+{{ govukButton({
+  text: "Continue",
+  href: "/V3/stop-screen-bank-account"
+}) }}
+    </div>
+  </div>
+
+{% endblock %}

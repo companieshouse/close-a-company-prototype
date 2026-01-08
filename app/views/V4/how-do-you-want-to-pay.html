@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+ How do you want to pay for the application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<form method="post" action="/V3/how-do-you-want-to-pay">
+
+   
+
+
+
+
+
+{{ govukRadios({
+  name: "howDoYouWantToPay",
+  fieldset: {
+    legend: {
+      text: "How do you want to pay for the application?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+        value: "creditOrDebitCard",
+        text: "Credit or debit card"
+    },
+
+    {
+      value: "companiesHouseAccount",
+      text: "Companies House payment account",
+      hint: {
+        text: "Only select this option if you usually pay by account. You'll need your presenter ID and presenter authentication code. "
+      }
+    }
+  ]
+}) }}
+
+
+
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+    </div>
+  </div>
+
+{% endblock %}

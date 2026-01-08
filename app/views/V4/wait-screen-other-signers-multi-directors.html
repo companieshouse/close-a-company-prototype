@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application signed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Custom Blue Box -->
+    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
+      <h1 class="govuk-heading-l" style="margin: 0 auto; color: white;">
+        Application signed <br>
+      </h1>
+      <p class="govuk-body-l" style="margin: 0 auto; color: white;">
+        The person making the application should notify you once it has been submitted.
+      </p>
+    </div>
+
+
+    <p>We need to receive signatures from all signing directors before the person making the application can pay for and submit it. It may take some time for others to sign. You can check who has signed below.
+    
+   
+      <p> <strong> What to do next</p>
+       <p class="govuk-body">
+    <span style="color: black;">Once the application has been submitted, you will be able to download a signed PDF copy by signing back in to the Apply to strike off and dissolve a company service.</span>
+      <a href="https://find-and-update.company-information.service.gov.uk/close-a-company/search-company." 
+     target="_blank" 
+     rel="noopener noreferrer">
+    https://find-and-update.company-information.service.gov.uk/close-a-company/search-company.
+  </a>
+    </p>
+
+    <p>The directors must send this to all interested parties within 7 days of the application being submitted.</p>
+   <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    It is a criminal offence not to tell all interested parties that an application has been made to close a company.
+  </strong>
+</div>
+    
+    <p class="govuk-body">
+    <span style="color: black;">Read the</span>
+      <a href="https://www.gov.uk/strike-off-your-company-from-companies-register/close-down-your-company" 
+     target="_blank" 
+     rel="noopener noreferrer">
+    full list of interested parties you must tell about the company closing (opens in a new tab).
+  </a>
+    </p>
+
+    <h2 class="govuk-heading-l">Application status</h2>
+
+    <p>Refresh the page to see updated information. If you exit this page, you can return to it by signing in to the 
+      <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
+    </p>
+
+  </div>
+</div>
+
+   <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Email</th>
+          <th scope="col" class="govuk-table__header">Change</th>
+          <th scope="col" class="govuk-table__header">Resend</th>
+          <th scope="col" class="govuk-table__header">Signed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Jane Doe" }}</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "jane.doe@company.co.uk" }}</td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">SIGNED</strong></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Francis Sara" }}</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "francis.sara@company.co.uk" }}</td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">SIGNED</strong></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Shipley James" }}</td>
+          <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "shipley.james@company.co.uk" }}</td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
+          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">SIGNED</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  
+{% endblock %}

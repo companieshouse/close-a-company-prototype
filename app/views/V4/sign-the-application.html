@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Sign the application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% set todayDate = "now" | govukDate %}
+{% set fallbackDate = "4 September 2025" %}
+{% set todayHtml =  (todayDate or fallbackDate) %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<form action="/V3/sign-the-application" method="post">
+      <h1 class="govuk-heading-l">
+        Sign the application
+      </h1>
+
+       <h2 class="govuk-heading-m">
+        Apply to stike off and dissolve a company
+      </h2>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+        Company name: {% if (data['companyNumber'] == "12345678") %}A SINGLE DIRECTOR COMPANY LTD{% else %}A MULTI DIRECTOR COMPANY LTD{% endif %}
+      </h2>
+      <h2 class="govuk-heading-m">
+        Company number: {% if (data['companyNumber'] == "12345678") %}12345678{% else %}{{ data['first-name'] or "00224466" }}
+{% endif %}
+      </h2>
+
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "You must read the following statements.",
+  iconFallbackText: "Warning"
+}) }}
+<h3 class="govuk-heading-s">Important notice for all interested parties</h3>
+      <p>
+        The company has applied to be struck off and dissolved. The registrar of companies 
+        will proceed unless there is a reasonable cause not to, and on the dissolution any assets remaining 
+        in the company will be passed to the crown. <a href="/path/of/page">Guidance is available on the 
+        grounds for objection (opens in a new tab)</a>.
+        If in doubt, seek professional advice.
+      </p>
+
+      <h3 class="govuk-heading-s">Declaration of directors</h3>
+      <p>
+        I/We as directors / the majority of directors apply for this company to be struck off the register and declare
+        that none of the circumstances described in <a href="/path/of/page">section 1004 of the Companies Act 2006 (opens in a new tab)</a>.
+        or <a href="/path/of/page">section 1005 of the Companies Act 2006 (opens in a new tab)</a> (being circumstances in which the directors apply to this company.
+        If in doubt, seek professional advice.
+      </p>
+
+    </div>
+  </div>
+
+  {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "By ticking this box you are signing the application",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+
+  items: [
+    {
+      value: "carcasses",
+      text: "I confirm I have read and understood signed by Jane Doe " + todayHtml + "."
+    }
+  ]
+}) }}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+{% endblock %}
