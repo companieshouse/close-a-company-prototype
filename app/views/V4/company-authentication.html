@@ -36,15 +36,22 @@
     classes: "govuk-visually-hidden"
   },
   hint: {
-    text: "This is a 6 character code issued by us to each company"
+    text: "This is a 6 character code issued by us to each company."
   }
 }) }}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
 
-{{ govukDetails({
-  summaryText: "I do not have an authentication code",
-  text: "Placeholder text for what to do if the user does not have an authentication code. This could include instructions on how to request a new code or contact support."
-}) }}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      I do not have an authentication code
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    You'll need to <a href="#" class="govuk-link">request an authentication code</a>. It is sent by post.
+  </div>
+</details>
+
+
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {{ govukCheckboxes({
@@ -60,7 +67,7 @@
 }) }}
 
         {{ govukButton({
-          text: "Authenticate"    
+          text: "Continue"    
           }) }}
  
            </form>

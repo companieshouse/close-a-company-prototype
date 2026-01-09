@@ -32,9 +32,17 @@
         value: data['companyNumber']  
       }) }}
 
-      <p class="govuk-body">
-        <a href="#" class="govuk-link govuk-link--no-visited-state">Help with company number</a>
-      </p>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Help with company number
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    You can find it using the 
+  <a href="https://find-and-update.company-information.service.gov.uk/" class="govuk-link" rel="noreferrer noopener" target="_blank">Companies House Service (opens in a new tab)</a>.
+  </div>
+</details>
 
 
       {{ govukButton({
