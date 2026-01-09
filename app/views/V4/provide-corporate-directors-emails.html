@@ -21,14 +21,8 @@
           Provide directors' email addresses
         </h1>
 
-        {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-        {{ govukWarningText({
-          text: "Please provide accurate email addresses to ensure directors receive the signing invitations.",
-          iconFallbackText: "Warning"
-        }) }}
-
         <p class="govuk-hint">
-          We'll email each director you've selected to ask them to sign the application online.
+          We'll email each director you've selected, to ask them to sign the application online.
         </p>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -50,19 +44,17 @@
           {# Corporate director guidance #}
           {% if director == "AcmeLtd" %}
 
-            {{ govukDetails({
-              summaryText: "Who can sign on behalf of a corporate director?",
-              text: "For corporate directors, an authorised person must sign on their behalf. Provide the name and email address of the person signing for the company."
-            }) }}
+            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application.</p>
 
             {% set nameKey = "corporateSignerName" + loop.index0 %}
 
             {{ govukInput({
               label: {
-                text: "Name of the person signing on behalf of " ~ displayName
+                text: "
+"
               },
               hint: {
-                text: "This must be the authorised person who will sign the application."
+                text: "What is the name of the authorised person who will sign for ACME LTD?"
               },
               id: nameKey,
               name: nameKey,
@@ -75,14 +67,8 @@
 
           {% set emailKey = "directorEmail" + loop.index0 %}
 
-          {% set emailLabel =
-            "Email address of the person signing on behalf of " ~ displayName
-            if director == "AcmeLtd"
-            else "Email address"
-          %}
-
           {% set emailHint =
-            "We’ll send the signing link to this email address."
+            "What is the email address for the authorised person who will sign for ACME LTD?"
             if director == "AcmeLtd"
             else "What is the email address for " ~ displayName ~ "?"
           %}
