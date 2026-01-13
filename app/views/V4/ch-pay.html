@@ -37,9 +37,9 @@
         Enter your details to pay by account
       </h1>
 
-      <p class="govuk-body">
-        If you have an existing Companies House account, enter your details below.
-      </p>
+  <div id="event-name-hint" class="govuk-hint">
+    Enter the 11 character codes for your Companies House payment account
+  </div>
 
       {# ---------------- Presenter ID ---------------- #}
 
@@ -92,6 +92,19 @@
           name: "presenterAuthCode"
         }) }}
       {% endif %}
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      I do not have these details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+  If you do not have details for an existing Companies House payment account, you'll need to pay by credit or debit card instead.
+
+  <br> <br> Select 'Back' to return to the payment options and choose to pay by card.
+  </div>
+</details>
 
       {{ govukButton({
         text: "Confirm payment"
