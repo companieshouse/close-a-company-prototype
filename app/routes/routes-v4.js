@@ -141,8 +141,20 @@ router.post('/V4/review-your-payment', function (req, res) {
 // How do you want to pay?
 // --------------------
 router.post('/V4/how-do-you-want-to-pay', function (req, res) {
-  res.redirect('https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab')
+  const paymentChoice = req.body.howDoYouWantToPay
+
+  if (paymentChoice === 'companiesHouseAccount') {
+    // Go to Companies House payment account screen
+    res.redirect('/V4/ch-pay')
+  } else if (paymentChoice === 'creditOrDebitCard') {
+    // Go to GOV.UK Pay
+    res.redirect('https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab')
+  } else {
+    // Fallback (optional)
+    res.redirect('/V4/how-do-you-want-to-pay')
+  }
 })
+
 
 // --------------------
 // Which directors will be signing
