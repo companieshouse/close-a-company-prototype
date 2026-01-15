@@ -26,29 +26,52 @@
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {# Loop through the directors selected on the previous screen #}
         {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          {# Convert stored ID (JaneDoe) into display name #}
+          {# Convert stored ID into display name #}
           {% set displayName =
             director
               | replace("JaneDoe", "DOE, Jane")
               | replace("SaraFrancis", "FRANCIS, Sara")
               | replace("JamesShipley", "SHIPLEY, James")
+              | replace("AcmeLtd", "ACME LTD")
           %}
 
           <h2 class="govuk-heading-m">{{ displayName }}</h2>
 
-          {# Build a unique key for session storage: directorEmail0, directorEmail1 etc #}
+          {# ---- CORPORATE DIRECTOR: allow name change ---- #}
+          {% if director == "AcmeLtd" %}
+
+            {% set nameKey = "corporateSignerName" + loop.index0 %}
+
+            {{ govukInput({
+              label: {
+                text: "Name of authorised person"
+              },
+              hint: {
+                text: "What is the name of the person authorised by ACME LTD to sign the application?"
+              },
+              id: nameKey,
+              name: nameKey,
+              type: "text",
+              autocomplete: "name",
+              value: data[nameKey]
+            }) }}
+
+          {% endif %}
+
+          {# ---- Email (all directors) ---- #}
           {% set emailKey = "directorEmail" + loop.index0 %}
 
+          {% set emailHint =
+            "What is the email address for the authorised person who will sign for ACME LTD?"
+            if director == "AcmeLtd"
+            else "What is the email address for " + displayName + "?"
+          %}
+
           {{ govukInput({
-            label: {
-              text: ""
-            },
-            hint: {
-              text: "What is the email address for " + displayName + "?"
-            },
+            label: { text: "Email address" },
+            hint: { text: emailHint },
             id: emailKey,
             name: emailKey,
             type: "email",
