@@ -2,9 +2,9 @@
 
 {% block pageTitle %}
   {% if errorSummary %}
-    Error: Enter your details to pay by account – {{ serviceName }} – GOV.UK Prototype Kit
+    Error: Enter your details to pay by account – GOV.UK
   {% else %}
-    Enter your details to pay by account – {{ serviceName }} – GOV.UK Prototype Kit
+    Enter your details to pay by account – GOV.UK
   {% endif %}
 {% endblock %}
 
@@ -31,80 +31,94 @@
       }) }}
     {% endif %}
 
-    <form action="/V4/ch-pay" method="post" novalidate>
+    <h1 class="govuk-heading-l">
+      Enter your details to pay by account
+    </h1>
 
-      <h1 class="govuk-heading-l">
-        Enter your details to pay by account
-      </h1>
+    <p class="govuk-hint">
+      Enter the 11 character codes for your Companies House payment account
+    </p>
 
-  <div id="event-name-hint" class="govuk-hint">
-    Enter the 11 character codes for your Companies House payment account
-  </div>
+    <form method="post" action="/V4/ch-pay" novalidate>
 
-      {# ---------------- Presenter ID ---------------- #}
+      {# ================= Presenter ID ================= #}
 
-      {% if presenterId is defined and presenterId != "" %}
+      {% if errorSummary %}
+        {% if presenterId %}
+          {{ govukInput({
+            label: { text: "Presenter ID" },
+            id: "presenter-id",
+            name: "presenterId",
+            value: presenterId,
+            errorMessage: {
+              text: "The Presenter ID you entered is incorrect"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: { text: "Presenter ID" },
+            id: "presenter-id",
+            name: "presenterId",
+            value: presenterId,
+            errorMessage: {
+              text: "You must enter a Presenter ID"
+            }
+          }) }}
+        {% endif %}
+      {% else %}
         {{ govukInput({
           label: { text: "Presenter ID" },
           id: "presenter-id",
           name: "presenterId",
           value: presenterId
         }) }}
-      {% elif errorSummary %}
-        {{ govukInput({
-          label: { text: "Presenter ID" },
-          id: "presenter-id",
-          name: "presenterId",
-          errorMessage: {
-            text: "Enter a Presenter ID"
-          }
-        }) }}
-      {% else %}
-        {{ govukInput({
-          label: { text: "Presenter ID" },
-          id: "presenter-id",
-          name: "presenterId"
-        }) }}
       {% endif %}
 
-      {# -------- Presenter authentication code -------- #}
+      {# ============ Presenter authentication code ============ #}
 
-      {% if presenterAuthCode is defined and presenterAuthCode != "" %}
+      {% if errorSummary %}
+        {% if presenterAuthCode %}
+          {{ govukInput({
+            label: { text: "Presenter authentication code" },
+            id: "presenter-auth-code",
+            name: "presenterAuthCode",
+            value: presenterAuthCode,
+            errorMessage: {
+              text: "The Presenter authentication code you entered is incorrect"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: { text: "Presenter authentication code" },
+            id: "presenter-auth-code",
+            name: "presenterAuthCode",
+            value: presenterAuthCode,
+            errorMessage: {
+              text: "You must enter a Presenter authentication code"
+            }
+          }) }}
+        {% endif %}
+      {% else %}
         {{ govukInput({
           label: { text: "Presenter authentication code" },
           id: "presenter-auth-code",
           name: "presenterAuthCode",
           value: presenterAuthCode
         }) }}
-      {% elif errorSummary %}
-        {{ govukInput({
-          label: { text: "Presenter authentication code" },
-          id: "presenter-auth-code",
-          name: "presenterAuthCode",
-          errorMessage: {
-            text: "Enter a Presenter authentication code"
-          }
-        }) }}
-      {% else %}
-        {{ govukInput({
-          label: { text: "Presenter authentication code" },
-          id: "presenter-auth-code",
-          name: "presenterAuthCode"
-        }) }}
       {% endif %}
 
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      I do not have these details
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-  If you do not have details for an existing Companies House payment account, you'll need to pay by credit or debit card instead.
-
-  <br> <br> Select 'Back' to return to the payment options and choose to pay by card.
-  </div>
-</details>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            I do not have these details
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          If you do not have details for an existing Companies House payment account, you'll need to pay by credit or debit card instead.
+          <br><br>
+          Select 'Back' to return to the payment options and choose to pay by card.
+        </div>
+      </details>
 
       {{ govukButton({
         text: "Confirm payment"
@@ -116,3 +130,5 @@
 </div>
 
 {% endblock %}
+
+

@@ -196,37 +196,49 @@ router.post('/V4/stop-screen-bank-account', function (req, res) {
   res.redirect('/V4/sign-in')
 })
 
+// --------------------
+// CH Pay 
+// --------------------
 router.post('/V4/ch-pay', function (req, res) {
   const presenterId = req.body.presenterId
   const presenterAuthCode = req.body.presenterAuthCode
 
   const errors = []
 
+  // Presenter ID error (always)
   if (!presenterId || presenterId.trim() === '') {
     errors.push({
-      text: 'You must enter a Presenter ID',
+      text: 'Enter your presenter ID',
+      href: '#presenter-id'
+    })
+  } else {
+    errors.push({
+      text: 'Presenter ID must be 11 characters',
       href: '#presenter-id'
     })
   }
 
+  // Presenter authentication code error (always)
   if (!presenterAuthCode || presenterAuthCode.trim() === '') {
     errors.push({
-      text: 'You must enter a Presenter authentication code',
+      text: 'Enter your presenter authentication code',
+      href: '#presenter-auth-code'
+    })
+  } else {
+    errors.push({
+      text: 'Presenter authentication code must be 11 characters',
       href: '#presenter-auth-code'
     })
   }
 
-  if (errors.length) {
-    return res.render('V4/ch-pay', {
-      errorSummary: errors,
-      presenterId,
-      presenterAuthCode
-    })
-  }
-
-  // Success behaviour (prototype placeholder)
-  res.redirect('/V4/payment-confirmation')
+  // Re-render page with ALL errors
+  return res.render('V4/ch-pay', {
+    errorSummary: errors,
+    presenterId,
+    presenterAuthCode
+  })
 })
+
 
 
 
