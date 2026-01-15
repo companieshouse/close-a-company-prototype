@@ -196,26 +196,22 @@ router.post('/V4/stop-screen-bank-account', function (req, res) {
   res.redirect('/V4/sign-in')
 })
 
-// --------------------
-// V4 CH Pay (Presenter ID)
-// --------------------
-
-// V4 CH Pay – POST
 router.post('/V4/ch-pay', function (req, res) {
-  const errors = []
   const presenterId = req.body.presenterId
   const presenterAuthCode = req.body.presenterAuthCode
 
-  if (!presenterId) {
+  const errors = []
+
+  if (!presenterId || presenterId.trim() === '') {
     errors.push({
-      text: 'Enter a Presenter ID',
+      text: 'You must enter a Presenter ID',
       href: '#presenter-id'
     })
   }
 
-  if (!presenterAuthCode) {
+  if (!presenterAuthCode || presenterAuthCode.trim() === '') {
     errors.push({
-      text: 'Enter a Presenter authentication code',
+      text: 'You must enter a Presenter authentication code',
       href: '#presenter-auth-code'
     })
   }
@@ -228,8 +224,10 @@ router.post('/V4/ch-pay', function (req, res) {
     })
   }
 
-  res.redirect('/V4/review-your-payment')
+  // Success behaviour (prototype placeholder)
+  res.redirect('/V4/payment-confirmation')
 })
+
 
 
 module.exports = router
