@@ -23,6 +23,7 @@
 
       {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
+        {# Display name for heading #}
         {% set displayName =
           director
             | replace("JaneDoe", "DOE, Jane")
@@ -33,13 +34,23 @@
 
         <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
 
+        {# Email key (matches previous page) #}
         {% set emailKey = "directorEmail" + loop.index0 %}
+
+        {# Corporate signer name (only for Acme Ltd) #}
+        {% if director == "AcmeLtd" %}
+          {% set nameKey = "corporateSignerName" + loop.index0 %}
+        {% endif %}
 
         {{ govukSummaryList({
           rows: [
             {
               key: { text: "Name" },
-              value: { text: displayName }
+              value: {
+                text:
+                  data[nameKey] if director == "AcmeLtd"
+                  else displayName
+              }
             },
             {
               key: { text: "Email address" },
@@ -59,10 +70,10 @@
 
       {% endfor %}
 
-      {# ---- Add/remove directors link BELOW the summary lists ---- #}
+      {# Add/remove directors link BELOW the summary lists #}
       {% if directorCount >= 3 %}
         <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
-          <a class="govuk-link" href="/V3/which-directors-will-be-signing" >
+          <a class="govuk-link" href="/V3/which-directors-will-be-signing">
             Add or remove a director
           </a>
         </p>
