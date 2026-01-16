@@ -35,10 +35,6 @@
       Enter your details to pay by account
     </h1>
 
-    <p class="govuk-hint">
-      Enter the 11 character codes for your Companies House payment account
-    </p>
-
     <form method="post" action="/V4/ch-pay" novalidate>
 
       {# ================= Presenter ID ================= #}
@@ -48,6 +44,8 @@
           {{ govukInput({
             label: { text: "Presenter ID" },
             id: "presenter-id",
+            hint: {
+            text: "This is an 11 character code"},  
             name: "presenterId",
             value: presenterId,
             errorMessage: {
@@ -58,6 +56,8 @@
           {{ govukInput({
             label: { text: "Presenter ID" },
             id: "presenter-id",
+            hint: {
+            text: "This is an 11 character code"},  
             name: "presenterId",
             value: presenterId,
             errorMessage: {
@@ -69,6 +69,8 @@
         {{ govukInput({
           label: { text: "Presenter ID" },
           id: "presenter-id",
+          hint: {
+          text: "This is an 11 character code"},  
           name: "presenterId",
           value: presenterId
         }) }}
@@ -80,7 +82,8 @@
         {% if presenterAuthCode %}
           {{ govukInput({
             label: { text: "Presenter authentication code" },
-            id: "presenter-auth-code",
+            hint: {
+            text: "This is an 11 character code"},  id: "presenter-auth-code",
             name: "presenterAuthCode",
             value: presenterAuthCode,
             errorMessage: {
@@ -90,6 +93,8 @@
         {% else %}
           {{ govukInput({
             label: { text: "Presenter authentication code" },
+            hint: {
+            text: "This is an 11 character code"},
             id: "presenter-auth-code",
             name: "presenterAuthCode",
             value: presenterAuthCode,
@@ -101,6 +106,8 @@
       {% else %}
         {{ govukInput({
           label: { text: "Presenter authentication code" },
+          hint: {
+          text: "This is an 11 character code"}, 
           id: "presenter-auth-code",
           name: "presenterAuthCode",
           value: presenterAuthCode
@@ -114,7 +121,8 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-  If you do not have details for an existing payment account, you’ll need to pay by credit or debit card instead.
+  If you do not have details for an existing payment account, you’ll need to <a href="https://card.payments.service.gov.uk/card_details/8dmgd9ofn31v5afkm1vmcodicm" class="govuk-link">pay by credit or debit card instead</a>.
+</p>
 
   </div>
 </details>
