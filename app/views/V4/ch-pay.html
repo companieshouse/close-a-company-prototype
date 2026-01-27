@@ -17,6 +17,8 @@
 
 {% block content %}
 
+
+
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -35,6 +37,10 @@
       Enter your details to pay by account
     </h1>
 
+    <div id="authentication-code-hint" class="govuk-hint">
+    We sent you these details by post or email when you set up your Companies House payment account, if you have one.
+  </div>
+
     <form method="post" action="/V4/ch-pay" novalidate>
 
       {# ================= Presenter ID ================= #}
@@ -45,7 +51,7 @@
             label: { text: "Presenter ID" },
             id: "presenter-id",
             hint: {
-            text: "This is an 11 character code"},  
+            text: "This is 11 numbers. For example, 00012345678"},  
             name: "presenterId",
             value: presenterId,
             errorMessage: {
@@ -57,7 +63,7 @@
             label: { text: "Presenter ID" },
             id: "presenter-id",
             hint: {
-            text: "This is an 11 character code"},  
+            text: "This is 11 numbers. For example, 00012345678"},  
             name: "presenterId",
             value: presenterId,
             errorMessage: {
@@ -70,7 +76,7 @@
           label: { text: "Presenter ID" },
           id: "presenter-id",
           hint: {
-          text: "This is an 11 character code"},  
+          text: "This is 11 numbers. For example, 00012345678"},  
           name: "presenterId",
           value: presenterId
         }) }}
@@ -83,7 +89,7 @@
           {{ govukInput({
             label: { text: "Presenter authentication code" },
             hint: {
-            text: "This is an 11 character code"},  id: "presenter-auth-code",
+            text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"},  id: "presenter-auth-code",
             name: "presenterAuthCode",
             value: presenterAuthCode,
             errorMessage: {
@@ -94,7 +100,7 @@
           {{ govukInput({
             label: { text: "Presenter authentication code" },
             hint: {
-            text: "This is an 11 character code"},
+            text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"},
             id: "presenter-auth-code",
             name: "presenterAuthCode",
             value: presenterAuthCode,
@@ -107,7 +113,7 @@
         {{ govukInput({
           label: { text: "Presenter authentication code" },
           hint: {
-          text: "This is an 11 character code"}, 
+          text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"}, 
           id: "presenter-auth-code",
           name: "presenterAuthCode",
           value: presenterAuthCode
