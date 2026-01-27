@@ -44,7 +44,7 @@
           {# Corporate director guidance #}
           {% if director == "AcmeLtd" %}
 
-            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application.</p>
+            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.</p>
 
             {% set nameKey = "corporateSignerName" + loop.index0 %}
 
@@ -54,7 +54,7 @@
 "
               },
               hint: {
-                text: "What is the name of the authorised person who will sign for ACME LTD?"
+                text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
               },
               id: nameKey,
               name: nameKey,
@@ -68,7 +68,7 @@
           {% set emailKey = "directorEmail" + loop.index0 %}
 
           {% set emailHint =
-            "What is the email address for the authorised person who will sign for ACME LTD?"
+            "What is the email address for the authorised person who will sign on behalf of ACME LTD?"
             if director == "AcmeLtd"
             else "What is the email address for " ~ displayName ~ "?"
           %}
