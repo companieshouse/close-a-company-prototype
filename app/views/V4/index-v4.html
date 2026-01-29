@@ -49,7 +49,10 @@
     text: "DEV READY",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}</li>
-  <li><a href="/V4/who-to-tell.html" class="govuk-link">Who to tell</a></li>
+  <li><a href="/V4/who-to-tell.html" class="govuk-link">Who to tell</a>  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
   <li><a href="/V4/stop-screen-bank-account.html" class="govuk-link">Stop screen to confirm company bank account has been cleared</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "DEV READY",
