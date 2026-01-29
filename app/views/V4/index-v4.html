@@ -41,18 +41,30 @@
 </div>
 </div>
 
-<div class="govuk-grid-column-one-half">
+
 <h2 class="govuk-heading-m">Presenter/filer</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li><a href="/V4/start.html" class="govuk-link">Start page</a></li>
+  <li><a href="/V4/start.html" class="govuk-link">Start page</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
   <li><a href="/V4/who-to-tell.html" class="govuk-link">Who to tell</a></li>
-  <li><a href="/V4/stop-screen-bank-account.html" class="govuk-link">Stop screen to confirm company bank account has been cleared</a></li>
+  <li><a href="/V4/stop-screen-bank-account.html" class="govuk-link">Stop screen to confirm company bank account has been cleared</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
   <li><a href="/V4/sign-in-to-ch.html" class="govuk-link">Sign in to CH or GOV One Login</a></li>
   <li><a href="/V4/gov-one-log-in.html" class="govuk-link">Sign in (to GOV One Login)</a></li>
   <li><a href="/V4/sign-in.html" class="govuk-link">Enter GOV One Login email address</a></li>
   <li><a href="/V4/enter-password.html" class="govuk-link">Enter GOV One Login password</a></li>
   <li><a href="/V4/check-your-phone.html" class="govuk-link">Check your phone</a></li>
-  <li><a href="/V4/company-number.html" class="govuk-link">Company number</a></li>
+  <li><a href="/V4/company-number.html" class="govuk-link">Company number</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
   <li><a href="/V4/view-company-info.html" class="govuk-link">View company info</a></li>
   <li><a href="/V4/company-authentication.html" class="govuk-link">Company auth code</a></li>
   <li><a href="/V4/which-director-are-you.html" class="govuk-link">Which director are you?</a></li>
@@ -61,8 +73,17 @@
   <li><a href="/V4/provide-corporate-directors-emails.html" class="govuk-link">Provide directors emails</a></li>
   <li><a href="/V4/check-your-answers-single-director.html" class="govuk-link">Check your answers (single director company)</a></li>
   
-  <li>
-    <a href="/V4/check-your-answers-multi-directors.html" class="govuk-link">Check your answers (multi director company)</a></li>
+<li>
+  <a href="/V4/check-your-answers-multi-directors.html" class="govuk-link">
+    Check your answers (multi director company)
+  </a>
+  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}
+</li>
+
   <li><a href="/V4/sign-the-application.html" class="govuk-link">Sign the application</a></li>
   <li><a href="/V4/wait-screen-other-director-must-sign-single-director.html" class="govuk-link">'Wait' screen - other director must sign (single director company)</a></li>
 
