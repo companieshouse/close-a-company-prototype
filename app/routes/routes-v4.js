@@ -77,7 +77,7 @@ router.post('/V4/which-director-are-you', function (req, res) {
       whichDirectorAreYou === 'JaneDoe' ||
       whichDirectorAreYou === 'iAmNotADirectorOfThisCompany'
     ) {
-      res.redirect('/V4/check-your-answers-single-director')
+      res.redirect('/V4/sign-the-application')
     }
   } else {
     res.redirect('/V4/which-directors-will-be-signing')
@@ -148,7 +148,7 @@ router.post('/V4/how-do-you-want-to-pay', function (req, res) {
     res.redirect('/V4/ch-pay')
   } else if (paymentChoice === 'creditOrDebitCard') {
     // Go to GOV.UK Pay
-    res.redirect('https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab')
+    res.redirect('https://products.payments.service.gov.uk/pay/5589c0c7b3934a47853cdf63b2e871dd')
   } else {
     // Fallback (optional)
     res.redirect('/V4/how-do-you-want-to-pay')

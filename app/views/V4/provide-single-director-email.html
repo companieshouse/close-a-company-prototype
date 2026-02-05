@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide director's email – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/V4/provide-corporate-directors-emails" method="post">
+
+        <h1 class="govuk-heading-xl">
+        Provide Jane Doe's email address
+        </h1>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+         
+          hint: {
+            text: "We'll email the director and ask them to sign the application online"
+          },
+          id: "directorEmail",
+          name: "directorEmail",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          value: data.directorEmail
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
