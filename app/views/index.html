@@ -3,27 +3,57 @@
 {% set pageName="Home" %}
 <!-- Hide service navigation-->
 {% block header %}
-{{ govukHeader({
-  rebrand: true
-}) }}
+{{ govukHeader({ rebrand: true }) }}
 {% endblock %} 
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-
-
     <h1 class="govuk-heading-xl">
       {{ serviceName }}
     </h1>
 
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="/V1/index-v1.html" class="govuk-link">Version 1</a> (as live/staging)</li>
-    <li><a href="/V2/index-v2.html" class="govuk-link">Version 2</a></li>
-    <li><a href="/V3/index-v3.html" class="govuk-link">Version 3</a></li>
-    <li><a href="/V4/index-v4.html" class="govuk-link">Version 4</a></li>
-</ul>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Prototype Versions</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Created</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/V4/index-v4.html" class="govuk-link">Version 4</a></td>
+          <td class="govuk-table__cell">01/02/2026</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "IN PROGRESS", classes: "govuk-tag--yellow" }) }}</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/V3/index-v3.html" class="govuk-link">Version 3</a></td>
+          <td class="govuk-table__cell">01/06/2024</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "TESTED", classes: "govuk-tag--green" }) }}</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/V2/index-v2.html" class="govuk-link">Version 2</a></td>
+          <td class="govuk-table__cell">15/03/2024</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "TESTED", classes: "govuk-tag--green" }) }}</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/V1/index-v1.html" class="govuk-link">Version 1</a></td>
+          <td class="govuk-table__cell">01/01/2024</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "LIVE", classes: "govuk-tag--blue" }) }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
   </div>
 </div>
 

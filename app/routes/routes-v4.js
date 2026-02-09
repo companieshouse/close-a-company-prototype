@@ -70,19 +70,26 @@ router.post('/V4/company-authentication', function (req, res) {
 // --------------------
 router.post('/V4/which-director-are-you', function (req, res) {
   const companyNumber = req.session.data.companyNumber
-  const whichDirectorAreYou = req.session.data.whichDirectorAreYou
+  const whichDirectorAreYou = req.body.whichDirectorAreYou  // <-- use req.body
+
+  // Store it in session if you want
+  req.session.data.whichDirectorAreYou = whichDirectorAreYou
 
   if (companyNumber === '12345678') {
     if (
-      whichDirectorAreYou === 'JaneDoe' ||
-      whichDirectorAreYou === 'iAmNotADirectorOfThisCompany'
+      whichDirectorAreYou === 'JaneDoe'
     ) {
       res.redirect('/V4/sign-the-application')
+    } else if (whichDirectorAreYou === 'iAmNotADirectorOfThisCompany') {
+      res.redirect('/V4/provide-single-director-email')  // <-- redirect here
+    } else {
+      res.redirect('/V4/which-directors-will-be-signing')
     }
   } else {
     res.redirect('/V4/which-directors-will-be-signing')
   }
 })
+
 
 // --------------------
 // Single director signing
