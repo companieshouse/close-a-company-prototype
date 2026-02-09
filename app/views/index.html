@@ -14,8 +14,29 @@
     <h1 class="govuk-heading-xl">
       {{ serviceName }}
     </h1>
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+   This prototype is being used to test business improvements to the service. 
+    <p> We are iterating on existing journeys.
+      Any changes identified are raised as Jira tickets.</p>
+  </p>
+  <p>
+    Pages marked “Dev ready” require no further action and are ready to go live.
+  </p>
+  <p>
+    Once testing is complete, learning from this prototype will inform the next version.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+  
 
     <table class="govuk-table">
+      
       <caption class="govuk-table__caption govuk-table__caption--m">Prototype Versions</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
