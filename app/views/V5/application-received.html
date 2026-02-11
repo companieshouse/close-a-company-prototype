@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application received – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Application received",
+      html: "Your reference number<br><strong>HDJ2123F</strong>"
+    }) }}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company number" },
+          value: { text: data['companyNumber'] or "09429091" }
+        },
+        {
+          key: { text: "Company name" },
+          value: {
+            text:
+              "Single Director Company Ltd"
+              if data['companyNumber'] == "12345678"
+              else "Multi Director Company Ltd"
+          }
+        }
+      ]
+    }) }}
+
+    <p>
+      We'll email you within 2 working days to let you know if the application has been accepted or rejected.
+    </p>
+
+    <h2 class="govuk-heading-m">
+      Directors must inform all interested parties
+    </h2>
+
+    {% if data['companyNumber'] == "12345678" %}
+
+      <p>
+        Once we have accepted the application, the director must send a copy to all interested parties within 7 days of making the application.
+        To do this, they'll need to:
+      </p>
+
+    {% else %}
+
+      <p>
+        Once we have accepted the application, the directors or members must send a copy to all interested parties within 7 days of making the application.
+        To do this, they'll need to:
+      </p>
+
+    {% endif %}
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        search for the company on
+        <a href="https://find-and-update.company-information.service.gov.uk/"
+           class="govuk-link"
+           rel="noreferrer noopener"
+           target="_blank">
+          the Companies House public register (opens in new tab)
+        </a>
+      </li>
+      <li>select ‘Filing history’</li>
+      <li>
+        download the PDF document labelled
+        ‘Application to strike the company off the register’
+        (this will only appear once we have accepted the application)
+      </li>
+    </ul>
+
+    <p>
+      Read the
+      <a class="govuk-link"
+         href="https://www.gov.uk/government/publications/striking-off-or-dissolving-a-limited-company/striking-off-or-dissolving-a-limited-company#how-to-apply-and-who-to-tell"
+         target="_blank"
+         rel="noopener noreferrer">
+        full list of parties to tell about the company closing (opens in new tab)
+      </a>.
+    </p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        It is a criminal offence not to tell all interested parties that an application has been made to close the company.
+      </strong>
+    </div>
+
+    <h2 class="govuk-heading-m">
+      What happens next
+    </h2>
+
+    <p>
+      We'll publish a strike off notice for the company in the relevant Gazette.
+      After 2 months, unless there is an objection to the company closing,
+      another notice will be published in the relevant Gazette and the company will be dissolved.
+    </p>
+
+    <p>
+      This is a new service. Help us improve it by providing
+      <a class="govuk-link"
+         href="https://www.gov.uk/strike-off-your-company-from-companies-register/feedback">
+        feedback (opens in new tab)
+      </a>.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

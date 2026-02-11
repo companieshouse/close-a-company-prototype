@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+<h1 class="govuk-heading-l">Email address not authorised to sign<h1>
+    <p>You can only access this service if your email address has been given to us by the person making the application to strike off 
+      and dissolve the company.</p>
+<p>Return to the start of this service and try again.</p>
+
+    <h2 class="govuk-heading-l">Application status</h2>
+
+    <p>Refresh the page to see updated information. If you exit this page, you can return to it by signing in to the 
+      <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
+    </p>
+
+  </div>
+</div>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Name</th>
+      <th scope="col" class="govuk-table__header">Email</th>
+
+      <th scope="col" class="govuk-table__header">Resend</th>
+      <th scope="col" class="govuk-table__header">Signed</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+
+  
+      <tr class="govuk-table__row">
+  <td class="govuk-table__cell"><a class="govuk-link" href="/V4/provide-directors-emails">DOE, Jane</a></td>
+    
+        <td class="govuk-table__cell"><a class="govuk-link" href="/V4/provide-directors-emails"></a></td>
+        <td class="govuk-table__cell"><a class="govuk-link" href="#"></a></td>
+        <td class="govuk-table__cell"><strong class="govuk-tag">SIGNED</strong></td>
+      </tr>
+
+
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "layouts/email.html" %}
+
+{% block header %}
+<div class="govuk-width-container">
+  {% include "/includes/email-header.html" %}
+  {{ govukHeader({
+    containerClasses: "govuk-!-padding-left-0"
+  }) }}
+</div>
+{% endblock %}
+
+{% block pageTitle %}
+Application accepted – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<form action="/V3/email-sign-the-application" method="post">
+
+  {{ govukPanel({
+    titleText: "Application accepted",
+    html: "Your reference number<br><strong>TWLCY2</strong>"
+  }) }}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] or "09429091" }
+      },
+      {
+        key: { text: "Company name" },
+        value: { text: "A MULTI DIRECTOR COMPANY LTD" }
+      },
+      {
+        key: { text: "Payment reference" },
+        value: { text: "7KBFK8idTDD0zNI" }
+      }
+    ]
+  }) }}
+
+  <p class="govuk-body">
+    The process to close the company has now started.
+  </p>
+
+  <h2 class="govuk-heading-m">
+    Directors must inform all interested parties
+  </h2>
+
+  <p class="govuk-body">
+    The directors or members must send a copy to all interested parties, within 7 days of making the application.
+    To do this, they'll need to:
+  </p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      search for the company on the Companies House public register
+    </li>
+    <li>
+      select ‘Filing history’
+    </li>
+    <li>
+      download the PDF document labelled
+      ‘Application to strike the company off the register’
+    </li>
+  </ul>
+
+  <p class="govuk-body">
+    Search the Companies House public register:
+    <a href="https://find-and-update.company-information.service.gov.uk/"
+       class="govuk-link"
+       target="_blank"
+       rel="noopener noreferrer">
+      https://find-and-update.company-information.service.gov.uk/
+    </a>
+  </p>
+
+  <p class="govuk-body">
+    Read the full list of interested parties to tell about the company closing:
+    <a href="https://www.gov.uk/government/publications/striking-off-or-dissolving-a-limited-company/striking-off-or-dissolving-a-limited-company#how-to-apply-and-who-to-tell"
+       class="govuk-link"
+       target="_blank"
+       rel="noopener noreferrer">
+      https://www.gov.uk/government/publications/striking-off-or-dissolving-a-limited-company
+    </a>
+  </p>
+
+  <h2 class="govuk-heading-m">
+    What happens next
+  </h2>
+
+  <p class="govuk-body">
+  We'll publish a strike off notice for the company in the relevant Gazette. After 2 months, unless there is an objection to the company closing, another notice will be published in the relevant Gazette and the company will be dissolved.
+
+  </p>
+
+  <p class="govuk-hint govuk-!-margin-top-8 govuk-!-font-size-16">
+    Help us improve your online filing experience by completing our quick survey:
+    <a href="https://www.smartsurvey.co.uk/s/closing-a-company-feedback"
+       class="govuk-link"
+       target="_blank"
+       rel="noopener noreferrer">
+      https://www.smartsurvey.co.uk/s/closing-a-company-feedback
+    </a>
+  </p>
+
+  <p class="govuk-hint govuk-!-font-size-16">
+    Contact centre tel
+    <a href="tel:+443031234500" class="govuk-link">
+      +44 (0)303 1234 500
+    </a>
+  </p>
+
+  <p class="govuk-hint govuk-!-font-size-16">
+    or email
+    <a href="mailto:enquiries@companieshouse.gov.uk" class="govuk-link">
+      enquiries@companieshouse.gov.uk
+    </a>
+  </p>
+
+</form>
+
+{% endblock %}
