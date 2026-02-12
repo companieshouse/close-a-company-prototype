@@ -14,7 +14,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
-    <form action="/V4/check-your-answers-multi-directors" method="post" novalidate>
+    <form action="/V5/check-your-answers-multi-directors" method="post" novalidate>
 
       <h1 class="govuk-heading-xl">Check your answers</h1>
 
@@ -59,7 +59,7 @@
                 items: [
                   {
                     text: "Change",
-                    href: "/V4/change-directors-email",
+                    href: "/V5/change-directors-email",
                     visuallyHiddenText: "email for " + displayName
                   }
                 ]
@@ -73,7 +73,7 @@
       {# Add/remove directors link BELOW the summary lists #}
   
         <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
-          <a class="govuk-link" href="/V4/which-directors-will-be-signing">
+          <a class="govuk-link" href="/V5/which-directors-will-be-signing">
             Change which directors will sign
           </a>
         </p>
