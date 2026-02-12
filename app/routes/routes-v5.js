@@ -106,25 +106,45 @@ router.post('/V5/how-will-the-multi-directors-be-signing', function (req, res) {
 })
 
 router.post('/V5/check-your-answers-multi-directors', function (req, res) {
-  res.redirect('/V5/wait-screen-other-directors-must-sign-multi-director')
+  res.redirect('/V5/sign-the-application')
 })
 
 // --------------------
 // Sign the application
 // --------------------
 router.post('/V5/sign-the-application', function (req, res) {
-  if (req.session.data.startedAtEmailSign) {
-    const companyNumber = req.session.data.companyNumber
 
-    if (companyNumber === '12345678') {
-      res.redirect('/V5/wait-screen-other-signer-single-director')
-    } else {
-      res.redirect('/V5/wait-screen-other-signers-multi-directors')
+  const companyNumber = req.session.data.companyNumber
+  const whichDirectorAreYou = req.session.data.whichDirectorAreYou
+  const isSingleDirector = companyNumber === '12345678'
+
+  // ----------------------------
+  // MULTI DIRECTOR JOURNEY
+  // ----------------------------
+  if (!isSingleDirector) {
+    return res.redirect('/V5/wait-screen-other-directors-must-sign-multi-director')
+  }
+
+  // ----------------------------
+  // SINGLE DIRECTOR JOURNEY
+  // ----------------------------
+  if (isSingleDirector) {
+
+    // Only "not a director" goes to wait screen
+    if (whichDirectorAreYou === 'iAmNotADirectorOfThisCompany') {
+      return res.redirect('/V5/wait-screen-other-directors-must-sign-multi-director')
     }
-  } else {
-    res.redirect('/V5/review-your-payment')
+
+    // Real director goes to normal single wait screen
+    if (req.session.data.startedAtEmailSign) {
+      return res.redirect('/V5/wait-screen-other-signer-single-director')
+    }
+
+    return res.redirect('/V5/review-your-payment')
   }
 })
+
+
 
 // --------------------
 // Sign in to Companies House
