@@ -50,7 +50,9 @@
 
 
 {% else %}
+
 {{ govukRadios({
+  idPrefix: "whichDirectorAreYou",
   name: "whichDirectorAreYou",
   fieldset: {
     legend: {
@@ -61,20 +63,35 @@
   },
   items: [
     {
-        value: "JaneDoe",
-        text: "DOE, Jane"
+      value: "JaneDoe",
+      text: "DOE, Jane"
     },
-       {
-        value: "SaraFrancis",
-        text: "FRANCIS, Sara"
+    {
+      value: "SaraFrancis",
+      text: "FRANCIS, Sara"
     },
-       {
-        value: "JamesShipley",
-        text: "SHIPLEY, James"
+    {
+      value: "JamesShipley",
+      text: "SHIPLEY, James"
     },
-         {
-        value: "AcmeLtd",
-        text: "ACME LTD"
+    {
+      value: "AcmeLtd",
+      text: "ACME LTD",
+      conditional: {
+        html: '
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="acmeDirectorName">
+              Enter your full name
+            </label>
+            <input
+              class="govuk-input"
+              id="acmeDirectorName"
+              name="acmeDirectorName"
+              type="text"
+              autocomplete="name">
+          </div>
+        '
+      }
     },
     {
       divider: "or"
@@ -87,6 +104,8 @@
 }) }}
 
 {% endif %}
+
+
 
 
 
