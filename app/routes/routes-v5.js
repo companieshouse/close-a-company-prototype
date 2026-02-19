@@ -285,3 +285,18 @@ router.get('/V5/change-directors-email-sara', function (req, res) {
   })
 })
 
+// --------------------
+// Change Jane email
+// --------------------
+router.get('/V5/change-directors-email-jane', function (req, res) {
+
+  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+  const janeIndex = directors.indexOf("JaneDoe")
+
+  res.render('V5/change-directors-email-jane', {
+    janeIndex
+  })
+})
+
+
+

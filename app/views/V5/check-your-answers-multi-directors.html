@@ -42,6 +42,8 @@
           {% set changeHref = "/V5/change-directors-email-sara" %}
         {% elseif director == "AcmeLtd" %}
           {% set changeHref = "/V5/change-corporate-directors-email" %}
+           {% elseif director == "JaneDoe" %}
+          {% set changeHref = "/V5/change-directors-email-jane" %}
         {% endif %}
 
         <h2 class="govuk-heading-m govuk-!-margin-top-6">
