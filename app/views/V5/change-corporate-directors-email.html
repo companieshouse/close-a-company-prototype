@@ -1,13 +1,13 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Provide directors' emails – {{ serviceName }} – GOV.UK Prototype Kit
+  Change corporate director details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "javascript:window.history.back()"
+    href: "/V5/check-your-answers-multi-directors"
   }) }}
 {% endblock %}
 
@@ -15,76 +15,51 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+      {% set directors = data.whichDirectorsWillBeSigningTheApplication or [] %}
+      {% set acmeIndex = directors.indexOf("AcmeLtd") %}
+
+      {% set nameKey = "corporateSignerName" + acmeIndex %}
+      {% set emailKey = "directorEmail" + acmeIndex %}
+
       <form action="/V5/provide-corporate-directors-emails" method="post">
 
         <h1 class="govuk-heading-xl">
-          Change directors' email addresses
+          Change corporate director details
         </h1>
 
+        <h2 class="govuk-heading-m">
+          ACME LTD
+        </h2>
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-        {% from "govuk/components/details/macro.njk" import govukDetails %}
+        <p class="govuk-body">
+          Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
+        </p>
 
-        {# Loop through the directors selected on the previous screen #}
-        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+        {{ govukInput({
+          label: {
+            text: "What is the name of the authorised person?"
+          },
+          id: nameKey,
+          name: nameKey,
+          type: "text",
+          autocomplete: "name",
+          value: data[nameKey]
+        }) }}
 
-          {% set displayName =
-            director
-              | replace("JaneDoe", "DOE, Jane")
-              | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("JamesShipley", "SHIPLEY, James")
-              | replace("AcmeLtd", "ACME LTD")
-          %}
-
-          <h2 class="govuk-heading-m">{{ displayName }}</h2>
-
-          {# Corporate director guidance #}
-          {% if director == "AcmeLtd" %}
-
-            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.</p>
-
-            {% set nameKey = "corporateSignerName" + loop.index0 %}
-
-            {{ govukInput({
-              label: {
-                text: "
-"
-              },
-              hint: {
-                text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
-              },
-              id: nameKey,
-              name: nameKey,
-              type: "text",
-              autocomplete: "name",
-              value: data[nameKey]
-            }) }}
-
-          {% endif %}
-
-          {% set emailKey = "directorEmail" + loop.index0 %}
-
-          {% set emailHint =
-            "What is the email address for the authorised person who will sign on behalf of ACME LTD?"
-            if director == "AcmeLtd"
-            else "What is the email address for " ~ displayName ~ "?"
-          %}
-
-          {{ govukInput({
-            label: { text: emailLabel },
-            hint: { text: emailHint },
-            id: emailKey,
-            name: emailKey,
-            type: "email",
-            autocomplete: "email",
-            spellcheck: false,
-            value: data[emailKey]
-          }) }}
-
-        {% endfor %}
+        {{ govukInput({
+          label: {
+            text: "What is the email address of the authorised person?"
+          },
+          id: emailKey,
+          name: emailKey,
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          value: data[emailKey]
+        }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Save and continue"
         }) }}
 
       </form>
