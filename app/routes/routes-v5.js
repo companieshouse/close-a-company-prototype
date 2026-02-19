@@ -199,14 +199,21 @@ router.post('/V5/provide-directors-emails', function (req, res) {
 // Provide corporate directors’ emails
 // --------------------
 router.post('/V5/provide-corporate-directors-emails', function (req, res) {
+
   const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
 
   directors.forEach((director, i) => {
-    req.session.data['directorEmail' + i] = req.body['directorEmail' + i]
+    const key = 'directorEmail' + i
+
+    // Only update if this field was submitted
+    if (req.body[key] !== undefined) {
+      req.session.data[key] = req.body[key]
+    }
   })
 
   res.redirect('/V5/check-your-answers-multi-directors')
 })
+
 
 // --------------------
 // Stop screen – bank account
@@ -256,3 +263,25 @@ router.post('/V5/ch-pay', function (req, res) {
 })
 
 module.exports = router
+
+// --------------------
+// Change James email
+// --------------------
+router.get('/V5/change-directors-email-james', function (req, res) {
+  res.render('V5/change-directors-email-james')
+})
+
+
+// --------------------
+// Change Sara email
+// --------------------
+router.get('/V5/change-directors-email-sara', function (req, res) {
+
+  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+  const saraIndex = directors.indexOf("SaraFrancis")
+
+  res.render('V5/change-directors-email-sara', {
+    saraIndex
+  })
+})
+

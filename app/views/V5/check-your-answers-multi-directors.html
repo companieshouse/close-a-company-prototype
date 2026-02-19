@@ -18,12 +18,8 @@
 
       <h1 class="govuk-heading-xl">Check your answers</h1>
 
-      {# Count how many directors were selected #}
-      {% set directorCount = data.whichDirectorsWillBeSigningTheApplication | length %}
-
       {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-        {# Display name for heading #}
         {% set displayName =
           director
             | replace("JaneDoe", "DOE, Jane")
@@ -32,15 +28,23 @@
             | replace("AcmeLtd", "ACME LTD")
         %}
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ displayName }}</h2>
-
-        {# Email key (matches previous page) #}
         {% set emailKey = "directorEmail" + loop.index0 %}
 
-        {# Corporate signer name (only for Acme Ltd) #}
         {% if director == "AcmeLtd" %}
           {% set nameKey = "corporateSignerName" + loop.index0 %}
         {% endif %}
+
+        {# ✅ Set change link safely BEFORE summary list #}
+        {% set changeHref = "#" %}
+        {% if director == "JamesShipley" %}
+          {% set changeHref = "/V5/change-directors-email-james" %}
+        {% elseif director == "SaraFrancis" %}
+          {% set changeHref = "/V5/change-directors-email-sara" %}
+        {% endif %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">
+          {{ displayName }}
+        </h2>
 
         {{ govukSummaryList({
           rows: [
@@ -59,7 +63,7 @@
                 items: [
                   {
                     text: "Change",
-                    href: "/V5/change-directors-email",
+                    href: changeHref,
                     visuallyHiddenText: "email for " + displayName
                   }
                 ]
@@ -70,14 +74,11 @@
 
       {% endfor %}
 
-      {# Add/remove directors link BELOW the summary lists #}
-  
-        <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
-          <a class="govuk-link" href="/V5/which-directors-will-be-signing">
-            Change which directors will sign
-          </a>
-        </p>
-
+      <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
+        <a class="govuk-link" href="/V5/which-directors-will-be-signing">
+          Change which directors will sign
+        </a>
+      </p>
 
       {{ govukButton({
         text: "Continue"

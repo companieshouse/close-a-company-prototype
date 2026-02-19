@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Change director's email – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/V5/check-your-answers-multi-directors"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {# Find James's index in selected directors array #}
+      {% set emailKey = "directorEmail" + saraIndex %}
+
+
+      <form action="/V5/provide-corporate-directors-emails" method="post">
+
+        <h1 class="govuk-heading-xl">
+          Change director's email address
+        </h1>
+
+        <h2 class="govuk-heading-m">
+         FRANCIS, Sara
+        </h2>
+
+        {{ govukInput({
+          label: {
+            text: "What is the email address for FRANCIS, Sara?"
+          },
+          id: emailKey,
+          name: emailKey,
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          value: data[emailKey]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
