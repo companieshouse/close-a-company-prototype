@@ -9,7 +9,7 @@ const router = express.Router();
 // --------------------
 router.post('/V5/start', function (req, res) {
   req.session.data.startedAtEmailSign = false
-  res.redirect('/V5/who-to-tell')
+  res.redirect('/V5/sign-in')
 })
 
 // --------------------
@@ -219,7 +219,7 @@ router.post('/V5/provide-corporate-directors-emails', function (req, res) {
 // Stop screen – bank account
 // --------------------
 router.post('/V5/stop-screen-bank-account', function (req, res) {
-  res.redirect('/V5/sign-in')
+  res.redirect('/V5/company-number')
 })
 
 // --------------------
