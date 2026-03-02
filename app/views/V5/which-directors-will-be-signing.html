@@ -5,93 +5,72 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
+  {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" }) }}
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <form method="post" action="/V5/which-directors-will-be-signing">
+    <form method="post" action="/V5/which-directors-will-be-signing">
 
-        {% set selectedDirector = data['whichDirectorAreYou'] %}
+      {# Build checkbox items inline #}
+      {% set checkboxItems = [] %}
 
-        {% set allDirectors = [
-          { value: "JaneDoe", text: "DOE, Jane" },
-          { value: "SaraFrancis", text: "FRANCIS, Sara" },
-          { value: "JamesShipley", text: "SHIPLEY, James" },
-          { value: "AcmeLtd", text: "ACME LTD" }
-        ] %}
+      {% if data.whichDirectorAreYou != "JaneDoe" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "JaneDoe", text: "DOE, Jane", checked: data.whichDirectorsWillBeSigningTheApplication and "JaneDoe" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% endif %}
 
-        {# Build filtered list #}
-        {% set filteredDirectors = [] %}
+      {% if data.whichDirectorAreYou != "SaraFrancis" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "SaraFrancis", text: "FRANCIS, Sara", checked: data.whichDirectorsWillBeSigningTheApplication and "SaraFrancis" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% endif %}
 
-        {% if selectedDirector == "iAmNotADirectorOfThisCompany" %}
-          {% set filteredDirectors = allDirectors %}
-          {% set legendText = "Which directors will sign the application?" %}
-          {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
-        {% else %}
-          {% set legendText = "Which other directors will sign the application?" %}
-          {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
+      {% if data.whichDirectorAreYou != "JamesShipley" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "JamesShipley", text: "SHIPLEY, James", checked: data.whichDirectorsWillBeSigningTheApplication and "JamesShipley" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% endif %}
 
-          {% for director in allDirectors %}
-            {% if director.value != selectedDirector %}
-              {% set filteredDirectors = filteredDirectors | push(director) %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+      {% if data.whichDirectorAreYou != "AcmeLtd" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "AcmeLtd", text: "ACME LTD", checked: data.whichDirectorsWillBeSigningTheApplication and "AcmeLtd" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% endif %}
 
-        {{ govukCheckboxes({
-          name: "whichDirectorsWillBeSigningTheApplication",
-          fieldset: {
-            legend: {
-              text: legendText,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: hintText
-          },
-          items: filteredDirectors
-        }) }}
+      {# Adjust legend and hint #}
+      {% if data.whichDirectorAreYou in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+        {% set legendText = "Which other directors will sign the application?" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
+      {% else %}
+        {% set legendText = "Which directors will sign the application?" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
+      {% endif %}
 
-        {% from "govuk/components/details/macro.njk" import govukDetails %}
+      {# Render checkboxes #}
+      {{ govukCheckboxes({
+        name: "whichDirectorsWillBeSigningTheApplication",
+        fieldset: {
+          legend: { text: legendText, isPageHeading: true, classes: "govuk-fieldset__legend--l" }
+        },
+        hint: { text: hintText },
+        items: checkboxItems
+      }) }}
 
-        <details class="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              If a director cannot sign the application themselves
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p>
-              Directors who are people must sign the application themselves. Nobody can sign on their behalf.
-            </p>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If a director cannot sign the application themselves
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>Directors who are people must sign the application themselves. Nobody can sign on their behalf.</p>
+          <p>If there are not enough directors who can sign, you'll need to
+            <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
+               class="govuk-link" rel="noreferrer noopener" target="_blank">
+              make changes to the company directors
+            </a> before continuing.</p>
+        </div>
+      </details>
 
-            <p>
-              Sometimes a director cannot sign. For example, because they no longer have mental capacity.
-              If there are not enough directors who are able to sign, you'll need to
-              <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
-                 class="govuk-link"
-                 rel="noreferrer noopener"
-                 target="_blank">
-                make changes to the company directors (opens in new tab)
-              </a>
-              before continuing with this application.
-            </p>
-          </div>
-        </details>
+      {{ govukButton({ text: "Continue" }) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-    </div>
+    </form>
   </div>
+</div>
 {% endblock %}

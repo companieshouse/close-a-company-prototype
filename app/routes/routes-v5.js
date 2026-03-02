@@ -110,7 +110,19 @@ router.post('/V5/how-will-the-multi-directors-be-signing', function (req, res) {
 })
 
 router.post('/V5/check-your-answers-multi-directors', function (req, res) {
-  res.redirect('/V5/sign-the-application')
+
+  const directors =
+    req.session.data.whichDirectorsWillBeSigningTheApplication || []
+
+  const acmeSelected = directors.includes('AcmeLtd')
+
+  // If ACME LTD was NOT selected as a signing director
+  if (!acmeSelected) {
+    return res.redirect('/V5/sign-the-application-corporate-director')
+  }
+
+  // Otherwise continue normal journey
+  return res.redirect('/V5/sign-the-application')
 })
 
 // --------------------
@@ -302,5 +314,23 @@ router.get('/V5/change-directors-email-jane', function (req, res) {
   })
 })
 
+// --------------------
+// Which directors will be signing
+// --------------------
+
+// GET - render the page
+router.get('/V5/which-directors-will-be-signing', function (req, res) {
+  res.render('V5/which-directors-will-be-signing', {
+    serviceName: 'Company Director Service',
+    data: req.session.data || {}
+  });
+});
+
+// POST - handle form submission
+router.post('/V5/which-directors-will-be-signing', function (req, res) {
+  req.session.data.whichDirectorsWillBeSigningTheApplication =
+    req.body.whichDirectorsWillBeSigningTheApplication || [];
+  res.redirect('/V5/provide-corporate-directors-emails');
+});
 
 
