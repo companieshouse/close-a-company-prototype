@@ -1,177 +1,196 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Companies House notice – GOV.UK
+DS01 Application to strike off – GOV.UK
 {% endblock %}
 
 {% block content %}
 
 <style>
 
-  /* ===== PDF VIEWER BACKGROUND ===== */
+/* ===== PDF VIEWER BACKGROUND ===== */
 
-  .pdf-viewer {
-    background: #e0e0e0;
-    margin: 0 -30px;
-  }
-
-  /* ===== TOOLBAR (SEPARATE FROM DOCUMENT) ===== */
-
-  .pdf-toolbar {
-    background: #3f3f3f;
-    color: #ffffff;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-  }
-
-  .pdf-toolbar-left,
-  .pdf-toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .pdf-button {
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  .pdf-button:hover {
-    text-decoration: underline;
-  }
-
-  .pdf-zoom {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* ===== DOCUMENT WRAPPER ===== */
-
-  .pdf-document-wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 50px 0;
-  }
-
-  .notice-container {
-    width: 800px;
-    background: #ffffff;
-    padding: 60px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
-  }
-
-  /* ===== HEADER SECTION ===== */
-
-  .notice-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .notice-logo {
-    text-align: right;
-  }
-
-  /* Black circular logo with white text */
-  .notice-box {
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 50%;
-    padding: 20px;
-    margin-bottom: 20px;
-    margin-top: -20px;
-    margin-left: 120px;
-    width: 200px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-family: times new roman;
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.2;
-  }
-
-  .notice-box span {
-    font-weight: normal;
-    font-size: 0.9rem;
-    margin-top: 6px;
-  }
-
-  /* Meta text above reference and date */
-  .notice-contact {
-    font-family: "Arial", sans-serif;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 1.2;
-    color: #000;
-    text-align: right;
-    margin-bottom: 12px;
-  }
-
-  /* Reference and date text */
-  .notice-meta {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 1.2;
-    color: #000;
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  /* ===== TITLE + BODY ===== */
-
-  .notice-title {
-    text-align: center;
-    margin: 60px 0 25px 0;
-  }
-
-  .notice-body-wrapper {
-    max-width: 480px;   /* controls visual width of notice text */
-    margin: 0 auto;     /* centres the block */
-    text-align: left;   /* keeps text left aligned */
-    line-height: 1.5;
-  }
-
-  .notice-body-wrapper p {
-    margin-bottom: 18px;
-  }
-
-  /* ===== FOOTER SECTION ===== */
-
-  .file-copy {
-    text-align: center;
-    margin-top: 60px;
-  }
-
-.barcode {
-  width: 250px;           /* narrower width, adjust to match PDF */
-  height: 60px;           /* keep current height */
-  margin: 10px auto 0;    /* centre it horizontally */
-  background: repeating-linear-gradient(
-    90deg,
-    #000,
-    #000 2px,
-    #fff 2px,
-    #fff 4px
-  );
+.pdf-viewer {
+  background: #e6e6e6;
+  margin: 0 -30px;
 }
 
-  .small-text {
-    font-size: 14px;
-    margin-top: 40px;
-  }
+/* ===== TOOLBAR ===== */
+
+.pdf-toolbar {
+  background: #3f3f3f;
+  color: #ffffff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.pdf-toolbar-left,
+.pdf-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pdf-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pdf-button:hover {
+  text-decoration: underline;
+}
+
+.pdf-zoom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== DOCUMENT WRAPPER ===== */
+
+.pdf-document-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.notice-container {
+  width: 820px;
+  background: #ffffff;
+  padding: 50px 60px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+/* ===== HEADER ===== */
+
+.ds01-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ds01-header-left {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ds01-form-code {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.ds01-form-code span {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.ds01-title-box {
+  border: 3px solid #000;
+  padding: 18px 0;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+  width: 380px;          /* makes it extend halfway */
+}
+
+/* ===== COMPANY META ===== */
+
+.company-meta {
+  margin-top: 45px;
+  font-size: 20px;       /* slightly larger like the real form */
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;  /* wider label column */
+  margin-bottom: 18px;
+}
+
+.meta-label {
+  font-weight: normal;   /* remove bold */
+}
+
+.meta-value {
+  font-weight: normal;   /* remove bold */
+  letter-spacing: 0.5px; /* subtle spacing like form text */
+}
+/* ===== SECTIONS ===== */
+
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.section p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 30px 0;
+}
+
+/* ===== DIRECTOR SIGNATURE SECTION ===== */
+
+.directors-block {
+  margin-top: 30px;
+}
+
+.director-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 25px;
+}
+
+.director-name-left {
+  width: 40%;
+  font-size: 18px;
+}
+
+.director-signature-right {
+  width: 55%;
+}
+
+.director-name-signed {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.signature-line {
+  border-bottom: 1px solid #000;
+  height: 25px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.signature-date {
+  font-size: 16px;
+}
+
+.bottom-divider {
+  border: none;
+  border-top: 3px solid #000;
+  margin-top: 40px;
+}
 
 </style>
 
@@ -202,83 +221,91 @@ Companies House notice – GOV.UK
     <div class="notice-container">
 
       <!-- Header -->
-      <div class="notice-header">
+      <div class="ds01-header">
+        <div class="ds01-header-left">
+          Companies House
+        </div>
+
         <div>
-          <p style="font-family: times new roman">
-            <strong>THE DIRECTORS</strong><br>
-            ACME LTD<br>
-            RAE HOUSE DANE STREET<br>
-            BISHOPS STORTFORD<br>
-            HERTFORDSHIRE, CM23 3BT
-          </p>
-        </div>
-
-        <div class="notice-logo">
-          <div class="notice-box">
-            Companies House
-            <span>for the record</span>
+          <div class="ds01-form-code">
+            DS01 <span>(ef)</span>
           </div>
-            <div class="notice-contact">
-            If you need to contact us regarding <br> this notice, please quote reference
-            </div>
-
-          <div class="notice-meta">
-            DEF6A / 06481087<br><br>
-            Date&nbsp;&nbsp;12/10/10
+          <div class="ds01-title-box">
+            Application to strike off
           </div>
         </div>
       </div>
 
-      <!-- Title -->
-      <div class="notice-title">
-        <p>
-          <strong>COMPANIES ACT 2006</strong><br>
-          (Section 1003)
-        </p>
-      </div>
+      <!-- Company Details -->
+<div class="company-meta">
 
-      <!-- Notice Body -->
-      <div class="notice-body-wrapper">
-        <p>
-          The REGISTRAR OF COMPANIES gives NOTICE that, unless cause is shown to the contrary,
-          at the expiration of 3 months from the above date the name of
-        </p>
-
-        <p><strong>ABC LTD</strong></p>
-
-        <p>
-          will be struck off the register and the company will be dissolved
-        </p>
-      </div>
-
-      <!-- Address Footer -->
-      <div style="margin-top:60px;">
-        <p>
-          <strong>Companies House</strong><br>
-          Cardiff CF14 3UZ<br>
-          Tel<br>
-          Fax: 029 20 380900<br>
-          DX 33050 Cardiff
-        </p>
-      </div>
-
-      <!-- File Copy -->
-      <div class="file-copy">
-        <h2 class="govuk-heading-m">FILE COPY</h2>
-        <div class="barcode"></div>
-      </div>
-
-      <!-- Legal Text -->
-      <div class="small-text">
-        <p>
-          N.B. Upon dissolution all property and rights vested in, or held in trust for,
-          the company are deemed to be bona vacantia, and accordingly will belong to the crown
-        </p>
-        <p>*D06481087B*</p>
-      </div>
-
-    </div>
+  <div class="meta-row">
+    <div class="meta-label">Company Name:</div>
+    <div class="meta-value">ACME LIMITED</div>
   </div>
+
+  <div class="meta-row">
+    <div class="meta-label">Company Number:</div>
+    <div class="meta-value">87654321</div>
+  </div>
+
+</div>
+
+      <hr class="section-divider">
+
+      <!-- Important Notice -->
+      <div class="section">
+        <h2 style="text-align: center;">Important notice for all interested parties</h2>
+        <p>
+          This company has applied to be struck off and dissolved. The registrar will proceed unless
+          there is reasonable cause not to, and on dissolution any assets remaining in the company
+          will be passed to the Crown. Guidance is available on grounds for objection. If in doubt
+          seek professional advice.
+        </p>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Declaration -->
+      <div class="section">
+        <h2 style="text-align: center;">Declaration of director(s)</h2>
+        <p>
+          I/We as the majority of directors apply for this company to be struck off the Register and
+          declare that none of the circumstances described in section 1004 and 1005 of the
+          Companies Act 2006 (being circumstances in which the directors would otherwise be
+          prohibited under those sections from making an application) exists in relation to the
+          company.
+        </p>
+      </div>
+
+      <!-- Authorising Directors -->
+<div class="section">
+  <h2>Authorising company Director(s):</h2>
+
+  <div class="directors-block">
+
+    <!-- Director Row -->
+    <div class="director-row">
+      <div class="director-name-left">
+        DOE, Jane
+      </div>
+
+      <div class="director-signature-right">
+        <div class="director-name-signed">
+          DOE, Jane
+        </div>
+
+        <div class="signature-line"></div>
+
+        <div class="signature-date">
+          Signature Date: 02-03-2026
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="bottom-divider">
 
 </div>
 

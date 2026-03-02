@@ -124,9 +124,18 @@
   }) }}</li>
   </li>
 
-  <h3 class="govuk-heading-s govuk-!-margin-top-5">Sign in from email route</h3>
+  <h3 class="govuk-heading-m govuk-!-margin-top-5">View PDF from email route for testing</h3>
   <li>
-    <a href="/V5/sign-in-from-email.html" class="govuk-link">Sign in from email</a>
+    <a href="/V5/bi-email-mock.html" class="govuk-link">Accepted email</a>
+    {{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+    <li>
+    <a href="/V5/view-company-info-pdf.html" class="govuk-link">View company info PDF Link</a>{{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}
   </li>
   <li><a href="/V5/pdf-mock-up.html" class="govuk-link">PDF Mock Up -Application Received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
