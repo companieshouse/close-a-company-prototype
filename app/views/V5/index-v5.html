@@ -123,6 +123,18 @@
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}</li>
   </li>
+
+  <h3 class="govuk-heading-s govuk-!-margin-top-5">Sign in from email route</h3>
+  <li>
+    <a href="/V5/sign-in-from-email.html" class="govuk-link">Sign in from email</a>
+  </li>
+  <li><a href="/V5/pdf-mock-up.html" class="govuk-link">PDF Mock Up -Application Received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "FOR TESTING",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</li>
+
+
 <h2 class="govuk-heading-m govuk-!-margin-top-9">Payment/Application Submitted Screens</h2>
   <li>
     <a href="/V5/how-do-you-want-to-pay.html" class="govuk-link">How do you want to pay?</a>
@@ -142,11 +154,7 @@
     classes: "govuk-!-margin-left-2 govuk-tag--red"
   }) }}</li>
 
-<li><a href="/V5/pdf-mock-up.html" class="govuk-link">PDF Mock Up -Application Received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
-  {{ govukTag({
-    text: "FOR TESTING",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}</li>
+
 </ul>
 
 </div>

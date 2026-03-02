@@ -111,17 +111,14 @@ router.post('/V5/how-will-the-multi-directors-be-signing', function (req, res) {
 
 router.post('/V5/check-your-answers-multi-directors', function (req, res) {
 
-  const directors =
-    req.session.data.whichDirectorsWillBeSigningTheApplication || []
+  const whichDirectorAreYou = req.session.data.whichDirectorAreYou
 
-  const acmeSelected = directors.includes('AcmeLtd')
-
-  // If ACME LTD was NOT selected as a signing director
-  if (!acmeSelected) {
+  // If the current user is the corporate director
+  if (whichDirectorAreYou === 'AcmeLtd') {
     return res.redirect('/V5/sign-the-application-corporate-director')
   }
 
-  // Otherwise continue normal journey
+  // Everyone else goes to normal sign page
   return res.redirect('/V5/sign-the-application')
 })
 
@@ -332,5 +329,4 @@ router.post('/V5/which-directors-will-be-signing', function (req, res) {
     req.body.whichDirectorsWillBeSigningTheApplication || [];
   res.redirect('/V5/provide-corporate-directors-emails');
 });
-
 
