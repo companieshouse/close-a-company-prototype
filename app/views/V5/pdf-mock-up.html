@@ -1,0 +1,247 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Companies House notice – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+  /* ===== PDF VIEWER BACKGROUND ===== */
+
+  .pdf-viewer {
+    background: #e0e0e0;
+    margin: 0 -30px;
+  }
+
+  /* ===== TOOLBAR (SEPARATE FROM DOCUMENT) ===== */
+
+  .pdf-toolbar {
+    background: #3f3f3f;
+    color: #ffffff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .pdf-toolbar-left,
+  .pdf-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .pdf-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .pdf-button:hover {
+    text-decoration: underline;
+  }
+
+  .pdf-zoom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ===== DOCUMENT WRAPPER ===== */
+
+  .pdf-document-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+  }
+
+  .notice-container {
+    width: 800px;
+    background: #ffffff;
+    padding: 60px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+
+  /* ===== HEADER SECTION ===== */
+
+  .notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .notice-logo {
+    text-align: right;
+  }
+
+  .notice-box {
+    border: 2px solid #0b0c0c;
+    border-radius: 50%;
+    padding: 20px;
+    width: 200px;
+    height: 120px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .notice-meta {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  /* ===== TITLE + BODY ===== */
+
+  .notice-title {
+    text-align: center;
+    margin: 60px 0 25px 0;
+  }
+
+  .notice-body-wrapper {
+    max-width: 480px;   /* controls visual width of notice text */
+    margin: 0 auto;     /* centres the block */
+    text-align: left;   /* keeps text left aligned */
+    line-height: 1.5;
+  }
+
+  .notice-body-wrapper p {
+    margin-bottom: 18px;
+  }
+
+  /* ===== FOOTER SECTION ===== */
+
+  .file-copy {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .barcode {
+    height: 60px;
+    background: repeating-linear-gradient(
+      90deg,
+      #000,
+      #000 2px,
+      #fff 2px,
+      #fff 4px
+    );
+    margin-top: 10px;
+  }
+
+  .small-text {
+    font-size: 14px;
+    margin-top: 40px;
+  }
+
+</style>
+
+<div class="pdf-viewer">
+
+  <!-- ===== TOOLBAR ===== -->
+
+  <div class="pdf-toolbar">
+    <div class="pdf-toolbar-left">
+      <strong>application-pdf</strong>
+      <span>1 / 1</span>
+    </div>
+
+    <div class="pdf-toolbar-right">
+      <div class="pdf-zoom">
+        <button class="pdf-button">-</button>
+        <span>100%</span>
+        <button class="pdf-button">+</button>
+      </div>
+      <button class="pdf-button" onclick="window.print()">Print</button>
+      <button class="pdf-button">Download</button>
+    </div>
+  </div>
+
+  <!-- ===== DOCUMENT ===== -->
+
+  <div class="pdf-document-wrapper">
+    <div class="notice-container">
+
+      <!-- Header -->
+      <div class="notice-header">
+        <div>
+          <p>
+            <strong>THE DIRECTORS</strong><br>
+            ABC LTD<br>
+            RAE HOUSE DANE STREET<br>
+            BISHOPS STORTFORD<br>
+            HERTFORDSHIRE, CM23 3BT
+          </p>
+        </div>
+
+        <div class="notice-logo">
+          <div class="notice-box">
+            Companies House<br>
+            <span style="font-weight: normal;">for the record</span>
+          </div>
+
+          <div class="notice-meta">
+            DEF6A / 06481087<br><br>
+            Date&nbsp;&nbsp;12/10/10
+          </div>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div class="notice-title">
+        <p>
+          <strong>COMPANIES ACT 2006</strong><br>
+          (Section 1003)
+        </p>
+      </div>
+
+      <!-- Notice Body -->
+      <div class="notice-body-wrapper">
+        <p>
+          The REGISTRAR OF COMPANIES gives NOTICE that, unless cause is shown to the contrary,
+          at the expiration of 3 months from the above date the name of
+        </p>
+
+        <p><strong>ABC LTD</strong></p>
+
+        <p>
+          will be struck off the register and the company will be dissolved
+        </p>
+      </div>
+
+      <!-- Address Footer -->
+      <div style="margin-top:60px;">
+        <p>
+          <strong>Companies House</strong><br>
+          Cardiff CF14 3UZ<br>
+          Tel<br>
+          Fax: 029 20 380900<br>
+          DX 33050 Cardiff
+        </p>
+      </div>
+
+      <!-- File Copy -->
+      <div class="file-copy">
+        <h2 class="govuk-heading-m">FILE COPY</h2>
+        <div class="barcode"></div>
+      </div>
+
+      <!-- Legal Text -->
+      <div class="small-text">
+        <p>
+          N.B. Upon dissolution all property and rights vested in, or held in trust for,
+          the company are deemed to be bona vacantia, and accordingly will belong to the crown
+        </p>
+        <p>*D06481087B*</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

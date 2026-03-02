@@ -101,6 +101,10 @@ router.post('/V5/check-your-answers-single-director', function (req, res) {
 // --------------------
 // Multi director signing
 // --------------------
+
+router.post('/V5/which-directors-will-be-signing', function (req, res) {
+  res.redirect('/V5/provide-corporate-directors-emails')
+})
 router.post('/V5/how-will-the-multi-directors-be-signing', function (req, res) {
   res.redirect('/V5/check-your-answers-multi-directors')
 })

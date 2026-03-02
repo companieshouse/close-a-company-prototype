@@ -17,113 +17,74 @@
 
       <form method="post" action="/V5/which-directors-will-be-signing">
 
-        {% if data['whichDirectorAreYou'] in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+        {% set selectedDirector = data['whichDirectorAreYou'] %}
 
-          {{ govukCheckboxes({
-            name: "whichDirectorsWillBeSigningTheApplication",
-            fieldset: {
-              legend: {
-                text: "Which other directors will sign the application?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            hint: {
-              html: '
-                More than half of the directors must sign, so you must select 2 or more of these directors 
-                ' 
-            },
-            items: [
-              {
-                value: "SaraFrancis",
-                text: "FRANCIS, Sara"
-              },
-              {
-                value: "JamesShipley",
-                text: "SHIPLEY, James"
-              },
-              {
-                value: "AcmeLtd",
-                text: "ACME LTD"
-              }
-            ]
-          }) }}
+        {% set allDirectors = [
+          { value: "JaneDoe", text: "DOE, Jane" },
+          { value: "SaraFrancis", text: "FRANCIS, Sara" },
+          { value: "JamesShipley", text: "SHIPLEY, James" },
+          { value: "AcmeLtd", text: "ACME LTD" }
+        ] %}
 
+        {# Build filtered list #}
+        {% set filteredDirectors = [] %}
+
+        {% if selectedDirector == "iAmNotADirectorOfThisCompany" %}
+          {% set filteredDirectors = allDirectors %}
+          {% set legendText = "Which directors will sign the application?" %}
+          {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
         {% else %}
+          {% set legendText = "Which other directors will sign the application?" %}
+          {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
 
-          {{ govukCheckboxes({
-            name: "whichDirectorsWillBeSigningTheApplication",
-            fieldset: {
-              legend: {
-                text: "Which directors will sign the application?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            hint: {
-              html: '
-                More than half of the directors must sign, so you must select 3 or more of these directors 
-                ' 
-            },
-            items: [
-              {
-                value: "JaneDoe",
-                text: "DOE, Jane"
-              },
-              {
-                value: "SaraFrancis",
-                text: "FRANCIS, Sara"
-              },
-              {
-                value: "JamesShipley",
-                text: "SHIPLEY, James"
-              },
-              {
-                value: "AcmeLtd",
-                text: "ACME LTD"
-              }
-            ]
-          }) }}
-
+          {% for director in allDirectors %}
+            {% if director.value != selectedDirector %}
+              {% set filteredDirectors = filteredDirectors | push(director) %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
 
-{% from "govuk/components/details/macro.njk" import govukDetails %}
+        {{ govukCheckboxes({
+          name: "whichDirectorsWillBeSigningTheApplication",
+          fieldset: {
+            legend: {
+              text: legendText,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: hintText
+          },
+          items: filteredDirectors
+        }) }}
 
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      If a director cannot sign the application themselves
-    </span>
-  </summary>
-  <div class="govuk-details__text">
- 
-  <p>
-    Directors who are people must sign the application themselves. Nobody can sign on their behalf.</p>
+        {% from "govuk/components/details/macro.njk" import govukDetails %}
 
-    <p> Sometimes a director cannot sign. For example, because they no longer have mental capacity. 
-    If there are not enough directors who are able to sign, you'll need to 
-    <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house" class="govuk-link" rel="noreferrer noopener" target="_blank">
-      make changes to the company directors (opens in new tab)</a> before continuing with this application. 
-  </p>
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              If a director cannot sign the application themselves
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>
+              Directors who are people must sign the application themselves. Nobody can sign on their behalf.
+            </p>
 
-
-
-  </div>
-</details>
-
-<!--<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      How to sign if a director is a company
-    </span>
-  </summary>
-  <div class="govuk-details__text">
- <p>
-    For directors that are companies, you'll need to provide the name and email address of a person who the company has authorised to sign on its behalf.
-  </p>
-
-  </div>
-</details>-->
+            <p>
+              Sometimes a director cannot sign. For example, because they no longer have mental capacity.
+              If there are not enough directors who are able to sign, you'll need to
+              <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
+                 class="govuk-link"
+                 rel="noreferrer noopener"
+                 target="_blank">
+                make changes to the company directors (opens in new tab)
+              </a>
+              before continuing with this application.
+            </p>
+          </div>
+        </details>
 
         {{ govukButton({
           text: "Continue"
