@@ -17,8 +17,17 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
     <h1 class="govuk-heading-xl">
-      View company information
+    Download a copy of the application to close this company
     </h1>
+
+    <p>The company shown on this page has applied to be struck off and dissolved. The directors must send a copy to all interested parties within 7 days of making the application.</p>
+
+
+    <p class="govuk-body">
+      <a href="/v5/pdf-mock-up.html" class="govuk-link">
+        View and download a PDF copy of the application
+      </a>
+    </p>
 
     {% if (data['companyNumber'] == "12345678") %}
       <h2 class="govuk-heading-l">
@@ -50,20 +59,6 @@
       }) }}
     {% endif %}
 
-    {# --- Dissolution PDF section --- #}
-    <h3 class="govuk-heading-m">
-      Application for voluntary dissolution
-    </h3>
-
-    <p class="govuk-body">
-      You can view and download a copy of the application to share with interested parties.
-    </p>
-
-    <p class="govuk-body">
-      <a href="/v5/pdf-mock-up.html" class="govuk-link">
-        View the application for voluntary dissolution (PDF)
-      </a>
-    </p>
 
   </div>
 </div>
