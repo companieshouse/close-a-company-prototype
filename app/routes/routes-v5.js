@@ -9,7 +9,7 @@ const router = express.Router();
 // --------------------
 router.post('/V5/start', function (req, res) {
   req.session.data.startedAtEmailSign = false
-  res.redirect('/V5/sign-in')
+  res.redirect('/V5/sign-in-to-ch-or-one-login')
 })
 
 // --------------------
