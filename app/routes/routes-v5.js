@@ -330,3 +330,17 @@ router.post('/V5/which-directors-will-be-signing', function (req, res) {
   res.redirect('/V5/provide-corporate-directors-emails');
 });
 
+// --------------------
+// PDF Download Journey
+// --------------------
+router.post('/V5/pdf-sign-in', function (req, res) {
+  res.redirect('/V5/pdf-enter-password')
+})
+
+router.post('/V5/pdf-sign-in', function (req, res) {
+  res.redirect('/V5/pdf-enter-password')
+})
+
+router.post('/V5/pdf-enter-password', function (req, res) {
+  res.redirect('/V5/pdf-mock-up')
+})
