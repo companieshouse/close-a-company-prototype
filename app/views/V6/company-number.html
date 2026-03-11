@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What is the company number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/V5/company-number" method="post">
+
+      {{ govukInput({
+        label: {
+          text: "What is the company number?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Enter the 8 character company number."
+        },
+        id: "companyNumber",
+        name: "companyNumber",
+        value: data['companyNumber']  
+      }) }}
+
+<div class="govuk-inset-text">
+  If you have a company number that's 7 characters or less, enter zeros at the start so that it's 8 characters in total. For example, if it's 12345, enter 00012345.
+</div>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      How do I find the company number?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    You can find this by searching for the company on the
+  <a href="https://find-and-update.company-information.service.gov.uk/" class="govuk-link" rel="noreferrer noopener" target="_blank">Companies House register (opens in new tab)</a>.
+  </div>
+</details>
+
+
+      {{ govukButton({
+        text: "Continue"
+    
+      }) }}
+
+    </form>
+        <div class="ur-shortcuts">
+          <!-- Not part of ACTUAL screen: only for UR purposes -->
+          <ul class="govuk-list govuk-list--bullet govuk-body-s govuk-!-margin-top-1">
+            <li>Use 12345678 to see a single director company</li>
+            <li>Use any other number to see a multi director company</li>
+          </ul>
+        </div>
+  </div>
+</div>
+
+{% endblock %}

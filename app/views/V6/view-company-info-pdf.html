@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  View company information – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">
+    Download a copy of the application to close this company
+    </h1>
+
+    <p>The company shown on this page has applied to be struck off and dissolved. The directors must send a copy to all interested parties within 7 days of making the application.</p>
+
+
+    <p class="govuk-body">
+      <a href="/v5/pdf-mock-up.html" class="govuk-link">
+        View and download a PDF copy of the application
+      </a>
+    </p>
+
+    {% if (data['companyNumber'] == "12345678") %}
+      <h2 class="govuk-heading-l">
+        A SINGLE DIRECTOR COMPANY LTD
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          { key: { text: "Company number" }, value: { text: data['companyNumber'] } },
+          { key: { text: "Status" }, value: { text: "Active" } },
+          { key: { text: "Incorporation date" }, value: { text: "1 January 2001" } },
+          { key: { text: "Company type" }, value: { text: "Private limited company" } },
+          { key: { text: "Registered office address" }, value: { text: "1 Single Street, Anytown, AB11 1CD" } }
+        ]
+      }) }}
+    {% else %}
+      <h2 class="govuk-heading-l">
+        A MULTI DIRECTOR COMPANY LTD
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          { key: { text: "Company number" }, value: { text: data['companyNumber'] } },
+          { key: { text: "Status" }, value: { text: "Active" } },
+          { key: { text: "Incorporation date" }, value: { text: "2 February 2002" } },
+          { key: { text: "Company type" }, value: { text: "Private limited company" } },
+          { key: { text: "Registered office address" }, value: { html: "<address>2 Multi Street,<br>Anytown,<br>AB23 4CD</address>" } }
+        ]
+      }) }}
+    {% endif %}
+
+
+  </div>
+</div>
+
+{% endblock %}

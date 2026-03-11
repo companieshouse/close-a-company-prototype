@@ -1,0 +1,143 @@
+{% extends "layouts/main-no-service-name.html" %}
+
+{% block pageTitle %}
+  {% if errorSummary %}
+    Error: Enter your details to pay by account – GOV.UK
+  {% else %}
+    Enter your details to pay by account – GOV.UK
+  {% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if errorSummary %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorSummary
+      }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-l">
+      Enter your details to pay by account
+    </h1>
+
+
+    <form method="post" action="/V5/ch-pay" novalidate>
+
+      {# ================= Presenter ID ================= #}
+
+      {% if errorSummary %}
+        {% if presenterId %}
+          {{ govukInput({
+            label: { text: "Presenter ID" },
+            id: "presenter-id",
+            hint: {
+            text: "This is 11 numbers. For example, 00012345678"},  
+            name: "presenterId",
+            value: presenterId,
+            errorMessage: {
+              text: "Presenter ID must be 11 characters"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: { text: "Presenter ID" },
+            id: "presenter-id",
+            hint: {
+            text: "This is 11 numbers. For example, 00012345678"},  
+            name: "presenterId",
+            value: presenterId,
+            errorMessage: {
+              text: "Enter your presenter ID"
+            }
+          }) }}
+        {% endif %}
+      {% else %}
+        {{ govukInput({
+          label: { text: "Presenter ID" },
+          id: "presenter-id",
+          hint: {
+          text: "This is 11 numbers. For example, 00012345678"},  
+          name: "presenterId",
+          value: presenterId
+        }) }}
+      {% endif %}
+
+      {# ============ Presenter authentication code ============ #}
+
+      {% if errorSummary %}
+        {% if presenterAuthCode %}
+          {{ govukInput({
+            label: { text: "Presenter authentication code" },
+            hint: {
+            text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"},  id: "presenter-auth-code",
+            name: "presenterAuthCode",
+            value: presenterAuthCode,
+            errorMessage: {
+              text: "Presenter authentication code must be 11 characters"
+            }
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: { text: "Presenter authentication code" },
+            hint: {
+            text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"},
+            id: "presenter-auth-code",
+            name: "presenterAuthCode",
+            value: presenterAuthCode,
+            errorMessage: {
+              text: "Enter your presenter authentication code"
+            }
+          }) }}
+        {% endif %}
+      {% else %}
+        {{ govukInput({
+          label: { text: "Presenter authentication code" },
+          hint: {
+          text: "This is 11 characters, and may include letters and numbers. For example, A1B2C3D4E5F"}, 
+          id: "presenter-auth-code",
+          name: "presenterAuthCode",
+          value: presenterAuthCode
+        }) }}
+      {% endif %}
+<p>
+<!--Removing this for now as not sure it's needed and there's already a lot of text on the page <p> We sent you these details by post or email when you set up your Companies House credit account, if you have one.-->
+
+<p>If you do not have details for an existing credit account, you’ll need to <a href="https://card.payments.service.gov.uk/card_details/8dmgd9ofn31v5afkm1vmcodicm" class="govuk-link">pay by credit or debit card instead</a>.</p>
+
+
+  <div>
+  
+</p>
+
+  </div>
+</details>
+
+      {{ govukButton({
+        text: "Confirm payment"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+

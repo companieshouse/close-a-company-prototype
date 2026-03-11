@@ -1,0 +1,139 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Sign the application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% set todayDate = "now" | govukDate %}
+{% set fallbackDate = "4 September 2025" %}
+{% set todayHtml = (todayDate or fallbackDate) %}
+
+{# ---- derived values ---- #}
+{% if data['companyNumber'] == "12345678" %}
+  {% set companyName = "A SINGLE DIRECTOR COMPANY LTD" %}
+  {% set companyNumber = "12345678" %}
+{% else %}
+  {% set companyName = "A MULTI DIRECTOR COMPANY LTD" %}
+  {% set companyNumber = data['first-name'] or "87654321" %}
+{% endif %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+    <h1 class="govuk-heading-l">
+      Sign the application
+    </h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company name" },
+          value: { text: companyName }
+        },
+        {
+          key: { text: "Company number" },
+          value: { text: companyNumber }
+        }
+      ]
+    }) }}
+
+    <form action="/V5/sign-the-application" method="post">
+
+      {{ govukWarningText({
+        text: "You must read the following statements.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Important notice for all interested parties
+      </h2>
+
+      <p>
+        The company has applied to be struck off and dissolved. The registrar
+        will proceed unless there is a reasonable cause not to, and on dissolution any assets remaining
+        in the company will be passed to the Crown.
+        <a href="/path/of/page">
+          Guidance is available on the grounds for objection (opens in new tab)</a>.
+        If in doubt, seek professional advice.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Declaration
+      </h2>
+
+      <p>
+        As a director of {{ companyName }}, I apply for this company to be struck off the register.
+        I declare that none of the circumstances described in section 1004 or 1005 of the Companies Act 2006
+        exists in relation to the company which would prevent this application from being made.
+      </p>
+
+      <p class="govuk-body">
+        <a href="https://www.legislation.gov.uk/ukpga/2006/46/section/1004"
+           class="govuk-link"
+           rel="noreferrer noopener"
+           target="_blank">
+          Section 1004 of the Companies Act 2006 (opens in new tab)
+        </a>
+      </p>
+
+      <p class="govuk-body">
+        <a href="https://www.legislation.gov.uk/cy/ukpga/2006/46/section/1005"
+           class="govuk-link"
+           rel="noreferrer noopener"
+           target="_blank">
+          Section 1005 of the Companies Act 2006 (opens in new tab)
+        </a>
+      </p>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <h2 class="govuk-heading-m govuk-!-margin-top-6">
+              By ticking both of the boxes below you are signing the application
+            </h2>
+          </legend>
+
+          <div id="waste-hint" class="govuk-hint">
+            For directors that are corporate bodies, a person authorised to sign on behalf of that corporate body must sign the application
+          </div>
+
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
+                I confirm that I am John Smith and that I am authorised by ACME LTD to sign this application on its behalf
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                I am making the declaration given on this page on behalf of ACME LTD
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
