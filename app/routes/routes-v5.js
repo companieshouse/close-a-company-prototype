@@ -318,7 +318,6 @@ router.get('/V5/change-directors-email-jane', function (req, res) {
 // GET - render the page
 router.get('/V5/which-directors-will-be-signing', function (req, res) {
   res.render('V5/which-directors-will-be-signing', {
-    serviceName: 'Company Director Service',
     data: req.session.data || {}
   });
 });
