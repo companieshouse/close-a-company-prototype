@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/V5/check-your-answers-multi-directors"
+    href: "/V6/check-your-answers-multi-directors"
   }) }}
 {% endblock %}
 
@@ -19,7 +19,7 @@
       {% set emailKey = "directorEmail" + saraIndex %}
 
 
-      <form action="/V5/provide-corporate-directors-emails" method="post">
+      <form action="/V6/provide-corporate-directors-emails" method="post">
 
         <h1 class="govuk-heading-xl">
           Change a director's email address

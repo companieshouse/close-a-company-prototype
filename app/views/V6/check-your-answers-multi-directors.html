@@ -14,7 +14,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
-    <form action="/V5/check-your-answers-multi-directors" method="post" novalidate>
+    <form action="/V6/check-your-answers-multi-directors" method="post" novalidate>
 
       <h1 class="govuk-heading-xl">Check your answers</h1>
 
@@ -37,13 +37,13 @@
         {# ✅ Set change link safely BEFORE summary list #}
         {% set changeHref = "#" %}
         {% if director == "JamesShipley" %}
-          {% set changeHref = "/V5/change-directors-email-james" %}
+          {% set changeHref = "/V6/change-directors-email-james" %}
         {% elseif director == "SaraFrancis" %}
-          {% set changeHref = "/V5/change-directors-email-sara" %}
+          {% set changeHref = "/V6/change-directors-email-sara" %}
         {% elseif director == "AcmeLtd" %}
-          {% set changeHref = "/V5/change-corporate-directors-email" %}
+          {% set changeHref = "/V6/change-corporate-directors-email" %}
            {% elseif director == "JaneDoe" %}
-          {% set changeHref = "/V5/change-directors-email-jane" %}
+          {% set changeHref = "/V6/change-directors-email-jane" %}
         {% endif %}
 
         <h2 class="govuk-heading-m govuk-!-margin-top-6">
@@ -79,7 +79,7 @@
       {% endfor %}
 
       <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
-        <a class="govuk-link" href="/V5/which-directors-will-be-signing">
+        <a class="govuk-link" href="/V6/which-directors-will-be-signing">
           Change which directors will sign
         </a>
       </p>
