@@ -9,7 +9,7 @@ const router = express.Router();
 // --------------------
 router.post('/V6/start', function (req, res) {
   req.session.data.startedAtEmailSign = false
-  res.redirect('/V6/sign-in-to-ch-or-one-login')
+  res.redirect('/V6/sign-in-to-ch')
 })
 
 // --------------------
@@ -342,4 +342,11 @@ router.post('/V6/pdf-sign-in', function (req, res) {
 
 router.post('/V6/pdf-enter-password', function (req, res) {
   res.redirect('/V6/pdf-mock-up')
+})
+
+// --------------------
+// Provide single director email
+// --------------------
+router.post('/V6/provide-single-director-email', function (req, res) {
+  res.redirect('/V6/check-your-answers-single-director-acsp')
 })
