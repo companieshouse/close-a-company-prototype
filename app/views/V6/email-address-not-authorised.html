@@ -1,10 +1,40 @@
 {% extends "layouts/main.html" %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Apply to strike off and dissolve a company",
+    serviceUrl: "#"
+  }) }}
+
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    SFrancis@email.co.uk</strong>  
+    <a class="govuk-link" href="/sign-out" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+{% endblock %}
+
 
 {% block pageTitle %}
   Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
