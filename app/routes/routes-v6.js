@@ -9,7 +9,7 @@ const router = express.Router();
 // --------------------
 router.post('/V6/start', function (req, res) {
   req.session.data.startedAtEmailSign = false
-  res.redirect('/V6/sign-in-to-ch')
+  res.redirect('/V6/sign-in')
 })
 
 // --------------------
@@ -17,6 +17,7 @@ router.post('/V6/start', function (req, res) {
 // --------------------
 router.post('/V6/sign-in', function (req, res) {
   const emailAddress = req.session.data['email-address']
+  req.session.user_email = emailAddress;
   let errors = {}
 
   if (!emailAddress || emailAddress.trim() === '') {
@@ -47,6 +48,15 @@ router.post('/V6/view-company-info', function (req, res) {
 })
 
 // --------------------
+// View company info (GET)
+// --------------------
+router.get('/V6/view-company-info', function (req, res) {
+  res.render('V6/view-company-info', {
+    user_email: req.session.user_email
+  })
+})
+
+// --------------------
 // Email sign the application
 // --------------------
 router.post('/V6/email-sign-the-application', function (req, res) {
@@ -63,6 +73,16 @@ router.post('/V6/company-authentication', function (req, res) {
   } else {
     res.redirect('/V6/which-director-are-you')
   }
+})
+
+
+// --------------------
+// Company authentication (GET)
+// --------------------
+router.get('/V6/company-authentication', function (req, res) {
+  res.render('V6/company-authentication', {
+    user_email: req.session.user_email
+  })
 })
 
 // --------------------
@@ -85,6 +105,15 @@ router.post('/V6/which-director-are-you', function (req, res) {
   } else {
     res.redirect('/V6/which-directors-will-be-signing')
   }
+})
+
+// --------------------
+// Which director are you? (GET)
+// --------------------
+router.get('/V6/which-director-are-you', function (req, res) {
+  res.render('V6/which-director-are-you', {
+    user_email: req.session.user_email
+  })
 })
 
 // --------------------
@@ -123,6 +152,15 @@ router.post('/V6/check-your-answers-multi-directors', function (req, res) {
 })
 
 // --------------------
+// Check your answers multi directors (GET)
+// --------------------
+router.get('/V6/check-your-answers-multi-directors', function (req, res) {
+  res.render('V6/check-your-answers-multi-directors', {
+    user_email: req.session.user_email
+  })
+})
+
+// --------------------
 // Sign the application
 // --------------------
 router.post('/V6/sign-the-application', function (req, res) {
@@ -158,9 +196,40 @@ router.post('/V6/sign-the-application', function (req, res) {
 })
 
 
+// --------------------
+// Sign the application (GET)
+// --------------------
+router.get('/V6/sign-the-application', function (req, res) {
+  res.render('V6/sign-the-application', {
+    user_email: req.session.user_email
+  })
+})
+
 
 // --------------------
 // Sign in to Companies House
+// --------------------
+router.post('/V6/sign-in-to-ch', function (req, res) {
+  res.redirect('/V6/gov-one-log-in')
+})
+
+
+// --------------------
+// Who to tell
+// --------------------
+router.post('/V6/who-to-tell', function (req, res) {
+  res.redirect('/V6/stop-screen-bank-account')
+})
+
+// --------------------
+// Who to tell (GET)
+// --------------------
+router.get('/V6/who-to-tell', function (req, res) {
+  res.render('V6/who-to-tell', {
+    user_email: req.session.user_email
+  })
+})
+
 // --------------------
 router.post('/V6/sign-in-to-ch', function (req, res) {
   res.redirect('/V6/gov-one-log-in')
@@ -194,6 +263,14 @@ router.post('/V6/how-do-you-want-to-pay', function (req, res) {
 router.post('/V6/which-directors-will-be-signing', function (req, res) {
   res.redirect('/V6/provide-corporate-directors-emails')
 })
+// --------------------
+// Which directors will be signing (GET)
+// --------------------
+router.get('/V6/which-directors-will-be-signing', function (req, res) {
+  res.render('V6/which-directors-will-be-signing', {
+    user_email: req.session.user_email
+  })
+})
 
 // --------------------
 // Provide directors’ emails
@@ -206,6 +283,15 @@ router.post('/V6/provide-directors-emails', function (req, res) {
   })
 
   res.redirect('/V6/check-your-answers-multi-directors')
+})
+
+// --------------------
+// Provide corporate directors’ emails (GET)
+// --------------------
+router.get('/V6/provide-corporate-directors-emails', function (req, res) {
+  res.render('V6/provide-corporate-directors-emails', {
+    user_email: req.session.user_email
+  })
 })
 
 // --------------------
@@ -350,6 +436,9 @@ router.post('/V6/pdf-enter-password', function (req, res) {
 router.post('/V6/provide-single-director-email', function (req, res) {
   res.redirect('/V6/check-your-answers-single-director-acsp')
 })
+
+
+
 
 
 

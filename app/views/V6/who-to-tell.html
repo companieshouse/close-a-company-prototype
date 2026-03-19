@@ -19,7 +19,7 @@
   <!-- Right-aligned sign out with top and bottom borders -->
 <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
   <span class="govuk-body-s">
-    SFrancis@email.co.uk</strong>  
+    {{user_email}}</strong>  
     <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
   </span>
 </div>
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block content %}
-
+<form method="post" action="/V6/which-director-are-you">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -66,10 +66,10 @@
 
 
 {{ govukButton({
-  text: "Continue",
-  href: "/V6/stop-screen-bank-account"
+  text: "Continue"
 }) }}
     </div>
+    </form>
   </div>
 
 {% endblock %}
