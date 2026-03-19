@@ -47,9 +47,7 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
         {% set checkboxItems = checkboxItems.concat([ { value: "JamesShipley", text: "SHIPLEY, James", checked: data.whichDirectorsWillBeSigningTheApplication and "JamesShipley" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
-      {% if data.whichDirectorAreYou != "AcmeLtd" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "AcmeLtd", text: "ACME LTD", checked: data.whichDirectorsWillBeSigningTheApplication and "AcmeLtd" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
-      {% endif %}
+  
 
       {# Adjust legend and hint #}
       {% if data.whichDirectorAreYou in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
