@@ -52,10 +52,10 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
       {# Adjust legend and hint #}
       {% if data.whichDirectorAreYou in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
         {% set legendText = "Which other directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 1 or more of these directors" %}
       {% else %}
         {% set legendText = "Which directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
       {% endif %}
 
       {# Render checkboxes #}
