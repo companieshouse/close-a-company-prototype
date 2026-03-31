@@ -12,35 +12,21 @@
     <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
       <h1 class="govuk-heading-l" style="margin: 0 auto; color: white;">
         Application signed <br>
-      </h1>
-      <p class="govuk-body-l" style="margin: 0 auto; color: white;">
-        The person making the application should notify you once it has been submitted.
+      </h1> 
+      <p><p class="govuk-body-l" style="margin: 0 auto; color: white;">
+        The person who started the application can now pay for and submit it
       </p>
     </div>
 
 
-    <p>We need to receive signatures from all signing directors before the person making the application can pay for and submit it. It may take some time for others to sign. You can check who has signed below.
-    
+    <p>The person who started the application should tell you when they have submitted it. 
    
-      <p> <strong> What to do next</p>
-       <p class="govuk-body">
-    <span style="color: black;">Once the application has been submitted, you will be able to download a signed PDF copy by signing back in to the Apply to strike off and dissolve a company service.</span>
-      <a href="https://find-and-update.company-information.service.gov.uk/close-a-company/search-company." 
-     target="_blank" 
-     rel="noopener noreferrer">
-    https://find-and-update.company-information.service.gov.uk/close-a-company/search-company.
-  </a>
-    </p>
+   <h2 class="govuk-heading-m">Directors must inform all interested parties</h2>
+       <p class="govuk-body">As the director, you must send a copy of this application to all interested parties within 7 days of making the application.
+      <p>When the person who started the application has submitted it, you'll be able to download a copy by signing back in to the <a href="https://find-and-update.company-information.service.gov.uk/close-a-company/" class="govuk-link">Apply to strike off and dissolve a company service</a>. Once we've accepted the application, we'll also publish a copy on the <a href="https://find-and-update.company-information.service.gov.uk/" class="govuk-link">Companies House public register</a>. This could take up to 2 working days from when it's submitted.
+</p>
 
-    <p>The directors must send this to all interested parties within 7 days of the application being submitted.</p>
-   <div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    It is a criminal offence not to tell all interested parties that an application has been made to close a company.
-  </strong>
-</div>
-    
+
     <p class="govuk-body">
     <span style="color: black;">Read the</span>
       <a href="https://www.gov.uk/strike-off-your-company-from-companies-register/close-down-your-company" 
@@ -50,7 +36,16 @@
   </a>
     </p>
 
-    <h2 class="govuk-heading-l">Application status</h2>
+   <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    It is a criminal offence not to tell all interested parties that an application has been made to close a company.
+  </strong>
+</div>
+    
+
+   <h2 class="govuk-heading-m">Application status</h2>
 
     <p>Refresh the page to see updated information. If you exit this page, you can return to it by signing in to the 
       <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
@@ -71,7 +66,7 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ data['signingPersonName'] or "Jane Doe" }}</td>
+          <td class="govuk-table__cell">{{ data['signingPersonName'] or "DOE, Jane" }}</td>
           <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "jane.doe@company.co.uk" }}</td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
           <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
