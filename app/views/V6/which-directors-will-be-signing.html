@@ -5,24 +5,6 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
 {% endblock %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner govuk-width-container">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        Beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
-      </span>
-    </p>
-  </div>
-
-  <!-- Right-aligned sign out with top and bottom borders -->
-<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
-  <span class="govuk-body-s">
-    {{user_email}}</strong>  
-    <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
-  </span>
-</div>
   {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" }) }}
 {% endblock %}
 
@@ -30,7 +12,7 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <form method="post" action="/V6/which-directors-will-be-signing">
+    <form method="post" action="/V5/which-directors-will-be-signing">
 
       {# Build checkbox items inline #}
       {% set checkboxItems = [] %}
@@ -47,15 +29,17 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
         {% set checkboxItems = checkboxItems.concat([ { value: "JamesShipley", text: "SHIPLEY, James", checked: data.whichDirectorsWillBeSigningTheApplication and "JamesShipley" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
-  
+      {% if data.whichDirectorAreYou != "AcmeLtd" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "AcmeLtd", text: "ACME LTD", checked: data.whichDirectorsWillBeSigningTheApplication and "AcmeLtd" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% endif %}
 
       {# Adjust legend and hint #}
       {% if data.whichDirectorAreYou in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
         {% set legendText = "Which other directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 1 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
       {% else %}
         {% set legendText = "Which directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
       {% endif %}
 
       {# Render checkboxes #}

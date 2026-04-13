@@ -5,24 +5,6 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <div class="govuk-phase-banner govuk-width-container">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        Beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
-      </span>
-    </p>
-  </div>
-
-  <!-- Right-aligned sign out with top and bottom borders -->
-<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
-  <span class="govuk-body-s">
-   {{user_email}}</strong>  
-    <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
-  </span>
-</div>
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -36,7 +18,7 @@
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-<form method="post" action="/V6/which-director-are-you">
+<form method="post" action="/V5/which-director-are-you">
 
 
 {% if (data['companyNumber'] == "12345678") %}
@@ -91,7 +73,28 @@
     {
       value: "JamesShipley",
       text: "SHIPLEY, James"
-
+    },
+    {
+      value: "AcmeLtd",
+      text: "ACME LTD",
+      conditional: {
+        html: '
+          <div class="govuk-form-group">
+            <p>You must be
+               authorised by this corporate director to sign the application on its behalf.
+            </p>
+            <label class="govuk-label" for="acmeDirectorName">
+              What is your full name?
+            </label>
+            <input
+              class="govuk-input"
+              id="acmeDirectorName"
+              name="acmeDirectorName"
+              type="text"
+              autocomplete="name">
+          </div>
+        '
+      }
     },
     {
       divider: "or"
