@@ -1,0 +1,256 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which director are you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% from "govuk/components/input/macro.njk" import govukInput %}
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+    <form method="post" action="/V6/which-director-are-you-search-test">
+
+      <h1 class="govuk-heading-l">
+        Which director are you?
+      </h1>
+
+
+    
+
+      {# --- Director search results only --- #}
+      {% set directorResults = [] %}
+
+      {% set directorResults = directorResults.concat([
+        {
+          value: "jane-doe-1982",
+          text: "DOE, Jane",
+          hint: { text: "Born March 1982 • Appointed June 2019" }
+        },
+        {
+          value: "jane-doe-1975",
+          text: "DOE, Jane",
+          hint: { text: "Born October 1975 • Appointed January 2021" }
+        },
+        {
+          value: "john-smith-1980",
+          text: "SMITH, John",
+          hint: { text: "Born April 1980 • Appointed May 2018" }
+        },
+        {
+          value: "john-smith-1980-2",
+          text: "SMITH, John",
+          hint: { text: "Born April 1980 • Appointed July 2022" }
+        }
+      ]) %}
+
+      {% for i in range(1,117) %}
+        {% set birthYear = 1970 + (i % 30) %}
+        {% set appointYear = 2010 + (i % 15) %}
+        {% set directorResults = directorResults.concat([{
+          value: "director-" + i,
+          text: "DIRECTOR, Test " + i,
+          hint: { text: "Born January " + birthYear + " • Appointed March " + appointYear }
+        }]) %}
+      {% endfor %}
+
+      {{ govukInput({
+        label: {
+          text: "Search for your name",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "Enter at least 2 letters of your first name or surname"
+        },
+        id: "directorSearch",
+        name: "directorSearch",
+        classes: "govuk-input",
+        autocomplete: "off",
+        spellcheck: false
+      }) }}
+
+
+      <div id="resultsSection" class="govuk-!-margin-bottom-6" style="display:none;">
+        {{ govukRadios({
+          idPrefix: "whichDirectorAreYou",
+          name: "whichDirectorAreYou",
+          fieldset: {
+            legend: {
+              text: "Select your name",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: directorResults
+        }) }}
+      </div>
+
+    <div class="govuk-!-margin-bottom-6">
+  {{ govukRadios({
+    idPrefix: "fallbackOption",
+    name: "fallbackOption",
+    items: [
+      {
+        value: "not-a-director",
+        text: "I am not a director of this company"
+      },
+      {
+        value: "corporate-director-representative",
+        text: "I am signing on behalf of ACME LTD",
+        conditional: {
+          html: '
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="representativeFullName">
+                Your full name
+              </label>
+              <input
+                class="govuk-input"
+                id="representativeFullName"
+                name="representativeFullName"
+                type="text"
+                autocomplete="name">
+            </div>
+          '
+        }
+      }
+    ]
+  }) }}
+</div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var searchInput = document.getElementById('directorSearch');
+  var searchStatus = document.getElementById('searchStatus');
+  var resultsSection = document.getElementById('resultsSection');
+
+  function getResultItems() {
+    return Array.from(document.querySelectorAll('#resultsSection .govuk-radios__item'));
+  }
+
+  function getResultRadios() {
+    return Array.from(document.querySelectorAll('input[name="whichDirectorAreYou"]'));
+  }
+
+  function getFallbackRadios() {
+    return Array.from(document.querySelectorAll('input[name="fallbackOption"]'));
+  }
+
+  function normaliseText(text) {
+    return text.replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  function clearResultSelections() {
+    getResultRadios().forEach(function (radio) {
+      radio.checked = false;
+    });
+  }
+
+  function clearFallbackSelections() {
+    getFallbackRadios().forEach(function (radio) {
+      radio.checked = false;
+    });
+  }
+
+  function clearHiddenSelections() {
+    getResultRadios().forEach(function (radio) {
+      var item = radio.closest('.govuk-radios__item');
+      if (item && item.style.display === 'none') {
+        radio.checked = false;
+      }
+    });
+  }
+
+  function updateResults() {
+    var filter = normaliseText(searchInput.value || '');
+    var totalMatches = 0;
+    var shownMatches = 0;
+    var minimumChars = 2;
+    var maxVisibleMatches = 20;
+    var resultItems = getResultItems();
+
+    if (filter.length < minimumChars) {
+      resultsSection.style.display = 'none';
+      searchStatus.textContent = 'Enter at least ' + minimumChars + ' letters to search.';
+      clearHiddenSelections();
+      return;
+    }
+
+    resultItems.forEach(function (item) {
+      var text = normaliseText(item.innerText);
+
+      if (text.indexOf(filter) !== -1) {
+        totalMatches++;
+
+        if (shownMatches < maxVisibleMatches) {
+          item.style.display = '';
+          shownMatches++;
+        } else {
+          item.style.display = 'none';
+        }
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    clearHiddenSelections();
+
+    if (totalMatches === 0) {
+      resultsSection.style.display = 'none';
+      searchStatus.textContent = 'No matching directors found. Use the option below if needed.';
+      return;
+    }
+
+    resultsSection.style.display = 'block';
+
+    if (totalMatches > maxVisibleMatches) {
+      searchStatus.textContent =
+        totalMatches + ' matches found. Showing the first ' + maxVisibleMatches + '. Refine your search to narrow the results.';
+    } else {
+      searchStatus.textContent =
+        totalMatches + ' matching director' + (totalMatches === 1 ? '' : 's') + ' found.';
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      clearResultSelections();
+      updateResults();
+    });
+  }
+
+  getFallbackRadios().forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      clearResultSelections();
+    });
+  });
+
+  document.addEventListener('change', function (event) {
+    if (event.target && event.target.name === 'whichDirectorAreYou') {
+      clearFallbackSelections();
+    }
+  });
+
+  updateResults();
+});
+</script>
+
+{% endblock %}

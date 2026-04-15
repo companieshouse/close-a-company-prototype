@@ -1,0 +1,197 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide directors' email addresses – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{ user_email }}
+      <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {# Self-contained 100-director test data #}
+      {% set selectedDirectors = [] %}
+
+      {% set selectedDirectors = selectedDirectors.concat([
+        "jane-doe-1982",
+        "jane-doe-1975",
+        "john-smith-1980",
+        "john-smith-1980-2"
+      ]) %}
+
+      {% for i in range(1,97) %}
+        {% set selectedDirectors = selectedDirectors.concat(["director-" + i]) %}
+      {% endfor %}
+
+      {% set selectedDirectors = selectedDirectors.concat(["acme-ltd"]) %}
+
+      <form action="/V6/provide-corporate-directors-emails-search-test" method="post">
+
+        <h1 class="govuk-heading-xl">
+          Provide directors' email addresses
+        </h1>
+
+        <p class="govuk-body">
+          We'll email each director you've selected, to ask them to sign the application online.
+        </p>
+
+        <div class="govuk-inset-text govuk-!-margin-bottom-6">
+          <h2 class="govuk-heading-s">Selected directors</h2>
+          <p class="govuk-body">{{ selectedDirectors | length }} directors selected</p>
+          <ul class="govuk-list govuk-!-margin-bottom-0">
+            {% for director in selectedDirectors %}
+              {% set displayName = "" %}
+              {% set displayHint = "" %}
+
+              {% if director == "jane-doe-1982" %}
+                {% set displayName = "DOE, Jane" %}
+                {% set displayHint = "Born March 1982 • Appointed June 2019" %}
+              {% elif director == "jane-doe-1975" %}
+                {% set displayName = "DOE, Jane" %}
+                {% set displayHint = "Born October 1975 • Appointed January 2021" %}
+              {% elif director == "john-smith-1980" %}
+                {% set displayName = "SMITH, John" %}
+                {% set displayHint = "Born April 1980 • Appointed May 2018" %}
+              {% elif director == "john-smith-1980-2" %}
+                {% set displayName = "SMITH, John" %}
+                {% set displayHint = "Born April 1980 • Appointed July 2022" %}
+              {% elif director == "acme-ltd" %}
+                {% set displayName = "ACME LTD" %}
+              {% elif "director-" in director %}
+                {% set i = director | replace("director-", "") | int %}
+                {% set birthYear = 1970 + (i % 30) %}
+                {% set appointYear = 2010 + (i % 15) %}
+                {% set displayName = "DIRECTOR, Test " + i %}
+                {% set displayHint = "Born January " + birthYear + " • Appointed March " + appointYear %}
+              {% else %}
+                {% set displayName = director %}
+              {% endif %}
+
+              <li>
+                <strong>{{ displayName }}</strong>
+                {% if displayHint %}<br><span class="govuk-hint">{{ displayHint }}</span>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% for director in selectedDirectors %}
+          {% set displayName = "" %}
+          {% set displayHint = "" %}
+
+          {% if director == "jane-doe-1982" %}
+            {% set displayName = "DOE, Jane" %}
+            {% set displayHint = "Born March 1982 • Appointed June 2019" %}
+          {% elif director == "jane-doe-1975" %}
+            {% set displayName = "DOE, Jane" %}
+            {% set displayHint = "Born October 1975 • Appointed January 2021" %}
+          {% elif director == "john-smith-1980" %}
+            {% set displayName = "SMITH, John" %}
+            {% set displayHint = "Born April 1980 • Appointed May 2018" %}
+          {% elif director == "john-smith-1980-2" %}
+            {% set displayName = "SMITH, John" %}
+            {% set displayHint = "Born April 1980 • Appointed July 2022" %}
+          {% elif director == "acme-ltd" %}
+            {% set displayName = "ACME LTD" %}
+          {% elif "director-" in director %}
+            {% set i = director | replace("director-", "") | int %}
+            {% set birthYear = 1970 + (i % 30) %}
+            {% set appointYear = 2010 + (i % 15) %}
+            {% set displayName = "DIRECTOR, Test " + i %}
+            {% set displayHint = "Born January " + birthYear + " • Appointed March " + appointYear %}
+          {% else %}
+            {% set displayName = director %}
+          {% endif %}
+
+          <div class="govuk-!-margin-bottom-7">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-2">{{ displayName }}</h2>
+
+            {% if displayHint %}
+              <p class="govuk-hint govuk-!-margin-bottom-3">{{ displayHint }}</p>
+            {% endif %}
+
+            {% if director == "acme-ltd" %}
+              <p class="govuk-body">
+                Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
+              </p>
+
+              {% set nameKey = "authorisedSignerName-" + director %}
+              {% set emailKey = "authorisedSignerEmail-" + director %}
+
+              {{ govukInput({
+                label: {
+                  text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
+                },
+                id: nameKey,
+                name: nameKey,
+                type: "text",
+                autocomplete: "name",
+                value: data[nameKey]
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "What is the email address for the authorised person who will sign on behalf of ACME LTD?"
+                },
+                id: emailKey,
+                name: emailKey,
+                type: "email",
+                autocomplete: "email",
+                spellcheck: false,
+                value: data[emailKey]
+              }) }}
+
+            {% else %}
+              {% set emailKey = "directorEmail-" + director %}
+
+              {{ govukInput({
+                label: {
+                  text: "What is the email address for " + displayName + "?"
+                },
+                id: emailKey,
+                name: emailKey,
+                type: "email",
+                autocomplete: "email",
+                spellcheck: false,
+                value: data[emailKey]
+              }) }}
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

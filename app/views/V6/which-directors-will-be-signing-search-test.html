@@ -1,0 +1,264 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Which directors will sign the application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    {% from "govuk/components/input/macro.njk" import govukInput %}
+    {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+    <form method="post" action="/V6/which-directors-will-be-signing-search-test">
+
+      {% set checkboxItems = [] %}
+
+      {% set checkboxItems = checkboxItems.concat([
+        {
+          value: "jane-doe-1982",
+          text: "DOE, Jane",
+          hint: { text: "Born March 1982 • Appointed June 2019" },
+          checked: data.whichDirectorsWillBeSigningTheApplication and "jane-doe-1982" in data.whichDirectorsWillBeSigningTheApplication
+        },
+        {
+          value: "jane-doe-1975",
+          text: "DOE, Jane",
+          hint: { text: "Born October 1975 • Appointed January 2021" },
+          checked: data.whichDirectorsWillBeSigningTheApplication and "jane-doe-1975" in data.whichDirectorsWillBeSigningTheApplication
+        },
+        {
+          value: "john-smith-1980",
+          text: "SMITH, John",
+          hint: { text: "Born April 1980 • Appointed May 2018" },
+          checked: data.whichDirectorsWillBeSigningTheApplication and "john-smith-1980" in data.whichDirectorsWillBeSigningTheApplication
+        },
+        {
+          value: "john-smith-1980-2",
+          text: "SMITH, John",
+          hint: { text: "Born April 1980 • Appointed July 2022" },
+          checked: data.whichDirectorsWillBeSigningTheApplication and "john-smith-1980-2" in data.whichDirectorsWillBeSigningTheApplication
+        }
+      ]) %}
+
+      {% for i in range(1,117) %}
+        {% set birthYear = 1970 + (i % 30) %}
+        {% set appointYear = 2010 + (i % 15) %}
+        {% set checkboxItems = checkboxItems.concat([{
+          value: "director-" + i,
+          text: "DIRECTOR, Test " + i,
+          hint: { text: "Born January " + birthYear + " • Appointed March " + appointYear },
+          checked: data.whichDirectorsWillBeSigningTheApplication and ("director-" + i) in data.whichDirectorsWillBeSigningTheApplication
+        }]) %}
+      {% endfor %}
+
+      {% set checkboxItems = checkboxItems.concat([
+        {
+          value: "acme-ltd",
+          text: "ACME LTD",
+          checked: data.whichDirectorsWillBeSigningTheApplication and "acme-ltd" in data.whichDirectorsWillBeSigningTheApplication
+        }
+      ]) %}
+
+      {% set filteredCheckboxItems = [] %}
+      {% for item in checkboxItems %}
+        {% if item.value != data.whichDirectorAreYou %}
+          {% set filteredCheckboxItems = filteredCheckboxItems.concat([item]) %}
+        {% endif %}
+      {% endfor %}
+
+      <h1 class="govuk-heading-l">
+        Which directors will sign the application?
+      </h1>
+
+      <p class="govuk-body">
+        More than half of the directors must sign, so select all directors who will sign the application.
+      </p>
+
+      {{ govukInput({
+        label: {
+          text: "Search for directors",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "Enter at least 2 letters of a first name, surname or company name"
+        },
+        id: "directorSigningSearch",
+        name: "directorSigningSearch",
+        classes: "govuk-input",
+        autocomplete: "off",
+        spellcheck: false
+      }) }}
+
+
+
+      <p id="selectedCount" class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2" style="display:none;">
+        0 directors selected
+      </p>
+
+      <div id="selectedDirectorsSummary" class="govuk-inset-text govuk-!-margin-bottom-4" style="display:none;">
+        <h2 class="govuk-heading-s">Selected directors</h2>
+        <ul id="selectedDirectorsList" class="govuk-list"></ul>
+      </div>
+
+      <div id="signingResultsSection" class="govuk-!-margin-bottom-6" style="display:none;">
+        {{ govukCheckboxes({
+          name: "whichDirectorsWillBeSigningTheApplication",
+          fieldset: {
+            legend: {
+              text: "Select the directors who will sign",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: filteredCheckboxItems
+        }) }}
+      </div>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If a director cannot sign the application themselves
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>Directors who are people must sign the application themselves. Nobody can sign on their behalf.</p>
+          <p>If there are not enough directors who can sign, you'll need to
+            <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
+               class="govuk-link" rel="noreferrer noopener" target="_blank">
+              make changes to the company directors
+            </a> before continuing.</p>
+        </div>
+      </details>
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var searchInput = document.getElementById('directorSigningSearch');
+  var searchStatus = document.getElementById('signingSearchStatus');
+  var resultsSection = document.getElementById('signingResultsSection');
+
+  function getCheckboxItems() {
+    return Array.from(document.querySelectorAll('#signingResultsSection .govuk-checkboxes__item'));
+  }
+
+  function getCheckboxInputs() {
+    return Array.from(document.querySelectorAll('input[name="whichDirectorsWillBeSigningTheApplication"]'));
+  }
+
+  function normaliseText(text) {
+    return text.replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  function updateSelectedSummary() {
+    var selectedInputs = Array.from(document.querySelectorAll('input[name="whichDirectorsWillBeSigningTheApplication"]:checked'));
+    var countElement = document.getElementById('selectedCount');
+    var summaryElement = document.getElementById('selectedDirectorsSummary');
+    var listElement = document.getElementById('selectedDirectorsList');
+
+    if (!countElement || !summaryElement || !listElement) return;
+
+    var count = selectedInputs.length;
+    countElement.textContent = count + ' director' + (count === 1 ? '' : 's') + ' selected';
+    listElement.innerHTML = '';
+
+    selectedInputs.forEach(function (input) {
+      var item = input.closest('.govuk-checkboxes__item');
+      if (!item) return;
+
+      var label = item.querySelector('.govuk-label');
+      var hint = item.querySelector('.govuk-hint');
+
+      var li = document.createElement('li');
+
+      if (hint) {
+        li.textContent = label.innerText.trim() + ' — ' + hint.innerText.trim();
+      } else {
+        li.textContent = label.innerText.trim();
+      }
+
+      listElement.appendChild(li);
+    });
+
+    if (count > 0) {
+      countElement.style.display = 'block';
+      summaryElement.style.display = 'block';
+    } else {
+      countElement.style.display = 'none';
+      summaryElement.style.display = 'none';
+    }
+  }
+
+  function updateResults() {
+    var filter = normaliseText(searchInput.value || '');
+    var totalMatches = 0;
+    var shownMatches = 0;
+    var minimumChars = 2;
+    var maxVisibleMatches = 20;
+    var checkboxItems = getCheckboxItems();
+
+    if (filter.length < minimumChars) {
+      resultsSection.style.display = 'none';
+      searchStatus.textContent = 'Enter at least ' + minimumChars + ' letters to search.';
+      return;
+    }
+
+    checkboxItems.forEach(function (item) {
+      var text = normaliseText(item.innerText);
+
+      if (text.indexOf(filter) !== -1) {
+        totalMatches++;
+
+        if (shownMatches < maxVisibleMatches) {
+          item.style.display = '';
+          shownMatches++;
+        } else {
+          item.style.display = 'none';
+        }
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    if (totalMatches === 0) {
+      resultsSection.style.display = 'none';
+      searchStatus.textContent = 'No matching directors found.';
+      return;
+    }
+
+    resultsSection.style.display = 'block';
+
+    if (totalMatches > maxVisibleMatches) {
+      searchStatus.textContent =
+        totalMatches + ' matches found. Showing the first ' + maxVisibleMatches + '. Refine your search to narrow the results.';
+    } else {
+      searchStatus.textContent =
+        totalMatches + ' matching director' + (totalMatches === 1 ? '' : 's') + ' found.';
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', updateResults);
+  }
+
+  document.addEventListener('change', function (event) {
+    if (event.target && event.target.name === 'whichDirectorsWillBeSigningTheApplication') {
+      updateSelectedSummary();
+    }
+  });
+
+  updateResults();
+  updateSelectedSummary();
+});
+</script>
+{% endblock %}
