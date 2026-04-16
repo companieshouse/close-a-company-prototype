@@ -440,35 +440,24 @@ router.post('/V6/provide-single-director-email', function (req, res) {
 // --------------------
 // Which director are you search test
 // --------------------
-router.post('/V6/which-director-are-you-search-test', function (req, res) {
-  const isDirector = req.body.isDirector
-  const whichDirectorAreYou = req.body.whichDirectorAreYou
-  const fallbackOption = req.body.fallbackOption
+router.post('/V6/which-directors-will-be-signing-search-test', function (req, res) {
 
-  if (!isDirector) {
-    return res.render('V6/which-director-are-you-search-test', {
-      error: 'Select whether you are a director of this company'
-    })
+  let selected = req.session.data['whichDirectorsWillBeSigningTheApplication'];
+
+  // No selection → send back to page
+  if (!selected) {
+    return res.redirect('/V6/which-directors-will-be-signing-search-test');
   }
 
-  if (isDirector === 'no') {
-    return res.redirect('/V6/not-a-director-search-test')
+  // Convert single selection to array
+  if (!Array.isArray(selected)) {
+    selected = [selected];
   }
 
-  if (isDirector === 'yes' && whichDirectorAreYou) {
-    req.session.data.selectedDirector = whichDirectorAreYou
-    return res.redirect('/V6/next-step-search-test')
-  }
+  // Save back as array
+  req.session.data['whichDirectorsWillBeSigningTheApplication'] = selected;
 
-  if (isDirector === 'yes' && fallbackOption === 'corporate-director-representative') {
-    req.session.data.representativeFullName = req.body.representativeFullName
-    return res.redirect('/V6/corporate-director-representative-search-test')
-  }
+  // Go to next page
+  res.redirect('/V6/provide-directors-email-addresses-search-test');
 
-  return res.render('V6/which-director-are-you-search-test', {
-    error: 'Select your name or choose an option if you cannot find it'
-  })
-})
-
-
-
+});
