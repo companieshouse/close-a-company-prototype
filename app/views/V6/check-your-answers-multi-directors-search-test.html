@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{ user_email }}
+      <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form action="/V6/check-your-answers-multi-directors-search-test" method="post" novalidate>
+
+      {% set allDirectors = [
+        { value: "EllaAdams_1988_05_31", text: "ADAMS, Ella", dob: "May 1988" },
+        { value: "AriaAlexander_1994_01_21", text: "ALEXANDER, Aria", dob: "January 1994" },
+        { value: "HarryBaker_1989_06_12", text: "BAKER, Harry", dob: "June 1989" },
+        { value: "RosieBailey_1983_01_12", text: "BAILEY, Rosie", dob: "January 1983" },
+        { value: "AlfieBarnes_1977_08_13", text: "BARNES, Alfie", dob: "August 1977" },
+        { value: "LoganBennett_1975_06_21", text: "BENNETT, Logan", dob: "June 1975" },
+        { value: "RubyBell_1981_11_20", text: "BELL, Ruby", dob: "November 1981" },
+        { value: "MichaelBrown_1977_06_30", text: "BROWN, Michael", dob: "June 1977" },
+        { value: "ArthurBrooks_1971_02_05", text: "BROOKS, Arthur", dob: "February 1971" },
+        { value: "DavidButler_1989_08_25", text: "BUTLER, David", dob: "August 1989" },
+        { value: "IslaCampbell_1994_11_06", text: "CAMPBELL, Isla", dob: "November 1994" },
+        { value: "ThomasCarter_1991_08_05", text: "CARTER, Thomas", dob: "August 1991" },
+        { value: "PoppyCollins_1973_03_21", text: "COLLINS, Poppy", dob: "March 1973" },
+        { value: "EvaColeman_1980_11_17", text: "COLEMAN, Eva", dob: "November 1980" },
+        { value: "IvyCooper_1985_03_06", text: "COOPER, Ivy", dob: "March 1985" },
+        { value: "JessicaCook_1979_09_27", text: "COOK, Jessica", dob: "September 1979" },
+        { value: "TylerCruz_1991_11_21", text: "CRUZ, Tyler", dob: "November 1991" },
+        { value: "SebastianDiaz_1972_04_23", text: "DIAZ, Sebastian", dob: "April 1972" },
+        { value: "JaneDoe_1973_02_14", text: "DOE, Jane", dob: "February 1973" },
+        { value: "HenryEdwards_1972_02_10", text: "EDWARDS, Henry", dob: "February 1972" },
+        { value: "MuhammadEllis_1987_07_06", text: "ELLIS, Muhammad", dob: "July 1987" },
+        { value: "SophiaEvans_1980_09_04", text: "EVANS, Sophia", dob: "September 1980" },
+        { value: "GeorgiaFisher_1986_06_25", text: "FISHER, Georgia", dob: "June 1986" },
+        { value: "JosephFlores_1987_06_03", text: "FLORES, Joseph", dob: "June 1987" },
+        { value: "PenelopeFord_1975_07_26", text: "FORD, Penelope", dob: "July 1975" },
+        { value: "LeahFreeman_1971_04_18", text: "FREEMAN, Leah", dob: "April 1971" },
+        { value: "SaraFrancis_1974_03_25", text: "FRANCIS, Sara", dob: "March 1974" },
+        { value: "EmmaGonzales_1992_11_29", text: "GONZALES, Emma", dob: "November 1992" },
+        { value: "JasmineGomez_1994_02_24", text: "GOMEZ, Jasmine", dob: "February 1994" },
+        { value: "MollyGraham_1977_09_18", text: "GRAHAM, Molly", dob: "September 1977" },
+        { value: "LucasGray_1992_10_22", text: "GRAY, Lucas", dob: "October 1992" },
+        { value: "LilyGreen_1986_03_09", text: "GREEN, Lily", dob: "March 1986" },
+        { value: "EsmeGriffin_1971_03_12", text: "GRIFFIN, Esme", dob: "March 1971" },
+        { value: "JackHall_1987_04_20", text: "HALL, Jack", dob: "April 1987" },
+        { value: "AlexHamilton_1976_08_07", text: "HAMILTON, Alex", dob: "August 1976" },
+        { value: "SummerHarrison_1988_08_17", text: "HARRISON, Summer", dob: "August 1988" },
+        { value: "VioletHayes_1973_05_04", text: "HAYES, Violet", dob: "May 1973" },
+        { value: "RyanHenderson_1979_10_06", text: "HENDERSON, Ryan", dob: "October 1979" },
+        { value: "AubreyHicks_1979_12_15", text: "HICKS, Aubrey", dob: "December 1979" },
+        { value: "BellaHughes_1986_05_22", text: "HUGHES, Bella", dob: "May 1986" },
+        { value: "MasonHunter_1978_11_04", text: "HUNTER, Mason", dob: "November 1978" },
+        { value: "ArchieHoward_1988_06_08", text: "HOWARD, Archie", dob: "June 1988" },
+        { value: "MaxJames_1994_12_14", text: "JAMES, Max", dob: "December 1994" },
+        { value: "AdamJenkins_1981_12_28", text: "JENKINS, Adam", dob: "December 1981" },
+        { value: "BenjaminJohnson_1983_12_08", text: "JOHNSON, Benjamin", dob: "December 1983" },
+        { value: "LukeJordan_1983_03_22", text: "JORDAN, Luke", dob: "March 1983" },
+        { value: "MillieKelly_1972_03_18", text: "KELLY, Millie", dob: "March 1972" },
+        { value: "LaylaLong_1984_03_31", text: "LONG, Layla", dob: "March 1984" },
+        { value: "ClaraMcdonald_1990_10_10", text: "MCDONALD, Clara", dob: "October 1990" },
+        { value: "NoraMarshall_1992_12_02", text: "MARSHALL, Nora", dob: "December 1992" },
+        { value: "MiaMitchell_1992_09_16", text: "MITCHELL, Mia", dob: "September 1992" },
+        { value: "JoshuaMorgan_1980_10_09", text: "MORGAN, Joshua", dob: "October 1980" },
+        { value: "FreddieMorris_1976_06_24", text: "MORRIS, Freddie", dob: "June 1976" },
+        { value: "BlakeMurray_1995_03_07", text: "MURRAY, Blake", dob: "March 1995" },
+        { value: "FinnMyers_1974_06_15", text: "MYERS, Finn", dob: "June 1974" },
+        { value: "AvaNelson_1990_07_23", text: "NELSON, Ava", dob: "July 1990" },
+        { value: "RoryOrtiz_1993_01_13", text: "ORTIZ, Rory", dob: "January 1993" },
+        { value: "DaisyOwens_1984_04_03", text: "OWENS, Daisy", dob: "April 1984" },
+        { value: "AmeliaParker_1971_01_29", text: "PARKER, Amelia", dob: "January 1971" },
+        { value: "GeorgePerez_1993_10_27", text: "PEREZ, George", dob: "October 1993" },
+        { value: "AlicePeterson_1991_09_11", text: "PETERSON, Alice", dob: "September 1991" },
+        { value: "OscarPhillips_1995_12_18", text: "PHILLIPS, Oscar", dob: "December 1995" },
+        { value: "NathanPowell_1983_02_20", text: "POWELL, Nathan", dob: "February 1983" },
+        { value: "ElsiePrice_1974_05_10", text: "PRICE, Elsie", dob: "May 1974" },
+        { value: "HannahRamirez_1993_11_03", text: "RAMIREZ, Hannah", dob: "November 1993" },
+        { value: "CharlieReed_1978_08_16", text: "REED, Charlie", dob: "August 1978" },
+        { value: "OwenReynolds_1985_05_14", text: "REYNOLDS, Owen", dob: "May 1985" },
+        { value: "NoahRichardson_1986_04_17", text: "RICHARDSON, Noah", dob: "April 1986" },
+        { value: "ChloeRoberts_1982_11_26", text: "ROBERTS, Chloe", dob: "November 1982" },
+        { value: "EvieRogers_1977_07_05", text: "ROGERS, Evie", dob: "July 1977" },
+        { value: "PhoebeRoss_1978_09_24", text: "ROSS, Phoebe", dob: "September 1978" },
+        { value: "WilliamRivera_1984_02_23", text: "RIVERA, William", dob: "February 1984" },
+        { value: "CalebRussell_1995_02_01", text: "RUSSELL, Caleb", dob: "February 1995" },
+        { value: "SophieSanchez_1975_05_13", text: "SANCHEZ, Sophie", dob: "May 1975" },
+        { value: "JacobSanders_1973_04_29", text: "SANDERS, Jacob", dob: "April 1973" },
+        { value: "JamesShipley_1975_04_07", text: "SHIPLEY, James", dob: "April 1975" },
+        { value: "WillowSimmons_1990_09_07", text: "SIMMONS, Willow", dob: "September 1990" },
+        { value: "ZacharySimpson_1974_07_21", text: "SIMPSON, Zachary", dob: "July 1974" },
+        { value: "AlexSmith_1972_01_03", text: "SMITH, Alex", dob: "January 1972" },
+        { value: "AlexSmith_1980_12_20", text: "SMITH, Alex", dob: "December 1980" },
+        { value: "ElizaStevens_1975_08_01", text: "STEVENS, Eliza", dob: "August 1975" },
+        { value: "LeoStewart_1974_04_02", text: "STEWART, Leo", dob: "April 1974" },
+        { value: "ReubenSullivan_1978_10_29", text: "SULLIVAN, Reuben", dob: "October 1978" },
+        { value: "OliviaTaylor_1978_07_11", text: "TAYLOR, Olivia", dob: "July 1978" },
+        { value: "MatthewThomas_1981_10_15", text: "THOMAS, Matthew", dob: "October 1981" },
+        { value: "TheoTorres_1990_08_30", text: "TORRES, Theo", dob: "August 1990" },
+        { value: "EmilyTurner_1976_05_19", text: "TURNER, Emily", dob: "May 1976" },
+        { value: "JulianTucker_1976_09_12", text: "TUCKER, Julian", dob: "September 1976" },
+        { value: "GraceWalker_1984_01_17", text: "WALKER, Grace", dob: "January 1984" },
+        { value: "ErinWallace_1979_11_09", text: "WALLACE, Erin", dob: "November 1979" },
+        { value: "MayaWard_1989_07_19", text: "WARD, Maya", dob: "July 1989" },
+        { value: "LunaWashington_1988_07_14", text: "WASHINGTON, Luna", dob: "July 1988" },
+        { value: "ZoeWatson_1995_01_25", text: "WATSON, Zoe", dob: "January 1995" },
+        { value: "SiennaWebb_1973_06_10", text: "WEBB, Sienna", dob: "June 1973" },
+        { value: "ElliotWells_1972_05_29", text: "WELLS, Elliot", dob: "May 1972" },
+        { value: "ImogenWest_1982_02_11", text: "WEST, Imogen", dob: "February 1982" },
+        { value: "DanielWilson_1979_08_22", text: "WILSON, Daniel", dob: "August 1979" },
+        { value: "MatildaWood_1976_07_02", text: "WOOD, Matilda", dob: "July 1976" },
+        { value: "ConnorWoods_1981_01_31", text: "WOODS, Connor", dob: "January 1981" },
+        { value: "SamuelWright_1985_02_28", text: "WRIGHT, Samuel", dob: "February 1985" },
+        { value: "AcmeLtd", text: "ACME LTD", dob: "" }
+      ] %}
+
+      {% set selectedDirectors = data.whichDirectorsWillBeSigningTheApplication or [] %}
+      {% if selectedDirectors is string %}
+        {% set selectedDirectors = [selectedDirectors] %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">Check your answers</h1>
+
+      {% for selectedValue in selectedDirectors %}
+        {% for director in allDirectors %}
+          {% if director.value == selectedValue %}
+
+            {% set emailKey = "directorEmail-" + director.value %}
+            {% set nameKey = "authorisedSignerName-" + director.value %}
+
+            {% set changeHref = "/V6/provide-corporate-directors-emails-search-test" %}
+
+            <h2 class="govuk-heading-m govuk-!-margin-top-6">
+              {{ director.text }}
+            </h2>
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: { text: "Name" },
+                  value: {
+                    text:
+                      data[nameKey] if director.value == "AcmeLtd"
+                      else director.text
+                  }
+                },
+                {
+                  key: { text: "Date of birth" },
+                  value: { text: director.dob }
+                } if director.value != "AcmeLtd",
+                {
+                  key: { text: "Email address" },
+                  value: {
+                    text:
+                      data["authorisedSignerEmail-" + director.value] if director.value == "AcmeLtd"
+                      else data[emailKey]
+                  },
+                  actions: {
+                    items: [
+                      {
+                        text: "Change",
+                        href: changeHref,
+                        visuallyHiddenText: "email for " + director.text
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) }}
+
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+
+      <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
+        <a class="govuk-link" href="/V6/which-directors-will-be-signing-search-test">
+          Change which directors will sign
+        </a>
+      </p>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

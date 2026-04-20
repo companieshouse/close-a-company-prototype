@@ -436,28 +436,101 @@ router.post('/V6/pdf-enter-password', function (req, res) {
 router.post('/V6/provide-single-director-email', function (req, res) {
   res.redirect('/V6/check-your-answers-single-director-acsp')
 })
+// --------------------
+// Which directors will be signing (search test) - GET
+// --------------------
+router.get('/V6/which-directors-will-be-signing-search-test', function (req, res) {
+  res.render('V6/which-directors-will-be-signing-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
 
 // --------------------
-// Which director are you search test
+// Which directors will be signing (search test) - POST
 // --------------------
 router.post('/V6/which-directors-will-be-signing-search-test', function (req, res) {
+  let selected = req.body.whichDirectorsWillBeSigningTheApplication || []
 
-  let selected = req.session.data['whichDirectorsWillBeSigningTheApplication'];
-
-  // No selection → send back to page
-  if (!selected) {
-    return res.redirect('/V6/which-directors-will-be-signing-search-test');
-  }
-
-  // Convert single selection to array
   if (!Array.isArray(selected)) {
-    selected = [selected];
+    selected = [selected]
   }
 
-  // Save back as array
-  req.session.data['whichDirectorsWillBeSigningTheApplication'] = selected;
+  req.session.data.whichDirectorsWillBeSigningTheApplication = selected
 
-  // Go to next page
-  res.redirect('/V6/provide-directors-email-addresses-search-test');
+  res.redirect('/V6/provide-corporate-directors-emails-search-test')
+})
 
-});
+// --------------------
+// Provide directors' email addresses (search test) - GET
+// --------------------
+router.get('/V6/provide-corporate-directors-emails-search-test', function (req, res) {
+  res.render('V6/provide-corporate-directors-emails-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
+
+// --------------------
+// Provide directors' email addresses (search test) - POST
+// --------------------
+router.post('/V6/provide-corporate-directors-emails-search-test', function (req, res) {
+  let selectedDirectors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+
+  if (!Array.isArray(selectedDirectors)) {
+    selectedDirectors = [selectedDirectors]
+  }
+
+  selectedDirectors.forEach(function (directorValue) {
+    if (directorValue === 'AcmeLtd') {
+      req.session.data['authorisedSignerName-' + directorValue] =
+        req.body['authorisedSignerName-' + directorValue]
+
+      req.session.data['authorisedSignerEmail-' + directorValue] =
+        req.body['authorisedSignerEmail-' + directorValue]
+    } else {
+      req.session.data['directorEmail-' + directorValue] =
+        req.body['directorEmail-' + directorValue]
+    }
+  })
+
+  res.redirect('/V6/check-your-answers-multi-directors-search-test')
+})
+
+// --------------------
+// Check your answers (search test)
+// --------------------
+router.get('/V6/check-your-answers-multi-directors-search-test', function (req, res) {
+  res.render('V6/check-your-answers-multi-directors-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
+
+router.post('/V6/check-your-answers-multi-directors-search-test', function (req, res) {
+  res.redirect('/V6/sign-the-application-search-test')
+})
+
+// --------------------
+// Sign the application (search test)
+// --------------------
+router.get('/V6/sign-the-application-search-test', function (req, res) {
+  res.render('V6/sign-the-application-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
+
+router.post('/V6/sign-the-application-search-test', function (req, res) {
+  res.redirect('/V6/wait-screen-other-directors-must-sign-multi-director-search-test')
+})
+
+// --------------------
+// Directors must sign (search test)
+// --------------------
+router.get('/V6/directors-must-sign-search-test', function (req, res) {
+  res.render('V6/directors-must-sign-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
