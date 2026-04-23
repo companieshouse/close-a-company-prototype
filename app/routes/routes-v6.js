@@ -534,3 +534,42 @@ router.get('/V6/directors-must-sign-search-test', function (req, res) {
     data: req.session.data || {}
   })
 })
+
+// --------------------
+// Which director are you? (search test) - GET
+// --------------------
+router.get('/V6/which-director-are-you-search-test', function (req, res) {
+  res.render('V6/which-director-are-you-search-test', {
+    user_email: req.session.user_email,
+    data: req.session.data || {}
+  })
+})
+
+// --------------------
+// Which director are you? (search test) - POST
+// --------------------
+router.post('/V6/which-director-are-you-search-test', function (req, res) {
+  const companyNumber = req.session.data.companyNumber
+  const whichDirectorAreYou = req.body.whichDirectorAreYou
+
+  req.session.data.whichDirectorAreYou = whichDirectorAreYou
+
+  // store corporate director authorised person name if entered
+  if (whichDirectorAreYou === 'AcmeLtd') {
+    req.session.data.acmeDirectorName = req.body.acmeDirectorName
+  }
+
+  if (companyNumber === '12345678') {
+    if (whichDirectorAreYou === 'JaneDoe_1980_04_12') {
+      return res.redirect('/V6/sign-the-application-search-test')
+    }
+
+    if (whichDirectorAreYou === 'iAmNotADirectorOfThisCompany') {
+      return res.redirect('/V6/provide-single-director-email')
+    }
+
+    return res.redirect('/V6/which-directors-will-be-signing-search-test')
+  }
+
+  return res.redirect('/V6/which-directors-will-be-signing-search-test')
+})

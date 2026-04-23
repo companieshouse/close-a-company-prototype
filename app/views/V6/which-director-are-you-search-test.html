@@ -43,11 +43,8 @@
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="whichDirectorAreYou-2" name="whichDirectorAreYou" type="radio" value="JaneDoe_1980_04_12">
                 <label class="govuk-label govuk-radios__label" for="whichDirectorAreYou-2">
-                  Jane Doe
+                  Jane Doe (April 1980)
                 </label>
-                <div class="govuk-hint govuk-radios__hint">
-                  April 1980
-                </div>
               </div>
             </div>
           </fieldset>
@@ -188,11 +185,8 @@
                     value="{{ director.value }}"
                   >
                   <label class="govuk-label govuk-radios__label" for="whichDirectorAreYou-{{ loop.index }}">
-                    {{ director.text }}
+                    {{ director.text }} ({{ director.dob }})
                   </label>
-                  <div class="govuk-hint govuk-radios__hint">
-                    {{ director.dob }}
-                  </div>
                 </div>
               {% endfor %}
 
