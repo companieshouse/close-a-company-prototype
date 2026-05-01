@@ -32,7 +32,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Company bank account access</h1>
+      <h1 class="govuk-heading-l">Access to company bank accounts and other assets</h1>
 
       {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
@@ -40,7 +40,8 @@
 
       <form method="post" action="/V6/stop-screen-bank-account">
         {{ govukWarningText({
-          text: "You will not be able to access money in the company bank accounts, or other company assets, once the company is dissolved.",
+          text: "You'll lose access to money in the company bank accounts, and other company assets, once the company is dissolved.",
+
           iconFallbackText: "Warning"
         }) }}
 
@@ -64,7 +65,11 @@
           ]
         }) }}-->
 
-<p class="govuk-body">Any money still in the accounts, and any other assets, will pass to the Crown. You'll have to restore the company to get anything back.</p>
+<p class="govuk-body">The directors or members should deal with any of the assets of the company before completing this application, or soon after applying. For example, close any bank accounts and share assets among shareholders.</p>
+
+<p>The process of closing a company usually takes around 2 months, unless there are any objections. After this time, any money still in the accounts, and any other assets, will automatically pass to the Crown. We cannot tell you the exact date when this will happen.</p>
+
+<p>If there are any assets remaining after dissolution and strike off, you'll have to restore the company by court order to get anything back. This is a costly and time-consuming process.</p>
 
 <p class="govuk-body">By selecting continue, you are confirming that you have read and understood this information.</p>
 
