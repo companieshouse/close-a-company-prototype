@@ -232,7 +232,7 @@ router.get('/V6/who-to-tell', function (req, res) {
 
 // --------------------
 router.post('/V6/sign-in-to-ch', function (req, res) {
-  res.redirect('/V6/gov-one-log-in')
+  res.redirect('/V6/stop-screen-bank-account')
 })
 
 // --------------------
