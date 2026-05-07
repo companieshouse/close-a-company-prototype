@@ -21,6 +21,8 @@
 
     <form method="post" action="/V6/pdf-sign-in">
 
+      <input type="hidden" name="source" value="{{ source }}">
+
       {% if errors %}
         {{ govukErrorSummary({
           titleText: "There is a problem",
