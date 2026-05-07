@@ -58,8 +58,6 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Name</th>
           <th scope="col" class="govuk-table__header">Email</th>
-          <th scope="col" class="govuk-table__header">Change</th>
-          <th scope="col" class="govuk-table__header">Resend</th>
           <th scope="col" class="govuk-table__header">Signed</th>
         </tr>
       </thead>
@@ -67,12 +65,10 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['signingPersonName'] or "DOE, Jane" }}</td>
           <td class="govuk-table__cell">{{ data['directorEmail'] or data['signingPersonEmail'] or "jane.doe@company.co.uk" }}</td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Change</a></td>
-          <td class="govuk-table__cell"><a class="govuk-link" href="#">Resend email</a></td>
           <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">SIGNED</strong></td>
         </tr>
 
-        </tr>
+        
       </tbody>
     </table>
 
