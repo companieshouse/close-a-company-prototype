@@ -1,0 +1,109 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div style="border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      <a href="/v6/email-address-not-authorised"
+         style="color: inherit; text-decoration: none; display: inline;">
+        <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>
+      </a>
+
+      <a class="govuk-link"
+         href="/v6/sign-in-to-ch-or-one-login"
+         style="margin-left: 10px;">
+        Sign out
+      </a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-m">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
+
+    <h1 class="govuk-heading-l">Confirm you are Sara Francis</h1>
+
+    <p class="govuk-body">
+      You’re signing this application as <strong>Sara Francis</strong>.
+    </p>
+
+    <p class="govuk-body">
+      The email address you used to sign in does not match the email address given for you in the application.
+    </p>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Signed in email address"
+          },
+          value: {
+            text: user_email or "SFrancis@email.co.uk"
+          }
+        },
+        {
+          key: {
+            text: "Email address on application"
+          },
+          value: {
+            text: "francis_s@email.com"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">
+      If you continue, we’ll update the email address we have for Sara Francis to <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>.
+    </p>
+
+    <form action="#" method="post">
+
+      {{ govukCheckboxes({
+        name: "confirmDirectorIdentity",
+        items: [
+          {
+            value: "confirmed",
+            text: "I confirm that I am Sara Francis."
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="/v6/sign-in-to-ch-or-one-login" class="govuk-link">
+        Sign in with a different email address
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
