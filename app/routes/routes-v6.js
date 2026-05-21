@@ -1,14 +1,26 @@
-// For guidance on how to create routes see:
-// https://prototype-kit.service.gov.uk/docs/create-routes
-
 const express = require('express')
 const router = express.Router()
 
 // --------------------
-// Start
+// New start (ds hub entry)
+// --------------------
+router.post('/V6/sign-in-ds-hub', function (req, res) {
+  const emailAddress = req.body['email-address']
+
+  req.session.data = req.session.data || {}
+  req.session.data.startedAtAltSignIn = true
+
+  req.session.user_email = emailAddress
+
+  res.redirect('/V6/enter-password')
+})
+
+// --------------------
+// Start (default)
 // --------------------
 router.post('/V6/start', function (req, res) {
   req.session.data.startedAtEmailSign = false
+  req.session.data.startedAtAltSignIn = false
   res.redirect('/V6/sign-in')
 })
 
@@ -80,10 +92,14 @@ router.get('/V6/company-authentication', function (req, res) {
 
 router.post('/V6/company-authentication', function (req, res) {
   if (req.session.data.startedAtEmailSign) {
-    res.redirect('/V6/sign-the-application')
-  } else {
-    res.redirect('/V6/which-director-are-you')
+    return res.redirect('/V6/sign-the-application')
   }
+
+  if (req.session.data.startedAtAltSignIn) {
+    return res.redirect('/V6/test-sign-journey')
+  }
+
+  return res.redirect('/V6/which-director-are-you')
 })
 
 // --------------------
@@ -150,19 +166,6 @@ router.post('/V6/which-directors-will-be-signing', function (req, res) {
 })
 
 // --------------------
-// Provide directors’ emails
-// --------------------
-router.post('/V6/provide-directors-emails', function (req, res) {
-  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
-
-  directors.forEach((director, i) => {
-    req.session.data['directorEmail' + i] = req.body['directorEmail' + i]
-  })
-
-  res.redirect('/V6/check-your-answers-multi-directors')
-})
-
-// --------------------
 // Provide corporate directors’ emails
 // --------------------
 router.get('/V6/provide-corporate-directors-emails', function (req, res) {
@@ -176,7 +179,6 @@ router.post('/V6/provide-corporate-directors-emails', function (req, res) {
 
   directors.forEach((director, i) => {
     const key = 'directorEmail' + i
-
     if (req.body[key] !== undefined) {
       req.session.data[key] = req.body[key]
     }
@@ -188,10 +190,6 @@ router.post('/V6/provide-corporate-directors-emails', function (req, res) {
 // --------------------
 // Multi director signing
 // --------------------
-router.post('/V6/how-will-the-multi-directors-be-signing', function (req, res) {
-  res.redirect('/V6/check-your-answers-multi-directors')
-})
-
 router.get('/V6/check-your-answers-multi-directors', function (req, res) {
   res.render('V6/check-your-answers-multi-directors', {
     user_email: req.session.user_email
@@ -199,12 +197,6 @@ router.get('/V6/check-your-answers-multi-directors', function (req, res) {
 })
 
 router.post('/V6/check-your-answers-multi-directors', function (req, res) {
-  const whichDirectorAreYou = req.session.data.whichDirectorAreYou
-
-  if (whichDirectorAreYou === 'AcmeLtd') {
-    return res.redirect('/V6/sign-the-application-corporate-director')
-  }
-
   return res.redirect('/V6/sign-the-application')
 })
 
@@ -218,20 +210,8 @@ router.get('/V6/sign-the-application', function (req, res) {
 })
 
 router.post('/V6/sign-the-application', function (req, res) {
-  const companyNumber = req.session.data.companyNumber
-  const whichDirectorAreYou = req.session.data.whichDirectorAreYou
-  const isSingleDirector = companyNumber === '12345678'
-
-  if (!isSingleDirector) {
-    return res.redirect('/V6/wait-screen-other-directors-must-sign-multi-director')
-  }
-
-  if (whichDirectorAreYou === 'iAmNotADirectorOfThisCompany') {
-    return res.redirect('/V6/wait-screen-other-directors-must-sign-multi-director')
-  }
-
-  if (req.session.data.startedAtEmailSign) {
-    return res.redirect('/V6/wait-screen-other-signer-single-director')
+  if (req.session.data.startedAtAltSignIn) {
+    return res.redirect('/V6/company-number')
   }
 
   return res.redirect('/V6/review-your-payment')
@@ -251,234 +231,20 @@ router.post('/V6/who-to-tell', function (req, res) {
 })
 
 // --------------------
-// Stop screen – bank account
-// --------------------
-router.post('/V6/stop-screen-bank-account', function (req, res) {
-  res.redirect('/V6/company-number')
-})
+
 
 // --------------------
-// Review payment
+// DS hub sign (Ella flow)
 // --------------------
-router.post('/V6/review-your-payment', function (req, res) {
-  res.redirect('/V6/how-do-you-want-to-pay')
-})
-
-// --------------------
-// How do you want to pay?
-// --------------------
-router.post('/V6/how-do-you-want-to-pay', function (req, res) {
-  const paymentChoice = req.body.howDoYouWantToPay
-
-  if (paymentChoice === 'companiesHouseAccount') {
-    res.redirect('/V6/ch-pay')
-  } else if (paymentChoice === 'creditOrDebitCard') {
-    res.redirect('https://products.payments.service.gov.uk/pay/5589c0c7b3934a47853cdf63b2e871dd')
-  } else {
-    res.redirect('/V6/how-do-you-want-to-pay')
-  }
-})
-
-// --------------------
-// CH Pay
-// --------------------
-router.post('/V6/ch-pay', function (req, res) {
-  const presenterId = req.body.presenterId
-  const presenterAuthCode = req.body.presenterAuthCode
-
-  const errors = []
-
-  if (!presenterId || presenterId.trim() === '') {
-    errors.push({
-      text: 'Enter your presenter ID',
-      href: '#presenter-id'
-    })
-  } else {
-    errors.push({
-      text: 'Presenter ID must be 11 characters',
-      href: '#presenter-id'
-    })
-  }
-
-  if (!presenterAuthCode || presenterAuthCode.trim() === '') {
-    errors.push({
-      text: 'Enter your presenter authentication code',
-      href: '#presenter-auth-code'
-    })
-  } else {
-    errors.push({
-      text: 'Presenter authentication code must be 11 characters',
-      href: '#presenter-auth-code'
-    })
-  }
-
-  return res.render('V6/ch-pay', {
-    errorSummary: errors,
-    presenterId,
-    presenterAuthCode
+router.get('/V6/sign-the-application-ds-hub', function (req, res) {
+  res.render('V6/sign-the-application-ds-hub', {
+    user_email: req.session.user_email
   })
 })
 
-// --------------------
-// Change directors’ emails
-// --------------------
-router.get('/V6/change-directors-email-james', function (req, res) {
-  res.render('V6/change-directors-email-james')
+router.post('/V6/sign-the-application-ds-hub', function (req, res) {
+  res.redirect('/V6/wait-screen-other-signers-multi-directors')
 })
 
-router.get('/V6/change-directors-email-sara', function (req, res) {
-  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
-  const saraIndex = directors.indexOf('SaraFrancis')
-
-  res.render('V6/change-directors-email-sara', {
-    saraIndex
-  })
-})
-
-router.get('/V6/change-directors-email-jane', function (req, res) {
-  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
-  const janeIndex = directors.indexOf('JaneDoe')
-
-  res.render('V6/change-directors-email-jane', {
-    janeIndex
-  })
-})
-
-// --------------------
-// PDF Download Journey
-// --------------------
-router.get('/V6/pdf-sign-in', function (req, res) {
-  res.render('V6/pdf-sign-in', {
-    source: req.query.source
-  })
-})
-
-router.post('/V6/pdf-sign-in', function (req, res) {
-  res.redirect(`/V6/pdf-enter-password?source=${req.body.source || ''}`)
-})
-
-router.get('/V6/pdf-enter-password', function (req, res) {
-  res.render('V6/pdf-enter-password', {
-    source: req.query.source
-  })
-})
-
-router.post('/V6/pdf-enter-password', function (req, res) {
-  const source = req.body.source
-
-  if (source === 'email-application-accepted-single') {
-    return res.redirect('/V6/pdf-mock-up-single')
-  }
-
-  return res.redirect('/V6/pdf-mock-up')
-})
-
-// ==================================================
-// SEARCH TEST PAGES ONLY
-// ==================================================
-
-router.get('/V6/which-director-are-you-search-test', function (req, res) {
-  res.render('V6/which-director-are-you-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
-
-router.post('/V6/which-director-are-you-search-test', function (req, res) {
-  const whichDirectorAreYou = req.body.whichDirectorAreYou
-  const fallbackOption = req.body.fallbackOption
-
-  req.session.data.whichDirectorAreYou = whichDirectorAreYou
-  req.session.data.fallbackOption = fallbackOption
-
-  if (fallbackOption === 'not-a-director') {
-    return res.redirect('/V6/provide-single-director-email')
-  }
-
-  if (fallbackOption === 'corporate-director-representative') {
-    req.session.data.representativeFullName = req.body.representativeFullName
-    return res.redirect('/V6/which-directors-will-be-signing-search-test')
-  }
-
-  return res.redirect('/V6/which-directors-will-be-signing-search-test')
-})
-
-router.get('/V6/which-directors-will-be-signing-search-test', function (req, res) {
-  res.render('V6/which-directors-will-be-signing-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
-
-router.post('/V6/which-directors-will-be-signing-search-test', function (req, res) {
-  let selected = req.body.whichDirectorsWillBeSigningTheApplication || []
-
-  if (!Array.isArray(selected)) {
-    selected = [selected]
-  }
-
-  req.session.data.whichDirectorsWillBeSigningTheApplication = selected
-
-  res.redirect('/V6/provide-corporate-directors-emails-search-test')
-})
-
-router.get('/V6/provide-corporate-directors-emails-search-test', function (req, res) {
-  res.render('V6/provide-corporate-directors-emails-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
-
-router.post('/V6/provide-corporate-directors-emails-search-test', function (req, res) {
-  let selectedDirectors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
-
-  if (!Array.isArray(selectedDirectors)) {
-    selectedDirectors = [selectedDirectors]
-  }
-
-  selectedDirectors.forEach(function (directorValue) {
-    if (directorValue === 'AcmeLtd') {
-      req.session.data['authorisedSignerName-' + directorValue] =
-        req.body['authorisedSignerName-' + directorValue]
-
-      req.session.data['authorisedSignerEmail-' + directorValue] =
-        req.body['authorisedSignerEmail-' + directorValue]
-    } else {
-      req.session.data['directorEmail-' + directorValue] =
-        req.body['directorEmail-' + directorValue]
-    }
-  })
-
-  res.redirect('/V6/check-your-answers-multi-directors-search-test')
-})
-
-router.get('/V6/check-your-answers-multi-directors-search-test', function (req, res) {
-  res.render('V6/check-your-answers-multi-directors-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
-
-router.post('/V6/check-your-answers-multi-directors-search-test', function (req, res) {
-  res.redirect('/V6/sign-the-application-search-test')
-})
-
-router.get('/V6/sign-the-application-search-test', function (req, res) {
-  res.render('V6/sign-the-application-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
-
-router.post('/V6/sign-the-application-search-test', function (req, res) {
-  res.redirect('/V6/wait-screen-other-directors-must-sign-multi-director-search-test')
-})
-
-router.get('/V6/directors-must-sign-search-test', function (req, res) {
-  res.render('V6/directors-must-sign-search-test', {
-    user_email: req.session.user_email,
-    data: req.session.data || {}
-  })
-})
 
 module.exports = router
