@@ -8,51 +8,46 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-<p class="govuk-body govuk">
+<!--<p class="govuk-body govuk">
   A MULTI DIRECTOR COMPANY LTD (87654321)
-</p>
+</p>-->
     <!-- Custom Blue Box -->
     <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
       <h1 class="govuk-heading-l" style="margin: 0 auto; color: white;">
         Application signed <br>
       </h1>
       <p class="govuk-body-l" style="margin: 0 auto; color: white;">
-        The person who started the application should tell you when they have submitted it
+You've signed the application to strike off and dissolve this company
       </p>
     </div>
 
+{{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company number" },
+          value: { text: data['companyNumber'] or "09429091" }
+        },
+        {
+          key: { text: "Company name" },
+          value: {
+            text:
+              "Single Director Company Ltd"
+              if data['companyNumber'] == "12345678"
+              else "A MULTI DIRECTOR COMPANY LTD"
+          }
+        },
+        {
+          key: { text: "Director" },
+          value: { text: "ADAMS, Ella" }
+        }
+      ]
+    }) }}
+
+
     <p class="govuk-body">
-      We need to receive signatures from all signing directors. The person making the application can then pay for and submit it.
-    </p>
+      Each signing director needs to log in to this service and sign the application. Once all directors have signed, <b>lisa.humphreys@accountancyfirm.co.uk</b> can log back in, pay the £13 fee and submit the application.
 
-    <p class="govuk-body">
-      It may take some time for others to sign. You can check who has signed on this page.
-    </p>
-
- 
-    
-    <h2 class="govuk-heading-m">Directors must inform all interested parties</h2>
-    
-    <p class="govuk-body">
-      The directors must send a copy of this application to all interested parties within 7 days of making the application.
-    </p>
-
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-visually-hidden">Warning</span>
-        It is a criminal offence not to tell all interested parties that an application has been made to close a company.
-      </strong>
-    </div>
-
-
-   <h2 class="govuk-heading-m">Application status</h2>
-
-
-<p class="govuk-body">
-  You can <a href="/V6/test-sign-journey-ella-signed" class="govuk-link">
-  check the application status and see who has signed here</a>.
-</p>
+     <p> <a href="/V6/test-sign-journey-ella-signed" class="govuk-link">See which directors have signed so far</a> on the Application in progress page. You'll see that page again if you log back into the service later.
 
 {# STATUS TABLE PARKED FOR NOW - NOT SURE IF WE NEED IT 
 
