@@ -8,23 +8,39 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<span class="govuk-caption-m">
+    
+<!--<p class="govuk-body govuk">
   A MULTI DIRECTOR COMPANY LTD (87654321)
-</span>
+</p>-->
+    <!-- Custom Blue Box -->
+    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
+      <h1 class="govuk-heading-l" style="margin: 0 auto; color: white;">
+        Application in progress <br>
+      </h1>
+      <p class="govuk-body-l" style="margin: 0 auto; color: white;">
+Directors must sign this application before it can be submitted
+      </p>
+    </div>
 
-
-<div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px;">
-  <h1 class="govuk-heading-xl" style="margin: 0; color: white;">
-    Application in progress
-  </h1>
-
-<p class="govuk-body" style="color: white; margin-top: 15px;"> Directors must sign this application before it can be submitted
-   
-  </p>
-</div>
+{{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company number" },
+          value: { text: data['companyNumber'] or "09429091" }
+        },
+        {
+          key: { text: "Company name" },
+          value: {
+            text:
+              "Single Director Company Ltd"
+              if data['companyNumber'] == "12345678"
+              else "A MULTI DIRECTOR COMPANY LTD"
+          }
+        }
+      ]
+    }) }}
 
 
     <p class="govuk-body">
