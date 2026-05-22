@@ -49,30 +49,29 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
     { text: "Action" }
   ],
   rows: [
-[
-  {
-    html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
-  },
-  {
-    html: '
-      ella.adams@example.com
-      <div class="govuk-!-margin-top-1">
-        <a class="govuk-link" href="#">Change email</a><br>
-        <a class="govuk-link" href="#">Resend email</a>
-      </div>
-    '
-  },
-  {
-    html: govukTag({
-      text: "Not signed",
-      classes: "govuk-tag--grey"
-    })
-  },
-  {
-    html: '<a class="govuk-link" href="/V6/sign-the-application-ds-hub">Sign application</a>'
-  }
-],
-
+    [
+      {
+        html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
+      },
+      {
+        html: '
+          ella.adams@example.com
+          <div class="govuk-!-margin-top-1">
+            <a class="govuk-link" href="#">Change email</a><br>
+            <a class="govuk-link" href="#">Resend email</a>
+          </div>
+        '
+      },
+      {
+        html: govukTag({
+          text: "Not signed",
+          classes: "govuk-tag--grey"
+        })
+      },
+      {
+        html: '<a class="govuk-link" href="/V6/sign">Sign application</a>'
+      }
+    ],
     [
       {
         html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
@@ -128,6 +127,23 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       },
       {
         html: '<span class="govuk-hint">Completed</span>'
+      }
+    ],
+    [
+      {
+        html: '<div>TAYLOR, Morgan</div><div class="govuk-hint">September 1982</div>'
+      },
+      {
+        text: ''
+      },
+      {
+        html: govukTag({
+          text: "No action needed",
+          classes: "govuk-tag--grey"
+        })
+      },
+      {
+        html: '<span class="govuk-hint">No action needed</span>'
       }
     ]
   ]

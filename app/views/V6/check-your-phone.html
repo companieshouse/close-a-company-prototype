@@ -39,12 +39,13 @@
   name: "width10"
 }) }}
 
-{% from "govuk/components/button/macro.njk" import govukButton %}
+<form action="/V6/company-number" method="post">
 
-{{ govukButton({
-  text: "Continue",
-  href: "who-to-tell"
-}) }}
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+</form>
 
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 
