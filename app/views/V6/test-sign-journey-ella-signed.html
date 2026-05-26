@@ -48,13 +48,13 @@ Directors must sign this application before it can be submitted
      <p class="govuk-body">
 <b>sara.francis@example.com</b> has started an application to strike off and dissolve this company. They selected 4 directors to sign the application.
 
-<p>Each selected director now needs to log in to this service and sign the application. We've emailed them to let them know.
+<p>Each signing director now needs to log in to this service and sign the application. We've emailed them to let them know.
 
-<p>If you are one of the selected directors, select 'Sign application' for your name.
+<p>If you are one of the signing directors, select 'Sign application' for your name.
 
 <p>Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
 
-    <h2 class="govuk-heading-l">Director signatures</h2>
+    <h2 class="govuk-heading-l">Signing directors</h2>
 
 {{ govukTable({
   head: [
@@ -72,8 +72,8 @@ Directors must sign this application before it can be submitted
         html: '
           ella.adams@example.com
           <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
+            <!--<a class="govuk-link" href="#">Change email</a><br>
+            <a class="govuk-link" href="#">Resend email</a>-->
           </div>
         '
       },
@@ -124,7 +124,7 @@ Directors must sign this application before it can be submitted
         })
       },
       {
-        html: '<a class="govuk-link" href="/V6/sign">Sign application</a>'
+        html: '<span class="govuk-hint">Needs to sign</span>'
       }
     ],
     [
