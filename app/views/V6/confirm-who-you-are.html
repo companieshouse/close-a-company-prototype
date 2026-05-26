@@ -40,21 +40,22 @@
 
     <span class="govuk-caption-m">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
 
-    <h1 class="govuk-heading-l">Confirm you are Sara Francis</h1>
+    <h1 class="govuk-heading-l">Confirm if you are FRANCIS, Sara</h1>
+
+  <!--<p class="govuk-body">
+      You’re signing this application as <strong>FRANCIS, Sara</strong>.
+    </p>-->
 
     <p class="govuk-body">
-      You’re signing this application as <strong>Sara Francis</strong>.
-    </p>
+      The person who started this application gave us a different email address for FRANCIS, Sara.
 
-    <p class="govuk-body">
-      The email address you used to sign in does not match the email address given for you in the application.
     </p>
 
     {{ govukSummaryList({
       rows: [
         {
           key: {
-            text: "Signed in email address"
+            text: "Email address you've signed in with"
           },
           value: {
             text: user_email or "SFrancis@email.co.uk"
@@ -65,27 +66,59 @@
             text: "Email address on application"
           },
           value: {
-            text: "francis_s@email.com"
+            text: "sara.francis@example.com"
           }
         }
       ]
     }) }}
 
     <p class="govuk-body">
-      If you continue, we’ll update the email address we have for Sara Francis to <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>.
+      If you continue, we’ll update the email address we have for FRANCIS, Sara to <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
     </p>
 
-    <form action="#" method="post">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+      </h1>
+    </legend>
+    <div id="signIn-hint" class="govuk-hint">
+    </div>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signIn" name="signIn" type="radio" value="government-gateway" aria-describedby="signIn-item-hint">
+        <label class="govuk-label govuk-radios__label" for="signIn">
+         I am FRANCIS, Sara
+        </label>
+        <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
+        <label class="govuk-label govuk-radios__label" for="signIn-2">
+         I am someone else
+        </label>
+        <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+         Selecting this will take you back to the previous screen
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+<!--    <form action="#" method="post">
 
       {{ govukCheckboxes({
         name: "confirmDirectorIdentity",
         items: [
           {
             value: "confirmed",
-            text: "I confirm that I am Sara Francis."
+            text: "I confirm that I am FRANCIS, Sara."
           }
         ]
-      }) }}
+      }) }}-->
 
       {{ govukButton({
         text: "Continue"
@@ -93,11 +126,16 @@
 
     </form>
 
-    <p class="govuk-body">
+   <!-- <p class="govuk-body">
       <a href="/v6/sign-in-to-ch-or-one-login" class="govuk-link">
         Sign in with a different email address
       </a>
-    </p>
+    </p>-->
+
+  <!--<p class="govuk-body">
+      If you're a different director, <a href="/v6/sign-in-to-ch-or-one-login" class="govuk-link">
+       go back to the Application summary screen
+      </a>.-->
 
   </div>
 </div>
