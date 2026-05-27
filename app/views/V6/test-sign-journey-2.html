@@ -10,21 +10,28 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<span class="govuk-caption-m">
-  A MULTI DIRECTOR COMPANY LTD (87654321)
-</span>
 
 
-<div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px;">
-  <h1 class="govuk-heading-xl" style="margin: 0; color: white;">
+<!-- ✅ Blue status box with reference -->
+<div style="background-color:#1d70b8; color:white; padding:30px 20px; margin-bottom:30px; text-align:center;">
+  <h1 class="govuk-heading-xl" style="margin:0; color:white;">
     Application in progress
   </h1>
 
-  <p class="govuk-body" style="color: white; margin-top: 15px;">
+  <p class="govuk-body" style="color:white; margin-top:15px;">
     Directors must sign the application before it can be submitted.
+  </p>
+
+  <p class="govuk-body-l" style="color:white; margin-top:20px;">
+    Reference number
+  </p>
+
+  <p class="govuk-heading-l" style="color:white; margin:0;">
+    HDJ2123F
   </p>
 </div>
 
+<<<<<<< Updated upstream
 {{ govukSummaryList({
       rows: [
         {
@@ -42,6 +49,32 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         }
       ]
     }) }}
+=======
+<!-- ✅ Company details table -->
+{{ govukTable({
+  rows: [
+    [
+      {
+        text: "Company number",
+        classes: "govuk-!-font-weight-bold"
+      },
+      {
+        text: "87654321"
+      }
+    ],
+    [
+      {
+        text: "Company name",
+        classes: "govuk-!-font-weight-bold"
+      },
+      {
+        text: "A MULTI DIRECTOR COMPANY LTD"
+      }
+    ]
+  ]
+}) }}
+
+>>>>>>> Stashed changes
 
 
      <p class="govuk-body">

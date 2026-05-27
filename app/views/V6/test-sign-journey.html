@@ -10,21 +10,45 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<span class="govuk-caption-m">
-  A MULTI DIRECTOR COMPANY LTD (87654321)
-</span>
 
+    <!-- ✅ Green panel -->
+    <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
+        Application in progress
+      </h1>
 
-<div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px;">
-  <h1 class="govuk-heading-xl" style="margin: 0; color: white;">
-    Application in progress
-  </h1>
+      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
+        Your reference number
+      </p>
 
-  <p class="govuk-body" style="color: white; margin-top: 15px;">
-    Directors must sign the application before it can be submitted.
-  </p>
-</div>
+      <p class="govuk-heading-xl" style="color:white; margin:0;">
+        HDJ2123F
+      </p>
+    </div>
 
+    <!-- ✅ Company details table -->
+    {{ govukTable({
+      rows: [
+        [
+          {
+            text: "Company number",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "87654321"
+          }
+        ],
+        [
+          {
+            text: "Company name",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "A MULTI DIRECTOR COMPANY LTD"
+          }
+        ]
+      ]
+    }) }}
 
     <p class="govuk-body">
 <b>sara.francis@example.com</b> has started an application to strike off and dissolve this company. They selected 4 directors to sign the application.
@@ -36,109 +60,113 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 <p>Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
 
     <h2 class="govuk-heading-l">Application status</h2>
-{{ govukTable({
-  head: [
-    { text: "Name" },
-    { text: "Email" },
-    { text: "Status" },
-    { text: "Action" }
-  ],
-  rows: [
-[
-  {
-    html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
-  },
-  {
-    html: '
-      ella.adams@example.com
-      <div class="govuk-!-margin-top-1">
-        <a class="govuk-link" href="#">Change email</a><br>
-        <a class="govuk-link" href="#">Resend email</a>
-      </div>
-    '
-  },
-  {
-    html: govukTag({
-      text: "Not signed",
-      classes: "govuk-tag--grey"
-    })
-  },
-  {
-    html: '<a class="govuk-link" href="/V6/sign-the-application-ds-hub">Sign application</a>'
-  }
-],
 
-    [
-      {
-        html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
-      },
-      {
-        text: 'sara.francis@example.com'
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Completed</span>'
-      }
-    ],
-    [
-      {
-        html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
-      },
-      {
-        html: '
-          alex.johnson@example.com
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
-          </div>
-        '
-      },
-      {
-        html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
-        })
-      },
-      {
-        html: '<a class="govuk-link" href="/V6/sign">Sign application</a>'
-      }
-    ],
-    [
-      {
-        html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
-      },
-      {
-        text: 'priya.patel@example.com'
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Completed</span>'
-      }
-    ]
-  ]
-}) }}
-<h2 class="govuk-heading-m">
-  Start a new application
-</h2>
+    {{ govukTable({
+      head: [
+        { text: "Name" },
+        { text: "Email" },
+        { text: "Status" },
+        { text: "Action" }
+      ],
+      rows: [
+        [
+          {
+            html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
+          },
+          {
+            html: '
+              ella.adams@example.com
+              <div class="govuk-!-margin-top-1">
+                <a class="govuk-link" href="#">Change email</a><br>
+                <a class="govuk-link" href="#">Resend email</a>
+              </div>
+            '
+          },
+          {
+            html: govukTag({
+              text: "Not signed",
+              classes: "govuk-tag--grey"
+            })
+          },
+          {
+            html: '<a class="govuk-link" href="/V6/sign-the-application-ds-hub">Sign application</a>'
+          }
+        ],
+        [
+          {
+            html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
+          },
+          {
+            text: 'sara.francis@example.com'
+          },
+          {
+            html: govukTag({
+              text: "Signed",
+              classes: "govuk-tag--green"
+            })
+          },
+          {
+            html: '<span class="govuk-hint">Completed</span>'
+          }
+        ],
+        [
+          {
+            html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
+          },
+          {
+            html: '
+              alex.johnson@example.com
+              <div class="govuk-!-margin-top-1">
+                <a class="govuk-link" href="#">Change email</a><br>
+                <a class="govuk-link" href="#">Resend email</a>
+              </div>
+            '
+          },
+          {
+            html: govukTag({
+              text: "Not signed",
+              classes: "govuk-tag--grey"
+            })
+          },
+          {
+            html: '<a class="govuk-link" href="/V6/sign">Sign application</a>'
+          }
+        ],
+        [
+          {
+            html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
+          },
+          {
+            text: 'priya.patel@example.com'
+          },
+          {
+            html: govukTag({
+              text: "Signed",
+              classes: "govuk-tag--green"
+            })
+          },
+          {
+            html: '<span class="govuk-hint">Completed</span>'
+          }
+        ]
+      ]
+    }) }}
 
-<p class="govuk-body">
-  You can start a new application to dissolve this company.
-</p>
+    <h2 class="govuk-heading-m">
+      Start a new application
+    </h2>
 
-<p class="govuk-body">
-  Starting a new application will permanently delete the current application.
-</p>
+    <p class="govuk-body">
+      You can start a new application to dissolve this company.
+    </p>
 
+<<<<<<< Updated upstream
+=======
+    <p class="govuk-body">
+      Starting a new application will permanently delete the current application.
+    </p>
+
+>>>>>>> Stashed changes
     <a href="/V6/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
       Start a new application
     </a>
