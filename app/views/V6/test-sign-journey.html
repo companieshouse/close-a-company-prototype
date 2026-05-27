@@ -10,37 +10,20 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    
-<!--<p class="govuk-body govuk">
+<span class="govuk-caption-m">
   A MULTI DIRECTOR COMPANY LTD (87654321)
-</p>-->
-    <!-- Custom Blue Box -->
-    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
-      <h1 class="govuk-heading-l" style="margin: 0 auto; color: white;">
-        Application in progress <br>
-      </h1>
-      <p class="govuk-body-l" style="margin: 0 auto; color: white;">
-Directors must sign this application before it can be submitted
-      </p>
-    </div>
+</span>
 
-{{ govukSummaryList({
-      rows: [
-        {
-          key: { text: "Company number" },
-          value: { text: data['companyNumber'] or "87654321" }
-        },
-        {
-          key: { text: "Company name" },
-          value: {
-            text:
-              "Single Director Company Ltd"
-              if data['companyNumber'] == "12345678"
-              else "A MULTI DIRECTOR COMPANY LTD"
-          }
-        }
-      ]
-    }) }}
+
+<div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px;">
+  <h1 class="govuk-heading-xl" style="margin: 0; color: white;">
+    Application in progress
+  </h1>
+
+  <p class="govuk-body" style="color: white; margin-top: 15px;">
+    Directors must sign the application before it can be submitted.
+  </p>
+</div>
 
 
     <p class="govuk-body">
@@ -52,7 +35,7 @@ Directors must sign this application before it can be submitted
 
 <p>Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
 
-    <h2 class="govuk-heading-l">Signing directors</h2>
+    <h2 class="govuk-heading-l">Application status</h2>
 {{ govukTable({
   head: [
     { text: "Name" },
@@ -149,28 +132,18 @@ Directors must sign this application before it can be submitted
 </h2>
 
 <p class="govuk-body">
-If there is an error with this application, you can start a new application to replace it. For example, if there is a change to which directors will sign.
+  You can start a new application to dissolve this company.
 </p>
 
 <p class="govuk-body">
-You'll be responsible for paying for and submitting the new application.
+  Starting a new application will permanently delete the current application.
 </p>
 
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-Starting a new application will permanently delete the current application. Any directors who have already signed will need to sign again.
-  </strong>
-</div>
-
-<a href="/V6/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
-  Start a new application
-</a>
+    <a href="/V6/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
+      Start a new application
+    </a>
 
   </div>
-  
 </div>
 
 {% endblock %}
-``
