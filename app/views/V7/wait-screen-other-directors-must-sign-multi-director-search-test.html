@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; text-align: center;">
+      <h1 class="govuk-heading-xl" style="margin: 0; color: white;">
+        The directors must<br>sign the application<br>before you can<br>submit it
+      </h1>
+    </div>
+
+    <p>We have emailed the directors, or those signing on their behalf, asking them to sign the application.</p>
+
+    <p>If they have not yet received the email, we recommend that they check their junk folders. You can also check their details and resend the email below.</p>
+
+    <p>Alternatively, they can sign the application by signing in to the
+      <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
+    </p>
+
+    <h2 class="govuk-heading-l">Application status</h2>
+
+  </div>
+</div>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header">Name</th>
+      <th class="govuk-table__header">Email</th>
+      <th class="govuk-table__header">Resend</th>
+      <th class="govuk-table__header">Signed</th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+
+    {% for i in range(0, 100) %}
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell">
+          <div>ADAMS, Ella</div>
+          <div class="govuk-hint">May 1988</div>
+        </td>
+
+        <td class="govuk-table__cell">
+          <div>ella.adams@example.com</div>
+          <div class="govuk-!-margin-top-1">
+            <a class="govuk-link" href="#">Change email</a>
+          </div>
+        </td>
+
+        <td class="govuk-table__cell">
+          <a class="govuk-link" href="#">Resend email</a>
+        </td>
+
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong>
+        </td>
+
+      </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}

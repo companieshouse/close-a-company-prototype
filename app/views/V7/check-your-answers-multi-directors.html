@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    {{user_email}}</strong>  
+    <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form action="/V6/check-your-answers-multi-directors" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl">Check your answers</h1>
+
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+        {% set displayName =
+          director
+            | replace("JaneDoe", "DOE, Jane")
+            | replace("SaraFrancis", "FRANCIS, Sara")
+            | replace("JamesShipley", "SHIPLEY, James")
+            | replace("AcmeLtd", "ACME LTD")
+        %}
+
+        {% set emailKey = "directorEmail" + loop.index0 %}
+
+        {% if director == "AcmeLtd" %}
+          {% set nameKey = "corporateSignerName" + loop.index0 %}
+        {% endif %}
+
+        {# ✅ Set change link safely BEFORE summary list #}
+        {% set changeHref = "#" %}
+        {% if director == "JamesShipley" %}
+          {% set changeHref = "/V6/change-directors-email-james" %}
+        {% elseif director == "SaraFrancis" %}
+          {% set changeHref = "/V6/change-directors-email-sara" %}
+        {% elseif director == "AcmeLtd" %}
+          {% set changeHref = "/V6/change-corporate-directors-email" %}
+           {% elseif director == "JaneDoe" %}
+          {% set changeHref = "/V6/change-directors-email-jane" %}
+        {% endif %}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">
+          {{ displayName }}
+        </h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: { text: "Name" },
+              value: {
+                text:
+                  data[nameKey] if director == "AcmeLtd"
+                  else displayName
+              }
+            },
+            {
+              key: { text: "Email address" },
+              value: { text: data[emailKey] or "" },
+              actions: {
+                items: [
+                  {
+                    text: "Change",
+                    href: changeHref,
+                    visuallyHiddenText: "email for " + displayName
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      {% endfor %}
+
+      <p class="govuk-body govuk-!-margin-top-4 govuk-!-text-align-left">
+        <a class="govuk-link" href="/V6/which-directors-will-be-signing">
+          Change which directors will sign
+        </a>
+      </p>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

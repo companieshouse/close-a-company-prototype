@@ -1,0 +1,187 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+
+{% block pageTitle %}
+Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- ✅ Green panel -->
+    <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
+        Application in progress
+      </h1>
+
+      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
+        Your reference number
+      </p>
+
+      <p class="govuk-heading-xl" style="color:white; margin:0;">
+        HDJ2123F
+      </p>
+    </div>
+
+    <!-- ✅ Company details table -->
+    {{ govukTable({
+      rows: [
+        [
+          {
+            text: "Company number",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "87654321"
+          }
+        ],
+        [
+          {
+            text: "Company name",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "A MULTI DIRECTOR COMPANY LTD"
+          }
+        ]
+      ]
+    }) }}
+
+    <p class="govuk-body">
+<b>sara.francis@example.com</b> has started an application to strike off and dissolve this company. They selected 4 directors to sign the application.
+
+<p>Each signing director now needs to log in to this service and sign the application. We've emailed them to let them know.
+
+<p>If you are one of the signing directors, select 'Sign application' for your name.
+
+<p>Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
+
+    <h2 class="govuk-heading-l">Application status</h2>
+
+    {{ govukTable({
+      head: [
+        { text: "Name" },
+        { text: "Email" },
+        { text: "Status" },
+        { text: "Action" }
+      ],
+      rows: [
+        [
+          {
+            html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
+          },
+          {
+            html: '
+              ella.adams@example.com
+              <div class="govuk-!-margin-top-1">
+                <a class="govuk-link" href="#">Change email</a><br>
+                <a class="govuk-link" href="#">Resend email</a>
+              </div>
+            '
+          },
+          {
+            html: govukTag({
+              text: "Not signed",
+              classes: "govuk-tag--grey"
+            })
+          },
+          {
+            html: '<a class="govuk-link" href="/V6/who-to-tell">Sign application</a>'
+          }
+        ],
+        [
+          {
+            html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
+          },
+          {
+            text: 'sara.francis@example.com'
+          },
+          {
+            html: govukTag({
+              text: "Signed",
+              classes: "govuk-tag--green"
+            })
+          },
+          {
+            html: '<span class="govuk-hint">Completed</span>'
+          }
+        ],
+        [
+          {
+            html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
+          },
+          {
+            html: '
+              alex.johnson@example.com
+              <div class="govuk-!-margin-top-1">
+                <a class="govuk-link" href="#">Change email</a><br>
+                <a class="govuk-link" href="#">Resend email</a>
+              </div>
+            '
+          },
+          {
+            html: govukTag({
+              text: "Not signed",
+              classes: "govuk-tag--grey"
+            })
+          },
+          {
+            html: '<a class="govuk-link" href="/V6/who-to-tell">Sign application</a>'
+          }
+        ],
+        [
+          {
+            html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
+          },
+          {
+            text: 'priya.patel@example.com'
+          },
+          {
+            html: govukTag({
+              text: "Signed",
+              classes: "govuk-tag--green"
+            })
+          },
+          {
+            html: '<span class="govuk-hint">Completed</span>'
+          }
+        ]
+      ]
+    }) }}
+
+
+
+  <h2 class="govuk-heading-m">
+  Start a new application
+</h2>
+
+<p class="govuk-body">
+If there is an error with this application, you can start a new application to replace it. For example, if there is a change to which directors will sign.
+</p>
+
+<p class="govuk-body">
+You'll be responsible for paying for and submitting the new application.
+</p>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+Starting a new application will permanently delete the current application. Any directors who have already signed will need to sign again.
+  </strong>
+</div>
+
+
+
+<a href="/V6/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
+  Start a new application
+</a>
+
+
+  </div>
+</div>
+
+{% endblock %}

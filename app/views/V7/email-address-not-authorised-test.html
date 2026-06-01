@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      Beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service. Help us improve it and
+      <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+    </span>
+  </p>
+</div>
+
+<div style="border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    <a href="/V6/email-address-not-authorised" class="govuk-link--no-visited-state">
+      <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>
+    </a>
+
+    <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">
+      Sign out
+    </a>
+  </span>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-m">
+      A MULTI DIRECTOR COMPANY LTD (87654321)
+    </span>
+
+    <h1 class="govuk-heading-l">
+      Which director are you?
+    </h1>
+ 
+
+    <form action="/V6/confirm-director" method="post">
+
+      {{ govukRadios({
+        name: "selectedDirector",
+        fieldset: {
+          legend: {
+            text: "Select your name",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "sara_francis",
+            text: "Sara Francis"
+          },
+          {
+            value: "john_smith",
+            text: "John Smith"
+          }
+        ]
+      }) }}
+
+
+    <!-- ✅ Directors table with status tags -->
+    <h2 class="govuk-heading-m">Application status</h2>
+
+    {{ govukTable({
+      head: [
+        { text: "Name" },
+        { text: "Status" }
+      ],
+      rows: [
+        [
+          { text: "Alex Johnson" },
+          { html: govukTag({ text: "Signed", classes: "govuk-tag--green" }) }
+        ],
+        [
+          { text: "Priya Patel" },
+          { html: govukTag({ text: "Signed", classes: "govuk-tag--green" }) }
+        ],
+        [
+          { text: "Sara Francis" },
+          { html: govukTag({ text: "Not signed", classes: "govuk-tag--grey" }) }
+        ],
+        [
+          { text: "John Smith" },
+          { html: govukTag({ text: "Not signed", classes: "govuk-tag--grey" }) }
+        ]
+      ]
+    }) }}
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="/v6/sign-in-to-ch-or-one-login" class="govuk-link">
+        Sign in with a different email address
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Apply to strike off and dissolve a company",
+    serviceUrl: "#"
+  }) }}
+
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+<span class="govuk-body-s">
+  <a href="/V6/email-address-not-authorised-test"
+     style="color: inherit; text-decoration: none;">
+    <strong>SFrancis@email.co.uk</strong>
+  </a>
+
+  <a class="govuk-link"
+     href="/v6/sign-in-to-ch-or-one-login"
+     style="margin-left: 10px;">
+    Sign out
+  </a>
+</span>
+</div>
+{% endblock %}
+
+
+{% block pageTitle %}
+  Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-m">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
+    <h1 class="govuk-heading-l">You cannot sign the application using this email address</h1>
+
+    <p>
+You can only sign if your email address has been given to us by the person making the application.
+
+
+
+
+
+
+
+  </li>
+</ul>
+
+<h2 class="govuk-heading-m">Email addresses we've been given</h2>
+<p>You'll need to use one of these email addresses to sign in, or to create new sign in details.
+        <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Email</th>
+        </tr>
+      </thead>
+<tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">DOE, Jane</td>
+    <td class="govuk-table__cell">janedoe@email.com</td>
+    
+    </td>
+  </tr>
+
+ <tr class="govuk-table__row">
+    <td class="govuk-table__cell">FRANCIS, Sara</td>
+    <td class="govuk-table__cell">francis_s@email.com</td>
+   
+    </td>
+  </tr>
+
+ <tr class="govuk-table__row">
+    <td class="govuk-table__cell">SHIPLEY, James</td>
+    <td class="govuk-table__cell">jamesshipley@email.co.uk</td>
+    
+    </td>
+  </tr>
+
+  
+    
+    </td>
+  </tr>
+</tbody>
+    </table>
+
+<p> If an email address shown here is incorrect, ask the person who started the application to sign in to this service and change it.
+
+
+
+<p>You are currently signed in as <strong>SFrancis@email.co.uk</strong>.
+
+<p><a href="#" class="govuk-link">Sign in with a different email address</a>
+</p>
+
+  </div>
+</div>
+{% endblock %}
