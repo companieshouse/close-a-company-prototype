@@ -25,11 +25,11 @@ Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
 
 <div style="border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
   <span class="govuk-body-s">
-    <a href="/V6/email-address-not-authorised" class="govuk-link--no-visited-state">
+    <a href="/V7/email-address-not-authorised" class="govuk-link--no-visited-state">
       <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>
     </a>
 
-    <a class="govuk-link" href="/v6/sign-in-to-ch-or-one-login" style="margin-left: 10px;">
+    <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">
       Sign out
     </a>
   </span>
@@ -51,7 +51,7 @@ Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
     </h1>
  
 
-    <form action="/V6/confirm-director" method="post">
+    <form action="/V7/confirm-director" method="post">
 
       {{ govukRadios({
         name: "selectedDirector",
@@ -111,7 +111,7 @@ Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
     </form>
 
     <p class="govuk-body">
-      <a href="/v6/sign-in-to-ch-or-one-login" class="govuk-link">
+      <a href="/V7/sign-in-to-ch-or-one-login" class="govuk-link">
         Sign in with a different email address
       </a>
     </p>
