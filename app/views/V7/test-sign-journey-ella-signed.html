@@ -13,24 +13,20 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
 
 
-<!-- ✅ Blue status box with reference -->
-<div style="background-color:#1d70b8; color:white; padding:30px 20px; margin-bottom:30px; align-items:center; text-align:center;">
-  <h1 class="govuk-heading-xl" style="margin:0; color:white;">
-    Application in progress
-  </h1>
+    <!-- Header panel -->
+    <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
+        Application in progress
+      </h1>
 
-  <p class="govuk-body" style="color:white; margin-top:15px;">
-    Directors must sign the application before it can be submitted.
-  </p>
+      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
+        Your reference number
+      </p>
 
-  <p class="govuk-body-l" style="color:white; margin-top:20px;">
-    Reference number
-  </p>
-
-  <p class="govuk-heading-l" style="color:white; margin:0;">
-    HDJ2123F
-  </p>
-</div>
+      <p class="govuk-heading-xl" style="color:white; margin:0;">
+        HDJ2123F
+      </p>
+    </div>
 
 
 <!-- ✅ Company details table -->
@@ -57,26 +53,32 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   ]
 }) }}
 
-<p class="govuk-body">
-  We have emailed the directors, or those signing on their behalf, asking them to sign the application.
-</p>
 
+    <p class="govuk-body">
+      <strong>sara.francis@example.com</strong> has started an application to strike off and dissolve this company. They selected 4 directors to sign the application.
+    </p>
 
-     <p class="govuk-body">
-<b>sara.francis@example.com</b> has started an application to strike off and dissolve this company. They selected 4 directors to sign the application.
+    <p class="govuk-body">
+      Each signing director now needs to log in to this service and sign the application. We've emailed them to let them know.
+    </p>
 
-<p>Each signing director now needs to log in to this service and sign the application. We've emailed them to let them know.
+   <p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>
 
-<p>If you are one of the signing directors, select 'Sign application' for your name.
+    <p class="govuk-body">
+      Once all directors have signed, <strong>sara.francis@example.com</strong> can log back in, pay the £13 fee and submit the application.
+    </p>
 
-<p>Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
 
     <h2 class="govuk-heading-l">Signing directors</h2>
+
+    <p class="govuk-body govuk-hint">
+      Only the directors who have been selected to sign will appear here. 
+    </p>
 
 {{ govukTable({
   head: [
     { text: "Name" },
-    { text: "Email" },
+    { text: "Email address" },
     { text: "Status" },
     { text: "Action" }
   ],
@@ -164,32 +166,31 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   ]
 }) }}
 
-<h2 class="govuk-heading-m">
-  Start a new application
-</h2>
-
-<p class="govuk-body">
-If there is an error with this application, you can start a new application to replace it. For example, if there is a change to which directors will sign.
-</p>
-
-<p class="govuk-body">
-You'll be responsible for paying for and submitting the new application.
-</p>
-
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-Starting a new application will permanently delete the current application. Any directors who have already signed will need to sign again.
-  </strong>
-</div>
+     <p class="govuk-!-margin-top-1">
+        <a href="/V7/update-directors" class="govuk-link">
+          Add or remove signing directors
+        </a>
 
 
 
-<a href="/V7/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
-  Start a new application
-</a>
+    <h2 class="govuk-heading-m">Delete this application</h2>
 
+     <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon">!</span>
+      <strong class="govuk-warning-text__text">
+This will permanently delete the current application.
+      </strong>
+    </div>  
+    
+     <p class="govuk-body">
+      If you then start a new application, you'll be responsible for paying for and submitting it. Any directors who have already signed will need to sign again.
+    </p>
+
+
+
+    <a href="/V7/confirm-delete-existing-application" class="govuk-button govuk-button--warning">
+      Delete application
+    </a>
   </div>
 </div>
 
