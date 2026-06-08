@@ -76,31 +76,37 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
       items: checkboxItems
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-7">
-      Already signed
-    </h2>
+<h2 class="govuk-heading-m govuk-!-margin-top-7">
+  Already signed
+</h2>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-7">
+<dl class="govuk-summary-list govuk-!-margin-bottom-7">
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          FRANCIS, Sara
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Signed
-        </dd>
-      </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      FRANCIS, Sara
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ govukTag({
+        text: "Signed",
+        classes: "govuk-tag--green"
+      }) }}
+    </dd>
+  </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          PATEL, Priya
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Signed
-        </dd>
-      </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      PATEL, Priya
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ govukTag({
+        text: "Signed",
+        classes: "govuk-tag--green"
+      }) }}
+    </dd>
+  </div>
 
-    </dl>
+</dl>
 
     <details class="govuk-details">
       <summary class="govuk-details__summary">

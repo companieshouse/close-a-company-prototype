@@ -1,92 +1,73 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+  Application signed – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    
 
-    <!-- Custom Blue Box -->
-    <div style="background-color: #005EA5; color: white; padding: 30px 20px; margin-bottom: 30px; width: 100%; text-align: center;">
-      <h1 class="govuk-heading-xl" style="margin: 0 auto; color: white;">
-        The directors must<br>sign the application<br>before you can<br>submit it
+    <div style="background-color:#005EA5; padding:40px 30px; text-align:center; margin-bottom:40px;">
+
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:10px;">
+        Application signed
       </h1>
+
+      <p class="govuk-body-l" style="color:white; margin-bottom:0;">
+        You've signed the application to strike off and dissolve this company
+      </p>
+
     </div>
 
-    <p>We have emailed the directors, or those signing on their behalf, asking them to sign the application. It may take some time for them to do this.</p>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-7">
 
-    <p>If they have not yet received the email, we recommend that they check their junk folders. You can also check their details and resend the email below.</p>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          09429091
+        </dd>
+      </div>
 
-    <p>Alternatively, they can sign the application by signing in to the 
-      <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          A MULTI DIRECTOR COMPANY LTD
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Director
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ADAMS, Ella
+        </dd>
+      </div>
+
+    </dl>
+
+    <p class="govuk-body">
+      Each signing director needs to log in to this service and sign the
+      application. Once all directors have signed,
+      <strong>lisa.humphreys@accountancyfirm.co.uk</strong>
+      can log back in, pay the £13 fee and submit the application.
     </p>
 
-    <p>Each person signing the application will need:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>to sign in, or create sign in details</li>
-      <li>the company number</li>
-      <li>the company authentication code</li>
-    </ul>
-
-    <p>When all directors have signed, we will email you with instructions to pay for and submit the application.</p>
-
-    <h2 class="govuk-heading-l">Application status</h2>
-
-    <p>Refresh the page to see updated information. If you exit this page, you can return to it by signing in to the 
-      <a class="govuk-link" href="#">Apply to strike off and dissolve a company service</a>.
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        See which directors have signed so far
+      </a>
+      on the Application in progress page. You'll see that page again if you
+      log back into this service later.
     </p>
 
   </div>
 </div>
 
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Name</th>
-      <th scope="col" class="govuk-table__header">Email</th>
-      <th scope="col" class="govuk-table__header">Resend</th>
-      <th scope="col" class="govuk-table__header">Signed</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-
-    {% for director in data.whichDirectorsWillBeSigningTheApplication %}
-      {% set emailKey = "directorEmail" + loop.index0 %}
-      <tr class="govuk-table__row">
-
-        <td class="govuk-table__cell">
-          {{ director
-            | replace("JaneDoe", "DOE, Jane")
-            | replace("SaraFrancis", "FRANCIS, Sara")
-            | replace("JamesShipley", "SHIPLEY, James")
-            | replace("AcmeLtd", "ACME LTD") }}
-        </td>
-
-        <td class="govuk-table__cell" style="overflow-wrap: anywhere; word-break: break-word;">
-          <div>{{ data[emailKey] or "" }}</div>
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="/V7/change-directors-emails">
-              Change email
-            </a>
-          </div>
-        </td>
-
-        <td class="govuk-table__cell">
-          <a class="govuk-link" href="#">Resend email</a>
-        </td>
-
-        <td class="govuk-table__cell">
-          <strong class="govuk-tag govuk-tag--grey">NOT SIGNED</strong>
-        </td>
-
-      </tr>
-    {% endfor %}
-
-  </tbody>
-</table>
 {% endblock %}
