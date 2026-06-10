@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block pageTitle %}
+Delete application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="/V7/application-in-progress" class="govuk-back-link">
+      Back
+    </a>
+
+    <h1 class="govuk-heading-xl">
+      Are you sure you want to delete this application?
+    </h1>
+
+    <!-- Company details -->
+    {{ govukTable({
+      rows: [
+           [
+          {
+            text: "Company number",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "87654321"
+          }
+        ],
+        [
+        
+          {
+            text: "Company name",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "A MULTI DIRECTOR COMPANY LTD"
+          }
+        ],
+      
+        [
+          {
+            text: "Application reference",
+            classes: "govuk-!-font-weight-bold"
+          },
+          {
+            text: "HDJ2123F"
+          }
+        ]
+      ]
+    }) }}
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        This action cannot be undone.
+      </strong>
+    </div>
+
+    <p class="govuk-body">
+      Deleting this application will permanently remove:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the application details</li>
+      <li>selected signing directors</li>
+      <li>all progress made so far</li>
+    </ul>
+
+    <p class="govuk-body">
+      Any directors who have already signed will need to sign again if you start a new application.
+    </p>
+
+    <form action="/V7/application-deleted" method="post">
+
+      <button class="govuk-button govuk-button--warning" data-module="govuk-button">
+        Delete application
+      </button>
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="/V7/application-in-progress" class="govuk-link">
+        Cancel and return to application
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
