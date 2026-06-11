@@ -1,92 +1,64 @@
 {% extends "layouts/main.html" %}
 
-{% from "govuk/components/table/macro.njk" import govukTable %}
-{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% block pageTitle %}
-  Application signed – {{ serviceName }} – GOV.UK Prototype Kit
+Application signed – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <!-- Restyled blue banner -->
+    <div style="background-color:#1d70b8; padding:25px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-l" style="color:white; margin-bottom:5px;">
+        Application signed
+      </h1>
 
-<!-- ✅ Green box with reference -->
-<div style="background-color:#00703c; color:white; padding:30px 20px; margin-bottom:30px; text-align:center;">
-  <h1 class="govuk-heading-l" style="margin:0; color:white;">
-    Application signed
-  </h1>
+      <p class="govuk-body" style="color:white; margin:0;">
+        You’ve signed the application to strike off and dissolve this company
+      </p>
+    </div>
 
-  <p class="govuk-body-l" style="margin-top:10px; color:white;">
-    Your reference number
-  </p>
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company number" },
+          value: { text: "09429091" }
+        },
+        {
+          key: { text: "Company name" },
+          value: { text: "A MULTI DIRECTOR COMPANY LTD" }
+        },
+        {
+          key: { text: "Director" },
+          value: { text: "ADAMS, Ella" }
+        }
+      ]
+    }) }}
 
-  <p class="govuk-heading-l" style="margin:0; color:white;">
-    HDJ2123F
-  </p>
+    <p class="govuk-body">
+      Each signing director needs to log in to this service and sign the application.
+      Once all directors have signed, <strong>lisa.humphreys@accountancyfirm.co.uk</strong>
+      can log back in, pay the £13 fee and submit the application.
+    </p>
 
-  <p class="govuk-body" style="margin-top:15px; color:white;">
-    The person who started the application should tell you when they have submitted it
-  </p>
-</div>
 
-<!-- ✅ Company details table -->
-{{ govukTable({
-  rows: [
-    [
-      {
-        text: "Company number",
-        classes: "govuk-!-font-weight-bold"
-      },
-      {
-        text: "87654321"
-      }
-    ],
-    [
-      {
-        text: "Company name",
-        classes: "govuk-!-font-weight-bold"
-      },
-      {
-        text: "A MULTI DIRECTOR COMPANY LTD"
-      }
-    ]
-  ]
-}) }}
-
-<p class="govuk-body">
-  We need to receive signatures from all signing directors. The person making the application can then pay for and submit it.
-</p>
-
-<p class="govuk-body">
-  It may take some time for others to sign. You can check who has signed on this page.
-</p>
-
-<h2 class="govuk-heading-m">Directors must inform all interested parties</h2>
-
-<p class="govuk-body">
-  The directors must send a copy of this application to all interested parties within 7 days of making the application.
-</p>
-
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    It is a criminal offence not to tell all interested parties that an application has been made to close a company.
-  </strong>
-</div>
-
-<h2 class="govuk-heading-m">Application status</h2>
 
 <p class="govuk-body">
   <a href="/V7/test-sign-journey-ella-signed" class="govuk-link">
-    Check the application status and see who has signed
-  </a>.
+    See which directors have signed so far
+  </a>
+  on the Application in progress page.  
+  You’ll see that page again if you log back into this service later.
 </p>
+
+
+
 
   </div>
 </div>
 
 {% endblock %}
-``
