@@ -40,44 +40,25 @@
 
     <span class="govuk-caption-m">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
 
-    <h1 class="govuk-heading-l">Confirm if you are FRANCIS, Sara</h1>
+    <h1 class="govuk-heading-l">Confirm you are FRANCIS, Sara</h1>
 
   <!--<p class="govuk-body">
       You’re signing this application as <strong>FRANCIS, Sara</strong>.
     </p>-->
 
     <p class="govuk-body">
-      The person who started this application gave us a different email address for FRANCIS, Sara.
+      You're signed in as <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>.
+      
+      <p>The person who started this application gave us a different email address for this director (<strong>sara.francis@example.com</strong>).
 
     </p>
-
-    {{ govukSummaryList({
-      rows: [
-        {
-          key: {
-            text: "Email address you've signed in with"
-          },
-          value: {
-            text: user_email or "SFrancis@email.co.uk"
-          }
-        },
-        {
-          key: {
-            text: "Email address on application"
-          },
-          value: {
-            text: "sara.francis@example.com"
-          }
-        }
-      ]
-    }) }}
 
     <p class="govuk-body">
-      If you continue, we’ll update the email address we have for FRANCIS, Sara to <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
+      Confirm you are FRANCIS, Sara to continue. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
     </p>
 
 
-<div class="govuk-form-group">
+<!--<div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
@@ -106,19 +87,19 @@
     </div>
   </fieldset>
 </div>
+-->
 
-
-<!--    <form action="#" method="post">
+<form action="#" method="post">
 
       {{ govukCheckboxes({
         name: "confirmDirectorIdentity",
         items: [
           {
             value: "confirmed",
-            text: "I confirm that I am FRANCIS, Sara."
+            text: "I am FRANCIS, Sara."
           }
         ]
-      }) }}-->
+      }) }}
 
       {{ govukButton({
         text: "Continue"
@@ -130,9 +111,9 @@
       <a href="/V7/sign-in-to-ch-or-one-login" class="govuk-link">
         Sign in with a different email address
       </a>
-    </p>-->
+    </p>
 
-  <!--<p class="govuk-body">
+  <p class="govuk-body">
       If you're a different director, <a href="/V7/sign-in-to-ch-or-one-login" class="govuk-link">
        go back to the Application summary screen
       </a>.-->
