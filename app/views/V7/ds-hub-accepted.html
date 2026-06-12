@@ -22,7 +22,7 @@ Application accepted – {{ serviceName }} – GOV.UK Prototype Kit
       </p>
 
       <p class="govuk-heading-xl" style="color:white; margin:0;">
-        TWLCY2
+        HDJ2123F
       </p>
     </div>
 
@@ -69,9 +69,9 @@ Application accepted – {{ serviceName }} – GOV.UK Prototype Kit
         ]
       }) }}
     <p class="govuk-body">
-      The application to strike off and dissolve this company has been accepted. The process to close the company has now started.
+      We received an application to close this company from <strong>sara.francis@example.com</strong> on 2 June 2026. We've accepted the application, and the process to close the company has started.
     </p>
-
+    
     <h2 class="govuk-heading-m">
       Directors must inform all interested parties
     </h2>
@@ -81,19 +81,17 @@ Application accepted – {{ serviceName }} – GOV.UK Prototype Kit
     </p>
 
     <p class="govuk-body">
-      <a href="#" class="govuk-link">Download a copy of the application</a>. 
-      You will need to sign in with the same email address you used when applying.
+      <a href="#" class="govuk-link">Download a copy of the application from the Companies House public register</a> 
     </p>
 
-    <p class="govuk-body">
-      We've also published a copy in the 
-      <a href="#" class="govuk-link">Companies House public register</a>.
-    </p>
 
-    <!-- ✅ Important notice -->
-    {{ govukInsetText({
-      text: "It is a criminal offence not to tell all interested parties that an application has been made to close the company."
-    }) }}
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    It is a criminal offence not to tell all interested parties that an application has been made to close a company.
+  </strong>
+</div>
 
     <h2 class="govuk-heading-m">
       What happens next
