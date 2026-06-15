@@ -85,7 +85,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-   {{ govukTable({
+  {{ govukTable({
   head: [
     { text: "Name" },
     { text: "Email address" },
@@ -111,8 +111,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       },
       {
         html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
+          text: "Not signed",
+          classes: "govuk-tag--grey"
         })
       }
     ],
@@ -125,7 +125,10 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         '
       },
       {
-        text: "sara.francis@example.com"
+        html: '
+          sara.francis@example.com
+    
+        '
       },
       {
         html: govukTag({
@@ -167,12 +170,15 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         '
       },
       {
-        text: "priya.patel@example.com"
+        html: '
+          priya.patel@example.com
+      
+        '
       },
       {
         html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
+          text: "Signed",
+          classes: "govuk-tag--green"
         })
       }
     ]
