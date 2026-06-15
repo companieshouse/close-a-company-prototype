@@ -19,39 +19,43 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         Application in progress
       </h1>
 
-      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
-        Your reference number
-      </p>
 
+      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
+        Directors must sign this application before it can be submitted
+      </p>
+<!--
       <p class="govuk-heading-xl" style="color:white; margin:0;">
         HDJ2123F
-      </p>
+      </p>-->
     </div>
 
 
 <!-- ✅ Company details table -->
 {{ govukTable({
-  rows: [
-    [
-      {
-        text: "Company number",
-        classes: "govuk-!-font-weight-bold"
-      },
-      {
-        text: "87654321"
-      }
-    ],
-    [
-      {
-        text: "Company name",
-        classes: "govuk-!-font-weight-bold"
-      },
-      {
-        text: "A MULTI DIRECTOR COMPANY LTD"
-      }
-    ]
-  ]
-}) }}
+      rows: [
+        [
+          {
+            text: "Company number",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "87654321" }
+        ],
+        [
+          {
+            text: "Company name",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "A MULTI DIRECTOR COMPANY LTD" }
+        ],
+                [
+          {
+            text: "Application reference",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "HDJ2123F" }
+        ]
+      ]
+    }) }}
 
 
     <p class="govuk-body">
