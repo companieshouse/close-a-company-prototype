@@ -13,7 +13,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   <div class="govuk-grid-column-two-thirds">
 
     <!-- Header panel -->
-<a href="/V7/test-sign-journey-acsp-signed" style="text-decoration:none; display:block;">
+
   <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
     <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
       Application in progress
@@ -28,7 +28,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       HDJ2123F
     </p>-->
   </div>
-</a>
+
 
     <!-- Company details -->
     {{ govukTable({
@@ -111,8 +111,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       },
       {
         html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
+          text: "Signed",
+          classes: "govuk-tag--green"
         })
       }
     ],
@@ -129,8 +129,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       },
       {
         html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
+          text: "Signed",
+          classes: "govuk-tag--green"
         })
       }
     ],
