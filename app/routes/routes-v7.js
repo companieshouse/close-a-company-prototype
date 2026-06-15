@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
+
 // --------------------
 // DS HUB START
 // --------------------
@@ -43,13 +44,33 @@ router.post('/V7/sign-in', function (req, res) {
 
 
 // --------------------
-// PASSWORD → PHONE
+// PASSWORD → CHECK PHONE (unchanged ✅)
 // --------------------
 router.post('/V7/enter-password', function (req, res) {
   res.redirect('/V7/check-your-phone')
 })
 
+
+// --------------------
+// ✅ CHECK PHONE → WHO TO TELL (UPDATED ✅)
+// --------------------
 router.post('/V7/check-your-phone', function (req, res) {
+  res.redirect('/V7/who-to-tell')
+})
+
+
+// --------------------
+// ✅ WHO TO TELL → STOP SCREEN (unchanged ✅)
+// --------------------
+router.post('/V7/who-to-tell', function (req, res) {
+  res.redirect('/V7/stop-screen-bank-account')
+})
+
+
+// --------------------
+// ✅ STOP SCREEN → BACK INTO JOURNEY
+// --------------------
+router.post('/V7/stop-screen-bank-account', function (req, res) {
   res.redirect('/V7/company-number')
 })
 
@@ -92,44 +113,38 @@ router.post('/V7/company-authentication', function (req, res) {
 
 
 // --------------------
-// ✅ BRANCHING: WHICH DIRECTOR ARE YOU
+// ✅ BRANCHING
 // --------------------
 router.post('/V7/which-director-are-you', function (req, res) {
 
   const answer = req.body.whichDirectorAreYou
 
-  // ✅ NOT a director → your new journey
   if (answer === 'iAmNotADirectorOfThisCompany') {
     return res.redirect('/V7/which-directors-will-be-signing')
   }
 
-  // ✅ Director → existing journey
   res.redirect('/V7/sign-the-application')
 })
 
 
 // --------------------
-// ✅ NON-DIRECTOR FLOW
+// NON-DIRECTOR FLOW
 // --------------------
-
-// Which directors → provide emails
 router.post('/V7/which-directors-will-be-signing', function (req, res) {
   res.redirect('/V7/provide-corporate-directors-emails')
 })
 
-// Provide emails → check answers
 router.post('/V7/provide-corporate-directors-emails', function (req, res) {
   res.redirect('/V7/check-your-answers-multi-directors')
 })
 
-// Check answers → final ACSP screen
 router.post('/V7/check-your-answers-multi-directors', function (req, res) {
   res.redirect('/V7/test-sign-journey-acsp')
 })
 
 
 // --------------------
-// ✅ MAIN DIRECTOR JOURNEY (unchanged)
+// MAIN DIRECTOR FLOW
 // --------------------
 router.post('/V7/sign-the-application', function (req, res) {
   res.redirect('/V7/review-your-payment')
@@ -137,10 +152,6 @@ router.post('/V7/sign-the-application', function (req, res) {
 
 router.post('/V7/review-your-payment', function (req, res) {
   res.redirect('/V7/who-to-tell')
-})
-
-router.post('/V7/who-to-tell', function (req, res) {
-  res.redirect('/V7/stop-screen-bank-account')
 })
 
 
