@@ -14,27 +14,25 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
 
     <form method="post" action="/V7/which-directors-will-be-signing">
 
-      {# Build checkbox items inline #}
       {% set checkboxItems = [] %}
 
-      {% if data.whichDirectorAreYou != "JaneDoe" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "JaneDoe", text: "DOE, Jane", checked: data.whichDirectorsWillBeSigningTheApplication and "JaneDoe" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% if data.whichDirectorAreYou != "EllaAdams" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "EllaAdams", text: "ADAMS, Ella", checked: data.whichDirectorsWillBeSigningTheApplication and "EllaAdams" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
       {% if data.whichDirectorAreYou != "SaraFrancis" %}
         {% set checkboxItems = checkboxItems.concat([ { value: "SaraFrancis", text: "FRANCIS, Sara", checked: data.whichDirectorsWillBeSigningTheApplication and "SaraFrancis" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
-      {% if data.whichDirectorAreYou != "JamesShipley" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "JamesShipley", text: "SHIPLEY, James", checked: data.whichDirectorsWillBeSigningTheApplication and "JamesShipley" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% if data.whichDirectorAreYou != "AlexJohnson" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "AlexJohnson", text: "JOHNSON, Alex", checked: data.whichDirectorsWillBeSigningTheApplication and "AlexJohnson" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
-      {% if data.whichDirectorAreYou != "AcmeLtd" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "AcmeLtd", text: "ACME LTD", checked: data.whichDirectorsWillBeSigningTheApplication and "AcmeLtd" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
+      {% if data.whichDirectorAreYou != "PriyaPatel" %}
+        {% set checkboxItems = checkboxItems.concat([ { value: "PriyaPatel", text: "PATEL, Priya", checked: data.whichDirectorsWillBeSigningTheApplication and "PriyaPatel" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
       {% endif %}
 
-      {# Adjust legend and hint #}
-      {% if data.whichDirectorAreYou in ["JaneDoe", "SaraFrancis", "JamesShipley"] %}
+      {% if data.whichDirectorAreYou in ["EllaAdams", "SaraFrancis", "AlexJohnson"] %}
         {% set legendText = "Which other directors will sign the application?" %}
         {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
       {% else %}
@@ -42,7 +40,6 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
         {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
       {% endif %}
 
-      {# Render checkboxes #}
       {{ govukCheckboxes({
         name: "whichDirectorsWillBeSigningTheApplication",
         fieldset: {
@@ -61,8 +58,7 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
         <div class="govuk-details__text">
           <p>Directors who are people must sign the application themselves. Nobody can sign on their behalf.</p>
           <p>If there are not enough directors who can sign, you'll need to
-            <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
-               class="govuk-link" rel="noreferrer noopener" target="_blank">
+            <a class="govuk-link" href="https://www.gov.uk/file-changes-to-a-company-with-companies-house" target="_blank" rel="noopener noreferrer">
               make changes to the company directors
             </a> before continuing.</p>
         </div>

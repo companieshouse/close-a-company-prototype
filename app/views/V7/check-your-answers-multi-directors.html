@@ -40,10 +40,10 @@
 
         {% set displayName =
           director
-            | replace("JaneDoe", "DOE, Jane")
+            | replace("EllaAdams", "ADAMS, Ella")
             | replace("SaraFrancis", "FRANCIS, Sara")
-            | replace("JamesShipley", "SHIPLEY, James")
-            | replace("AcmeLtd", "ACME LTD")
+            | replace("AlexJohnson", "JOHNSON, Alex")
+            | replace("PriyaPatel", "PATEL, Priya")
         %}
 
         {% set emailKey = "directorEmail" + loop.index0 %}
