@@ -78,97 +78,104 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
     <p class="govuk-body govuk-hint">
       Only the directors who have been selected to sign will appear here. 
     </p>
+    </div>
+    </div>
 
-{{ govukTable({
-  head: [
-    { text: "Name" },
-    { text: "Email address" },
-    { text: "Status" },
-    { text: "Action" }
-  ],
-  rows: [
-    [
-      {
-        html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
-      },
-      {
-        html: '
-          ella.adams@example.com
-          <div class="govuk-!-margin-top-1">
-            <!--<a class="govuk-link" href="#">Change email</a><br>
-            <a class="govuk-link" href="#">Resend email</a>-->
-          </div>
-        '
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Completed</span>'
-      }
-    ],
-    [
-      {
-        html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
-      },
-      {
-        text: 'sara.francis@example.com'
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Completed</span>'
-      }
-    ],
-    [
-      {
-        html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
-      },
-      {
-        html: '
-          alex.johnson@example.com
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
-          </div>
-        '
-      },
-      {
-        html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Needs to sign</span>'
-      }
-    ],
-    [
-      {
-        html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
-      },
-      {
-        text: 'priya.patel@example.com'
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      },
-      {
-        html: '<span class="govuk-hint">Completed</span>'
-      }
-    ]
-  ]
-}) }}
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+        head: [
+          { text: "Name" },
+          { text: "Email address" },
+          { text: "Status" },
+          { text: "Action" }
+        ],
+        rows: [
+          [
+            {
+              html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
+            },
+            {
+              html: '
+                ella.adams@example.com
+                <div class="govuk-!-margin-top-1">
+                  <!--<a class="govuk-link" href="#">Change email</a><br>
+                  <a class="govuk-link" href="#">Resend email</a>-->
+                </div>
+              '
+            },
+            {
+              html: govukTag({
+                text: "Signed",
+                classes: "govuk-tag--green"
+              })
+            },
+            {
+              html: '<span class="govuk-hint">Completed</span>'
+            }
+          ],
+          [
+            {
+              html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
+            },
+            {
+              text: 'sara.francis@example.com'
+            },
+            {
+              html: govukTag({
+                text: "Signed",
+                classes: "govuk-tag--green"
+              })
+            },
+            {
+              html: '<span class="govuk-hint">Completed</span>'
+            }
+          ],
+          [
+            {
+              html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
+            },
+            {
+              html: '
+                alex.johnson@example.com
+                <div class="govuk-!-margin-top-1">
+                  <a class="govuk-link" href="#">Change email</a><br>
+                  <a class="govuk-link" href="#">Resend email</a>
+                </div>
+              '
+            },
+            {
+              html: govukTag({
+                text: "Not signed",
+                classes: "govuk-tag--grey"
+              })
+            },
+            {
+              html: '<span class="govuk-hint">Needs to sign</span>'
+            }
+          ],
+          [
+            {
+              html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
+            },
+            {
+              text: 'priya.patel@example.com'
+            },
+            {
+              html: govukTag({
+                text: "Signed",
+                classes: "govuk-tag--green"
+              })
+            },
+            {
+              html: '<span class="govuk-hint">Completed</span>'
+            }
+          ]
+        ]
+      }) }}
+      </div>
+    </div>
 
    
 
