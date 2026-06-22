@@ -49,13 +49,13 @@
         {# Loop through the directors selected on the previous screen #}
         {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
-          {% set displayName =
-            director
-              | replace("EllaAdams", "ADAMS, Ella")
-              | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("AlexJohnson", "JOHNSON, Alex")
-              | replace("PriyaPatel", "PATEL, Priya")
-          %}
+        {% set displayName =
+          director
+            | replace("EllaAdams", "ADAMS, Ella (January 1980)")
+            | replace("SaraFrancis", "FRANCIS, Sara (March 1985)")
+            | replace("AlexJohnson", "JOHNSON, Alex (July 1978)")
+            | replace("PriyaPatel", "PATEL, Priya (November 1982)")
+        %}
 
           <h2 class="govuk-heading-m">{{ displayName }}</h2>
 

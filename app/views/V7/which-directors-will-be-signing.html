@@ -15,30 +15,37 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
     <form method="post" action="/V7/which-directors-will-be-signing">
 
       {% set checkboxItems = [] %}
+{% if data.whichDirectorAreYou != "EllaAdams" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "EllaAdams",
+    text: "ADAMS, Ella (January 1980)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "EllaAdams" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
 
-      {% if data.whichDirectorAreYou != "EllaAdams" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "EllaAdams", text: "ADAMS, Ella", checked: data.whichDirectorsWillBeSigningTheApplication and "EllaAdams" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
-      {% endif %}
+{% if data.whichDirectorAreYou != "SaraFrancis" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "SaraFrancis",
+    text: "FRANCIS, Sara (March 1985)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "SaraFrancis" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
 
-      {% if data.whichDirectorAreYou != "SaraFrancis" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "SaraFrancis", text: "FRANCIS, Sara", checked: data.whichDirectorsWillBeSigningTheApplication and "SaraFrancis" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
-      {% endif %}
+{% if data.whichDirectorAreYou != "AlexJohnson" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "AlexJohnson",
+    text: "JOHNSON, Alex (July 1978)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "AlexJohnson" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
 
-      {% if data.whichDirectorAreYou != "AlexJohnson" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "AlexJohnson", text: "JOHNSON, Alex", checked: data.whichDirectorsWillBeSigningTheApplication and "AlexJohnson" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
-      {% endif %}
-
-      {% if data.whichDirectorAreYou != "PriyaPatel" %}
-        {% set checkboxItems = checkboxItems.concat([ { value: "PriyaPatel", text: "PATEL, Priya", checked: data.whichDirectorsWillBeSigningTheApplication and "PriyaPatel" in data.whichDirectorsWillBeSigningTheApplication } ]) %}
-      {% endif %}
-
-      {% if data.whichDirectorAreYou in ["EllaAdams", "SaraFrancis", "AlexJohnson"] %}
-        {% set legendText = "Which other directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 2 or more of these directors" %}
-      {% else %}
-        {% set legendText = "Which directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 3 or more of these directors" %}
-      {% endif %}
+{% if data.whichDirectorAreYou != "PriyaPatel" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "PriyaPatel",
+    text: "PATEL, Priya (November 1982)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "PriyaPatel" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
 
       {{ govukCheckboxes({
         name: "whichDirectorsWillBeSigningTheApplication",

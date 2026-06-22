@@ -17,12 +17,13 @@
   </div>
 
   <!-- Right-aligned sign out with top and bottom borders -->
-<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
-  <span class="govuk-body-s">
-    {{user_email}}</strong>  
-    <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
-  </span>
-</div>
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{user_email}}</strong>
+      <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -40,10 +41,10 @@
 
         {% set displayName =
           director
-            | replace("EllaAdams", "ADAMS, Ella")
-            | replace("SaraFrancis", "FRANCIS, Sara")
-            | replace("AlexJohnson", "JOHNSON, Alex")
-            | replace("PriyaPatel", "PATEL, Priya")
+            | replace("EllaAdams", "ADAMS, Ella (January 1980)")
+            | replace("SaraFrancis", "FRANCIS, Sara (March 1985)")
+            | replace("AlexJohnson", "JOHNSON, Alex (July 1978)")
+            | replace("PriyaPatel", "PATEL, Priya (November 1982)")
         %}
 
         {% set emailKey = "directorEmail" + loop.index0 %}
@@ -60,7 +61,7 @@
           {% set changeHref = "/V7/change-directors-email-sara" %}
         {% elseif director == "AcmeLtd" %}
           {% set changeHref = "/V7/change-corporate-directors-email" %}
-           {% elseif director == "JaneDoe" %}
+        {% elseif director == "JaneDoe" %}
           {% set changeHref = "/V7/change-directors-email-jane" %}
         {% endif %}
 
@@ -70,14 +71,6 @@
 
         {{ govukSummaryList({
           rows: [
-            {
-              key: { text: "Name" },
-              value: {
-                text:
-                  data[nameKey] if director == "AcmeLtd"
-                  else displayName
-              }
-            },
             {
               key: { text: "Email address" },
               value: { text: data[emailKey] or "" },
