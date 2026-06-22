@@ -13,6 +13,27 @@ We've already accepted an application to close this company – {{ serviceName }
       We've already accepted an application to close this company
     </h1>
 
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Company name"
+          },
+          value: {
+            text: "MULTI DIRECTOR COMPANY LIMITED"
+          }
+        },
+        {
+          key: {
+            text: "Company number"
+          },
+          value: {
+            text: "23456789"
+          }
+        }
+      ]
+    }) }}
+
     <p class="govuk-body">
       We received an application to close this company from <strong>sara.francis@example.com</strong> on 2 June 2026. We've accepted the application, and the process of closing the company has started.
     </p>
@@ -21,7 +42,13 @@ We've already accepted an application to close this company – {{ serviceName }
       You cannot submit another application.
     </p>
 
- 
+    <p class="govuk-body">
+      <a href="/V7/ds-hub-accepted" class="govuk-link">
+        View application status
+      </a>
+    </p>
+
+  </div>
 </div>
 
 {% endblock %}
