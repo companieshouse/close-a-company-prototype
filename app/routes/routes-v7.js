@@ -5,8 +5,13 @@ const router = express.Router()
 // --------------------
 // DS HUB START
 // --------------------
+router.post('/V7/start', function (req, res) {
+
+  res.redirect('/V7/sign-in-ds-hub')
+})
+
 router.post('/V7/sign-in-ds-hub', function (req, res) {
-  req.session.data = req.session.data || {}
+  req.session.data = {}
   req.session.data.startedAtAltSignIn = true
 
   req.session.user_email = req.body['email-address']
@@ -14,14 +19,37 @@ router.post('/V7/sign-in-ds-hub', function (req, res) {
   res.redirect('/V7/enter-password')
 })
 
+router.post('/V7/company-authentication', function (req, res) {
 
-// --------------------
-// DEFAULT START
-// --------------------
-router.post('/V7/start', function (req, res) {
-  req.session.data = {}
-  res.redirect('/V7/sign-in')
+  if (req.session.data.startedAtAltSignIn) {
+    return res.redirect('/V7/which-director-are-you')
+  }
+
 })
+
+router.post('/V7/which-director-are-you', function (req, res) {
+
+  const answer = req.body.whichDirectorAreYou
+
+  if (req.session.data.startedAtAltSignIn) {
+    return res.redirect('/V7/which-directors-will-be-signing')
+  }
+
+  if (answer === 'iAmNotADirectorOfThisCompany') {
+    return res.redirect('/V7/which-directors-will-be-signing')
+  }
+
+  res.redirect('/V7/sign-the-application')
+})
+
+router.post('/V7/check-your-answers-multi-directors', function (req, res) {
+  res.redirect('/V7/sign-the-application')
+})
+
+router.post('/V7/sign-the-application', function (req, res) {
+  res.redirect('/V7/test-sign-journey')
+})
+
 
 
 // --------------------

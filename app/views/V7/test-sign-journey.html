@@ -92,101 +92,108 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         ],
         rows: [
 
-          [
-            {
-              html: '
-                <div>ADAMS, Ella</div>
-                <div class="govuk-hint">May 1988</div>
-              '
-            },
-            {
-              html: '
-                ella.adams@example.com
-                <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#">Change email address</a><br>
-                  <a class="govuk-link" href="#">Resend email</a>
-                </div>
-              '
-            },
-            {
-              html: govukTag({
-                text: "Not signed",
-                classes: "govuk-tag--grey"
-              })
-            },
-            {
-              html: '<a class="govuk-link" href="/V7/who-to-tell">Sign application</a>'
-            }
-          ],
+                  [
+              {
+                html: '
+                  <div>ADAMS, Ella</div>
+                  <div class="govuk-hint">May 1988</div>
+                '
+              },
+              {
+                html: '
+                  ella.adams@example.com'
+              
+              },
+              {
+                html: govukTag({
+                  text: "Signed",
+                  classes: "govuk-tag--green"
+                })
+              },
+              {
+                html: '<span class="govuk-hint">Completed</span>'
+              }
+            ],
 
-          [
-            {
-              html: '
-                <div>FRANCIS, Sara</div>
-                <div class="govuk-hint">January 1987</div>
-              '
-            },
-            {
-              text: "sara.francis@example.com"
-            },
-            {
-              html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
-              })
-            },
-            {
-              html: '<span class="govuk-hint">Completed</span>'
-            }
-          ],
+            [
+              {
+                html: '
+                  <div>FRANCIS, Sara</div>
+                  <div class="govuk-hint">January 1987</div>
+                '
+              },
+              { html:'
+                sara.francis@example.com
+                    <div class="govuk-!-margin-top-1">
+                    <a class="govuk-link" href="#">Change email address</a><br>
+                    <a class="govuk-link" href="#">Resend email</a>
+                  </div>
+                '
+              },
+              {
+                html: govukTag({
+                  text: "Not signed",
+                  classes: "govuk-tag--grey"
+                })
+              },
+              {
+                html: '<a class="govuk-link" href="/V7/who-to-tell">Sign application</a>'
+              }
+            ],
 
-          [
-            {
-              html: '
-                <div>JOHNSON, Alex</div>
-                <div class="govuk-hint">March 1985</div>
-              '
-            },
-            {
-              html: '
-                alex.johnson@example.com
-                <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#">Change email address</a><br>
-                  <a class="govuk-link" href="#">Resend email</a>
-                </div>
-              '
-            },
-            {
-              html: govukTag({
-                text: "Not signed",
-                classes: "govuk-tag--grey"
-              })
-            },
-            {
-              html: '<a class="govuk-link" href="/V7/who-to-tell">Sign application</a>'
-            }
-          ],
+            [
+              {
+                html: '
+                  <div>JOHNSON, Alex</div>
+                  <div class="govuk-hint">March 1985</div>
+                '
+              },
+              {
+                html: '
+                  alex.johnson@example.com
+                  <div class="govuk-!-margin-top-1">
+                    <a class="govuk-link" href="#">Change email address</a><br>
+                    <a class="govuk-link" href="#">Resend email</a>
+                  </div>
+                '
+              },
+              {
+                html: govukTag({
+                  text: "Not signed",
+                  classes: "govuk-tag--grey"
+                })
+              },
+              {
+                html: '<a class="govuk-link" href="/V7/who-to-tell">Sign application</a>'
+              }
+            ],
 
-          [
-            {
-              html: '
-                <div>PATEL, Priya</div>
-                <div class="govuk-hint">July 1990</div>
-              '
-            },
-            {
-              text: "priya.patel@example.com"
-            },
-            {
-              html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
-              })
-            },
-            {
-              html: '<span class="govuk-hint">Completed</span>'
-            }
-          ]
+            [
+              {
+                html: '
+                  <div>PATEL, Priya</div>
+                  <div class="govuk-hint">July 1990</div>
+                '
+              },
+              {
+                  html: '
+                  priya.patel@example.com
+                  <div class="govuk-!-margin-top-1">
+                    <a class="govuk-link" href="#">Change email address</a><br>
+                    <a class="govuk-link" href="#">Resend email</a>
+                  </div>'
+                
+              },
+              {
+                html: govukTag({
+                  text: "Not signed",
+                  classes: "govuk-tag--grey"
+                })
+              },
+              {
+                html: '<a class="govuk-link" href="/V7/who-to-tell">Sign application</a>'
+              }
+            ]
 
         ]
       }) }}
