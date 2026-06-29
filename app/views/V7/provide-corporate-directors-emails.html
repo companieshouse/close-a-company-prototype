@@ -16,13 +16,13 @@
     </p>
   </div>
 
-  <!-- Right-aligned sign out with top and bottom borders -->
-<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
-  <span class="govuk-body-s">
-    {{user_email}}</strong>  
-    <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
-  </span>
-</div>
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{ user_email }}
+      <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -30,24 +30,22 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <form action="/V7/provide-corporate-directors-emails" method="post">
+    <form action="/V7/provide-corporate-directors-emails" method="post">
 
-        <h1 class="govuk-heading-xl">
-          Provide directors' email addresses
-        </h1>
+      <h1 class="govuk-heading-xl">
+        Provide directors' email addresses
+      </h1>
 
-        <p class="govuk-hint">
-          We'll email each director you've selected, to ask them to sign the application online.
-        </p>
+      <p class="govuk-body">
+        We'll email each director you've selected, to ask them to sign the application online.
+      </p>
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-        {% from "govuk/components/details/macro.njk" import govukDetails %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {# Loop through the directors selected on the previous screen #}
-        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
 
         {% set displayName =
           director
@@ -57,43 +55,41 @@
             | replace("PriyaPatel", "PATEL, Priya (November 1982)")
         %}
 
-          <h2 class="govuk-heading-m">{{ displayName }}</h2>
+        {% if director == "AcmeLtd" %}
 
-          {# Corporate director guidance #}
-          {% if director == "AcmeLtd" %}
+          <h2 class="govuk-heading-m">
+            ACME LTD
+          </h2>
 
-            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.</p>
+          <p class="govuk-body">
+            Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
+          </p>
 
-            {% set nameKey = "corporateSignerName" + loop.index0 %}
+          {% set nameKey = "corporateSignerName" + loop.index0 %}
 
-            {{ govukInput({
-              label: {
-                text: "
-"
-              },
-              hint: {
-                text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
-              },
-              id: nameKey,
-              name: nameKey,
-              type: "text",
-              autocomplete: "name",
-              value: data[nameKey]
-            }) }}
-
-          {% endif %}
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            hint: {
+              text: "Enter the authorised person's name"
+            },
+            id: nameKey,
+            name: nameKey,
+            type: "text",
+            autocomplete: "name",
+            value: data[nameKey]
+          }) }}
 
           {% set emailKey = "directorEmail" + loop.index0 %}
 
-          {% set emailHint =
-            "What is the email address for the authorised person who will sign on behalf of ACME LTD?"
-            if director == "AcmeLtd"
-            else "What is the email address for " ~ displayName ~ "?"
-          %}
-
           {{ govukInput({
-            label: { text: emailLabel },
-            hint: { text: emailHint },
+            label: {
+              text: "Email address"
+            },
+            hint: {
+              text: "Enter the authorised person's email address"
+            },
             id: emailKey,
             name: emailKey,
             type: "email",
@@ -102,14 +98,37 @@
             value: data[emailKey]
           }) }}
 
-        {% endfor %}
+        {% else %}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+          <h2 class="govuk-heading-m">
+            {{ displayName }}
+          </h2>
 
-      </form>
+          {% set emailKey = "directorEmail" + loop.index0 %}
 
-    </div>
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+         
+            id: emailKey,
+            name: emailKey,
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            value: data[emailKey]
+          }) }}
+
+        {% endif %}
+
+      {% endfor %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
   </div>
+</div>
 {% endblock %}
