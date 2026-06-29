@@ -1,5 +1,8 @@
 {% extends "layouts/main.html" %}
 
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
 {% block pageTitle %}
   Application received – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -11,51 +14,71 @@
 
     {{ govukPanel({
       titleText: "Application received",
-      html: "Your reference number<br><strong>HDJ2123F</strong>"
+      html: "We've received an application to close this company"
     }) }}
 
     {{ govukSummaryList({
       rows: [
         {
-          key: { text: "Company number" },
-          value: { text: data['companyNumber'] or "09429091" }
+          key: {
+            text: "Company number"
+          },
+          value: {
+            text: data['companyNumber'] or "87654321"
+          }
         },
         {
-          key: { text: "Company name" },
+          key: {
+            text: "Company name"
+          },
           value: {
             text:
               "Single Director Company Ltd"
               if data['companyNumber'] == "12345678"
               else "A MULTI DIRECTOR COMPANY LTD"
           }
+        },
+        {
+          key: {
+            text: "Application reference"
+          },
+          value: {
+            text: "HDJ2123F"
+          }
+        },
+        {
+          key: {
+            text: "Payment reference"
+          },
+          value: {
+            text: "7KBFKRI8DTQ8TNI"
+          }
         }
       ]
     }) }}
 
     <p>
-      We'll email you to confirm that we've received the application. We'll email you again within 2 working days to let you know if the application has been accepted or rejected.
+      We received an application to close this company from
+      <strong>sarafrancis@example.com</strong> on 2 June 2026.
+      We are currently processing the application, and will decide whether to
+      accept or reject it within 2 working days.
     </p>
 
     <h2 class="govuk-heading-m">
       Directors must inform all interested parties
     </h2>
 
-
-      <p>
-        The directors must send a copy to all interested parties within 7 days of making the application.
-      </p>
-
-      <p class="govuk-body">
-  <a href="" class="govuk-link" rel="noreferrer noopener" target="_blank">Download the signed copy of the application (opens in new tab)</a>.
-</p>
+    <p>
+      The directors must send a copy of this application to all interested parties,
+      within 7 days of making the application.
+    </p>
 
     <p>
-      Read the
-      <a class="govuk-link"
-         href="https://www.gov.uk/government/publications/striking-off-or-dissolving-a-limited-company/striking-off-or-dissolving-a-limited-company#how-to-apply-and-who-to-tell"
-         target="_blank"
-         rel="noopener noreferrer">
-        full list of interested parties to tell about the company closing (opens in new tab)</a>.
+      <a href="#" class="govuk-link">
+        Download a copy of the application
+      </a>.
+      Once we accept the application, we'll also publish a copy on the Companies House
+      register where anyone can download it.
     </p>
 
     <div class="govuk-warning-text">
@@ -72,8 +95,8 @@
 
     <p>
       We'll publish a strike off notice for the company in the relevant Gazette.
-      After 2 months, unless there is an objection to the company closing,
-      another notice will be published in the relevant Gazette and the company will be dissolved.
+      After 2 months, unless there is an objection to the company closing, another notice
+      will be published in the relevant Gazette and the company will be dissolved.
     </p>
 
     <p>

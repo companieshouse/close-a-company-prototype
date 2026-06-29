@@ -40,9 +40,11 @@ We've already accepted an application to close this company – {{ serviceName }
 
     <p>Select continue to view the status of the application.</p>
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
-Continue
-</button>
+{{ govukButton({
+  text: "Continue",
+  href: "/V7/application-received"
+}) }}
+
 
    <!-- <p class="govuk-body">
       <a href="/V7/ds-hub-accepted" class="govuk-link">
