@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+Application signed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Restyled blue banner -->
+    <div style="background-color:#1d70b8; padding:25px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-l" style="color:white; margin-bottom:5px;">
+        Application signed
+      </h1>
+
+      <p class="govuk-body" style="color:white; margin:0;">
+        You’ve signed the application to strike off and dissolve this company
+      </p>
+    </div>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Company number" },
+          value: { text: "09429091" }
+        },
+        {
+          key: { text: "Company name" },
+          value: { text: "A MULTI DIRECTOR COMPANY LTD" }
+        },
+        {
+          key: { text: "Director" },
+          value: { text: "ADAMS, Ella" }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">
+      Each signing director needs to log in to this service and sign the application.
+      Once all directors have signed, <strong>lisa.humphreys@accountancyfirm.co.uk</strong>
+      can log back in, pay the £13 fee and submit the application.
+    </p>
+
+
+
+<p class="govuk-body">
+  <a href="/V8/test-sign-journey-ella-signed" class="govuk-link">
+    See which directors have signed so far
+  </a>
+  on the Application in progress page.  
+  You’ll see that page again if you log back into this service later.
+</p>
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

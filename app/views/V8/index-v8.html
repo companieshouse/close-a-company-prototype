@@ -1,0 +1,265 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+<!-- Hide service navigation-->
+{% block header %}
+{{ govukHeader({
+  rebrand: true
+}) }}
+{% endblock %} 
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-width">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    This version of the prototype is being actively worked on - 
+    some things might not work correctly or change very quickly. 
+    If you have any questions, contact Sara Shipley or Sophie Horton.
+    
+  </p>
+
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
+<span class="govuk-caption-xl">Version 7</span>
+<h1 class="govuk-heading-xl">
+  {{ serviceName }}
+</h1>
+<P>CORPORATE DIRECTOR REMOVED FOR TESTING -SEE V5 FOR CORPORATE ROUTE 18/03/26</P>
+
+<p>
+  <a href="https://app.mural.co/t/companieshouse8589/m/companieshouse8589/1773152896763/558225f536e6707b4d8d132210503149c65dba1a"
+     class="govuk-link"
+     rel="noreferrer noopener"
+     target="_blank">
+    Link to Mural (opens in a new tab)
+  </a>
+</p>
+
+</div>
+</div>
+
+
+<h2 class="govuk-heading-m">Presenter/filer</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V8/start.html" class="govuk-link">Start page</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li><a href="/V8/who-to-tell.html" class="govuk-link">Who to tell</a>  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li><a href="/V8/stop-screen-bank-account.html" class="govuk-link">Stop screen to confirm company bank account has been cleared</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li><a href="/V8/sign-in-to-ch.html" class="govuk-link">Sign in to CH or GOV One Login</a></li>
+  <li><a href="/V8/gov-one-log-in.html" class="govuk-link">Sign in (to GOV One Login)</a></li>
+  <li><a href="/V8/sign-in.html" class="govuk-link">Enter GOV One Login email address</a></li>
+  <li><a href="/V8/enter-password.html" class="govuk-link">Enter GOV One Login password</a></li>
+  <li><a href="/V8/check-your-phone.html" class="govuk-link">Check your phone</a></li>
+  <li><a href="/V8/company-number.html" class="govuk-link">Company number</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li><a href="/V8/view-company-info.html" class="govuk-link">View company info</a></li>
+  <li><a href="/V8/company-authentication.html" class="govuk-link">Company auth code</a></li>
+  <li><a href="/V8/which-director-are-you.html" class="govuk-link">Which director are you?</a>{{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+ <li><a href="/V8/which-directors-will-be-signing.html" class="govuk-link">Which directors will be signing? (multi director company)</a></li> 
+
+  <li><a href="/V8/provide-corporate-directors-emails.html" class="govuk-link">Provide directors emails</a></li>
+  <li><a href="/V8/check-your-answers-single-director-acsp.html" class="govuk-link">Check your answers (single director company)</a></li>
+
+<li>
+  <a href="/V8/check-your-answers-multi-directors.html" class="govuk-link">
+    Check your answers (multi director company)
+  </a>
+  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}
+</li>
+  <li><a href="/V8/change-directors-email.html" class="govuk-link">Change directors email</a>    {{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+
+
+  <li><a href="/V8/wait-screen-other-director-must-sign-single-director.html" class="govuk-link">'Wait' screen - other director must sign (single director company)</a>{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li></li>
+
+
+ 
+
+
+  <li><a href="/V8/sign-the-application.html" class="govuk-link">Sign the application</a>{{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+    <li><a href="/V8/sign-the-application-corporate-director.html" class="govuk-link">Sign the application- Corporate Director</a>{{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+
+  <li>
+    <a href="/V8/wait-screen-other-directors-must-sign-multi-director.html" class="govuk-link">
+      'Wait' screen - other directors must sign (multi director company)
+    </a>
+    {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  </li>
+
+  <h3 class="govuk-heading-m govuk-!-margin-top-5">View PDF from email route for testing</h3>
+    <li>
+    <a href="/V8/email-application-accepted-single.html" class="govuk-link">Accepted email- SINGLE DIRECTOR</a>
+    {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li>
+    <a href="/V8/email-application-accepted.html" class="govuk-link">Accepted email- MULTI DIRECTOR</a>
+    {{ govukTag({
+    text: "DEV READY",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+    <li>
+    <a href="/V8/view-company-info-pdf.html" class="govuk-link">View company info PDF Link</a>{{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}
+  </li>
+  <li><a href="/V8/pdf-mock-up.html" class="govuk-link">PDF Mock Up -Application Received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "FOR TESTING",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</li>
+
+
+<h2 class="govuk-heading-m govuk-!-margin-top-9">Payment/Application Submitted Screens</h2>
+  <li>
+    <a href="/V8/how-do-you-want-to-pay.html" class="govuk-link">How do you want to pay?</a>
+  </li>
+    <li><a href="/V8/ch-pay.html" class="govuk-link">CH Payment Account Log in</a></li>
+  <li><a href="/V8/review-your-payment.html" class="govuk-link">Review your payment</a></li>
+  <li>
+    <a href="https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab" class="govuk-link">
+      Payment on GOV Pay prototype
+    </a> (use card number 4000056655665556)
+  </li>
+  <li><a href="/V8/application-received.html" class="govuk-link">Application received</a></li>
+<li><a href="/V8/bi-email-mock.html" class="govuk-link">BI-14673 Email-Application Received</a></li>
+<li><a href="/V8/email-application-accepted.html" class="govuk-link">Email- Application Accepted</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+
+
+</ul>
+
+</div>
+
+<div class="govuk-grid-column-one-half">
+<h2 class="govuk-heading-m">'Other' signer(s)</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V8/email-sign-the-application.html" class="govuk-link">Email</a></li>
+  <li><a href="/V8/sign-in-to-ch.html" class="govuk-link">Sign in to CH or GOV One Login</a></li>
+  <li><a href="/V8/gov-one-log-in.html" class="govuk-link">Sign in (to GOV One Login)</a></li>
+  <li><a href="/V8/sign-in.html" class="govuk-link">Enter GOV One Login email address</a></li>
+  <li><a href="/V8/enter-password.html" class="govuk-link">Enter GOV One Login password</a></li>
+  <li><a href="/V8/check-your-phone.html" class="govuk-link">Check your phone</a></li>
+  <li><a href="/V8/company-number.html" class="govuk-link">Company number</a></li>
+  <li><a href="/V8/view-company-info.html" class="govuk-link">View company info</a></li>
+  <li><a href="/V8/company-authentication.html" class="govuk-link">Company auth code</a></li>
+  <li><a href="/V8/provide-single-director-email.html" class="govuk-link">Provide single director email</a>  {{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+  <li><a href="/V8/sign-the-application.html" class="govuk-link">Sign the application</a></li>
+
+  <li>
+    <a href="/V8/wait-screen-other-signer-single-director.html" class="govuk-link">
+      'Wait' screen - the presenter now needs to complete the application (single director company)
+    </a>
+  </li>
+  <li>
+    <a href="/V8/wait-screen-other-signers-multi-directors.html" class="govuk-link">
+      'Wait' screen - the presenter now needs to complete the application (multi director company)
+    </a>
+  </li>
+
+   <li>
+    <a href="/V8/email-address-not-authorised.html" class="govuk-link">
+      Email address not authorised to sign
+    </a>
+    {{ govukTag({
+    text: "IN PROGRESS",
+    classes: "govuk-!-margin-left-2 govuk-tag--red"
+  }) }}</li>
+  <li>
+      <a href="/V8/email-address-not-authorised-test.html" class="govuk-link">
+      Email address not authorised to sign- Test V2
+    </a>
+    {{ govukTag({
+    text: "FOR TESTING",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</li>
+
+
+</ul>
+</div>
+
+<div class="govuk-grid-column-one-half">
+<h2 class="govuk-heading-m">Test Pages
+</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V8/which-director-are-you-search-test.html" class="govuk-link">Which director are you? (100 directors)</a></li>
+  <li><a href="/V8/which-directors-will-be-signing-search-test.html" class="govuk-link">Which director will be signing? (100 directors)</a></li>
+  <li><a href="/V8/provide-corporate-directors-emails-search-test.html" class="govuk-link">Provide director email (100 directors)</a></li>
+  
+  <h2 class="govuk-heading-m" style="margin-top: 20px;">Dissolution hub</h2>
+
+
+  <li><a href="/V8/start.html" class="govuk-link">The hub of dissolution journey from start page</a></li>
+  <li><a href="/V8/test-sign-journey.html" class="govuk-link">The hub of dissolution page</a></li>
+   <li><a href="/V8/test-sign-journey-submit-button.html" class="govuk-link">Dissolution hub with submit button</a></li>   
+  <li><a href="/V8/wait-screen-other-signers-multi-directors" class="govuk-link">Application signed</a></li>
+
+  <li><a href="/V8/ds-hub-accepted.html" class="govuk-link">Dissolution hub- Application accepted</a></li>
+  <li><a href="/V8/delete-confirmation.html" class="govuk-link">Are you sure you want to delete this application?</a></li>
+  <li><a href="/V8/application-deleted.html" class="govuk-link">Application deleted</a></li>
+  <li><a href="/V8/test-sign-journey-acsp.html" class="govuk-link">ACSP - The hub of dissolution page</a></li>
+
+   <h2 class="govuk-heading-m" style="margin-top: 20px;">Stop screens</h2>
+  <li><a href="/V8/stop-application-in-progress.html" class="govuk-link">Stop screen - Application in progress</a></li>
+  <li><a href="/V8/stop-too-many-directors.html" class="govuk-link">Stop screen - Too many directors</a></li>
+  <li><a href="/V8/stop-too-many-members.html" class="govuk-link">Stop screen - Too many members</a></li>
+</div>
+
+  <h2 class="govuk-heading-m" style="margin-top: 20px;">Shelved</h2>
+  <li><a href="/V8/test-sign-journey-2.html" class="govuk-link">The hub of dissolution with all directors (tested badly)</a></li>
+    <li><a href="/V8/confirm-who-you-are.html" class="govuk-link">Confirm who you are</a></li>
+</div>
+
+</div>
+{% endblock %}

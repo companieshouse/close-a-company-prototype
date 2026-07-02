@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Which other directors will sign the application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    {{user_email}}</strong>  
+    <a class="govuk-link" href="/V8/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+  
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">
+      Which other directors will sign the application?
+    </h1>
+<div id="event-name-hint" class="govuk-hint">
+    More than half of the directors must sign, so you must select 2 or more of these directors.
+  </div>
+ 
+
+    <form method="post" action="/V8/which-directors-will-be-signing">
+
+      {% set checkboxItems = [] %}
+{% if data.whichDirectorAreYou != "EllaAdams" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "EllaAdams",
+    text: "ADAMS, Ella (January 1980)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "EllaAdams" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
+
+{% if data.whichDirectorAreYou != "SaraFrancis" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "SaraFrancis",
+    text: "FRANCIS, Sara (March 1985)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "SaraFrancis" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
+
+{% if data.whichDirectorAreYou != "AlexJohnson" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "AlexJohnson",
+    text: "JOHNSON, Alex (July 1978)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "AlexJohnson" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
+
+{% if data.whichDirectorAreYou != "PriyaPatel" %}
+  {% set checkboxItems = checkboxItems.concat([ {
+    value: "PriyaPatel",
+    text: "PATEL, Priya (November 1982)",
+    checked: data.whichDirectorsWillBeSigningTheApplication and "PriyaPatel" in data.whichDirectorsWillBeSigningTheApplication
+  } ]) %}
+{% endif %}
+
+      {{ govukCheckboxes({
+        name: "whichDirectorsWillBeSigningTheApplication",
+        fieldset: {
+          legend: { text: legendText, isPageHeading: true, classes: "govuk-fieldset__legend--l" }
+        },
+        hint: { text: hintText },
+        items: checkboxItems
+      }) }}
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            If a director cannot sign the application themselves
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>Directors who are people must sign the application themselves. Nobody can sign on their behalf.</p>
+          <p>If there are not enough directors who can sign, you'll need to
+            <a class="govuk-link" href="https://www.gov.uk/file-changes-to-a-company-with-companies-house" target="_blank" rel="noopener noreferrer">
+              make changes to the company directors
+            </a> before continuing.</p>
+        </div>
+      </details>
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

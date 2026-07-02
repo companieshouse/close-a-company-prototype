@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirm who you are – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div style="border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      <a href="/V8/email-address-not-authorised"
+         style="color: inherit; text-decoration: none; display: inline;">
+        <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>
+      </a>
+
+      <a class="govuk-link"
+         href="/V8/sign-in-to-ch-or-one-login"
+         style="margin-left: 10px;">
+        Sign out
+      </a>
+    </span>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-m">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
+
+    <h1 class="govuk-heading-l">Confirm you are FRANCIS, Sara</h1>
+
+  <!--<p class="govuk-body">
+      You’re signing this application as <strong>FRANCIS, Sara</strong>.
+    </p>-->
+
+    <p class="govuk-body">
+      You're signed in as <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>.
+      
+      <p>The person who started this application gave us a different email address for this director (<strong>sara.francis@example.com</strong>).
+
+    </p>
+
+    <p class="govuk-body">
+      Confirm you are FRANCIS, Sara to continue. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
+    </p>
+
+
+<!--<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+      </h1>
+    </legend>
+    <div id="signIn-hint" class="govuk-hint">
+    </div>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signIn" name="signIn" type="radio" value="government-gateway" aria-describedby="signIn-item-hint">
+        <label class="govuk-label govuk-radios__label" for="signIn">
+         I am FRANCIS, Sara
+        </label>
+        <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
+        <label class="govuk-label govuk-radios__label" for="signIn-2">
+         I am someone else
+        </label>
+        <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+         Selecting this will take you back to the previous screen
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+-->
+
+<form action="#" method="post">
+
+      {{ govukCheckboxes({
+        name: "confirmDirectorIdentity",
+        items: [
+          {
+            value: "confirmed",
+            text: "I am FRANCIS, Sara."
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+   <!-- <p class="govuk-body">
+      <a href="/V8/sign-in-to-ch-or-one-login" class="govuk-link">
+        Sign in with a different email address
+      </a>
+    </p>
+
+  <p class="govuk-body">
+      If you're a different director, <a href="/V8/sign-in-to-ch-or-one-login" class="govuk-link">
+       go back to the Application summary screen
+      </a>.-->
+
+  </div>
+</div>
+
+{% endblock %}

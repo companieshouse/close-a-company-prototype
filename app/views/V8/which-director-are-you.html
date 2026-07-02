@@ -1,0 +1,120 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+ Which director are you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    {{user_email}}</strong>  
+    <a class="govuk-link" href="/V8/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<form method="post" action="/V8/which-director-are-you">
+
+
+{% if (data['companyNumber'] == "12345678") %}
+
+{{ govukRadios({
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+        value: "EllaAdams",
+        text: "Ella Adams (January 1980)"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
+{% else %}
+
+{{ govukRadios({
+  idPrefix: "whichDirectorAreYou",
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "EllaAdams",
+      text: "ADAMS, Ella (January 1980)"
+    },
+    {
+      value: "SaraFrancis",
+      text: "FRANCIS, Sara (March 1985)"
+    },
+    {
+      value: "AlexJohnson",
+      text: "JOHNSON, Alex (July 1978)"
+    },
+    {
+      value: "PriyaPatel",
+      text: "PATEL, Priya (November 1982)"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
+{% endif %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+
+    </div>
+  </div>
+
+{% endblock %}

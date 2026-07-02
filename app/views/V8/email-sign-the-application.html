@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide directors' emails – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{user_email}}  
+      <a class="govuk-link" href="/V8/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+  {% from "govuk/components/input/macro.njk" import govukInput %}
+
+  {% if errorSummary %}
+    {{ govukErrorSummary(errorSummary) }}
+  {% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/V8/provide-corporate-directors-emails" method="post">
+
+        <h1 class="govuk-heading-xl">
+          Provide directors' email addresses
+        </h1>
+
+        <p class="govuk-hint">
+          We'll email each director you've selected, to ask them to sign the application online.
+        </p>
+
+        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+          {% set displayName =
+            director
+              | replace("JaneDoe", "DOE, Jane")
+              | replace("SaraFrancis", "FRANCIS, Sara")
+              | replace("JamesShipley", "SHIPLEY, James")
+              | replace("AcmeLtd", "ACME LTD")
+          %}
+
+          <h2 class="govuk-heading-m">{{ displayName }}</h2>
+
+          {% if director == "AcmeLtd" %}
+
+            <p class="govuk-body">
+              Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
+            </p>
+
+            {% set nameKey = "corporateSignerName" + loop.index0 %}
+
+            {{ govukInput({
+              label: { text: "" },
+              hint: {
+                text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
+              },
+              id: nameKey,
+              name: nameKey,
+              type: "text",
+              autocomplete: "name",
+              value: data[nameKey]
+            }) }}
+
+          {% endif %}
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
+
+          {# ✅ FIXED BLOCK #}
+          {% if director == "AcmeLtd" %}
+            {% set emailHint = "What is the email address for the authorised person who will sign on behalf of ACME LTD?" %}
+          {% else %}
+            {% set emailHint = "What is the email address for " ~ displayName ~ "?" %}
+          {% endif %}
+
+          {{ govukInput({
+            label: { text: "" },
+            hint: { text: emailHint },
+            id: emailKey,
+            name: emailKey,
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            value: data[emailKey],
+            classes: fieldErrors[emailKey] ? "govuk-input--error" : "",
+            errorMessage: fieldErrors[emailKey]
+          }) }}
+
+        {% endfor %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

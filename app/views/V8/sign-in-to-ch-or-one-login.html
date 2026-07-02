@@ -1,0 +1,51 @@
+{% extends "layouts/main-no-service-name.html" %}
+1
+
+2
+
+
+{% set serviceName %}
+{% endset%}
+{% block beforeContent %}
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds ">
+<form action="choose-sign-in" method="post" novalidate="">
+{% set html %}
+{% endset %}
+<h1 class="govuk-heading-l">Sign in to Companies House</h1>
+<h2 class="govuk-heading-m">Sign in with GOV.UK One Login</h2>
+<p class="govuk-body">This is the new way to sign in to Companies House. You'll be able to create a
+GOV.UK One Login if you do not already have one.</p>
+{{ govukButton({
+text: "Go to GOV.UK One Login",
+href:"sign-in"
+}) }}
+
+<details class="govuk-details">
+<summary class="govuk-details__summary">
+<span class="govuk-details__summary-text">
+Benefits of GOV.UK One Login
+</span>
+</summary>
+<div class="govuk-details__text">
+<p>A GOV.UK One Login allows you to access many government services using the same email address
+and password. It also makes your Companies House account more secure. </p>
+<p class="govuk-body">If you use the same email address for your GOV.UK One Login as your existing
+Companies House account, we'll save any information stored, such as: </p>
+<ul class="govuk-list govuk-list--bullet">
+<li>your filing history</li>
+<li>companies you follow</li>
+</ul></div>
+</details>
+
+<h2 class="govuk-heading-m">Other ways to sign in</h2>
+<p class="govuk-body">For now, if you still access your Companies House account without signing in to
+GOV.UK One Login, you can <a href="chs-sign-in-email.html" class="govuk-link">sign in with existing
+Companies House account details</a> instead.</p>
+<p class="govuk-body">In the future, you will need to create a GOV.UK One Login to use all Companies
+House online services.</p>
+
+</form>
+{% endblock %}
