@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+You cannot delete this application right now – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      You cannot delete this application right now
+    </h1>
+
+    <p class="govuk-body">
+      Someone is currently making a payment for this application.
+    </p>
+
+    <p class="govuk-body">
+      To prevent conflicting actions, the application cannot be deleted while a payment is in progress.
+    </p>
+
+    <p class="govuk-body">
+      If the payment is not completed, you'll be able to delete the application later.
+    </p>
+
+    <a href="/application-overview" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Return to application
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}
