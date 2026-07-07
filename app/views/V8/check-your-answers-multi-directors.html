@@ -40,8 +40,12 @@
     <form action="/V7/check-your-answers-multi-directors" method="post" novalidate>
 
       <h1 class="govuk-heading-xl">
-        Check your answers
+        Check your answers before you sign the application
       </h1>
+
+  <h2 class="govuk-heading-m">
+        Directors
+      </h2>
 
       {% set directorDisplayName =
         data.whichDirectorAreYou
@@ -107,7 +111,7 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Email addresses for directors who will sign
+        Director email addresses
       </h2>
 
       <dl class="govuk-summary-list">
