@@ -14,7 +14,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
     <!-- Header panel -->
     <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
       <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
-        Application in progress
+        Application started
       </h1>
 
       <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
@@ -67,7 +67,11 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   <!--X <p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>-->
 
     <p class="govuk-body">
-      Once at least 3 directors have signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> you can log back in, pay the £13 fee and submit the application.
+      Once at least 3 directors have signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> you can sign back in, pay the £13 fee and submit the application.
+    </p>
+
+       <p class="govuk-body">
+    To check how many directors have signed, and the application status, sign back in to the 'Apply to strike off and dissolve a company' service.
     </p>
 
     <h2 class="govuk-heading-l">Signing directors</h2>
@@ -110,7 +114,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               })
             },
             {
-              html: '<span class="govuk-hint">Completed</span>'
+              text: "Completed"
             }
           ],
 
@@ -136,8 +140,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
                 classes: "govuk-tag--grey"
               })
             },
-            {
-              html: '<span class="govuk-hint">Needs to sign</span>'
+           {
+              text: "Needs to sign"
             }
           ],
 
@@ -164,7 +168,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               })
             },
             {
-              html: '<span class="govuk-hint">Needs to sign</span>'
+              text: "Needs to sign"
             }
           ],
 
@@ -189,8 +193,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
                 classes: "govuk-tag--grey"
               })
             },
-            {
-              html: '<span class="govuk-hint">Needs to sign</span>'
+         {
+              text: "Needs to sign"
             }
           ]
 
