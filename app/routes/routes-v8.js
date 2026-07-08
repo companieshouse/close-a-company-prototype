@@ -10,6 +10,19 @@ router.post('/v8/start', function (req, res) {
   res.redirect('/v8/sign-in-ds-hub')
 })
 
+router.get('/v8/sign-in-ds-hub', function (req, res) {
+  res.render('v8/sign-in-ds-hub')
+})
+
+router.post('/v8/sign-in-ds-hub', function (req, res) {
+  req.session.data = {}
+  req.session.data.startedAtAltSignIn = true
+
+  req.session.user_email = req.body['email-address']
+
+  res.redirect('/v8/enter-password')
+})
+
 router.post('/v8/sign-in-ds-hub', function (req, res) {
   req.session.data = {}
   req.session.data.startedAtAltSignIn = true
