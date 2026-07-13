@@ -139,7 +139,7 @@ router.post('/V8/which-director-are-you', function (req, res) {
     return res.redirect('/V8/which-directors-will-be-signing')
   }
 
-  res.redirect('/V8/sign-the-application')
+  res.redirect('/V8/which-directors-will-be-signing')
 })
 
 // --------------------
