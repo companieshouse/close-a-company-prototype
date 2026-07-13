@@ -147,31 +147,35 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   </div>
 </div>
 
-<h2 class="govuk-heading-l">Your options</h2>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <p class="govuk-body">A minimum of 3 directors must sign (more than half of all company directors). At least this many directors have now signed, so you can choose from these options:</p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>pay and submit the application now</li>
-  <li>wait for more directors to sign before submitting</li>
-</ul>
+    <h2 class="govuk-heading-l">Your options</h2>
 
-    
-      
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    Once you’ve paid and submitted the application, we will not accept any more signatures.
-  </strong>
-</div>
+    <p class="govuk-body">
+      A minimum of 3 directors must sign (more than half of all company directors). At least this many directors have now signed, so you can choose from these options:
+    </p>
 
+    <ul class="govuk-list govuk-list--bullet">
+      <li>pay and submit the application now</li>
+      <li>wait for more directors to sign before submitting</li>
+    </ul>
 
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Once you’ve paid and submitted the application, we will not accept any more signatures.
+      </strong>
+    </div>
 
     {{ govukButton({
       text: "Pay and submit",
       href: "https://products.payments.service.gov.uk/pay/81d5963dae8b48959cc270395ea79989"
     }) }}
 
+  </div>
+</div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
