@@ -164,9 +164,7 @@ router.post('/V8/sign-the-application', function (req, res) {
   res.redirect('/V8/review-your-payment')
 })
 
-router.post('/V8/review-your-payment', function (req, res) {
-  res.redirect('/V8/who-to-tell')
-})
+
 
 // --------------------
 // DS HUB SIGN FLOW
