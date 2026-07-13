@@ -110,6 +110,9 @@ router.get('/V8/company-authentication', function (req, res) {
 
 router.post('/V8/company-authentication', function (req, res) {
 
+  if (req.session.data.startedAtAltSignIn) {
+    return res.redirect('/V8/test-sign-journey')
+  }
 
   return res.redirect('/V8/view-company-info')
 })
