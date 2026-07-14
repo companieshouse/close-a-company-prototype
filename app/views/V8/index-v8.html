@@ -74,7 +74,6 @@
     text: "Not for dev",
     classes: "govuk-!-margin-left-2 govuk-tag--pink"
   }) }}</h3>
-
   <ul class="govuk-list govuk-list--bullet">
   <li><a href="/V8/sign-in-to-ch.html" class="govuk-link">Sign in to Companies House</a></li>
   <li><a href="/V8/gov-one-log-in.html" class="govuk-link">Create your GOV.UK One Login or sign in</a></li>
@@ -82,6 +81,7 @@
   <li><a href="/V8/enter-password.html" class="govuk-link">Enter your password</a></li>
   <li><a href="/V8/check-your-phone.html" class="govuk-link">Check your phone</a></li>
 </ul>
+
     <h3 class="govuk-heading-s"> Company details</h3> 
 <ul class="govuk-list govuk-list--bullet">
   <li><a href="/V8/company-number.html" class="govuk-link">What is the company number?</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
@@ -156,8 +156,14 @@
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}</li>
   </li>
+  
 
+
+ 
   <h3 class="govuk-heading-m govuk-!-margin-top-5">View PDF from email route for testing</h3>
+
+ 
+
     <li>
     <a href="/V8/email-application-accepted-single.html" class="govuk-link">Accepted email- SINGLE DIRECTOR</a>
     {{ govukTag({
