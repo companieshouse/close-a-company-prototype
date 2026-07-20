@@ -1,0 +1,170 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and
+        <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div class="govuk-width-container" style="border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{ user_email }}
+      <a class="govuk-link" href="/V7/sign-in-to-ch-or-one-login" style="margin-left: 10px;">
+        Sign out
+      </a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/V9/check-your-answers-multi-directors" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before you sign the application
+      </h1>
+
+  <h2 class="govuk-heading-m">
+        Directors
+      </h2>
+
+      {% set directorDisplayName =
+        data.whichDirectorAreYou
+          | replace("EllaAdams", "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(January 1980)</span>")
+          | replace("SaraFrancis", "FRANCIS, Sara<br><span class='govuk-hint govuk-!-margin-bottom-0'>(March 1985)</span>")
+          | replace("AlexJohnson", "JOHNSON, Alex<br><span class='govuk-hint govuk-!-margin-bottom-0'>(July 1978)</span>")
+          | replace("PriyaPatel", "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>")
+      %}
+
+      {% set signingDirectorsHtml %}
+        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+          {% if director == "EllaAdams" %}
+            ADAMS, Ella<br><span class="govuk-hint govuk-!-margin-bottom-2">(January 1980)</span><br>
+          {% elseif director == "SaraFrancis" %}
+            FRANCIS, Sara<br><span class="govuk-hint govuk-!-margin-bottom-2">(March 1985)</span><br>
+          {% elseif director == "AlexJohnson" %}
+            JOHNSON, Alex<br><span class="govuk-hint govuk-!-margin-bottom-2">(July 1978)</span><br>
+          {% elseif director == "PriyaPatel" %}
+            PATEL, Priya<br><span class="govuk-hint govuk-!-margin-bottom-2">(November 1982)</span><br>
+          {% elseif director == "AcmeLtd" %}
+            ACME LTD<br>
+          {% endif %}
+        {% endfor %}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which director are you?"
+            },
+            value: {
+              html: directorDisplayName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V7/which-director-are-you",
+                  text: "Change",
+                  visuallyHiddenText: "which director you are"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which other directors will sign the application?"
+            },
+            value: {
+              html: signingDirectorsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V7/which-directors-will-be-signing",
+                  text: "Change",
+                  visuallyHiddenText: "which directors will sign the application"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Director email addresses
+      </h2>
+
+      <dl class="govuk-summary-list">
+
+        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
+
+          {% if director == "EllaAdams" %}
+            {% set displayName = "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(January 1980)</span>" %}
+            {% set changeHref = "/V7/change-directors-email-ella" %}
+          {% elseif director == "SaraFrancis" %}
+            {% set displayName = "FRANCIS, Sara<br><span class='govuk-hint govuk-!-margin-bottom-0'>(March 1985)</span>" %}
+            {% set changeHref = "/V7/change-directors-email-sara" %}
+          {% elseif director == "AlexJohnson" %}
+            {% set displayName = "JOHNSON, Alex<br><span class='govuk-hint govuk-!-margin-bottom-0'>(July 1978)</span>" %}
+            {% set changeHref = "/V7/change-directors-email-alex" %}
+          {% elseif director == "PriyaPatel" %}
+            {% set displayName = "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>" %}
+            {% set changeHref = "/V7/change-directors-email-priya" %}
+          {% elseif director == "AcmeLtd" %}
+            {% set displayName = "ACME LTD" %}
+            {% set changeHref = "/V7/change-corporate-directors-email" %}
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ displayName | safe }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data[emailKey] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="{{ changeHref }}">
+                Change
+                <span class="govuk-visually-hidden">
+                  email address for {{ displayName | striptags }}
+                </span>
+              </a>
+            </dd>
+          </div>
+
+        {% endfor %}
+
+      </dl>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

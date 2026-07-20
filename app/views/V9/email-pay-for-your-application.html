@@ -1,0 +1,72 @@
+{% extends "layouts/email.html" %}
+
+{% block header %}
+<div class="govuk-width-container">
+  {% include "/includes/email-header.html" %}
+  {{ govukHeader({
+    containerClasses: "govuk-!-padding-left-0"
+  }) }}
+</div>
+{% endblock %}
+
+{% block pageTitle %}
+Pay for your application to strike off and dissolve a company – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<form action="/V9/email-pay-for-your-application" method="post">
+
+<div class="govuk-!-padding-top-4"></div>
+<div class="govuk-!-padding-bottom-9">
+<h1 class="govuk-heading-l">
+  Pay for your application to strike off and dissolve a company
+</h1>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Company number"
+        },
+        value: {
+          text: data['companyNumber'] or "02748204"
+        }
+      },
+      {
+        key: {
+          text: "Company name"
+        },
+        value: {
+          text: "LADY PARK (LEEDS) MANAGEMENT COMPANY LIMITED"
+        }
+      },
+      {
+        key: {
+          text: "Reference number"
+        },
+        value: {
+          text: "MUZXM5"
+        }
+      }
+    ]
+  }) }}
+
+  <p class="govuk-body">
+    We have received all signatures for the application to strike off and dissolve
+    LADY PARK (LEEDS) MANAGEMENT COMPANY LIMITED (02748204).
+  </p>
+
+  <p class="govuk-body govuk-!-font-weight-bold">
+    You now need to pay for and submit the application:
+  </p>
+
+  <p class="govuk-body">
+    <a href="/V9/review-payment" class="govuk-link">
+      Pay for and submit the application
+    </a>
+  </p>
+
+</form>
+</div>
+{% endblock %}

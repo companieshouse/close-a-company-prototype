@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Application received – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Application submitted",
+      html: "We've received an application to dissolve (close) this company"
+    }) }}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Company number"
+          },
+          value: {
+            text: data['companyNumber'] or "87654321"
+          }
+        },
+        {
+          key: {
+            text: "Company name"
+          },
+          value: {
+            text:
+              "Single Director Company Ltd"
+              if data['companyNumber'] == "12345678"
+              else "A MULTI DIRECTOR COMPANY LTD"
+          }
+        },
+        {
+          key: {
+            text: "Application reference"
+          },
+          value: {
+            text: "HDJ2123F"
+          }
+        }
+      ]
+    }) }}
+
+    <p>
+      We received an application to strike off and dissolve this company from
+      <strong>sara.francis@example.com</strong> on 14 July 2026. We've sent an email to confirm whether payment has been accepted. We are currently processing the application. We'll accept or reject it within 2 working days.
+    </p>
+
+    <p class="govuk-body">If it's accepted, the company will typically be dissolved after a minimum period of 2 months, unless there are any objections. We are unable to confirm the exact date of dissolution.</p>
+
+    <h2 class="govuk-heading-m">
+      Directors must inform all interested parties
+    </h2>
+
+    <p>
+      The directors must send a copy of this application to all interested parties,
+      within 7 days of making the application.
+    </p>
+
+    <p>
+      <a href="pdf-mock-up.html" class="govuk-link">
+        Download a copy of the application</a>.
+      Once we accept the application, we'll also publish a copy on the Companies House
+      register where anyone can download it.
+    </p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        It is a criminal offence not to tell all interested parties that an application has been made to dissolve the company.
+      </strong>
+    </div>
+
+    <h2 class="govuk-heading-m">
+      What happens next
+    </h2>
+
+    <p>
+      If accepted, your request for the company to be struck off will be published as a notice in The Gazette.
+    </p>
+     <p>
+      If nobody objects, the company will be struck off the register shortly after the 2 months mentioned in the notice has passed.
+    </p>
+     <p>
+      A second notice will be published in the Gazette. This will mean the company does not legally exist any more.
+    </p>
+
+ <h2 class="govuk-heading-m">
+      Feedback
+    </h2>
+
+    <p>
+      This is a new service. Help us improve it by providing
+      <a class="govuk-link"
+         href="https://www.gov.uk/strike-off-your-company-from-companies-register/feedback">
+        feedback (opens in new tab)
+      </a>.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

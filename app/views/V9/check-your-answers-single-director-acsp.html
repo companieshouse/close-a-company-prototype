@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers single director – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form action="/V9/check-your-answers-single-director" method="post" novalidate>
+
+        <h1 class="govuk-heading-xl">
+          Check your answers
+        </h1>
+
+        {% if data['signingOption'] == "willSign" %}
+
+          <h2 class="govuk-heading-m">DOE, Jane</h2>
+
+          {{ govukSummaryList({
+
+            rows: [
+              {
+                key: {
+                  text: "Will sign"
+                },
+                value: {
+                  text: "Yes"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/V9/how-will-the-single-director-be-signing",
+                      text: "Change",
+                      visuallyHiddenText: "whether Jane Doe will sign"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Email address"
+                },
+                value: {
+                  text: data['directorEmail'] or "test@example.co.uk"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/V9/provide-single-director-email",
+                      text: "Change",
+                      visuallyHiddenText: "Jane Doe email address"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          <h2 class="govuk-heading-m">DOE, Jane</h2>
+
+          {{ govukSummaryList({
+
+            rows: [
+              {
+                key: {
+                  text: "Email address"
+                },
+                value: {
+                  text: data['directorEmail'] or "test@example.co.uk"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/V9/provide-single-director-email",
+                      text: "Change",
+                      visuallyHiddenText: "email address of the person signing"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

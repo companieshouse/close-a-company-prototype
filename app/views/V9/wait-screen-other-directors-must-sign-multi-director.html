@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application signed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div style="background-color:#005EA5; padding:40px 30px; text-align:center; margin-bottom:40px;">
+
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:10px;">
+        Application signed
+      </h1>
+
+      <p class="govuk-body-l" style="color:white; margin-bottom:0;">
+        You've signed the application to strike off and dissolve this company
+      </p>
+
+    </div>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-7">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          09429091
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          A MULTI DIRECTOR COMPANY LTD
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Director
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ADAMS, Ella
+        </dd>
+      </div>
+
+    </dl>
+
+    <p class="govuk-body">
+      Each signing director needs to log in to this service and sign the
+      application. Once all directors have signed,
+      <strong>lisa.humphreys@accountancyfirm.co.uk</strong>
+      can log back in, pay the £13 fee and submit the application.
+    </p>
+
+    <p class="govuk-body">
+      <a href="/V9/test-sign-journey-ella-signed" class="govuk-link">
+        See which directors have signed so far
+      </a>
+      on the Application in progress page. You'll see that page again if you
+      log back into this service later.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

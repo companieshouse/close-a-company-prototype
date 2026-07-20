@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Which directors will sign the application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    {# Directors who have already signed #}
+    {% set signedDirectors = ["PriyaPatel", "SaraFrancis"] %}
+
+    {# Build checkbox items for directors who still need to sign #}
+    {% set checkboxItems = [] %}
+
+    {% if data.whichDirectorAreYou != "AlexJohnson" and "AlexJohnson" not in signedDirectors %}
+      {% set checkboxItems = checkboxItems.concat([{
+        value: "AlexJohnson",
+        text: "JOHNSON, Alex",
+        checked: true
+      }]) %}
+    {% endif %}
+
+    {% if data.whichDirectorAreYou != "DanielWhite" and "DanielWhite" not in signedDirectors %}
+      {% set checkboxItems = checkboxItems.concat([{
+        value: "DanielWhite",
+        text: "WHITE, Daniel"
+      }]) %}
+    {% endif %}
+
+    {% if data.whichDirectorAreYou != "EllaAdams" and "EllaAdams" not in signedDirectors %}
+      {% set checkboxItems = checkboxItems.concat([{
+        value: "EllaAdams",
+        text: "ADAMS, Ella",
+        checked: true
+      }]) %}
+    {% endif %}
+
+    {% if data.whichDirectorAreYou != "MiaTurner" and "MiaTurner" not in signedDirectors %}
+      {% set checkboxItems = checkboxItems.concat([{
+        value: "MiaTurner",
+        text: "TURNER, Mia"
+      }]) %}
+    {% endif %}
+
+    {% if data.whichDirectorAreYou != "OliviaGreen" and "OliviaGreen" not in signedDirectors %}
+      {% set checkboxItems = checkboxItems.concat([{
+        value: "OliviaGreen",
+        text: "GREEN, Olivia"
+      }]) %}
+    {% endif %}
+
+    {# Sort alphabetically by displayed text #}
+    {% set checkboxItems = (checkboxItems | sort(attribute='text')) %}
+
+    {% set legendText = "Which other directors will sign the application?" %}
+    {% set hintText = "Select the directors who still need to sign the application." %}
+
+    {{ govukCheckboxes({
+      name: "whichDirectorsWillBeSigningTheApplication",
+      fieldset: {
+        legend: {
+          text: legendText,
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: hintText
+      },
+      items: checkboxItems
+    }) }}
+
+<h2 class="govuk-heading-m govuk-!-margin-top-7">
+  Already signed
+</h2>
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-7">
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      FRANCIS, Sara
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ govukTag({
+        text: "Signed",
+        classes: "govuk-tag--green"
+      }) }}
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      PATEL, Priya
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ govukTag({
+        text: "Signed",
+        classes: "govuk-tag--green"
+      }) }}
+    </dd>
+  </div>
+
+</dl>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          If a director cannot sign the application themselves
+        </span>
+      </summary>
+
+      <div class="govuk-details__text">
+        <p>
+          Directors who are people must sign the application themselves.
+          Nobody can sign on their behalf.
+        </p>
+
+        <p>
+          If there are not enough directors who can sign, you'll need to
+          <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
+             class="govuk-link"
+             rel="noreferrer noopener"
+             target="_blank">
+            make changes to the company directors
+          </a>
+          before continuing.
+        </p>
+      </div>
+    </details>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

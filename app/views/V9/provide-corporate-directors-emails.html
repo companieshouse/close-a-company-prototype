@@ -1,0 +1,134 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide directors' emails – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+    <span class="govuk-body-s">
+      {{ user_email }}
+      <a class="govuk-link" href="/V9/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    </span>
+  </div>
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form action="/V9/provide-corporate-directors-emails" method="post">
+
+      <h1 class="govuk-heading-xl">
+       What are the email addresses for each director?
+      </h1>
+
+      <p class="govuk-body">
+        We'll email each director you've selected, to ask them to sign the application online. You must enter a different email address for each director.
+      </p>
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+        {% set displayName =
+          director
+            | replace("EllaAdams", "ADAMS, Ella (January 1980)")
+            | replace("SaraFrancis", "FRANCIS, Sara (March 1985)")
+            | replace("AlexJohnson", "JOHNSON, Alex (July 1978)")
+            | replace("PriyaPatel", "PATEL, Priya (November 1982)")
+        %}
+
+        {% if director == "AcmeLtd" %}
+
+          <h2 class="govuk-heading-m">
+            ACME LTD
+          </h2>
+
+          <p class="govuk-body">
+            Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
+          </p>
+
+          {% set nameKey = "corporateSignerName" + loop.index0 %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            hint: {
+              text: "Enter the authorised person's name"
+            },
+            id: nameKey,
+            name: nameKey,
+            type: "text",
+            autocomplete: "name",
+            value: data[nameKey]
+          }) }}
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            hint: {
+              text: "Enter the authorised person's email address"
+            },
+            id: emailKey,
+            name: emailKey,
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            value: data[emailKey]
+          }) }}
+
+        {% else %}
+
+          <h2 class="govuk-heading-m">
+            {{ displayName }}
+          </h2>
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+         
+            id: emailKey,
+            name: emailKey,
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            value: data[emailKey]
+          }) }}
+
+        {% endif %}
+
+      {% endfor %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

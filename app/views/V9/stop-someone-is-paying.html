@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+You cannot delete this application right now – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      You cannot delete this application at the moment
+    </h1>
+
+    <p class="govuk-body">
+    A payment for this application is currently being made by <strong>lisa.humphries@example.com</strong>.
+    </p>
+
+    <p class="govuk-body">
+      The application cannot be deleted while a payment is in progress.
+    </p>
+
+    <p class="govuk-body">
+      If the payment fails, you'll be able to delete the application later.
+    </p>
+
+       <p class="govuk-body">
+      If the payment completes and you no longer want to strike off and dissolve the company, you'll be able to <a href="https://www.gov.uk/strike-off-your-company-from-companies-register/withdraw-your-application" class="govuk-link" rel="noreferrer noopener" target="_blank">withdraw your application (opens in new tab)</a>.
+    </p>
+
+    <a href="/application-overview" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Go back to application
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

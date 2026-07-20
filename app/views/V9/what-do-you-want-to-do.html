@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+
+{% block pageTitle %}
+What do you want to do? – Dissolve a company
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="/V9/application-intent">
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-describedby="intent-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+          What do you want to do?
+        </h1>
+      </legend>
+
+      <div id="intent-hint" class="govuk-hint">
+        A dissolve application already exists for this company.
+      </div>
+
+      {{ govukRadios({
+        name: "applicationIntent",
+        items: [
+          {
+            value: "signApplication",
+            text: "Sign the existing application"
+
+          },
+          {
+            value: "checkStatus",
+            text: "Check the status of the existing application"
+          },
+          {
+            value: "startNew",
+            text: "Start a new application",
+            hint: {
+              text: "Starting a new application will permanently delete the existing one."
+            }
+          }
+        ]
+      }) }}
+
+    </fieldset>
+  </div>
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+</form>
+
+{% endblock %}

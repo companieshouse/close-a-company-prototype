@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+We've already accepted an application to close this company – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      An application has been submitted on paper to dissolve (close) this company
+    </h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Company name"
+          },
+          value: {
+            text: "MULTI DIRECTOR COMPANY LIMITED"
+          }
+        },
+        {
+          key: {
+            text: "Company number"
+          },
+          value: {
+            text: "23456789"
+          }
+        }
+      ]
+    }) }}
+
+    <p>Select continue to view the status of the application.</p>
+
+{{ govukButton({
+  text: "Continue",
+  href: "/V9/application-received-paper"
+}) }}
+
+
+   <!-- <p class="govuk-body">
+      <a href="/V9/ds-hub-accepted" class="govuk-link">
+        View application status
+      </a>
+    </p>-->
+
+  </div>
+</div>
+
+{% endblock %}
