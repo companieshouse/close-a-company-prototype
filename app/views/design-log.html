@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block pageTitle %}
+Design decision log – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl">
+      Design decision log
+    </h1>
+
+    <p class="govuk-body">
+      Record agreed design changes following each round of user research.
+    </p>
+
+    <h2 class="govuk-heading-l">
+      Version 8
+    </h2>
+
+    <p class="govuk-body">
+
+      <strong>Date:</strong> 20 July 2026
+    </p>
+
+    {{ govukTable({
+      head: [
+        {
+          text: "Screen or journey"
+        },
+        {
+          text: "Change made"
+        },
+        {
+          text: "Reason"
+        }
+      ],
+      rows: [
+        [
+          {
+            text: "Which directors will sign"
+          },
+          {
+            text: "Updated page content and guidance."
+          },
+          {
+            text: "Participants were unsure who needed to sign the application."
+          }
+        ],
+        [
+          {
+            text: "Check your answers"
+          },
+          {
+            text: "Converted to the standard GOV.UK Check your answers pattern."
+          },
+          {
+            text: "Participants overlooked email information."
+          }
+        ],
+        [
+          {
+            text: "Application status"
+          },
+          {
+            text: "Added clearer next steps."
+          },
+          {
+            text: "Participants were uncertain about what happened after signing."
+          }
+        ]
+      ]
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
