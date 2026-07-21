@@ -173,12 +173,18 @@
     <a href="/V9/email-application-accepted-single.html" class="govuk-link">Email - application accepted (single director)</a> Content same as 'multi director' email
  </li>
     <li>
-    <a href="/V9/view-company-info-pdf.html" class="govuk-link">PDF link - Download a copy of the application to close this company</a>
+    <a href="/V9/view-company-info-pdf.html" class="govuk-link">PDF link - Download a copy of the application to dissolve (close) this company</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} Content updated 21 July, need to raise a ticket
   </li>
   <li><a href="/V9/pdf-mock-up.html" class="govuk-link">PDF mock up - Application received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "For testing",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}{{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
   }) }}</li>
 
 </ul>
