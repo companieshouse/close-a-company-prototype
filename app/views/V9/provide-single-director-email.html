@@ -18,7 +18,7 @@
       <form action="/V9/provide-single-director-email" method="post">
 
         <h1 class="govuk-heading-xl">
-        Provide Jane Doe's email address
+        What is Jane Doe's email address?
         </h1>
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -26,7 +26,7 @@
         {{ govukInput({
          
           hint: {
-            text: "We'll email the director and ask them to sign the application online"
+            text: "We'll email the director and ask them to sign the application online."
           },
           id: "directorEmail",
           name: "directorEmail",
