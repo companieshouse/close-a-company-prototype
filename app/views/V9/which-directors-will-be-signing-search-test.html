@@ -126,10 +126,10 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
 
       {% if selectedDirector == "iAmNotADirectorOfThisCompany" %}
         {% set legendText = "Which directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 51 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 51 or more of these directors." %}
       {% else %}
         {% set legendText = "Which other directors will sign the application?" %}
-        {% set hintText = "More than half of the directors must sign, so you must select 50 or more of these directors" %}
+        {% set hintText = "More than half of the directors must sign, so you must select 50 or more of these directors." %}
       {% endif %}
 
       <div class="govuk-form-group">
@@ -196,8 +196,7 @@ Which directors will sign the application? – {{ serviceName }} – GOV.UK Prot
           <p>If there are not enough directors who can sign, you'll need to
             <a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house"
                class="govuk-link" rel="noreferrer noopener" target="_blank">
-              make changes to the company directors
-            </a> before continuing.</p>
+              make changes to the company directors</a> before continuing.</p>
         </div>
       </details>
 
