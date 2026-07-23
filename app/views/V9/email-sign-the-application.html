@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Sign the application to strike off and dissolve a company – {{ serviceName }} – GOV.UK Prototype Kit
+  Sign the application to strike off and dissolve (close) a company – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set fallbackDate = "22 September 2025" %}
@@ -27,7 +27,7 @@
 
 
       <h1 class="govuk-heading-xl govuk-!-padding-top-4">
-        Sign the application to strike off and dissolve a company
+        Sign the application to strike off and dissolve (close) a company
       </h1>
 
 {% if (data['companyNumber'] == "12345678") %}
@@ -92,7 +92,7 @@
 {% endif %}
 <govukInsetText>
     <p class="govuk-body">
-<b>sara.francis@example.com</b> has started an application to strike off and dissolve this company. They selected you and 3 other directors to sign the application.
+An application has been started to strike off and dissolve this company. They selected you and 3 other directors to sign the application.
 
  <!--
 </govukInsetText>
@@ -132,9 +132,9 @@
 <h12 class="govuk-heading-m"> After you've signed</h2>
 <br><br>
 <p class="govuk-body">
-    Once all directors have signed, <b>sara.francis@example.com</b> can log back in, pay the £13 fee and submit the application. They should let you know when they've done this.
+    Once all directors have signed, the applicant can sign back in, pay the £13 fee and submit the application. They should let you know when they've done this.
     
-    <br><br> Directors must then send a copy of the application to all interested parties within 7 days of making the application. You'll be able to download a copy by signing back in to the Apply to strike off and dissolve a company service, or by accessing the Companies House public register.
+    <br><br> Directors must then send a copy of the application to all interested parties within 7 days of making the application. You'll be able to download a copy by signing back in to the 'Apply to strike off and dissolve a company' service, or by accessing the Companies House public register.
 
     <p>
       Read the
