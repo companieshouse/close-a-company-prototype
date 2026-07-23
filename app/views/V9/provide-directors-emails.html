@@ -45,6 +45,18 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
+      {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+
+        {% set displayName =
+          director
+            | replace("EllaAdams", "ADAMS, Ella (January 1980)")
+            | replace("SaraFrancis", "FRANCIS, Sara (March 1985)")
+            | replace("AlexJohnson", "JOHNSON, Alex (July 1978)")
+            | replace("PriyaPatel", "PATEL, Priya (November 1982)")
+        %}
+
+        {% if director == "AcmeLtd" %}
+
           <h2 class="govuk-heading-m">
             ACME LTD
           </h2>
@@ -53,6 +65,8 @@
             Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
           </p>
 
+          {% set nameKey = "corporateSignerName" + loop.index0 %}
+
           {{ govukInput({
             label: {
               text: "Name"
@@ -60,11 +74,14 @@
             hint: {
               text: "Enter the authorised person's name"
             },
-            id: "corporateSignerName",
-            name: "corporateSignerName",
+            id: nameKey,
+            name: nameKey,
             type: "text",
-            autocomplete: "name"
+            autocomplete: "name",
+            value: data[nameKey]
           }) }}
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
 
           {{ govukInput({
             label: {
@@ -73,27 +90,38 @@
             hint: {
               text: "Enter the authorised person's email address"
             },
-            id: "corporateDirectorEmail",
-            name: "corporateDirectorEmail",
+            id: emailKey,
+            name: emailKey,
             type: "email",
             autocomplete: "email",
-            spellcheck: false
+            spellcheck: false,
+            value: data[emailKey]
           }) }}
 
+        {% else %}
+
           <h2 class="govuk-heading-m">
-            ADAMS, Ella (January 1980)
+            {{ displayName }}
           </h2>
+
+          {% set emailKey = "directorEmail" + loop.index0 %}
 
           {{ govukInput({
             label: {
               text: "Email address"
             },
-            id: "ellaEmail",
-            name: "ellaEmail",
+         
+            id: emailKey,
+            name: emailKey,
             type: "email",
             autocomplete: "email",
-            spellcheck: false
+            spellcheck: false,
+            value: data[emailKey]
           }) }}
+
+        {% endif %}
+
+      {% endfor %}
 
       {{ govukButton({
         text: "Continue"
