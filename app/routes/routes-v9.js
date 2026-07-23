@@ -146,10 +146,10 @@ router.post('/V9/which-director-are-you', function (req, res) {
 // NON-DIRECTOR FLOW
 // --------------------
 router.post('/V9/which-directors-will-be-signing', function (req, res) {
-  res.redirect('/V9/provide-corporate-directors-emails')
+  res.redirect('/V9/provide-directors-emails')
 })
 
-router.post('/V9/provide-corporate-directors-emails', function (req, res) {
+router.post('/V9/provide-directors-emails', function (req, res) {
   res.redirect('/V9/check-your-answers-multi-directors')
 })
 
