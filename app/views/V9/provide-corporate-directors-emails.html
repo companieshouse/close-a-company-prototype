@@ -36,11 +36,11 @@
     <form action="/V9/provide-corporate-directors-emails" method="post">
 
       <h1 class="govuk-heading-xl">
-       What are the email addresses for each director?
+       What are their contact details?
       </h1>
 
       <p class="govuk-body">
-        We'll email each director you've selected, to ask them to sign the application online. You must enter a different email address for each director.
+        We'll email each director or authorised person, to ask them to sign the application online. You must enter a different email address for each person.
       </p>
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -55,10 +55,10 @@
 
           {{ govukInput({
             label: {
-              text: "Name"
+              text: "Authorised person's name"
             },
             hint: {
-              text: "Enter the authorised person's name"
+              text: ""
             },
             id: "corporateSignerName",
             name: "corporateSignerName",
@@ -68,10 +68,10 @@
 
           {{ govukInput({
             label: {
-              text: "Email address"
+              text: "Authorised person's email address"
             },
             hint: {
-              text: "Enter the authorised person's email address"
+              text: ""
             },
             id: "corporateDirectorEmail",
             name: "corporateDirectorEmail",
