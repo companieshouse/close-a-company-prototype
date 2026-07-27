@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your answers single director – {{ serviceName }} – GOV.UK Prototype Kit
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,92 +12,92 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      <form action="/V9/check-your-answers-single-director" method="post" novalidate>
 
-        <h1 class="govuk-heading-xl">
-          Check your answers
-        </h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-        {% if data['signingOption'] == "willSign" %}
+    <form action="/V9/check-your-answers-single-director-acsp" method="post" novalidate>
 
-          <h2 class="govuk-heading-m">DOE, Jane</h2>
+      <h1 class="govuk-heading-xl">
+        Check your answers before you sign the application
+      </h1>
 
-          {{ govukSummaryList({
+      <h2 class="govuk-heading-m">
+        Directors
+      </h2>
 
-            rows: [
-              {
-                key: {
-                  text: "Will sign"
-                },
-                value: {
-                  text: "Yes"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/V9/how-will-the-single-director-be-signing",
-                      text: "Change",
-                      visuallyHiddenText: "whether Jane Doe will sign"
-                    }
-                  ]
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which director are you?"
+            },
+            value: {
+              text: "I am not a director of this company"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V9/which-director-are-you",
+                  text: "Change",
+                  visuallyHiddenText: "which director you are"
                 }
-              },
-              {
-                key: {
-                  text: "Email address"
-                },
-                value: {
-                  text: data['directorEmail'] or "test@example.co.uk"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/V9/provide-single-director-email",
-                      text: "Change",
-                      visuallyHiddenText: "Jane Doe email address"
-                    }
-                  ]
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which director will sign the application?"
+            },
+            value: {
+              html: "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V9/which-director-will-sign",
+                  text: "Change",
+                  visuallyHiddenText: "which director will sign the application"
                 }
-              }
-            ]
-          }) }}
+              ]
+            }
+          }
+        ]
+      }) }}
 
-        {% else %}
+      <h2 class="govuk-heading-m">
+        Director email addresses
+      </h2>
 
-          <h2 class="govuk-heading-m">DOE, Jane</h2>
-
-          {{ govukSummaryList({
-
-            rows: [
-              {
-                key: {
-                  text: "Email address"
-                },
-                value: {
-                  text: data['directorEmail'] or "test@example.co.uk"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "/V9/provide-single-director-email",
-                      text: "Change",
-                      visuallyHiddenText: "email address of the person signing"
-                    }
-                  ]
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
+            },
+            value: {
+              text: data['directorEmail'] or "priya.patel@example.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V9/provide-single-director-email",
+                  text: "Change",
+                  visuallyHiddenText: "email address for Priya Patel"
                 }
-              }
-            ]
-          }) }}
+              ]
+            }
+          }
+        ]
+      }) }}
 
-        {% endif %}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+    </form>
 
-      </form>
-    </div>
   </div>
+</div>
+
 {% endblock %}
