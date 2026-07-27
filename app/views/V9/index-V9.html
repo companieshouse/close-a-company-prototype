@@ -132,6 +132,11 @@
  
 <ul class="govuk-list govuk-list--bullet">
 
+  <li><a href="/V9/confirm-who-you-are.html" class="govuk-link">Confirm you are [director name]</a> 
+  {{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}Conditional screen. ***Review content, add back button***</li>
   <li><a href="/V9/sign-the-application.html" class="govuk-link">Sign the application</a>{{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
@@ -140,8 +145,31 @@
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}Content updated 21 July, need to raise a ticket</li>
+  <li>
+    <a href="/V9/email-sign-the-application.html" class="govuk-link">
+      Sign the application to strike off and dissolve a company (email)</a>{{ govukTag({
+      text: "Needs updating",
+      classes: "govuk-!-margin-left-2 govuk-tag--purple"
+    }) }}***Need to check about including deadline date, and to review rest of content with UCD team***
+  </li>
 
   <li>
+    <a href="/V9/provide-single-director-email.html" class="govuk-link">
+      Provide email address (single director)</a>
+    {{ govukTag({
+      text: "Dev ready",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    }) }} Content updated 22 July, need to raise a ticket
+  </li>
+
+  <li>
+    <a href="/V9/wait-screen-other-signer-single-director.html" class="govuk-link">
+      Application signed (single director)</a> {{ govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    }) }}***Ask if we can email all directors or REA once this is submitted***
+  </li>
+   <li>
     <a href="/V9/wait-screen-other-directors-must-sign-multi-director.html" class="govuk-link">
       Application signed (multi director)
     </a>
@@ -240,50 +268,6 @@
   }) }}<a href="https://companieshouse.atlassian.net/browse/FS-384" class="govuk-link">FS-384</a> URL content is a placeholder - will need to be updated when we know exactly what it will be in live. </li>
 
 
-</ul>
-
-
-
-
-<h3 class="govuk-heading-s">Non-applicant directors chosen to sign</h3>
-
-<ul class="govuk-list govuk-list--bullet">
-
-  <li>
-    <a href="/V9/email-sign-the-application.html" class="govuk-link">
-      Sign the application to strike off and dissolve a company (email)</a>{{ govukTag({
-      text: "Needs updating",
-      classes: "govuk-!-margin-left-2 govuk-tag--purple"
-    }) }}***Need to check about including deadline date, and to review rest of content with UCD team***
-  </li>
-
-  <li>
-    <a href="/V9/provide-single-director-email.html" class="govuk-link">
-      Provide email address (single director)</a>
-    {{ govukTag({
-      text: "Dev ready",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
-    }) }} Content updated 22 July, need to raise a ticket
-  </li>
-
-  <li>
-    <a href="/V9/wait-screen-other-signer-single-director.html" class="govuk-link">
-      Application signed (single director)</a> {{ govukTag({
-      text: "Needs updating",
-      classes: "govuk-!-margin-left-2 govuk-tag--purple"
-    }) }}***Ask if we can email all directors or REA once this is submitted***
-  </li>
-
-  <li>
-    <a href="/V9/wait-screen-other-signers-multi-directors.html" class="govuk-link">
-      Application signed (multi director)</a> {{ govukTag({
-      text: "Needs updating",
-      classes: "govuk-!-margin-left-2 govuk-tag--purple"
-    }) }}***Haven't updated yet - Can this link be deleted? Seems to be the same as 'Application signed' (under 'Signing screens')***
-  </li>
-
-
-
 
 </ul>
 </div>
@@ -310,7 +294,7 @@
   <li><a href="/V9/ds-hub-accepted.html" class="govuk-link">Application accepted</a>{{ govukTag({
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}***Should link say 'download', or 'view'? Where should the link go?***</li>
+  }) }}***Download link - need to check behaviour with architect***</li>
   <li><a href="/V9/delete-confirmation.html" class="govuk-link">Are you sure you want to delete this application?</a>{{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
@@ -321,6 +305,10 @@
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}Content updated 22 July, need to raise a ticket
  </li>
+ <li><a href="/V9/stop-someone-is-paying.html" class="govuk-link">You cannot delete this application at the moment</a>{{ govukTag({ 
+  text: "In progress",
+  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+}) }}Awaiting user testing to be completed before raising ticket</li>
 </ul>
 
    <h2 class="govuk-heading-m" style="margin-top: 20px;">Stop screens</h2>
@@ -341,15 +329,6 @@
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}Content updated 30 June, need to raise a ticket</li>
-  <li><a href="/V9/stop-someone-is-paying.html" class="govuk-link">You cannot delete this application at the moment</a>{{ govukTag({ 
-  text: "In progress",
-  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-}) }}Awaiting user testing to be completed before raising ticket</li>
-  <li><a href="/V9/confirm-who-you-are.html" class="govuk-link">Confirm you are [director name]</a> 
-  {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}We don't know if we'll be using this screen yet. If we do use it, would like to review content.</li>
   </ul>
 
 
