@@ -40,21 +40,22 @@
 
     <span class="govuk-caption-l">A MULTI DIRECTOR COMPANY LTD (87654321)</span>
 
-    <h1 class="govuk-heading-l">Confirm you are FRANCIS, Sara</h1>
+    <h1 class="govuk-heading-l">Are you FRANCIS, Sara (born January 1980)?</h1>
 
   <!--<p class="govuk-body">
       You’re signing this application as <strong>FRANCIS, Sara</strong>.
     </p>-->
 
-    <p class="govuk-body">
-      You're signed in as <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>.
-      
-      <p>The person who started this application gave us a different email address for this director (<strong>sara.francis@example.com</strong>).
+<p>The person who started this application provided us with a different email address to the one you signed in with. We need to check you are the correct person.
+    </p>
 
+    <p>Email address you signed in with: <strong>{{ user_email or "SFrancis@email.co.uk" }}</strong>
+    </p>
+      <p>Email address provided by applicant: <strong>sara.francis@example.com</strong>
     </p>
 
     <p class="govuk-body">
-      Confirm you are FRANCIS, Sara to continue. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
+      If you are FRANCIS, Sara (born January 1980), select continue. <!--Or, if you've accidentally signed in to the wrong account, you can sign out and then sign back in with a different email address.-->
     </p>
 
 
@@ -91,15 +92,7 @@
 
 <form action="#" method="post">
 
-      {{ govukCheckboxes({
-        name: "confirmDirectorIdentity",
-        items: [
-          {
-            value: "confirmed",
-            text: "I am FRANCIS, Sara (born January 1980)"
-          }
-        ]
-      }) }}
+  
 
       {{ govukButton({
         text: "Continue"
