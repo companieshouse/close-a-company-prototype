@@ -311,7 +311,7 @@
 }) }}Awaiting user testing to be completed before raising ticket</li>
 </ul>
 
-   <h2 class="govuk-heading-m" style="margin-top: 20px;">Stop screens</h2>
+   <h2 class="govuk-heading-m" style="margin-top: 20px;">Screens preventing duplicates</h2>
    <ul class="govuk-list govuk-list--bullet">
 <li><a href="/V9/stop-application-in-progress.html" class="govuk-link">An application to dissolve (close) this company was submitted on [date]</a>{{ govukTag({
     text: "In progress",
@@ -321,6 +321,27 @@
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
   }) }}Awaiting user testing to be completed before raising ticket</li>
+  </ul>
+
+
+   <h2 class="govuk-heading-m" style="margin-top: 20px;">Companies with up to 150 directors 
+  <a href="https://companieshouse.atlassian.net/browse/BI-15263" class="govuk-link govuk-link--no-visited-state">BI-15263</a>
+</h2>
+   <ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V9/which-director-are-you-search-test.html" class="govuk-link">Which director are you?</a>
+  {{ govukTag({
+    text: "Live",
+    classes: "govuk-!-margin-left-2 govuk-tag--turquoise"
+  }) }}</li>
+  <li><a href="/V9/which-directors-will-be-signing-search-test.html" class="govuk-link">Which director will be signing?</a> {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 22 July, need to raise a ticket</li>
+  <li><a href="/V9/provide-corporate-directors-emails-search-test.html" class="govuk-link">Provide director email </a>{{ govukTag({
+    text: "Needs updating",
+    classes: "govuk-!-margin-left-2 govuk-tag--purple"
+  }) }}***Design and content needs to align with equivalent screens***
+</li>
   <li><a href="/V9/stop-too-many-directors.html" class="govuk-link">You’ll need to apply using a paper form (DS01)</a>{{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
@@ -329,25 +350,6 @@
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}Content updated 30 June, need to raise a ticket</li>
-  </ul>
-
-
-   <h2 class="govuk-heading-m" style="margin-top: 20px;">Companies with up to 150 directors</h2>
-   <ul class="govuk-list govuk-list--bullet">
-  <li><a href="/V9/which-director-are-you-search-test.html" class="govuk-link">Which director are you? (100 directors)</a>
-  {{ govukTag ({
-  text: "Check dev status",
-  classes: "govuk-!-margin-left-2 govuk-tag--blue"
-}) }}Need to find out if this is live</li>
-  <li><a href="/V9/which-directors-will-be-signing-search-test.html" class="govuk-link">Which director will be signing? (100 directors)</a> {{ govukTag({
-    text: "Dev ready",
-    classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }}Content updated 22 July, need to raise a ticket</li>
-  <li><a href="/V9/provide-corporate-directors-emails-search-test.html" class="govuk-link">Provide director email (100 directors)</a>{{ govukTag({
-    text: "Needs updating",
-    classes: "govuk-!-margin-left-2 govuk-tag--purple"
-  }) }}***Design and content needs to align with equivalent screens***
-</li>
 </ul>
 </div>
 
