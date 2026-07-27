@@ -5,7 +5,6 @@ const router = express.Router()
 // DS HUB START
 // --------------------
 router.post('/V9/start', function (req, res) {
-
   res.redirect('/V9/sign-in-ds-hub')
 })
 
@@ -20,32 +19,6 @@ router.post('/V9/sign-in-ds-hub', function (req, res) {
   req.session.user_email = req.body['email-address']
 
   res.redirect('/V9/enter-password')
-})
-
-// --------------------
-// DS HUB DIRECTOR FLOW
-// --------------------
-router.post('/V9/which-director-are-you', function (req, res) {
-
-  const answer = req.body.whichDirectorAreYou
-
-  if (req.session.data.startedAtAltSignIn) {
-    return res.redirect('/V9/which-directors-will-be-signing')
-  }
-
-  if (answer === 'iAmNotADirectorOfThisCompany') {
-    return res.redirect('/V9/which-directors-will-be-signing')
-  }
-
-  res.redirect('/V9/sign-the-application')
-})
-
-router.post('/V9/check-your-answers-multi-directors', function (req, res) {
-  res.redirect('/V9/sign-the-application')
-})
-
-router.post('/V9/sign-the-application', function (req, res) {
-  res.redirect('/V9/test-sign-journey')
 })
 
 // --------------------
@@ -109,12 +82,7 @@ router.get('/V9/company-authentication', function (req, res) {
 })
 
 router.post('/V9/company-authentication', function (req, res) {
-
-  if (req.session.data.startedAtAltSignIn) {
-    return res.redirect('/V9/view-company-info')
-  }
-
-  return res.redirect('/V9/view-company-info')
+  res.redirect('/V9/view-company-info')
 })
 
 // --------------------
@@ -135,15 +103,28 @@ router.post('/V9/which-director-are-you', function (req, res) {
 
   const answer = req.body.whichDirectorAreYou
 
+  // ACSP / accountant journey
   if (answer === 'iAmNotADirectorOfThisCompany') {
-    return res.redirect('/V9/which-directors-will-be-signing')
+    return res.redirect('/V9/provide-single-director-email')
   }
 
-  res.redirect('/V9/which-directors-will-be-signing')
+  // Director journey
+  return res.redirect('/V9/sign-the-application')
 })
 
 // --------------------
-// NON-DIRECTOR FLOW
+// SINGLE DIRECTOR ACSP FLOW
+// --------------------
+router.post('/V9/provide-single-director-email', function (req, res) {
+  res.redirect('/V9/check-your-answers-single-director-acsp')
+})
+
+router.post('/V9/check-your-answers-single-director-acsp', function (req, res) {
+  res.redirect('/V9/application-status-single-acsp')
+})
+
+// --------------------
+// MULTI DIRECTOR FLOW
 // --------------------
 router.post('/V9/which-directors-will-be-signing', function (req, res) {
   res.redirect('/V9/provide-directors-emails')
@@ -163,8 +144,6 @@ router.post('/V9/check-your-answers-multi-directors', function (req, res) {
 router.post('/V9/sign-the-application', function (req, res) {
   res.redirect('/V9/review-your-payment')
 })
-
-
 
 // --------------------
 // DS HUB SIGN FLOW
