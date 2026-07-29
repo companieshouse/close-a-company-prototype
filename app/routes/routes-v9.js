@@ -108,8 +108,9 @@ router.post('/V9/which-director-are-you', function (req, res) {
     return res.redirect('/V9/provide-single-director-email')
   }
 
-  // Director journey
-  return res.redirect('/V9/sign-the-application')
+  // User testing scenario:
+  // User is Ella, one of the directors in a multi-director company
+  return res.redirect('/V9/which-directors-will-be-signing')
 })
 
 // --------------------
@@ -126,6 +127,7 @@ router.post('/V9/check-your-answers-single-director-acsp', function (req, res) {
 // --------------------
 // MULTI DIRECTOR FLOW
 // --------------------
+
 router.post('/V9/which-directors-will-be-signing', function (req, res) {
   res.redirect('/V9/provide-directors-emails')
 })
@@ -135,7 +137,11 @@ router.post('/V9/provide-directors-emails', function (req, res) {
 })
 
 router.post('/V9/check-your-answers-multi-directors', function (req, res) {
-  res.redirect('/V9/test-sign-journey-acsp')
+  res.redirect('/V9/sign-the-application')
+})
+
+router.post('/V9/sign-the-application', function (req, res) {
+  res.redirect('/V9/test-sign-journey')
 })
 
 // --------------------
