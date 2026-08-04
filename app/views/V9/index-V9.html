@@ -97,7 +97,7 @@
   <li><a href="/V9/which-director-are-you.html" class="govuk-link">Which director are you?</a>{{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }}Ticket = FS-417</li>
+  }) }}<a href="https://companieshouse.atlassian.net/browse/FS-417">FS-417</a></li>
  <li><a href="/V9/which-directors-will-be-signing.html" class="govuk-link">Which other directors will sign the application? (multi director)</a> {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "Dev ready",
@@ -182,7 +182,7 @@
 
 </ul>
  
-  <h3 class="govuk-heading-s govuk-!-margin-top-5">Download PDF copy of the application {{ govukTag({
+  <h3 class="govuk-heading-s govuk-!-margin-top-5">View and download PDF copy of the application {{ govukTag({
     text: "Awaiting outcome of transaction model meeting",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
   }) }}</h3> 
@@ -192,25 +192,10 @@
     <a href="/V9/email-application-accepted.html" class="govuk-link">Email - application accepted (multi director)</a>{{ govukTag({
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} ***Download link - need to check behaviour with architect***
+  }) }} Blocked
     </li>
-    <li>
-    <a href="/V9/email-application-accepted-single.html" class="govuk-link">Email - application accepted (single director)</a> {{ govukTag({
-    text: "Needs updating",
-    classes: "govuk-!-margin-left-2 govuk-tag--purple"
-  }) }} ******Download link - need to check behaviour with architect. Also content same as 'multi director' email - need to mirror (or can this one be deleted?)***
- </li>
-    <li>
-    <a href="/V9/view-company-info-pdf.html" class="govuk-link">PDF link - Download a copy of the application to dissolve (close) this company</a>{{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} ***Download link - need to check behaviour with architect***
-  </li>
-  <li><a href="/V9/pdf-mock-up.html" class="govuk-link">PDF mock up - Application received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  <li><a href="/V9/pdf-mock-up.html" class="govuk-link">PDF mock up for testing - Application received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
-    text: "For testing",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}{{ govukTag({
     text: "Not for dev",
     classes: "govuk-!-margin-left-2 govuk-tag--pink"
   }) }}</li>
