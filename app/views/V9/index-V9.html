@@ -291,7 +291,7 @@
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}
  </li>
-  <li><a href="/V9/application-deleted.html" class="govuk-link">Application deleted (non-applicant)</a>{{ govukTag({
+  <li><a href="/V9/application-deleted-date-showing.html" class="govuk-link">Application deleted (date showing)</a>{{ govukTag({
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
   }) }} {{ govukTag({
@@ -299,19 +299,28 @@
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}
  </li>
-   <li><a href="/V9/application-deleted-by-applicant.html" class="govuk-link">Application deleted (applicant)</a>{{ govukTag({
+   <li><a href="/V9/application-deleted.html" class="govuk-link">Application deleted</a>{{ govukTag({
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}
  </li>
  <li><a href="/V9/stop-someone-is-paying.html" class="govuk-link">You cannot delete this application at the moment (someone is paying)</a>{{ govukTag({ 
   text: "In progress",
   classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-}) }}Awaiting user testing to be completed before raising ticket</li>
+}) }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }} Awaiting user testing to be completed before raising ticket</li>
 <li><a href="/V9/stop-cannot-delete.html" class="govuk-link">You cannot delete this application (majority of directors have signed)</a>{{ govukTag({ 
   text: "In progress",
   classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-}) }}Awaiting user testing to be completed before raising ticket</li>
+})  }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}Awaiting user testing to be completed before raising ticket</li>
 </ul>
 
    <h2 class="govuk-heading-m" style="margin-top: 20px;">Screens preventing duplicates</h2>
