@@ -49,6 +49,11 @@
       <tbody class="govuk-table__body">
         {%- from "govuk/components/tag/macro.njk" import govukTag -%}
           <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/V9-1/index-V9.html" class="govuk-link">Version 9.1</a></td>
+          <td class="govuk-table__cell">11/08/2026</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "For user testing", classes: "govuk-tag--pink" }) }}</td>
+        </tr> 
+        <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="/V9/index-V9.html" class="govuk-link">Version 9</a></td>
           <td class="govuk-table__cell">20/07/2026</td>
           <td class="govuk-table__cell">{{ govukTag({ text: "In progress", classes: "govuk-tag--yellow" }) }}</td>
