@@ -1,0 +1,128 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  View company information – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    {{user_email}}</strong>  
+    <a class="govuk-link" href="/V9/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form action="/V9/view-company-info" method="post">
+
+      <h1 class="govuk-heading-xl">
+        View company information
+      </h1>
+
+{% if (data['companyNumber'] == "12345678") %}
+
+
+      <h2 class="govuk-heading-l">
+        A SINGLE DIRECTOR COMPANY LTD
+      </h2>
+      
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: "Active" }
+      },
+      {
+        key: { text: "Incorporation date" },
+        value: { text: "1 January 2001" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { text: "1 Single Street, Anytown, AB11 1CD" }
+      }
+    ]
+  }) }}
+{% else %}
+ <h2 class="govuk-heading-l">
+        A MULTI DIRECTOR COMPANY LTD
+      </h2>
+      
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: "Active" }
+      },
+      {
+        key: { text: "Incorporation date" },
+        value: { text: "02 Feb 2002" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { html: "<address>2 Multi Street,<br>Anytown,<br>AB23 4CD</address>" }
+      }
+    ]
+  }) }}
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+        {{ govukButton({
+          text: "Confirm and continue"
+        }) }}
+ 
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link govuk-link--no-visited-state">Choose a different company</a>
+      </p>
+     </form>
+    </div>
+  </div>
+{% endblock %}

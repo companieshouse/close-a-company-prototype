@@ -1,0 +1,372 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+<!-- Hide service navigation-->
+{% block header %}
+{{ govukHeader({
+  rebrand: true
+}) }}
+{% endblock %} 
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-width">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    This version of the prototype is being actively worked on
+    <p>Some things might not work correctly or change very quickly. 
+    If you have any questions, contact Sara Shipley or Sophie Horton.</p> 
+
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
+<span class="govuk-caption-xl">Version 9</span>
+<h1 class="govuk-heading-xl">
+  {{ serviceName }}
+</h1>
+
+
+<p>
+  <a href="https://app.mural.co/t/companieshouse8589/m/companieshouse8589/1774276339388/c3e156e3b5cd0e16147cb7b7995a817ccca890d8"
+     class="govuk-link"
+     rel="noreferrer noopener"
+     target="_blank">
+    Link to Mural (opens in new tab)
+  </a>
+</p>
+
+</div>
+</div>
+
+
+<h2 class="govuk-heading-m">Pre-submission screens</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V9/start.html" class="govuk-link">Start page</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 13 July, need to raise a ticket</li>
+  <li><a href="/V9/who-to-tell.html" class="govuk-link">Who to tell about the company being dissolved (closed)</a>  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 21 July, need to raise a ticket</li>
+</li>
+  <li><a href="/V9/stop-screen-bank-account.html" class="govuk-link">Access to company bank accounts and other assets</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 13 July, need to raise a ticket</li>
+</ul>
+
+  <h3 class="govuk-heading-s govuk-!-margin-top-5"> GOV.UK One Login screens {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }}</h3>
+  <ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V9/sign-in-to-ch.html" class="govuk-link">Sign in to Companies House</a></li>
+  <li><a href="/V9/gov-one-log-in.html" class="govuk-link">Create your GOV.UK One Login or sign in</a></li>
+  <li><a href="/V9/sign-in.html" class="govuk-link">Enter your email address to sign in to your GOV.UK One Login</a></li>
+  <li><a href="/V9/enter-password.html" class="govuk-link">Enter your password</a></li>
+  <li><a href="/V9/check-your-phone.html" class="govuk-link">Check your phone</a></li>
+</ul>
+
+    <h3 class="govuk-heading-s"> Company details</h3> 
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V9/company-number.html" class="govuk-link">What is the company number?</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Live",
+    classes: "govuk-!-margin-left-2 govuk-tag--turquoise"
+  }) }}</li>
+  <li><a href="/V9/view-company-info.html" class="govuk-link">View company information</a> {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</li>
+  <li><a href="/V9/company-authentication.html" class="govuk-link">Enter the company authentication code</a>{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }} Common component</li>
+  <li><a href="/V9/which-director-are-you.html" class="govuk-link">Which director are you?</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}<a href="https://companieshouse.atlassian.net/browse/FS-417">FS-417</a></li>
+ <li><a href="/V9/which-directors-will-be-signing.html" class="govuk-link">Which other directors will sign the application? (multi director)</a> {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} Content updated 21 July, need to raise a ticket. ***In ticket, mention that the word 'other' needs to be removed from H1 in version where an ACSP is the applicant***</li>
+
+  <li><a href="/V9/provide-directors-emails.html" class="govuk-link">What are the email addresses for each director?</a> {{ govukTag({ text: "Dev ready", classes: "govuk-tag--green" }) }}<a class ="govuk-link" href="https://companieshouse.atlassian.net/browse/FS-412" target="_blank"> FS-412</a></li>
+  <li><a href="/V9/provide-corporate-directors-emails.html" class="govuk-link">What are the email addresses for each director? (Corporate version)</a> {{ govukTag({ text: "Dev ready", classes: "govuk-tag--green" }) }}<a class ="govuk-link" href="https://companieshouse.atlassian.net/browse/FS-414" target="_blank"> FS-414 (ticket just for error messages)</a>***Need error messages - awaiting scenarios***</li>
+  <li><a href="/V9/check-your-answers-single-director-acsp.html" class="govuk-link">Check your answers (single director)</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Need to raise a ticket</li>
+
+<li>
+  <a href="/V9/check-your-answers-multi-directors.html" class="govuk-link">
+    Check your answers (multi director)</a>
+  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} Need to raise a ticket ***In ticket, mention that the word 'other' needs to be removed in version where an ACSP is the applicant***
+</li>
+  <li><a href="/V9/change-directors-email.html" class="govuk-link">Change directors' email addresses</a>    {{ govukTag({
+    text: "Needs updating",
+    classes: "govuk-!-margin-left-2 govuk-tag--purple"
+  }) }}<a class ="govuk-link" href="https://companieshouse.atlassian.net/browse/FS-413" target="_blank"> FS-413</a> ***Design and content needs to align with equivalent screens. Needs to be individual directors rather than multiple***</li>
+
+</ul>
+
+
+    <h3 class="govuk-heading-s"> Signing screens</h3> 
+ 
+<ul class="govuk-list govuk-list--bullet">
+
+  <li><a href="/V9/confirm-who-you-are.html" class="govuk-link">Confirm you are [director name]</a> 
+  {{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}Conditional screen. ***Add back button***</li>
+  <li><a href="/V9/sign-the-application.html" class="govuk-link">Sign the application</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} Content updated 13 July, need to raise a ticket</li>
+    <li><a href="/V9/sign-the-application-corporate-director.html" class="govuk-link">Sign the application (corporate director)</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 21 July, need to raise a ticket</li>
+  <li>
+    <a href="/V9/email-sign-the-application.html" class="govuk-link">
+      Sign the application to strike off and dissolve a company (email)</a>{{ govukTag({
+      text: "Dev ready",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    }) }}Need to raise a ticket, update black GOV.UK header across the top to new blue version. ***Update subject line to 'You need to sign...' content***
+  </li>
+
+  <li>
+    <a href="/V9/provide-single-director-email.html" class="govuk-link">
+      Provide email address (single director)</a>
+    {{ govukTag({
+      text: "Dev ready",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    }) }} Content updated 22 July, need to raise a ticket
+  </li>
+
+  <li>
+    <a href="/V9/wait-screen-other-signer-single-director.html" class="govuk-link">
+      Application signed (single director)</a> {{ govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    }) }}***UCD to review this screen alongside the multi director version*** ***Ask if we can email all directors or REA once this is submitted***
+  </li>
+   <li>
+    <a href="/V9/wait-screen-other-directors-must-sign-multi-director.html" class="govuk-link">
+      Application signed (multi director)
+    </a>
+    {{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}***UCD to review this screen alongside the single director version***</li>
+  </li>
+  
+
+</ul>
+ 
+  <h3 class="govuk-heading-s govuk-!-margin-top-5">View and download PDF copy of the application {{ govukTag({
+    text: "Awaiting outcome of transaction model meeting",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</h3> 
+
+ <ul class="govuk-list govuk-list--bullet">
+  <li>
+    <a href="/V9/email-application-accepted.html" class="govuk-link">Email - application accepted (multi director)</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }} Blocked
+    </li>
+  <li><a href="/V9/pdf-mock-up.html" class="govuk-link">PDF mock up for testing - Application received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }}</li>
+
+</ul>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-9">Payment and application submission</h2>
+
+  <h3 class="govuk-heading-s" style="margin-top: 20px;">Payment screens</h3>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    <a href="/V9/how-do-you-want-to-pay.html" class="govuk-link">How do you want to pay for the application?</a>{{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }}Common component</li>
+
+    <li><a href="/V9/ch-pay.html" class="govuk-link">Enter your details to pay by account</a>{{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }}Common component</li>
+  <li><a href="/V9/review-your-payment.html" class="govuk-link">Review your payment</a>{{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+  }) }}Common component</li>
+  <li>
+    <a href="https://products.payments.service.gov.uk/pay/aa2f2fa3be904b93887d8bef7b4909ab" class="govuk-link">
+      GOV.UK Pay prototype - Enter card details
+    </a> (use card number 4444333322221111) {{ govukTag({
+    text: "Not for dev",
+    classes: "govuk-!-margin-left-2 govuk-tag--pink"
+    }) }}</li>
+  </li>
+  <li><a href="/V9/application-received.html" class="govuk-link">Application submitted</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}***Need to add option to withdraw application - but is it 'withdraw' or 'delete' at this stage? Alex is checking***</li>
+<!--<li><a href="/V9/application-received-paper.html" class="govuk-link">Application submitted (paper)</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}***Download link - need to check behaviour with architect. Also need to check if this screen is actually needed for paper applications***</li>-->
+<li><a href="/V9/bi-email-mock.html" class="govuk-link">Application submitted (email)</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }} Blocked by spike (transaction model)</li>
+<li><a href="/V9/email-application-accepted.html" class="govuk-link">Application accepted (email)</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 7 August, need to raise a ticket</li>
+  <li><a href="/V9/email-pay-for-your-application.html" class="govuk-link">Pay for your application to strike off and dissolve a company (email)</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}<a href="https://companieshouse.atlassian.net/browse/FS-384" class="govuk-link">FS-384</a> URL content is a placeholder - will need to be updated when we know exactly what it will be in live. </li>
+
+
+
+</ul>
+</div>
+
+
+
+
+
+
+  <h3 class="govuk-heading-s" style="margin-top: 20px;">Application status</h3>
+
+<ul class="govuk-list govuk-list--bullet">
+  
+  <li><a href="/V9/test-sign-journey.html" class="govuk-link">Application started</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}***Do we send the user a confirmation email?***</li>
+    <li><a href="/V9/application-status-single-acsp.html" class="govuk-link">Application started (single director, ACSP applicant)</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }} </li>
+  <li><a href="/V9/test-sign-journey-submit-button.html" class="govuk-link">Application in progress (with submit button)</a> {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}</li>
+   <li><a href="/V9/all-directors-signed-not-paid-for-non-applicant.html" class="govuk-link">Application in progress (non-applicant, all directors have signed)</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}</li>
+<li><a href="/V9/two-directors-signed.html" class="govuk-link">Application in progress (non-applicant, not signed)</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}</li>
+  <li><a href="/V9/test-sign-journey-3-directors-signed.html" class="govuk-link">Application in progress (non-applicant, 3 directors have signed)</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }} Created for user testing</li>
+  <li><a href="/V9/delete-confirmation.html" class="govuk-link">Are you sure you want to delete this application?</a>{{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}
+ </li>
+  <li><a href="/V9/application-deleted-date-showing.html" class="govuk-link">Application deleted (date showing)</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}
+ </li>
+   <li><a href="/V9/application-deleted.html" class="govuk-link">Application deleted</a>{{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}
+ </li>
+ <li><a href="/V9/stop-someone-is-paying.html" class="govuk-link">You cannot delete this application at the moment (someone is paying)</a>{{ govukTag({ 
+  text: "In progress",
+  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+}) }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }} <a href="https://companieshouse.atlassian.net/browse/FS-446" class="govuk-link">FS-446</a> Awaiting user testing to be completed before raising ticket</li>
+<li><a href="/V9/stop-cannot-delete.html" class="govuk-link">You cannot delete this application (majority of directors have signed)</a>{{ govukTag({ 
+  text: "In progress",
+  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+})  }} {{ govukTag({
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }}Awaiting user testing to be completed before raising ticket</li>
+</ul>
+
+   <h2 class="govuk-heading-m" style="margin-top: 20px;">Screens preventing duplicates</h2>
+   <ul class="govuk-list govuk-list--bullet">
+<li><a href="/V9/stop-application-in-progress.html" class="govuk-link">An application to dissolve (close) this company was submitted on [date]</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} <a href="https://companieshouse.atlassian.net/browse/FS-383" class="govuk-link">FS-383</a></li>
+  <li><a href="/V9/stop-application-in-progress-paper.html" class="govuk-link">An application has been submitted on paper to dissolve (close) this company</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  <li><a href="/V9/ds-hub-accepted.html" class="govuk-link">Application accepted</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}</li>
+  </ul>
+
+
+   <h2 class="govuk-heading-m" style="margin-top: 20px;">Companies with up to 150 directors 
+  <a href="https://companieshouse.atlassian.net/browse/BI-15263" class="govuk-link govuk-link--no-visited-state">BI-15263</a>
+</h2>
+   <ul class="govuk-list govuk-list--bullet">
+  <li><a href="/V9/which-director-are-you-search-test.html" class="govuk-link">Which director are you?</a>
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} <a href="https://companieshouse.atlassian.net/browse/FS-417" class="govuk-link">FS-417</a></li>
+  <li><a href="/V9/which-directors-will-be-signing-search-test.html" class="govuk-link">Which director will be signing?</a> {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 22 July, need to raise a ticket</li>
+  <li><a href="/V9/stop-too-many-directors.html" class="govuk-link">You’ll need to apply using a paper form (DS01)</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 29 June, need to raise a ticket</li>
+  <li><a href="/V9/stop-too-many-members.html" class="govuk-link">You’ll need to apply using a paper form (DS01) - LLP version</a>{{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}Content updated 30 June, need to raise a ticket</li>
+</ul>
+</div>
+
+</div>
+{% endblock %}
