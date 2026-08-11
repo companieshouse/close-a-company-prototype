@@ -19,8 +19,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form method="post" action="/V9-1/sign-in">
-
+  <!-- <form method="post" action="/V9-1/sign-in">--> 
+<form>
       {% if errors %}
         {{ govukErrorSummary({
           titleText: "There is a problem",
@@ -45,10 +45,10 @@
         errorMessage: errors['email-address'] if errors
       }) }}
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-    </form>
+ <a href="https://close-a-company-prototype-25f63a2f0a27.herokuapp.com/V9-1/enter-password" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Continue
+    </a>
+  <!-- </form>--> 
 
   </div>
 </div>
