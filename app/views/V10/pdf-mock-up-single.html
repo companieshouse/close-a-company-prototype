@@ -1,0 +1,315 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+DS01 Application to strike off – GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== PDF VIEWER BACKGROUND ===== */
+
+.pdf-viewer {
+  background: #e6e6e6;
+  margin: 0 -30px;
+}
+
+/* ===== TOOLBAR ===== */
+
+.pdf-toolbar {
+  background: #3f3f3f;
+  color: #ffffff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.pdf-toolbar-left,
+.pdf-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pdf-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pdf-button:hover {
+  text-decoration: underline;
+}
+
+.pdf-zoom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== DOCUMENT WRAPPER ===== */
+
+.pdf-document-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.notice-container {
+  width: 820px;
+  background: #ffffff;
+  padding: 50px 60px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+/* ===== HEADER ===== */
+
+.ds01-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ds01-header-left {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ds01-form-code {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.ds01-form-code span {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.ds01-title-box {
+  border: 3px solid #000;
+  padding: 18px 0;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+  width: 380px;          /* makes it extend halfway */
+}
+
+/* ===== COMPANY META ===== */
+
+.company-meta {
+  margin-top: 45px;
+  font-size: 20px;       /* slightly larger like the real form */
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;  /* wider label column */
+  margin-bottom: 18px;
+}
+
+.meta-label {
+  font-weight: normal;   /* remove bold */
+}
+
+.meta-value {
+  font-weight: normal;   /* remove bold */
+  letter-spacing: 0.5px; /* subtle spacing like form text */
+}
+/* ===== SECTIONS ===== */
+
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.section p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 30px 0;
+}
+
+/* ===== DIRECTOR SIGNATURE SECTION ===== */
+
+.directors-block {
+  margin-top: 30px;
+}
+
+.director-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 25px;
+}
+
+.director-name-left {
+  width: 40%;
+  font-size: 18px;
+}
+
+.director-signature-right {
+  width: 55%;
+}
+
+.director-name-signed {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.signature-line {
+  border-bottom: 1px solid #000;
+  height: 25px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.signature-date {
+  font-size: 16px;
+}
+
+.bottom-divider {
+  border: none;
+  border-top: 3px solid #000;
+  margin-top: 40px;
+}
+
+</style>
+
+<div class="pdf-viewer">
+
+  <!-- ===== TOOLBAR ===== -->
+
+  <div class="pdf-toolbar">
+    <div class="pdf-toolbar-left">
+      <strong>application-pdf</strong>
+      <span>1 / 1</span>
+    </div>
+
+    <div class="pdf-toolbar-right">
+      <div class="pdf-zoom">
+        <button class="pdf-button">-</button>
+        <span>100%</span>
+        <button class="pdf-button">+</button>
+      </div>
+      <button class="pdf-button" onclick="window.print()">Print</button>
+      <button class="pdf-button">Download</button>
+    </div>
+  </div>
+
+  <!-- ===== DOCUMENT ===== -->
+
+  <div class="pdf-document-wrapper">
+    <div class="notice-container">
+
+      <!-- Header -->
+      <div class="ds01-header">
+        <div class="ds01-header-left">
+          Companies House
+        </div>
+
+        <div>
+          <div class="ds01-form-code">
+            DS01 <span>(ef)</span>
+          </div>
+          <div class="ds01-title-box">
+            Application to strike off
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Details -->
+<div class="company-meta">
+
+  <div class="meta-row">
+    <div class="meta-label">Company Name:</div>
+    <div class="meta-value">A SINGLE DIRECTOR COMPANY LTD</div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-label">Company Number:</div>
+    <div class="meta-value">87654321</div>
+  </div>
+
+</div>
+
+      <hr class="section-divider">
+
+      <!-- Important Notice -->
+      <div class="section">
+        <h2 style="text-align: center;">Important notice for all interested parties</h2>
+        <p>
+          This company has applied to be struck off and dissolved. The registrar will proceed unless
+          there is reasonable cause not to, and on dissolution any assets remaining in the company
+          will be passed to the Crown. Guidance is available on grounds for objection. If in doubt
+          seek professional advice.
+        </p>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Declaration -->
+      <div class="section">
+        <h2 style="text-align: center;">Declaration of director(s)</h2>
+        <p>
+          I/We as the majority of directors apply for this company to be struck off the Register and
+          declare that none of the circumstances described in section 1004 and 1005 of the
+          Companies Act 2006 (being circumstances in which the directors would otherwise be
+          prohibited under those sections from making an application) exists in relation to the
+          company.
+        </p>
+      </div>
+
+      <!-- Authorising Directors -->
+<div class="section">
+  <h2>Authorising company Director(s):</h2>
+
+  <div class="directors-block">
+
+    <!-- Director Row -->
+    <div class="director-row">
+      <div class="director-name-left">
+        DOE, Jane
+      </div>
+
+      <div class="director-signature-right">
+        <div class="director-name-signed">
+          DOE, Jane
+        </div>
+
+        <div class="signature-line"></div>
+
+        <div class="signature-date">
+          Signature Date: 04-03-2026
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  <hr class="bottom-divider">
+
+</div>
+
+{% endblock %}

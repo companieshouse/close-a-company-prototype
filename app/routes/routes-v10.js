@@ -1,0 +1,166 @@
+const express = require('express')
+const router = express.Router()
+
+// --------------------
+// DS HUB START
+// --------------------
+router.post('/V10/start', function (req, res) {
+  res.redirect('/V10/sign-in-ds-hub')
+})
+
+router.get('/V10/sign-in-ds-hub', function (req, res) {
+  res.render('V10/sign-in-ds-hub')
+})
+
+router.post('/V10/sign-in-ds-hub', function (req, res) {
+  req.session.data = {}
+  req.session.data.startedAtAltSignIn = true
+
+  req.session.user_email = req.body['email-address']
+
+  res.redirect('/V10/enter-password')
+})
+
+// --------------------
+// SIGN IN
+// --------------------
+router.post('/V10/sign-in', function (req, res) {
+  const email = req.session.data['email-address']
+  req.session.user_email = email
+
+  if (!email) {
+    return res.render('V10/sign-in', {
+      errors: {
+        'email-address': { text: 'Enter your email address' }
+      }
+    })
+  }
+
+  res.redirect('/V10/enter-password')
+})
+
+// --------------------
+// PASSWORD → CHECK PHONE
+// --------------------
+router.post('/V10/enter-password', function (req, res) {
+  res.redirect('/V10/check-your-phone')
+})
+
+// --------------------
+// CHECK PHONE → WHO TO TELL
+// --------------------
+router.post('/V10/check-your-phone', function (req, res) {
+  res.redirect('/V10/who-to-tell')
+})
+
+// --------------------
+// WHO TO TELL → STOP SCREEN
+// --------------------
+router.post('/V10/who-to-tell', function (req, res) {
+  res.redirect('/V10/stop-screen-bank-account')
+})
+
+// --------------------
+// STOP SCREEN → BACK INTO JOURNEY
+// --------------------
+router.post('/V10/stop-screen-bank-account', function (req, res) {
+  res.redirect('/V10/company-number')
+})
+
+// --------------------
+// COMPANY NUMBER
+// --------------------
+router.post('/V10/company-number', function (req, res) {
+  res.redirect('/V10/company-authentication')
+})
+
+// --------------------
+// AUTHENTICATION CODE
+// --------------------
+router.get('/V10/company-authentication', function (req, res) {
+  res.render('V10/company-authentication')
+})
+
+router.post('/V10/company-authentication', function (req, res) {
+  res.redirect('/V10/view-company-info')
+})
+
+// --------------------
+// COMPANY INFO
+// --------------------
+router.get('/V10/view-company-info', function (req, res) {
+  res.render('V10/view-company-info')
+})
+
+router.post('/V10/view-company-info', function (req, res) {
+  res.redirect('/V10/which-director-are-you')
+})
+
+// --------------------
+// BRANCHING
+// --------------------
+router.post('/V10/which-director-are-you', function (req, res) {
+
+  const answer = req.body.whichDirectorAreYou
+
+  // ACSP / accountant journey
+  if (answer === 'iAmNotADirectorOfThisCompany') {
+    return res.redirect('/V10/provide-single-director-email')
+  }
+
+  // User testing scenario:
+  // User is Ella, one of the directors in a multi-director company
+  return res.redirect('/V10/which-directors-will-be-signing')
+})
+
+// --------------------
+// SINGLE DIRECTOR ACSP FLOW
+// --------------------
+router.post('/V10/provide-single-director-email', function (req, res) {
+  res.redirect('/V10/check-your-answers-single-director-acsp')
+})
+
+router.post('/V10/check-your-answers-single-director-acsp', function (req, res) {
+  res.redirect('/V10/application-status-single-acsp')
+})
+
+// --------------------
+// MULTI DIRECTOR FLOW
+// --------------------
+
+router.post('/V10/which-directors-will-be-signing', function (req, res) {
+  res.redirect('/V10/provide-directors-emails')
+})
+
+router.post('/V10/provide-directors-emails', function (req, res) {
+  res.redirect('/V10/check-your-answers-multi-directors')
+})
+
+router.post('/V10/check-your-answers-multi-directors', function (req, res) {
+  res.redirect('/V10/sign-the-application')
+})
+
+router.post('/V10/sign-the-application', function (req, res) {
+  res.redirect('/V10/test-sign-journey')
+})
+
+// --------------------
+// MAIN DIRECTOR FLOW
+// --------------------
+router.post('/V10/sign-the-application', function (req, res) {
+  res.redirect('/V10/review-your-payment')
+})
+
+// --------------------
+// DS HUB SIGN FLOW
+// --------------------
+router.get('/V10/sign-the-application-ds-hub', function (req, res) {
+  res.render('V10/sign-the-application-ds-hub')
+})
+
+router.post('/V10/sign-the-application-ds-hub', function (req, res) {
+  res.redirect('/V10/wait-screen-other-signers-multi-directors')
+})
+
+// --------------------
+module.exports = router

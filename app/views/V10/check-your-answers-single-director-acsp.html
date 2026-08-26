@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/V10/check-your-answers-single-director-acsp" method="post" novalidate>
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before you sign the application
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Directors
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which director are you?"
+            },
+            value: {
+              text: "I am not a director of this company"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V10/which-director-are-you",
+                  text: "Change",
+                  visuallyHiddenText: "which director you are"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which director will sign the application?"
+            },
+            value: {
+              html: "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V10/which-director-will-sign",
+                  text: "Change",
+                  visuallyHiddenText: "which director will sign the application"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Director email addresses
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
+            },
+            value: {
+              text: data['directorEmail'] or "ella.adams@example.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V10/provide-single-director-email",
+                  text: "Change",
+                  visuallyHiddenText: "email address for Ella Adams"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
