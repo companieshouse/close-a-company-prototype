@@ -114,7 +114,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
   head: [
     { text: "Name" },
     { text: "Email address" },
-    { text: "Status" }
+    { text: "Signing status" }
   ],
   rows: [
     [
@@ -171,12 +171,9 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         '
       },
       {
-        html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
-        })
+
       
-      + '
+     html:'
     <div class="govuk-!-margin-top-1">
     <a class="govuk-link" href="confirm-who-you-are">Sign application</a>
     </div>
