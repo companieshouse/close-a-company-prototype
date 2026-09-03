@@ -18,70 +18,30 @@
       <form action="/V10/provide-corporate-directors-emails" method="post">
 
         <h1 class="govuk-heading-xl">
-          Change directors' email addresses
+          Change email address for FRANCIS, Sara
         </h1>
 
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-        {% from "govuk/components/details/macro.njk" import govukDetails %}
 
-        {# Loop through the directors selected on the previous screen #}
-        {% for director in data.whichDirectorsWillBeSigningTheApplication %}
+       
 
-          {% set displayName =
-            director
-              | replace("JaneDoe", "DOE, Jane")
-              | replace("SaraFrancis", "FRANCIS, Sara")
-              | replace("JamesShipley", "SHIPLEY, James")
-              | replace("AcmeLtd", "ACME LTD")
-          %}
+   
 
-          <h2 class="govuk-heading-m">{{ displayName }}</h2>
+            <p class="govuk-body">This must be different to the email addresses provided for other directors.</p>
 
-          {# Corporate director guidance #}
-          {% if director == "AcmeLtd" %}
+     
 
-            <p class="govuk-body">Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.</p>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+   Email address
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text">
+</div>
 
-            {% set nameKey = "corporateSignerName" + loop.index0 %}
+     
 
-            {{ govukInput({
-              label: {
-                text: "
-"
-              },
-              hint: {
-                text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
-              },
-              id: nameKey,
-              name: nameKey,
-              type: "text",
-              autocomplete: "name",
-              value: data[nameKey]
-            }) }}
 
-          {% endif %}
-
-          {% set emailKey = "directorEmail" + loop.index0 %}
-
-          {% set emailHint =
-            "What is the email address for the authorised person who will sign on behalf of ACME LTD?"
-            if director == "AcmeLtd"
-            else "What is the email address for " ~ displayName ~ "?"
-          %}
-
-          {{ govukInput({
-            label: { text: emailLabel },
-            hint: { text: emailHint },
-            id: emailKey,
-            name: emailKey,
-            type: "email",
-            autocomplete: "email",
-            spellcheck: false,
-            value: data[emailKey]
-          }) }}
-
-        {% endfor %}
+        
 
         {{ govukButton({
           text: "Continue"
