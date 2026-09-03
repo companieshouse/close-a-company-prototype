@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+You cannot delete this application right now – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      You cannot delete this application
+    </h1>
+
+    <p class="govuk-body">
+    As more than half of the directors have now signed the application, it cannot be deleted. 
+    </p>
+
+<h2 class="govuk-heading-m">If you no longer want to dissolve the company</h2>
+
+       <p class="govuk-body">
+       After the person who started the application has submitted it, and it's been accepted, you'll be able to <a href="https://www.gov.uk/strike-off-your-company-from-companies-register/withdraw-your-application" class="govuk-link" rel="noreferrer noopener" target="_blank">withdraw your application (opens in new tab)</a>.
+    </p>
+
+    <a href="/V11/all-directors-signed-not-paid-for-non-applicant" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Go back to application
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

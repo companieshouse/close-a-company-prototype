@@ -1,0 +1,67 @@
+{% extends "layouts/email.html" %}
+
+{% block header %}
+<div class="govuk-width-container">
+  {% include "/includes/email-header.html" %}
+  {{ govukHeader({
+    containerClasses: "govuk-!-padding-left-0"
+  }) }}
+</div>
+{% endblock %}
+
+{% block pageTitle %}
+Pay for your application to strike off and dissolve a company – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<form action="/V11/email-pay-for-your-application" method="post">
+
+<div class="govuk-!-padding-top-4"></div>
+<div class="govuk-!-padding-bottom-9">
+<h1 class="govuk-heading-l">
+  Pay for your application to strike off and dissolve a company
+</h1>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Company number"
+        },
+        value: {
+          text: data['companyNumber'] or "02748204"
+        }
+      },
+      {
+        key: {
+          text: "Company name"
+        },
+        value: {
+          text: "LADY PARK (LEEDS) MANAGEMENT COMPANY LIMITED"
+        }
+      },
+      {
+        key: {
+          text: "Reference number"
+        },
+        value: {
+          text: "MUZXM5"
+        }
+      }
+    ]
+  }) }}
+
+  <p class="govuk-body">
+    The application to strike off and dissolve this company is now ready to be paid for and submitted. Go to the 'Application in progress' page and select the 'Pay and submit' button:
+  </p>
+
+  <p class="govuk-body">
+    <a href="../V11/test-sign-journey-submit-button" class="govuk-link">
+      companieshouse.gov.uk/pay-for-and-submit-application
+    </a>
+  </p>
+
+</form>
+</div>
+{% endblock %}

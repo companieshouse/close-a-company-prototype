@@ -2,34 +2,10 @@
 
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block pageTitle %}
 Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block beforeContent %}
-  <div class="govuk-phase-banner govuk-width-container">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        Beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
-      </span>
-    </p>
-  </div>
-
-  <!-- Right-aligned sign out with top and bottom borders -->
-<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
-  <span class="govuk-body-s">
-    {{user_email}}</strong>  
-    <a class="govuk-link" href="/V10/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
-  </span>
-</div>
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 {% endblock %}
 
 {% block content %}
@@ -43,12 +19,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       </h1>
 
       <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
-        Ready to be submitted by the person who started the application
+     You can submit this application now that enough directors have signed
       </p>
-<!--
-      <p class="govuk-heading-xl" style="color:white; margin:0;">
-        HDJ2123F
-      </p>-->
     </div>
 
     <!-- Company details -->
@@ -80,11 +52,14 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
     <!-- Intro -->
     <p class="govuk-body">
-      An application to strike off and dissolve (close) this company has been started.
+      You've started an application to strike off and dissolve (close) this company. You selected 4 directors to sign the application.
     </p>
 
+
+    <h2 class="govuk-heading-l">Your options</h2>
+
     <p class="govuk-body">
-      A minimum of 3 directors must sign (more than half of all company directors). At least this many directors have now signed, so the person who started the application can choose from these options:
+      A minimum of 3 directors must sign (more than half of all company directors). At least this many directors have now signed, so you can choose from these options:
     </p>
 
     <ul class="govuk-list govuk-list--bullet">
@@ -92,60 +67,50 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       <li>wait for more directors to sign before submitting</li>
     </ul>
 
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Once you’ve paid and submitted the application, we will not accept any more signatures.
+      </strong>
+    </div>
+
+    {{ govukButton({
+      text: "Pay and submit",
+      href: "review-your-payment"
+    }) }}
+
+
+      
     <h2 class="govuk-heading-l">Signing directors</h2>
 
     <p class="govuk-body govuk-hint">
       Only the directors who have been selected to sign are shown.
     </p>
-    </div>
-    </div>
 
-    <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+  </div>
+</div>
 
-      <!-- TABLE + CTA GROUPED -->
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
-      {{ govukTable({
+    {{ govukTable({
         head: [
           { text: "Name" },
           { text: "Email address" },
           { text: "Status" }
-
         ],
         rows: [
-
           [
             {
-              html: '
-                <div>ADAMS, Ella</div>
-                <div class="govuk-hint">May 1988</div>
-              '
+              html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
             },
             {
               html: '
-                ella.adams@example.com'
-            },
-            {
-              html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
-              })
-            }
-          ],
-
-          [
-            {
-              html: '
-                <div>FRANCIS, Sara</div>
-                <div class="govuk-hint">January 1987</div>
-              '
-            },
-            {
-              html:'
-              sara.francis@example.com
-                  <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#"></a><br>
-                  <a class="govuk-link" href="#"></a>
+                ella.adams@example.com
+                <div class="govuk-!-margin-top-1">
+                  <!--<a class="govuk-link" href="#">Change email address</a><br>
+                  <a class="govuk-link" href="#">Resend email</a>-->
                 </div>
               '
             },
@@ -156,13 +121,23 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               })
             }
           ],
-
           [
             {
-              html: '
-                <div>JOHNSON, Alex</div>
-                <div class="govuk-hint">March 1985</div>
-              '
+              html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
+            },
+            {
+              text: 'sara.francis@example.com'
+            },
+            {
+              html: govukTag({
+                text: "Signed",
+                classes: "govuk-tag--green"
+              })
+            }
+          ],
+          [
+            {
+              html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
             },
             {
               html: '
@@ -174,29 +149,18 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               '
             },
             {
-              html:'
-                  <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="sign-the-application">Sign application</a>
-                  </div>
-                '
-              }
-            
+              html: govukTag({
+                text: "Not signed",
+                classes: "govuk-tag--grey"
+              })
+            }
           ],
-
           [
             {
-              html: '
-                <div>PATEL, Priya</div>
-                <div class="govuk-hint">July 1990</div>
-              '
+              html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
             },
             {
-              html: '
-                priya.patel@example.com
-                <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#"></a><br>
-                  <a class="govuk-link" href="#"></a>
-                </div>'
+              text: 'priya.patel@example.com'
             },
             {
               html: govukTag({
@@ -205,22 +169,22 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               })
             }
           ]
-
         ]
       }) }}
+  </div>
+</div>
 
-    </div>
-    </div>
 
-    <!-- Delete application -->
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
 <h2 class="govuk-heading-m">Delete this application</h2>
 
-<p class="govuk-body">If you no longer want to dissolve the company, or if there is an error in the current application and you want to start a new one, you can <a href="/V10/delete-confirmation" class="govuk-link">
+<p class="govuk-body">If you no longer want to dissolve the company, or if there is an error in the current application and you want to start a new one, you can <a href="/V11/delete-confirmation" class="govuk-link">
 delete this application</a>. We’ll ask you to confirm you want to do this on the next page.<p>
 
   </div>
 </div>
+
 {% endblock %}

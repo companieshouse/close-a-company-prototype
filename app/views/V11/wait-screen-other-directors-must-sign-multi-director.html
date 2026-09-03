@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application signed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div style="background-color:#005EA5; padding:40px 30px; text-align:center; margin-bottom:40px;">
+
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:10px;">
+        Application signed
+      </h1>
+
+      <p class="govuk-body-l" style="color:white; margin-bottom:0;">
+        You've signed the application to strike off and dissolve this company
+      </p>
+
+    </div>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-7">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          09429091
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Company name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          A MULTI DIRECTOR COMPANY LTD
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Director
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ADAMS, Ella
+        </dd>
+      </div>
+
+    </dl>
+
+    <p class="govuk-body">
+      Each selected director needs to sign in to this service and sign the
+      application. Once more than half of the directors have done this, the person who started the application can sign back in, pay the £13 fee and submit it.
+    </p>
+
+    <p class="govuk-body">
+    
+  <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">Go to the 'Application in progress' page to see which directors have signed so far</a>. You can also see this page if you sign back in to this service later.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

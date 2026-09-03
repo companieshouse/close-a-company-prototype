@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+We've already accepted an application to close this company – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      An application to dissolve (close) this company was submitted on 29 July 2026
+    </h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Company name"
+          },
+          value: {
+            text: "MULTI DIRECTOR COMPANY LIMITED"
+          }
+        },
+        {
+          key: {
+            text: "Company number"
+          },
+          value: {
+            text: "23456789"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">
+      We received an application to dissolve this company on 29 July 2026.
+    </p>
+
+    <p class="govuk-body">
+      If you were not expecting this, you should try and resolve this within the company.
+    </p>
+
+    <p>Select continue to view the status of the application.</p>
+
+{{ govukButton({
+  text: "Continue",
+  href: "/V11/application-received"
+}) }}
+
+
+   <!-- <p class="govuk-body">
+      <a href="/V11/ds-hub-accepted" class="govuk-link">
+        View application status
+      </a>
+    </p>-->
+
+  </div>
+</div>
+
+{% endblock %}

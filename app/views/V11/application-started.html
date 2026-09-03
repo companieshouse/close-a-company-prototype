@@ -23,7 +23,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
   <span class="govuk-body-s">
     {{user_email}}</strong>  
-    <a class="govuk-link" href="/V10/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+    <a class="govuk-link" href="/V11/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
   </span>
 </div>
   {{ govukBackLink({
@@ -39,17 +39,19 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
     <!-- Header panel -->
     <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
       <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
-        Application in progress
+        Application started
       </h1>
 
       <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
-        Ready to be submitted by the person who started the application
+        Directors must sign this application before it can be submitted
       </p>
 <!--
       <p class="govuk-heading-xl" style="color:white; margin:0;">
         HDJ2123F
       </p>-->
     </div>
+
+
 
     <!-- Company details -->
     {{ govukTable({
@@ -80,29 +82,36 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
     <!-- Intro -->
     <p class="govuk-body">
-      An application to strike off and dissolve (close) this company has been started.
+      <!-- <strong>lisa.humphreys@accountancyfirm.co.uk</strong> has-->You have started an application to strike off and dissolve (close) this company. <!--They--> You selected 4 directors to sign the application.
     </p>
+
+    <h2 class="govuk-heading-l">What happens next</h2>
 
     <p class="govuk-body">
-      A minimum of 3 directors must sign (more than half of all company directors). At least this many directors have now signed, so the person who started the application can choose from these options:
+      Each selected director now needs to sign in to this service and sign the application. We've emailed them to let them know.
     </p>
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>pay and submit the application now</li>
-      <li>wait for more directors to sign before submitting</li>
-    </ul>
+  <!--X <p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>-->
+
+    <p class="govuk-body">
+      Once at least 3 directors have signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> you can sign back in, pay the £13 fee and submit the application.
+    </p>
+
+       <p class="govuk-body">
+    To check how many directors have signed, and the application status, sign back in to the 'Apply to strike off and dissolve a company' service.
+    </p>
 
     <h2 class="govuk-heading-l">Signing directors</h2>
 
     <p class="govuk-body govuk-hint">
       Only the directors who have been selected to sign are shown.
     </p>
-    </div>
-    </div>
+ 
+</div>
+</div>
 
-    <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
       <!-- TABLE + CTA GROUPED -->
 
       {{ govukTable({
@@ -110,7 +119,6 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
           { text: "Name" },
           { text: "Email address" },
           { text: "Status" }
-
         ],
         rows: [
 
@@ -144,15 +152,15 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               html:'
               sara.francis@example.com
                   <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#"></a><br>
-                  <a class="govuk-link" href="#"></a>
+                  <a class="govuk-link" href="#">Change email address</a><br>
+                  <a class="govuk-link" href="#">Resend email</a>
                 </div>
               '
             },
             {
               html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
+                text: "Not signed",
+                classes: "govuk-tag--grey"
               })
             }
           ],
@@ -174,13 +182,11 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               '
             },
             {
-              html:'
-                  <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="sign-the-application">Sign application</a>
-                  </div>
-                '
-              }
-            
+              html: govukTag({
+                text: "Not signed",
+                classes: "govuk-tag--grey"
+              })
+            }
           ],
 
           [
@@ -194,14 +200,14 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
               html: '
                 priya.patel@example.com
                 <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="#"></a><br>
-                  <a class="govuk-link" href="#"></a>
+                  <a class="govuk-link" href="#">Change email address</a><br>
+                  <a class="govuk-link" href="#">Resend email</a>
                 </div>'
             },
             {
               html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
+                text: "Not signed",
+                classes: "govuk-tag--grey"
               })
             }
           ]
@@ -209,8 +215,8 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
         ]
       }) }}
 
-    </div>
-    </div>
+  </div>
+</div>
 
     <!-- Delete application -->
 <div class="govuk-grid-row">
@@ -218,7 +224,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
 <h2 class="govuk-heading-m">Delete this application</h2>
 
-<p class="govuk-body">If you no longer want to dissolve the company, or if there is an error in the current application and you want to start a new one, you can <a href="/V10/delete-confirmation" class="govuk-link">
+<p class="govuk-body">If you no longer want to dissolve the company, or if there is an error in the current application and you want to start a new one, you can <a href="/V11/delete-confirmation" class="govuk-link">
 delete this application</a>. We’ll ask you to confirm you want to do this on the next page.<p>
 
   </div>

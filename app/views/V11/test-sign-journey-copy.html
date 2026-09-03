@@ -1,0 +1,216 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+
+{% block pageTitle %}
+Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-phase-banner govuk-width-container">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Beta
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.
+      </span>
+    </p>
+  </div>
+
+  <!-- Right-aligned sign out with top and bottom borders -->
+<div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
+  <span class="govuk-body-s">
+    {{user_email}}</strong>  
+    <a class="govuk-link" href="/V11/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
+  </span>
+</div>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Header panel -->
+    <div style="background-color:#1d70b8; color:white; padding:40px 20px; margin-bottom:30px; text-align:center;">
+      <h1 class="govuk-heading-xl" style="color:white; margin-bottom:20px;">
+        Application started
+      </h1>
+
+      <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
+        Directors must sign this application before it can be submitted
+      </p>
+<!--
+      <p class="govuk-heading-xl" style="color:white; margin:0;">
+        HDJ2123F
+      </p>-->
+    </div>
+
+    <!-- Company details -->
+    {{ govukTable({
+      rows: [
+        [
+          {
+            text: "Company number",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "87654321" }
+        ],
+        [
+          {
+            text: "Company name",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "A MULTI DIRECTOR COMPANY LTD" }
+        ],
+        [
+          {
+            text: "Application reference",
+            classes: "govuk-!-font-weight-bold"
+          },
+          { text: "HDJ2123F" }
+        ]
+      ]
+    }) }}
+
+    <!-- Intro -->
+    <p class="govuk-body">
+      <!-- <strong>lisa.humphreys@accountancyfirm.co.uk</strong> has-->You have started an application to strike off and dissolve (close) this company. <!--They--> You selected 4 directors to sign the application.
+    </p>
+
+    <h2 class="govuk-heading-l">What happens next</h2>
+
+    <p class="govuk-body">
+      Each selected director now needs to sign in to this service and sign the application. We've emailed them to let them know.
+    </p>
+
+  <!--X <p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>-->
+
+    <p class="govuk-body">
+      Once at least 3 directors have signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> you can sign back in, pay the £13 fee and submit the application.
+    </p>
+
+       <p class="govuk-body">
+    To check how many directors have signed, and the application status, sign back in to the 'Apply to strike off and dissolve a company' service.
+    </p>
+
+    <h2 class="govuk-heading-l">Signing directors</h2>
+
+    <p class="govuk-body govuk-hint">
+      Only the directors who have been selected to sign are shown.
+    </p>
+  
+
+  
+
+      <!-- TABLE + CTA GROUPED -->
+
+{{ govukTable({
+  head: [
+    { text: "Name" },
+    { text: "Email address" },
+    { text: "Signing status" }
+  ],
+  rows: [
+    [
+      {
+        html: '<div>ADAMS, Ella</div><div class="govuk-hint">May 1988</div>'
+      },
+      {
+        html: '
+          ella.adams@example.com
+          <div class="govuk-!-margin-top-1">
+            <a class="govuk-link" href="#">Change email address</a><br>
+            <a class="govuk-link" href="#">Resend email</a>
+          </div>
+        '
+      },
+  {
+  html: govukTag({
+    text: "Not signed",
+    classes: "govuk-tag--grey"
+  }) + '
+    <div class="govuk-!-margin-top-1">
+    <a class="govuk-link" href="confirm-who-you-are">Sign application</a>
+    </div>
+  '
+}
+    ],
+    [
+      {
+        html: '<div>FRANCIS, Sara</div><div class="govuk-hint">January 1987</div>'
+      },
+      {
+        html: '
+          sara.francis@example.com
+        '
+      },
+      {
+        html: govukTag({
+          text: "Signed",
+          classes: "govuk-tag--green"
+        })
+      }
+    ],
+    [
+      {
+        html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
+      },
+      {
+        html: '
+          alex.johnson@example.com
+          <div class="govuk-!-margin-top-1">
+            <a class="govuk-link" href="#">Change email address</a><br>
+            <a class="govuk-link" href="#">Resend email</a>
+          </div>
+        '
+      },
+      {
+
+      
+     html:'
+    <div class="govuk-!-margin-top-1">
+    <a class="govuk-link" href="confirm-who-you-are">Sign application</a>
+    </div>
+  '
+  }
+    ],
+    [
+      {
+        html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
+      },
+      {
+        html: '
+          priya.patel@example.com
+        '
+      },
+      {
+        html: govukTag({
+          text: "Signed",
+          classes: "govuk-tag--green"
+        })
+      }
+    ]
+  ]
+}) }}
+
+    </div>
+    </div>
+
+    <!-- Delete application -->
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<h2 class="govuk-heading-m">Delete this application</h2>
+
+<p class="govuk-body">If you no longer want to dissolve the company, or if there is an error in the current application and you want to start a new one, you can <a href="/V11/delete-confirmation" class="govuk-link">
+delete this application</a>. We’ll ask you to confirm you want to do this on the next page.<p>
+
+  </div>
+</div>
+{% endblock %}
