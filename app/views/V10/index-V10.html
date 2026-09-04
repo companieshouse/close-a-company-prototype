@@ -320,7 +320,10 @@
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
-  <li><a href="/V10/delete-confirmation.html" class="govuk-link">Are you sure you want to delete this application?</a>{{ govukTag({
+  <li><a href="/V10/delete-confirmation.html" class="govuk-link">Are you sure you want to delete this application?</a> {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}{{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}
@@ -334,27 +337,24 @@
   }) }}
  </li>
    <li><a href="/V10/application-deleted.html" class="govuk-link">Application deleted</a>{{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }} {{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}
  </li>
  <li><a href="/V10/stop-someone-is-paying.html" class="govuk-link">You cannot delete this application at the moment (someone is paying)</a>{{ govukTag({ 
-  text: "In progress",
-  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-}) }} {{ govukTag({
-    text: "Dependency",
-    classes: "govuk-!-margin-left-2 govuk-tag--orange"
-  }) }} <a href="https://companieshouse.atlassian.net/browse/FS-446" class="govuk-link">FS-446</a> Awaiting user testing to be completed before raising ticket</li>
+  text: "Not needed",
+  classes: "govuk-!-margin-left-2 govuk-tag--red"
+}) }}  <a href="https://companieshouse.atlassian.net/browse/FS-446" class="govuk-link">FS-446</a></li>
 <li><a href="/V10/stop-cannot-delete.html" class="govuk-link">You cannot delete this application (majority of directors have signed)</a>{{ govukTag({ 
-  text: "In progress",
-  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  text: "Dev ready",
+  classes: "govuk-!-margin-left-2 govuk-tag--green"
 })  }} {{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
-  }) }}Awaiting user testing to be completed before raising ticket</li>
+  }) }}</li>
 </ul>
 
    <h2 class="govuk-heading-m" style="margin-top: 20px;">Screens preventing duplicates</h2>
