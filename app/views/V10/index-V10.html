@@ -134,9 +134,12 @@
 
   <li><a href="/V10/confirm-who-you-are.html" class="govuk-link">Confirm you are [director name]</a> 
   {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}Conditional screen. ***Add back button***</li>
+    text: "Dependency",
+    classes: "govuk-!-margin-left-2 govuk-tag--orange"
+  }) }} {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }} Need to raise a ticket</li>
   <li><a href="/V10/sign-the-application.html" class="govuk-link">Sign the application</a>{{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
