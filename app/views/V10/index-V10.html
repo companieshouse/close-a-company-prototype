@@ -148,13 +148,6 @@
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}Content updated 21 July, need to raise a ticket</li>
-  <li>
-    <a href="/V10/email-sign-the-application.html" class="govuk-link">
-      Sign the application to strike off and dissolve a company (email)</a>{{ govukTag({
-      text: "Dev ready",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
-    }) }}Need to raise a ticket, update black GOV.UK header across the top to new blue version. ***Update subject line to 'You need to sign...' content***
-  </li>
 
   <li>
     <a href="/V10/provide-single-director-email.html" class="govuk-link">
@@ -184,24 +177,44 @@
   
 
 </ul>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-9">Emails</h2>
  
-  <h3 class="govuk-heading-s govuk-!-margin-top-5">View and download PDF copy of the application {{ govukTag({
-    text: "Awaiting outcome of transaction model meeting",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}</h3> 
+
 
  <ul class="govuk-list govuk-list--bullet">
   <li>
-    <a href="/V10/email-application-accepted.html" class="govuk-link">Email - application accepted (multi director)</a>{{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} Blocked
+    <a href="/V10/email-application-accepted.html" class="govuk-link">Email - Application accepted (multi director)</a>{{ govukTag({
+    text: "Blocked - TM spike",
+    classes: "govuk-!-margin-left-2 govuk-tag--grey"
+  }) }} 
     </li>
-  <li><a href="/V10/pdf-mock-up.html" class="govuk-link">PDF mock up for testing - Application received</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  <li><a href="/V10/pdf-mock-up.html" class="govuk-link">Email attachment (PDF mock up for testing) - Copy of the application</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "Not for dev",
     classes: "govuk-!-margin-left-2 govuk-tag--pink"
   }) }}</li>
+
+  <li><a href="/V10/bi-email-mock.html" class="govuk-link">Email - Application submitted</a>{{ govukTag({
+    text: "Blocked - TM spike",
+    classes: "govuk-!-margin-left-2 govuk-tag--grey"
+  }) }}</li>
+
+  <li><a href="/V10/email-pay-for-your-application.html" class="govuk-link">Email - Pay for your application to strike off and dissolve a company</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {{ govukTag({
+    text: "Dev ready",
+    classes: "govuk-!-margin-left-2 govuk-tag--green"
+  }) }}<a href="https://companieshouse.atlassian.net/browse/FS-384" class="govuk-link">FS-384</a> URL content is a placeholder - will need to be updated when we know exactly what it will be in live. </li>
+
+    <li>
+    <a href="/V10/email-sign-the-application.html" class="govuk-link">
+      Email - Sign the application to strike off and dissolve a company</a>{{ govukTag({
+      text: "Dev ready",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    }) }}***Update subject line to 'You need to sign...' content***
+  </li>
+
+
 
 </ul>
 
@@ -240,20 +253,8 @@
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
   }) }}***Download link - need to check behaviour with architect. Also need to check if this screen is actually needed for paper applications***</li>-->
-<li><a href="/V10/bi-email-mock.html" class="govuk-link">Application submitted (email)</a>{{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} Blocked by spike (transaction model)</li>
-<li><a href="/V10/email-application-accepted.html" class="govuk-link">Application accepted (email)</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
-  {{ govukTag({
-    text: "Dev ready",
-    classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }}Content updated 7 August, need to raise a ticket</li>
-  <li><a href="/V10/email-pay-for-your-application.html" class="govuk-link">Pay for your application to strike off and dissolve a company (email)</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
-  {{ govukTag({
-    text: "Dev ready",
-    classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }}<a href="https://companieshouse.atlassian.net/browse/FS-384" class="govuk-link">FS-384</a> URL content is a placeholder - will need to be updated when we know exactly what it will be in live. </li>
+
+  
 
 
 
