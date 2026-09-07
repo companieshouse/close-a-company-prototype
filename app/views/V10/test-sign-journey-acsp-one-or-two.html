@@ -59,24 +59,21 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
     <!-- Intro -->
     <p class="govuk-body">
-      You have started an application to strike off and dissolve this company. You selected 4 directors to sign the application.
+      You have started an application to strike off and dissolve this company.
     </p>
 
     <p class="govuk-body">
-      Each signing director now needs to log in to this service and sign the application. We've emailed them to let them know.
+      The director (or directors) now need to sign in to this service and sign the application. We've emailed them to let them know.
     </p>
 
     <!--<p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>-->
 
     <p class="govuk-body">
-      Once all directors have signed, you can log back in, pay the £13 fee and submit the application.
+      Once the application is signed, you can sign back in, pay the £13 fee and submit the application.
     </p>
 
-    <h2 class="govuk-heading-l">Signing directors</h2>
+    <h2 class="govuk-heading-l">Director details and status</h2>
 
-    <p class="govuk-body govuk-hint">
-     Only the directors who have been selected to sign are shown.
-    </p>
 
   </div>
 </div>
@@ -127,54 +124,6 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       {
         html: '
           sara.francis@example.com
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email address</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
-          </div>
-        '
-      },
-      {
-        html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
-        })
-      }
-    ],
-
-    [
-      {
-        html: '
-          <div>JOHNSON, Alex</div>
-          <div class="govuk-hint">March 1985</div>
-        '
-      },
-      {
-        html: '
-          alex.johnson@example.com
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email address</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
-          </div>
-        '
-      },
-      {
-        html: govukTag({
-          text: "Not signed",
-          classes: "govuk-tag--grey"
-        })
-      }
-    ],
-
-    [
-      {
-        html: '
-          <div>PATEL, Priya</div>
-          <div class="govuk-hint">July 1990</div>
-        '
-      },
-      {
-        html: '
-          priya.patel@example.com
           <div class="govuk-!-margin-top-1">
             <a class="govuk-link" href="#">Change email address</a><br>
             <a class="govuk-link" href="#">Resend email</a>
