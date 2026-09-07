@@ -173,14 +173,12 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
                 </div>
               '
             },
-            {
-              html:'
-                  <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="sign-the-application">Sign application</a>
-                  </div>
-                '
-              }
-            
+              {
+              html: govukTag({
+                text: "Not signed",
+                classes: "govuk-tag--grey"
+              })
+            }
           ],
 
           [
