@@ -21,7 +21,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
 
       <p class="govuk-body-l" style="color:white; margin-bottom:10px;">
-        Directors must sign this application before it can be submitted
+        The director (or directors) must sign this application before it can be submitted
       </p>
 <!--
       <p class="govuk-heading-xl" style="color:white; margin:0;">
@@ -45,7 +45,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
             text: "Company name",
             classes: "govuk-!-font-weight-bold"
           },
-          { text: "A MULTI DIRECTOR COMPANY LTD" }
+          { text: "LESS THAN THREE DIRECTORS LTD" }
         ],
                 [
           {
@@ -59,29 +59,24 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
 
 
 <p class="govuk-body">
-      <!-- <strong>lisa.humphreys@accountancyfirm.co.uk</strong> has-->An application to strike off and dissolve (close) this company has been started. <!--They--> 4 directors were selected to sign the application.
+      <!-- <strong>lisa.humphreys@accountancyfirm.co.uk</strong> has-->An application to strike off and dissolve (close) this company has been started.
     </p>
 
     <h2 class="govuk-heading-l">What happens next</h2>
 
     <p class="govuk-body">
-      Each selected director now needs to sign in to this service and sign the application. We've emailed them to let them know.
+    The director (or directors) now need to sign in to this service and sign the application. We've emailed them to let them know.
     </p>
 
   <!--X <p class="govuk-body">If you are one of the signing directors, select 'Sign application' for your name.</p>-->
 
     <p class="govuk-body">
-      Once at least 3 directors have signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> the person who started the application can sign back in, pay the £13 fee and submit it.
+      Once the application is signed, <!--<strong>lisa.humphreys@accountancyfirm.co.uk</strong>--> the person who started the application can come back to this service, pay the £13 fee and submit it.
     </p>
 
-       <p class="govuk-body">
-    To check how many directors have signed, and the application status, sign back in to the 'Apply to strike off and dissolve a company' service.
-    </p>
-    <h2 class="govuk-heading-l">Signing directors</h2>
+    <h2 class="govuk-heading-l">Director details and status</h2>
 
-    <p class="govuk-body govuk-hint">
-      Only the directors who have been selected to sign are shown.
-    </p>
+  
    </div>
 </div>
 
@@ -125,44 +120,6 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       {
         html: '
           sara.francis@example.com
-        '
-      },
-      {
-        html: govukTag({
-          text: "Signed",
-          classes: "govuk-tag--green"
-        })
-      }
-    ],
-    [
-      {
-        html: '<div>JOHNSON, Alex</div><div class="govuk-hint">March 1985</div>'
-      },
-      {
-        html: '
-          alex.johnson@example.com
-          <div class="govuk-!-margin-top-1">
-            <a class="govuk-link" href="#">Change email address</a><br>
-            <a class="govuk-link" href="#">Resend email</a>
-          </div>
-        '
-      },
-      {
-      
-     html:'
-    <div class="govuk-!-margin-top-1">
-    <a class="govuk-link" href="sign-the-application">Sign application</a>
-    </div>
-  '
-      }
-    ],
-    [
-      {
-        html: '<div>PATEL, Priya</div><div class="govuk-hint">July 1990</div>'
-      },
-      {
-        html: '
-          priya.patel@example.com
         '
       },
       {
