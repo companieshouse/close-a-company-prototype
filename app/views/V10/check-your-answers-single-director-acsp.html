@@ -23,7 +23,7 @@
       </h1>
 
       <h2 class="govuk-heading-m">
-        Directors
+        Director details
       </h2>
 
       {{ govukSummaryList({
@@ -44,30 +44,11 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Which director will sign the application?"
-            },
-            value: {
-              html: "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/V10/which-director-will-sign",
-                  text: "Change",
-                  visuallyHiddenText: "which director will sign the application"
-                }
-              ]
-            }
           }
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">
-        Director email addresses
-      </h2>
+    
 
       {{ govukSummaryList({
         rows: [
