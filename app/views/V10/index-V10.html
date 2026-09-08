@@ -107,18 +107,18 @@
   <li><a href="/V10/provide-directors-emails.html" class="govuk-link">What are the email addresses for each director?</a> {{ govukTag({ text: "Dev ready", classes: "govuk-tag--green" }) }}<a class ="govuk-link" href="https://companieshouse.atlassian.net/browse/FS-412" target="_blank"> FS-412</a></li>
   <li><a href="/V10/provide-corporate-directors-emails.html" class="govuk-link">What are the email addresses for each director? (Corporate version)</a> {{ govukTag({ text: "Dev ready", classes: "govuk-tag--green" }) }}<a class ="govuk-link" href="https://companieshouse.atlassian.net/browse/FS-414" target="_blank"> FS-414 (ticket just for error messages)</a>***Need error messages - awaiting scenarios***</li>
   <li><a href="/V10/check-your-answers-single-director-acsp.html" class="govuk-link">Check your answers (single director)</a>{{ govukTag({
-    text: "Dev ready",
-    classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }}Need to raise a ticket</li>
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}</li>
 
 <li>
   <a href="/V10/check-your-answers-multi-directors.html" class="govuk-link">
     Check your answers (multi director)</a>
   {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
-    text: "Dev ready",
-    classes: "govuk-!-margin-left-2 govuk-tag--green"
-  }) }} Need to raise a ticket ***In ticket, mention that the word 'other' needs to be removed in version where an ACSP is the applicant***
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}***In ticket, mention that the word 'other' needs to be removed in version where an ACSP is the applicant***
 </li>
   <li><a href="/V10/change-directors-email.html" class="govuk-link">Change email address for [name]</a>    {{ govukTag({
     text: "In progress",
@@ -276,10 +276,7 @@
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
-  <li><a href="/V10/test-sign-journey-submit-button-one-or-two.html" class="govuk-link">STATUS PAGE 1b: Application in progress (with submit button) (one or two directors)</a> {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }}{{ govukTag({
+  <li><a href="/V10/test-sign-journey-submit-button-one-or-two.html" class="govuk-link">STATUS PAGE 1b: Application in progress (with submit button) (one or two directors)</a>{{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
@@ -287,10 +284,7 @@
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
-  <li><a href="/V10/test-sign-journey-acsp-one-or-two.html" class="govuk-link">STATUS PAGE 2b: Application in progress (ACSP applicant, one or two directors, not signed)</a> {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} {{ govukTag({
+  <li><a href="/V10/test-sign-journey-acsp-one-or-two.html" class="govuk-link">STATUS PAGE 2b: Application in progress (ACSP applicant, one or two directors, not signed)</a>  {{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
@@ -299,9 +293,6 @@
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
   <li><a href="/V10/application-started-two-directors.html" class="govuk-link">STATUS PAGE 3b: Application started (two directors, director applicant, self-signed)</a> {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} {{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
@@ -309,10 +300,7 @@
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
-  <li><a href="/V10/two-directors-signed-one-or-two.html" class="govuk-link">STATUS PAGE 4b: Application in progress (one or two directors, non-applicant, not signed)</a>.{{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} {{ govukTag({
+  <li><a href="/V10/two-directors-signed-one-or-two.html" class="govuk-link">STATUS PAGE 4b: Application in progress (one or two directors, non-applicant, not signed)</a>{{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
@@ -320,10 +308,7 @@
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }} </li>
-  <li><a href="/V10/test-sign-journey-signed-two-directors.html" class="govuk-link">STATUS PAGE 5b: Application in progress (two directors, non-applicant, one has signed)</a> {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} {{ govukTag({
+  <li><a href="/V10/test-sign-journey-signed-two-directors.html" class="govuk-link">STATUS PAGE 5b: Application in progress (two directors, non-applicant, one has signed)</a>{{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }} </li>
@@ -332,9 +317,6 @@
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
     <li><a href="/V10/all-directors-signed-not-paid-for-non-applicant-one-or-two.html" class="govuk-link">STATUS PAGE 6b: Application in progress (one or two directors, non-applicant, all signed)</a> {{ govukTag({
-    text: "In progress",
-    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-  }) }} {{ govukTag({
     text: "Dependency",
     classes: "govuk-!-margin-left-2 govuk-tag--orange"
   }) }}</li>
