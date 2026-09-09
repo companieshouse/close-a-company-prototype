@@ -16,14 +16,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/V10/check-your-answers-single-director-acsp" method="post" novalidate>
+    <form action="/V9/check-your-answers-single-director-acsp" method="post" novalidate>
 
       <h1 class="govuk-heading-xl">
         Check your answers before you sign the application
       </h1>
 
       <h2 class="govuk-heading-m">
-        Director details
+        Directors
       </h2>
 
       {{ govukSummaryList({
@@ -38,7 +38,7 @@
             actions: {
               items: [
                 {
-                  href: "/V10/which-director-are-you",
+                  href: "/V9/which-director-are-you",
                   text: "Change",
                   visuallyHiddenText: "which director you are"
                 }
@@ -48,7 +48,9 @@
         ]
       }) }}
 
-    
+      <h2 class="govuk-heading-m">
+        Director email addresses
+      </h2>
 
       {{ govukSummaryList({
         rows: [
@@ -62,7 +64,7 @@
             actions: {
               items: [
                 {
-                  href: "/V10/provide-single-director-email",
+                  href: "/V9/provide-single-director-email",
                   text: "Change",
                   visuallyHiddenText: "email address for Ella Adams"
                 }
