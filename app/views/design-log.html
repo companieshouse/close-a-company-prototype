@@ -11,60 +11,183 @@ Design decision log – {{ serviceName }} – GOV.UK Prototype Kit
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h1 class="govuk-heading-xl">
-      Design decision log
-    </h1>
 
-    <p class="govuk-body">
-      Record agreed design changes following each round of user research.
-    </p>
+<h1 class="govuk-heading-xl">
+  Design decision log
+</h1>
 
-    <h2 class="govuk-heading-l">
-      Version 8
-    </h2>
+<p class="govuk-body">
+  Record agreed design changes following each round of user research.
+</p>
 
-    <p class="govuk-body">
 
-      <strong>Date:</strong> 20 July 2026
-    </p>
+<h2 class="govuk-heading-l">
+  Version 10
+</h2>
 
-    {{ govukTable({
-      head: [
-        {
-          text: "Screen or journey"
-        },
-        {
-          text: "Change made"
-        },
-        {
-          text: "Reason"
-        }
-      ],
-      rows: [
-      
-        [
-          {
-            text: "Check your answers"
-          },
-          {
-            text: "Converted to the standard GOV.UK Check your answers pattern."
-          },
-          {
-            text: "Participants overlooked email information."
-          }
-        ],
-          [
-        {
-          text: "Application status with Submit button"
-        },
-        {
-          text: "Moved submit button back above the table as this is the primary action and should be more prominent on the page."
-        },
-        {
-          text: "Participants did not consistently notice it as the primary action when it was positioned below the table. In previous versions, when the button appeared higher on the page, users identified and selected it more quickly."
-        }
-      ]
-    ]}) }}
+<p class="govuk-body">
+
+  <strong>Date:</strong> 09 September 2026
+</p>
+
+{{ govukTable({
+  head: [
+    {
+      text: "Screen or journey"
+    },
+    {
+      text: "Tested"
+    },
+    {
+      text: "Reason"
+    }
+  ],
+  rows: [
+    
+    [
+      {
+        text: "Awaiting testing"
+      },
+      {
+        text: "Awaiting testing"
+      },
+      {
+        text: "Awaiting testing"
+      }
+    ],
+  
+    [
+      {
+        text: "Awaiting testing"
+      },
+      {
+        text: "Awaiting testing"
+      },
+      {
+        text: "Awaiting testing"
+      }
+    ],
+      [
+    {
+      text: "Awaiting testing"
+    },
+    {
+      text: "Awaiting testing"
+    },
+    {
+      text: "Awaiting testing"
+    }
+  ]
+]}) }}
+
+
+<h2 class="govuk-heading-l">
+  Version 9 (V9.1 was tested for edge cases)
+</h2>
+
+<p class="govuk-body">
+
+  <strong>Date:</strong> 20 August 2026
+</p>
+
+{{ govukTable({
+  head: [
+    {
+      text: "Screen or journey"
+    },
+    {
+      text: "Tested"
+    },
+    {
+      text: "Reason"
+    }
+  ],
+  rows: [
+    
+    [
+      {
+        text: "You cannot delete this as 50% signed"
+      },
+      {
+        text: "This was introduced following an architecture meeting. Checked if users understood this scenario flow was introduced as an alternative to the payment/deletion clash screen."
+      },
+      {
+        text: "Tested well, we will keep this screen for V10- no further testing needed"
+      }
+    ],
+  
+    [
+      {
+        text: "Application deleted on this date status"
+      },
+      {
+        text: "Checked if users understood that the application had been deleted and what had happened."
+      },
+      {
+        text: "Tested well, no change"
+      }
+    ],
+      [
+    {
+      text: "Stop someone is paying screen"
+    },
+    {
+      text: "The screen was designed for the scenario where someone tries to delete while someone is paying. We tested whether they understood this screen."
+    },
+    {
+      text: "Participants understood this screen but not the scenario because it was an edge case and unusual, but the screen was fine. Following a meeting with architects, we decided to find another solution for this problem. If everyone has signed, the option to delete is removed."
+    }
+  ]
+]}) }}
+
+
+<h2 class="govuk-heading-l">
+  Version 8
+</h2>
+
+<p class="govuk-body">
+
+  <strong>Date:</strong> 20 July 2026
+</p>
+
+{{ govukTable({
+  head: [
+    {
+      text: "Screen or journey"
+    },
+    {
+      text: "Change made"
+    },
+    {
+      text: "Reason"
+    }
+  ],
+  rows: [
+  
+    [
+      {
+        text: "Check your answers"
+      },
+      {
+        text: "Converted to the standard GOV.UK Check your answers pattern."
+      },
+      {
+        text: "Participants overlooked email information."
+      }
+    ],
+      [
+    {
+      text: "Application status with Submit button"
+    },
+    {
+      text: "Moved submit button back above the table as this is the primary action and should be more prominent on the page."
+    },
+    {
+      text: "Participants did not consistently notice it as the primary action when it was positioned below the table. In previous versions, when the button appeared higher on the page, users identified and selected it more quickly."
+    }
+  ]
+]}) }}
+
 
   </div>
 </div>
