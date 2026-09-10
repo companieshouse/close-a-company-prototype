@@ -16,7 +16,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/V9/check-your-answers-single-director-acsp" method="post" novalidate>
+    <form action="/V10/check-your-answers-single-director-acsp" method="post" novalidate>
 
       <h1 class="govuk-heading-xl">
         Check your answers before you sign the application
@@ -26,6 +26,7 @@
         Directors
       </h2>
 
+      {% if data['companyNumber'] == "87654321" %}
       {{ govukSummaryList({
         rows: [
           {
@@ -33,7 +34,7 @@
               text: "Which director are you?"
             },
             value: {
-              text: "I am not a director of this company"
+              html: "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>"
             },
             actions: {
               items: [
@@ -47,11 +48,57 @@
           }
         ]
       }) }}
+      {% else %}
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which director are you?"
+            },
+            value: {
+              text: "I am not a director of this company"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V10/which-director-are-you",
+                  text: "Change",
+                  visuallyHiddenText: "which director you are"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
 
       <h2 class="govuk-heading-m">
         Director email addresses
       </h2>
 
+      {% if data['companyNumber'] == "87654321" %}
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "FRANCIS, Sara<br><span class='govuk-hint govuk-!-margin-bottom-0'>(March 1985)</span>"
+            },
+            value: {
+              text: data['directorEmail'] or "sara.francis@example.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/V9/provide-single-director-email",
+                  text: "Change",
+                  visuallyHiddenText: "email address for Sara Francis"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% else %}
       {{ govukSummaryList({
         rows: [
           {
@@ -73,6 +120,7 @@
           }
         ]
       }) }}
+      {% endif %}
 
       {{ govukButton({
         text: "Continue"

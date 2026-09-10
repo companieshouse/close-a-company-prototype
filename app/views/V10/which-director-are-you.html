@@ -65,6 +65,37 @@
   ]
 }) }}
 
+{% elif (data['companyNumber'] == "87654321") %}
+
+{{ govukRadios({
+  idPrefix: "whichDirectorAreYou",
+  name: "whichDirectorAreYou",
+  fieldset: {
+    legend: {
+      text: "Which director are you?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "EllaAdams",
+      text: "ADAMS, Ella (January 1980)"
+    },
+    {
+      value: "SaraFrancis",
+      text: "FRANCIS, Sara (March 1985)"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "iAmNotADirectorOfThisCompany",
+      text: "I am not a director of this company"
+    }
+  ]
+}) }}
+
 {% else %}
 
 {{ govukRadios({

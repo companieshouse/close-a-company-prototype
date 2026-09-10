@@ -88,6 +88,7 @@ router.post('/V10/company-authentication', function (req, res) {
 // --------------------
 // COMPANY INFO
 // --------------------
+
 router.get('/V10/view-company-info', function (req, res) {
   res.render('V10/view-company-info')
 })
@@ -102,9 +103,15 @@ router.post('/V10/view-company-info', function (req, res) {
 router.post('/V10/which-director-are-you', function (req, res) {
 
   const answer = req.body.whichDirectorAreYou
+  const companyNumber = req.session.data.companyNumber
 
   // ACSP / accountant journey
   if (answer === 'iAmNotADirectorOfThisCompany') {
+    return res.redirect('/V10/provide-single-director-email')
+  }
+
+  // Two-director journey: skip which-directors-will-be-signing
+  if (companyNumber === '87654321') {
     return res.redirect('/V10/provide-single-director-email')
   }
 
@@ -121,6 +128,12 @@ router.post('/V10/provide-single-director-email', function (req, res) {
 })
 
 router.post('/V10/check-your-answers-single-director-acsp', function (req, res) {
+  const companyNumber = req.session.data.companyNumber
+
+  if (companyNumber === '87654321') {
+    return res.redirect('/V10/sign-the-application')
+  }
+
   res.redirect('/V10/application-status-single-acsp')
 })
 
@@ -140,15 +153,17 @@ router.post('/V10/check-your-answers-multi-directors', function (req, res) {
   res.redirect('/V10/sign-the-application')
 })
 
+// --------------------
+// MAIN DIRECTOR FLOW / SIGN THE APPLICATION
+// --------------------
 router.post('/V10/sign-the-application', function (req, res) {
-  res.redirect('/V10/test-sign-journey')
-})
+  const companyNumber = req.session.data.companyNumber
 
-// --------------------
-// MAIN DIRECTOR FLOW
-// --------------------
-router.post('/V10/sign-the-application', function (req, res) {
-  res.redirect('/V10/review-your-payment')
+  if (companyNumber === '87654321') {
+    return res.redirect('/V10/application-started-two-directors')
+  }
+
+  res.redirect('/V10/test-sign-journey')
 })
 
 // --------------------

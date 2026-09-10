@@ -19,7 +19,7 @@
   <!-- Right-aligned sign out with top and bottom borders -->
 <div class="govuk-width-container" style="border-top: 0; border-bottom: 1px solid #b1b4b6; margin-bottom: 10px; padding: 10px 0; text-align: right;">
   <span class="govuk-body-s">
-    {{user_email}}</strong>  
+    {{user_email}}
     <a class="govuk-link" href="/V10/sign-in-to-ch-or-one-login" style="margin-left: 10px;">Sign out</a>
   </span>
 </div>
@@ -41,7 +41,7 @@
         View company information
       </h1>
 
-{% if (data['companyNumber'] == "12345678") %}
+{% if data['companyNumber'] == "12345678" %}
 
 
       <h2 class="govuk-heading-l">
@@ -73,6 +73,39 @@
       }
     ]
   }) }}
+
+{% elif data['companyNumber'] == "87654321" %}
+
+  <h2 class="govuk-heading-l">
+        A TWO DIRECTOR COMPANY LTD
+      </h2>
+
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Company number" },
+        value: { text: data['companyNumber'] }
+      },
+      {
+        key: { text: "Status" },
+        value: { text: "Active" }
+      },
+      {
+        key: { text: "Incorporation date" },
+        value: { text: "15 March 2015" }
+      },
+      {
+        key: { text: "Company type" },
+        value: { text: "Private limited company" }
+      },
+      {
+        key: { text: "Registered office address" },
+        value: { html: "<address>3 Two Street,<br>Anytown,<br>AB34 5CD</address>" }
+      }
+    ]
+  }) }}
+
 {% else %}
  <h2 class="govuk-heading-l">
         A MULTI DIRECTOR COMPANY LTD
