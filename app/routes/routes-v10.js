@@ -16,7 +16,7 @@ router.post('/V10/sign-in-ds-hub', function (req, res) {
   req.session.data = {}
   req.session.data.startedAtAltSignIn = true
 
-  req.session.user_email = req.body['email-address']
+  req.session.data.user_email = req.body['email-address']
   req.session.data.signedInEmail = req.body['email-address']
 
   res.redirect('/V10/enter-password')
@@ -27,7 +27,7 @@ router.post('/V10/sign-in-ds-hub', function (req, res) {
 // --------------------
 router.post('/V10/sign-in', function (req, res) {
   const email = req.session.data['email-address']
-  req.session.user_email = email
+  req.session.data.user_email = email
   req.session.data.signedInEmail = email
 
   if (!email) {
