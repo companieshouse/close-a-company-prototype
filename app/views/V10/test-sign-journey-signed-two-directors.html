@@ -66,7 +66,7 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
             text: "Company name",
             classes: "govuk-!-font-weight-bold"
           },
-          { text: "TWO DIRECTORS LTD" }
+          { text: "A TWO DIRECTOR COMPANY LTD" }
         ],
         [
           {
@@ -101,61 +101,56 @@ Directors must sign – {{ serviceName }} – GOV.UK Prototype Kit
       <!-- TABLE + CTA GROUPED -->
 
       {{ govukTable({
-        head: [
-          { text: "Name" },
-          { text: "Email address" },
-          { text: "Status" }
+  head: [
+    { text: "Name" },
+    { text: "Email address" },
+    { text: "Status" }
+  ],
+  rows: [
 
-        ],
-        rows: [
+    [
+      {
+        html: '
+          <div>ADAMS, Ella</div>
+          <div class="govuk-hint">May 1988</div>
+        '
+      },
+      {
+        html: '
+          ella.adams@example.com
+        '
+      },
+      {
+        html: govukTag({
+          text: "Signed",
+          classes: "govuk-tag--green"
+        })
+      }
+    ],
 
-          [
-            {
-              html: '
-                <div>ADAMS, Ella</div>
-                <div class="govuk-hint">May 1988</div>
-              '
-            },
-            {
-              html: '
-                ella.adams@example.com'
-            },
-            {
-              html: govukTag({
-                text: "Signed",
-                classes: "govuk-tag--green"
-              })
-            }
-          ],
+    [
+      {
+        html: '
+          <div>FRANCIS, Sara</div>
+          <div class="govuk-hint">January 1987</div>
+        '
+      },
+      {
+        html: '
+          sara.francis@example.com
+          <div class="govuk-!-margin-top-1">
+            <a class="govuk-link" href="#">Change email address</a><br>
+            <a class="govuk-link" href="#">Resend email</a>
+          </div>
+        '
+      },
+      {
+        html: '<a class="govuk-link" href="/V10/who-to-tell?director=sara">Sign the application</a>'
+      }
+    ]
 
-          [
-            {
-              html: '
-                <div>FRANCIS, Sara</div>
-                <div class="govuk-hint">January 1987</div>
-              '
-            },
-            {
-              html:'
-              sara.francis@example.com
-                  <div class="govuk-!-margin-top-1">
-                  <a class="govuk-link" href="Change email address">Change email address</a><br>
-                  <a class="govuk-link" href="Resend email">Resend email</a>
-                </div>
-              '
-              
-            },
-            {
-              html: govukTag({
-                text: "Not signed",
-                classes: "govuk-tag--grey"
-              })
-            }
-          ]
-          
-
-        ]
-      }) }}
+  ]
+}) }}
 
     </div>
     </div>
