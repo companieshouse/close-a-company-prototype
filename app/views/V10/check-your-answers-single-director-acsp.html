@@ -19,11 +19,11 @@
     <form action="/V10/check-your-answers-single-director-acsp" method="post" novalidate>
 
       <h1 class="govuk-heading-l">
-        Check your answers before you sign the application
+        Check your answers before you start the application
       </h1>
 
       <h2 class="govuk-heading-m">
-        Directors
+        Director details
       </h2>
 
       {% if data['companyNumber'] == "87654321" %}
@@ -73,7 +73,7 @@
       {% endif %}
 
       <h2 class="govuk-heading-m">
-        Director email addresses
+        Email address details
       </h2>
 
       {% if data['companyNumber'] == "87654321" %}
@@ -123,7 +123,7 @@
       {% endif %}
 
       {{ govukButton({
-        text: "Continue"
+        text: "Start application"
       }) }}
 
     </form>
