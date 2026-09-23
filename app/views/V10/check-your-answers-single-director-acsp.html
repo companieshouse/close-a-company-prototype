@@ -19,7 +19,11 @@
     <form action="/V10/check-your-answers-single-director-acsp" method="post" novalidate>
 
       <h1 class="govuk-heading-l">
-        Check your answers before you start the application
+        {% if data['companyNumber'] == "87654321" %}
+          Check your answers before you sign the application
+        {% else %}
+          Check your answers before you start the application
+        {% endif %}
       </h1>
 
       <h2 class="govuk-heading-m">
@@ -39,7 +43,7 @@
             actions: {
               items: [
                 {
-                  href: "/V9/which-director-are-you",
+                  href: "/V10/which-director-are-you",
                   text: "Change",
                   visuallyHiddenText: "which director you are"
                 }
@@ -89,7 +93,7 @@
             actions: {
               items: [
                 {
-                  href: "/V9/provide-single-director-email",
+                  href: "/V10/provide-single-director-email",
                   text: "Change",
                   visuallyHiddenText: "email address for Sara Francis"
                 }
@@ -123,7 +127,7 @@
       {% endif %}
 
       {{ govukButton({
-        text: "Start application"
+        text: "Sign application" if data['companyNumber'] == "87654321" else "Start application"
       }) }}
 
     </form>
