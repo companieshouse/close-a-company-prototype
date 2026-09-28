@@ -200,39 +200,24 @@
     classes: "govuk-!-margin-left-2 govuk-tag--grey"
   }) }}</li>
 
+     <li>
+    <a href="/V10/email-tm-sign-the-application.html" class="govuk-link">
+      Email - Sign the application</a>{{ govukTag({
+      text: "Blocked",
+      classes: "govuk-!-margin-left-2 govuk-tag--grey"
+    }) }} Awaiting business decision re. dates
+  </li>
+
   <li><a href="/V10/email-pay-for-your-application.html" class="govuk-link">Email - Pay for your application to strike off and dissolve a company</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}<a href="https://companieshouse.atlassian.net/browse/FS-384" class="govuk-link">FS-384</a> URL content is a placeholder - will need to be updated when we know exactly what it will be in live. </li>
-
-    <li>
-    <a href="/V10/email-sign-the-application.html" class="govuk-link">
-      Email - Sign the application to strike off and dissolve a company (multi director)</a>{{ govukTag({
-      text: "Dev ready",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
-    }) }}Subject line updated on 4 September
-  </li>
-      <li>
-    <a href="/V10/email-sign-the-application-2-directors.html" class="govuk-link">
-      Email - Sign the application to strike off and dissolve a company (two directors)</a>{{ govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    }) }} Being user tested this week (14 Sept)
-  </li>
-
 </ul>
 
   <h3 class="govuk-heading-s" style="margin-top: 20px;">Transaction model emails</h3>
 
 <ul class="govuk-list govuk-list--bullet">
-      <li>
-    <a href="/V10/email-tm-sign-the-application.html" class="govuk-link">
-      Email - Sign the application</a>{{ govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    }) }}
-  </li>
   <li><a href="/V10/email-tm-app-submitted.html" class="govuk-link">Email - Application submitted (payment confirmation)</a>{{ govukTag({
     text: "In progress",
     classes: "govuk-!-margin-left-2 govuk-tag--yellow"
