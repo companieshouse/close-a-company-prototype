@@ -178,6 +178,45 @@ router.post('/V10/check-your-answers-multi-directors', function (req, res) {
   res.redirect('/V10/sign-the-application')
 })
 
+const directorNames = {
+  EllaAdams: 'ADAMS, Ella',
+  SaraFrancis: 'FRANCIS, Sara',
+  AlexJohnson: 'JOHNSON, Alex',
+  PriyaPatel: 'PATEL, Priya'
+}
+
+router.get('/V10/change-directors-email', function (req, res) {
+  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+  const directorIndex = directors.indexOf(req.query.director)
+
+  if (!directorNames[req.query.director] || directorIndex === -1) {
+    return res.redirect('/V10/check-your-answers-multi-directors')
+  }
+
+  const emailKey = 'directorEmail' + directorIndex
+
+  res.render('V10/change-directors-email', {
+    directorKey: req.query.director,
+    directorName: directorNames[req.query.director],
+    emailKey,
+    currentEmail: req.session.data[emailKey]
+  })
+})
+
+router.post('/V10/change-directors-email', function (req, res) {
+  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+  const directorIndex = directors.indexOf(req.query.director)
+
+  if (!directorNames[req.query.director] || directorIndex === -1) {
+    return res.redirect('/V10/check-your-answers-multi-directors')
+  }
+
+  const emailKey = 'directorEmail' + directorIndex
+  req.session.data[emailKey] = req.body[emailKey]
+
+  res.redirect('/V10/check-your-answers-multi-directors')
+})
+
 // --------------------
 // SIGN THE APPLICATION
 // --------------------

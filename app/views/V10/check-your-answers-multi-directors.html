@@ -83,7 +83,7 @@
             actions: {
               items: [
                 {
-                  href: "/V7/which-director-are-you",
+                  href: "/V10/which-director-are-you",
                   text: "Change",
                   visuallyHiddenText: "which director you are"
                 }
@@ -100,7 +100,7 @@
             actions: {
               items: [
                 {
-                  href: "/V7/which-directors-will-be-signing",
+                  href: "/V10/which-directors-will-be-signing",
                   text: "Change",
                   visuallyHiddenText: "which directors will sign the application"
                 }
@@ -122,19 +122,19 @@
 
           {% if director == "EllaAdams" %}
             {% set displayName = "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(January 1980)</span>" %}
-            {% set changeHref = "/V7/change-directors-email-ella" %}
+            {% set changeHref = "/V10/change-directors-email?director=EllaAdams" %}
           {% elseif director == "SaraFrancis" %}
             {% set displayName = "FRANCIS, Sara<br><span class='govuk-hint govuk-!-margin-bottom-0'>(March 1985)</span>" %}
-            {% set changeHref = "/V7/change-directors-email-sara" %}
+            {% set changeHref = "/V10/change-directors-email?director=SaraFrancis" %}
           {% elseif director == "AlexJohnson" %}
             {% set displayName = "JOHNSON, Alex<br><span class='govuk-hint govuk-!-margin-bottom-0'>(July 1978)</span>" %}
-            {% set changeHref = "/V7/change-directors-email-alex" %}
+            {% set changeHref = "/V10/change-directors-email?director=AlexJohnson" %}
           {% elseif director == "PriyaPatel" %}
             {% set displayName = "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>" %}
-            {% set changeHref = "/V7/change-directors-email-priya" %}
+            {% set changeHref = "/V10/change-directors-email?director=PriyaPatel" %}
           {% elseif director == "AcmeLtd" %}
             {% set displayName = "ACME LTD" %}
-            {% set changeHref = "/V7/change-corporate-directors-email" %}
+            {% set changeHref = "/V10/change-corporate-directors-email" %}
           {% endif %}
 
           <div class="govuk-summary-list__row">
