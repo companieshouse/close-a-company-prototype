@@ -120,6 +120,15 @@
     classes: "govuk-!-margin-left-2 govuk-tag--green"
   }) }}***In ticket, mention that the word 'other' needs to be removed in version where an ACSP is the applicant***
 </li>
+<li>
+  <a href="/V10/check-your-answers-corporate.html" class="govuk-link">
+    Check your answers (corporate director)</a>
+  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+ {{ govukTag({
+    text: "In progress",
+    classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  }) }}***This is not wired into the journey it is hardcoded for content editing***
+</li>
   <li><a href="/V10/change-directors-email.html" class="govuk-link">Change email address for [name]</a>    {{ govukTag({
     text: "Dev ready",
     classes: "govuk-!-margin-left-2 govuk-tag--green"

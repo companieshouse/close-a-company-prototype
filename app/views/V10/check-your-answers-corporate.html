@@ -1,0 +1,159 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers before you sign the application – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: { text: "Beta" },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#" target="_blank" rel="noreferrer noopener">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+  <p class="govuk-body-s govuk-!-text-align-right govuk-!-margin-top-2 govuk-!-margin-bottom-2">
+    ella.adams@example.com
+    <a class="govuk-link govuk-!-margin-left-2" href="/V7/sign-in-to-ch-or-one-login">Sign out</a>
+  </p>
+  <hr class="govuk-section-break govuk-section-break--visible">
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/V10/change-corporate-directors-email"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Check your answers before you sign the application</h1>
+
+    <h2 class="govuk-heading-m">Directors</h2>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Which director are you?" },
+          value: { html: "ADAMS, Ella<br><span class='govuk-hint govuk-!-margin-bottom-0'>(January 1980)</span>" },
+          actions: {
+            items: [
+              {
+                href: "/V10/which-director-are-you",
+                text: "Change",
+                visuallyHiddenText: "which director you are"
+              }
+            ]
+          }
+        },
+        {
+          key: { text: "Which other directors will sign the application?" },
+          value: {
+            html: '<p class="govuk-body">FRANCIS, Sara<br><span class="govuk-hint govuk-!-margin-bottom-0">(March 1985)</span></p><p class="govuk-body">JOHNSON, Alex<br><span class="govuk-hint govuk-!-margin-bottom-0">(July 1978)</span></p><p class="govuk-body">PATEL, Priya<br><span class="govuk-hint govuk-!-margin-bottom-0">(November 1982)</span></p><p class="govuk-body">ACME LTD</p>'
+          },
+          actions: {
+            items: [
+              {
+                href: "/V10/which-directors-will-be-signing",
+                text: "Change",
+                visuallyHiddenText: "which other directors will sign the application"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Director email addresses</h2>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { html: "FRANCIS, Sara<br><span class='govuk-hint govuk-!-margin-bottom-0'>(March 1985)</span>" },
+          value: { text: "sara.francis@example.com" },
+          actions: {
+            items: [
+              {
+                href: "/V10/change-directors-email?director=SaraFrancis",
+                text: "Change",
+                visuallyHiddenText: "email address for Sara Francis"
+              }
+            ]
+          }
+        },
+        {
+          key: { html: "JOHNSON, Alex<br><span class='govuk-hint govuk-!-margin-bottom-0'>(July 1978)</span>" },
+          value: { text: "alex.johnson@example.com" },
+          actions: {
+            items: [
+              {
+                href: "/V10/change-directors-email?director=AlexJohnson",
+                text: "Change",
+                visuallyHiddenText: "email address for Alex Johnson"
+              }
+            ]
+          }
+        },
+        {
+          key: { html: "PATEL, Priya<br><span class='govuk-hint govuk-!-margin-bottom-0'>(November 1982)</span>" },
+          value: { text: "priya.patel@example.com" },
+          actions: {
+            items: [
+              {
+                href: "/V10/change-directors-email?director=PriyaPatel",
+                text: "Change",
+                visuallyHiddenText: "email address for Priya Patel"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+<h2 class="govuk-heading-m">Corporate directors</h2>
+    <h3 class="govuk-heading-m">ACME LTD</h3>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Name of authorised person" },
+          value: { text: "John Smith" },
+          actions: {
+            items: [
+              {
+                href: "/V10/change-corporate-directors-email#authorised-person-name",
+                text: "Change",
+                visuallyHiddenText: "name of the person authorised to sign for ACME LTD"
+              }
+            ]
+          }
+        },
+        {
+          key: { text: "Email address of authorised person" },
+          value: { text: "john.smith@example.com" },
+          actions: {
+            items: [
+              {
+                href: "/V10/change-corporate-directors-email#authorised-person-email",
+                text: "Change",
+                visuallyHiddenText: "email address of the person authorised to sign for ACME LTD"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form action="/V10/check-your-answers-multi-directors" method="post" novalidate>
+      {{ govukButton({
+        text: "Continue",
+        preventDoubleClick: true
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
