@@ -18,7 +18,7 @@ Application rejected – {{ serviceName }} – GOV.UK Prototype Kit
 <form action="/V10/email-sign-the-application" method="post">
 
   {{ govukPanel({
-    titleText: "Application rejected",
+    titleText: "Application deleted",
     html: "Your reference number<br><strong>110612-998716-690438</strong>"
   }) }}
 
@@ -36,27 +36,16 @@ Application rejected – {{ serviceName }} – GOV.UK Prototype Kit
   }) }}
 
    <p class="govuk-body">
-    The application to strike off and dissolve (close) this company has been rejected. The process to dissolve the company has now stopped.
+    The application to strike off and dissolve (close) this company has been deleted. The process to dissolve the company has now stopped. We emailed all signing directors, if relevant, and the person who started the application to let them know.
   </p>
 
-<h2 class="govuk-heading-m">
-    Reject reasons
-  </h2>
-   <p class="govuk-body">
-   <p class="govuk-body">The application was rejected because: </p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>reason 1</li>
-  <li>reason 2</li>
-  <li>reason 3</li>
-</ul>
-  </p>
 
-  <h2 class="govuk-heading-m">
-    What happens next
-  </h2>
+
+
 
    <p>
-      If you still want to dissolve this company, you'll need to start a new application and correct the reasons it was rejected. 
+      If you still want to dissolve this company, you can 
+  <a href="#" class="govuk-link govuk-link--no-visited-state">start a new application</a>. 
     </p>
     
 <p class="govuk-hint govuk-!-margin-top-9 govuk-!-font-size-16 "> Help us improve by completing our quick survey: 
