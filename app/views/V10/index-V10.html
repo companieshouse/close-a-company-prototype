@@ -192,23 +192,11 @@
 
 
  <ul class="govuk-list govuk-list--bullet">
-  <li>
-    <a href="/V10/email-application-accepted.html" class="govuk-link">Email - Application accepted (multi director)</a>{{ govukTag({
-    text: "Blocked - TM spike",
-    classes: "govuk-!-margin-left-2 govuk-tag--grey"
-  }) }} 
-    </li>
   <li><a href="/V10/pdf-mock-up.html" class="govuk-link">Email attachment (PDF mock up for testing) - Copy of the application</a>  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
   {{ govukTag({
     text: "Not for dev",
     classes: "govuk-!-margin-left-2 govuk-tag--pink"
   }) }}</li>
-
-  <li><a href="/V10/bi-email-mock.html" class="govuk-link">Email - Application submitted</a>{{ govukTag({
-    text: "Blocked - TM spike",
-    classes: "govuk-!-margin-left-2 govuk-tag--grey"
-  }) }}</li>
-
      <li>
     <a href="/V10/email-tm-sign-the-application.html" class="govuk-link">
       Email - Sign the application</a>{{ govukTag({
