@@ -23,40 +23,30 @@
 
       <form action="/V6/provide-corporate-directors-emails" method="post">
 
+        <span class="govuk-caption-xl">ACME LTD</span>
         <h1 class="govuk-heading-xl">
-          Change corporate director details
+          Change details of person authorised to sign
         </h1>
 
-        <h2 class="govuk-heading-m">
-          ACME LTD
-        </h2>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="email">
+   Authorised person's name
+  </label>
+  <div id="email-hint" class="govuk-hint">
+     Enter the name of the person authorised to sign on behalf of this corporate director
+  </div>
+  <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+</div>
 
-        <p class="govuk-body">
-          Provide the details of a person who is authorised by ACME LTD to sign the application on its behalf.
-        </p>
-
-        {{ govukInput({
-          label: {
-            text: "What is the name of the authorised person who will sign on behalf of ACME LTD?"
-          },
-          id: nameKey,
-          name: nameKey,
-          type: "text",
-          autocomplete: "name",
-          value: data[nameKey]
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "What is the email address of the authorised person who will sign on behalf of ACME LTD?"
-          },
-          id: emailKey,
-          name: emailKey,
-          type: "email",
-          autocomplete: "email",
-          spellcheck: false,
-          value: data[emailKey]
-        }) }}
+     <div class="govuk-form-group">
+  <label class="govuk-label" for="email">
+    Authorised person's email address
+  </label>
+  <div id="email-hint" class="govuk-hint">
+     Enter the email address of the person authorised to sign on behalf of this corporate director
+  </div>
+  <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+</div>
 
         {{ govukButton({
           text: "Save and continue"
