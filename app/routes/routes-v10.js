@@ -203,19 +203,19 @@ const directorNames = {
 //   })
 // })
 
-router.post('/V10/change-directors-email', function (req, res) {
-  const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
-  const directorIndex = directors.indexOf(req.query.director)
+// router.post('/V10/change-directors-email', function (req, res) {
+//   const directors = req.session.data.whichDirectorsWillBeSigningTheApplication || []
+//   const directorIndex = directors.indexOf(req.query.director)
 
-  if (!directorNames[req.query.director] || directorIndex === -1) {
-    return res.redirect('/V10/check-your-answers-multi-directors')
-  }
+//   if (!directorNames[req.query.director] || directorIndex === -1) {
+//     return res.redirect('/V10/check-your-answers-multi-directors')
+//   }
 
-  const emailKey = 'directorEmail' + directorIndex
-  req.session.data[emailKey] = req.body[emailKey]
+//   const emailKey = 'directorEmail' + directorIndex
+//   req.session.data[emailKey] = req.body[emailKey]
 
-  res.redirect('/V10/check-your-answers-multi-directors')
-})
+//   res.redirect('/V10/check-your-answers-multi-directors')
+// })
 
 // --------------------
 // SIGN THE APPLICATION
