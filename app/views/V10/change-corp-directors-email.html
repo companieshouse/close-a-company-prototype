@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide directors' emails – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/V10/change-directors-email?director={{ directorKey }}" method="post">
+
+        <h1 class="govuk-heading-xl">
+          Change email address for FRANCIS, Sara
+        </h1>
+
+
+
+       
+
+   
+
+            <p class="govuk-body">This must be different to the email addresses provided for other directors.</p>
+
+     
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="director-email">
+            Email address
+          </label>
+          <input class="govuk-input" id="director-email" name="{{ emailKey }}" type="email" value="{{ currentEmail }}">
+        </div>
+
+     
+
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
